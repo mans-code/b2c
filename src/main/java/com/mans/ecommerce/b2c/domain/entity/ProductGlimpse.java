@@ -4,22 +4,30 @@ import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class ProductGlimpse
 {
-    @Id
-    private String id;
+
+    private String productId;
+
     private String name;
+
     private String title;
+
     private String imageUrl;
+
     private double cheapestUnitPrice;
+
     private double avgRatingScore;
+
     private int numCustomerRatings;
+
     private int numUnitsAvailable;
+
     private Date availableOn;
+
     private List<String> shipTo;
 
     private URI projectDetailsLink;//use mapping //TODO
@@ -28,9 +36,9 @@ public class ProductGlimpse
     {
     }
 
-    public void setId(String id)
+    public void setId(String productId)
     {
-        this.id = id;
+        this.productId = productId;
     }
 
     public void setName(String name)
@@ -73,9 +81,9 @@ public class ProductGlimpse
         this.availableOn = availableOn;
     }
 
-    public String getId()
+    public String getProductId()
     {
-        return id;
+        return productId;
     }
 
     public String getName()
