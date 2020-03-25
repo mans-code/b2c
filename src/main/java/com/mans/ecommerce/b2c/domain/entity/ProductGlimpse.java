@@ -11,7 +11,7 @@ public class ProductGlimpse
 
     private String productId;
 
-    private String name;
+    private List<String> keyWords; //for search
 
     private String title;
 
@@ -38,11 +38,6 @@ public class ProductGlimpse
     public void setId(String productId)
     {
         this.productId = productId;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
     }
 
     public void setTitle(String title)
@@ -83,11 +78,6 @@ public class ProductGlimpse
     public String getProductId()
     {
         return productId;
-    }
-
-    public String getName()
-    {
-        return name;
     }
 
     public String getTitle()
@@ -149,4 +139,15 @@ public class ProductGlimpse
     {
         this.projectDetailsId = projectDetailsId;
     }
+
+    public void setKeyWords(List<String> keyWords)
+    {
+        this.keyWords = keyWords;
+    }
+
+    public List<String> getKeyWords()
+    {
+        return keyWords;
+    }
 }
+
