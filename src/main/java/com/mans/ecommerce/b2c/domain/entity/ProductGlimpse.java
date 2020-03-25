@@ -1,6 +1,5 @@
 package com.mans.ecommerce.b2c.domain.entity;
 
-import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class ProductGlimpse
 
     private List<String> shipTo;
 
-    private URI projectDetailsLink;//use mapping //TODO
+    private String projectDetailsId;//use mapping //TODO
 
     protected ProductGlimpse()
     {
@@ -126,4 +125,28 @@ public class ProductGlimpse
         return availableOn;
     }
 
+    public List<String> getShipTo()
+    {
+        return shipTo;
+    }
+
+    public String getProjectDetailsId()
+    {
+        return projectDetailsId;
+    }
+
+    public void setProductId(String productId)
+    {
+        this.productId = productId;
+    }
+
+    public void setShipTo(List<String> shipTo)
+    {
+        this.shipTo = shipTo;
+    }
+
+    public void setProjectDetailsId(String projectDetailsId)
+    {
+        this.projectDetailsId = projectDetailsId;
+    }
 }

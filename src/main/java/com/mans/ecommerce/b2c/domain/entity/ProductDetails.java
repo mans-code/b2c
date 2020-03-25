@@ -3,8 +3,6 @@ package com.mans.ecommerce.b2c.domain.entity;
 import java.util.List;
 import java.util.Map;
 
-import com.mans.ecommerce.b2c.domain.entity.subEntity.Review;
-
 public class ProductDetails
 {
     // maybe for every variation comes with description part;
@@ -12,14 +10,16 @@ public class ProductDetails
 
     private String productId;
 
-    private String shortDescription;
+    // info about the product is recommended to be html
+    private String shortDescription; // CBH
 
-    private ProductVariation productVariations;
+    private String productInformation; //  CBH
 
-    private String priceType; // TODO enum
+    private String fromManufacturer; // CBH
 
-    private double price;
+    private String description;
 
+    //Customer
     private int numOfQuestions;
 
     private List<QAndA> topQAndA;
@@ -28,17 +28,26 @@ public class ProductDetails
 
     private List<Review> topReviews;
 
-    private String description;
+    // price
+    private String priceType; // TODO enum
+
+    private double price;
+
+    private String priceCurrency; //TODO enum
+
+    private ProductVariation productVariations;
+
+    private List<ProductGlimpse> similarItems;
 
     private class ProductVariation
     {
-        private Map<String, List<String>> variation;
+        private Map<String, List<String>> variation; // key:values
 
         private List<AvailableVariation> availableVariation;
 
         private class AvailableVariation
         {
-            private List<String> availableCombination;
+            private Map<String, String> variation; // key:value  keySets will correspond to whole  keySets defined at ProductVariation variation
 
             private double price;
 

@@ -9,7 +9,7 @@ public class ProductInventory
 
     private String supplyId;
 
-    private String supplierProductID; // The Vendor's Product ID (could be SKU or their own system). (Could be a duplication of SKU above.)
+    private String supplierProductId; // The Vendor's Product ID (could be SKU or their own system). (Could be a duplication of SKU above.)
 
     private String name;
 
