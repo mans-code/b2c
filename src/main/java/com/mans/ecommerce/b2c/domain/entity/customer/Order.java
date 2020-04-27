@@ -85,5 +85,4 @@ public class Order
             private String status; //TODO enum
         }
     }
-
 }

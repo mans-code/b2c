@@ -2,8 +2,8 @@ package com.mans.ecommerce.b2c.domain.entity;
 
 import java.util.List;
 
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Address;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
-import com.mans.ecommerce.b2c.domain.entity.subEntity.Address;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@ToString(exclude = {"password"})
+@ToString(exclude = { "password" })
 @Document(collection = "customer")
 public class Customer
 {
@@ -56,5 +56,4 @@ public class Customer
         this.email = email;
         this.name = name;
     }
-
 }

@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @ToString(exclude = {})
 @Document(collection = "customer")
-public class CustomerFeed
+public class Feed
 {
     @Id
     private String id;
@@ -30,9 +30,8 @@ public class CustomerFeed
 
     private List<ProductInfo> addedToChart;
 
-    protected CustomerFeed()
+    protected Feed()
     {
 
     }
-
 }

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@ToString(exclude = {"reportedAbuses"})
+@ToString(exclude = { "reportedAbuses" })
 @Document(collection = "review")
 public class Review
 {

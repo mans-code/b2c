@@ -2,7 +2,7 @@ package com.mans.ecommerce.b2c.domain.entity;
 
 import java.util.List;
 
-import com.mans.ecommerce.b2c.domain.entity.subEntity.Address;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Address;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @ToString(exclude = {})
 @Document(collection = "customer_payment_detail")
-public class CustomerPaymentInfo
+public class PaymentInfo
 {
     @Id
     private String id;
@@ -36,5 +36,4 @@ public class CustomerPaymentInfo
 
         private boolean primary;
     }
-
 }
