@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.dto;
+package com.mans.ecommerce.b2c.controller.utills.dto;
 
 import javax.validation.constraints.NotNull;
 

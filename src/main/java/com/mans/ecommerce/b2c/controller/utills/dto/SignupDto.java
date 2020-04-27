@@ -1,16 +1,21 @@
-package com.mans.ecommerce.b2c.controller.dto;
+package com.mans.ecommerce.b2c.controller.utills.dto;
 
-import javax.validation.constraints.*;
-import javax.xml.bind.annotation.XmlInlineBinaryData;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import com.mans.ecommerce.b2c.domain.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utills.dto.annotation.ValidPassword;
+import com.sun.istack.internal.NotNull;
 
 public class SignupDto
 {
-
-    @NotEmpty
-    @Min(4)
-    @Max(32)
+    /*
+        ASCII letters and digits, with hyphens,
+        underscores and spaces as internal separators.
+    */
+    @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
+    @Size(min = 4, max = 32)
     private String username;
 
     @ValidPassword
@@ -20,9 +25,8 @@ public class SignupDto
     @NotEmpty
     private String email;
 
-    @NotEmpty
-    @Min(3)
-    @Max(32)
+    @NotNull
+    @Size(min = 4, max = 32)
     private String name;
 
     protected SignupDto()

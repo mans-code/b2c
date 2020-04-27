@@ -1,9 +1,9 @@
-package com.mans.ecommerce.b2c.controller;
+package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 
-import com.mans.ecommerce.b2c.controller.dto.LoginDto;
-import com.mans.ecommerce.b2c.controller.dto.SignupDto;
+import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
+import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.Customer;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customers")
-public class CustomerController
+@RequestMapping("/customers/auth")
+public class AuthController
 {
 
     private CustomerService customerService;
 
     @Autowired
-    public CustomerController(CustomerService customerService)
+    public AuthController(CustomerService customerService)
     {
         this.customerService = customerService;
     }
