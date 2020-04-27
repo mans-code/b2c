@@ -3,7 +3,7 @@ package com.mans.ecommerce.b2c.domain.entity;
 import java.util.Date;
 import java.util.List;
 
-import com.mans.ecommerce.b2c.domain.entity.subEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

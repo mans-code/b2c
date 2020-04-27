@@ -2,7 +2,7 @@ package com.mans.ecommerce.b2c.service;
 
 import java.util.Optional;
 
-import com.mans.ecommerce.b2c.controller.dto.SignupDto;
+import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.Customer;
 import com.mans.ecommerce.b2c.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
