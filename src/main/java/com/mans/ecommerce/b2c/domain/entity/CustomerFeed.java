@@ -2,11 +2,17 @@ package com.mans.ecommerce.b2c.domain.entity;
 
 import java.util.List;
 
-import com.mans.ecommerce.b2c.domain.entity.subEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Getter
+@Setter
+@ToString(exclude = {})
+@Document(collection = "customer")
 public class CustomerFeed
 {
     @Id
@@ -29,38 +35,4 @@ public class CustomerFeed
 
     }
 
-    public String getId()
-    {
-        return id;
-    }
-
-    public String getCustomerId()
-    {
-        return customerId;
-    }
-
-    public List<ProductInfo> getClicks()
-    {
-        return clicks;
-    }
-
-    public List<ProductInfo> getBought()
-    {
-        return bought;
-    }
-
-    public ProductInfo getLastProductBought()
-    {
-        return lastProductBought;
-    }
-
-    public ProductInfo getLastProductClicked()
-    {
-        return lastProductClicked;
-    }
-
-    public List<ProductInfo> getAddedToChart()
-    {
-        return addedToChart;
-    }
 }

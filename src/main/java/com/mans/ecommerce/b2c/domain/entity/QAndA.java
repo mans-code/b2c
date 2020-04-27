@@ -3,6 +3,15 @@ package com.mans.ecommerce.b2c.domain.entity;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Getter
+@Setter
+@ToString(exclude = {})
+@Document(collection = "q_and_a")
 public class QAndA
 {
 
@@ -38,83 +47,4 @@ public class QAndA
         private Date createdOn;
     }
 
-    public String getProductId()
-    {
-        return productId;
-    }
-
-    public String getQuestion()
-    {
-        return question;
-    }
-
-    public List<Answer> getAnswers()
-    {
-        return answers;
-    }
-
-    public Answer getOwnerAnswer()
-    {
-        return ownerAnswer;
-    }
-
-    public int getVotes()
-    {
-        return votes;
-    }
-
-    public Date getCreatedOn()
-    {
-        return createdOn;
-    }
-
-    public String getCustomerId()
-    {
-        return customerId;
-    }
-
-    public String getBy()
-    {
-        return by;
-    }
-
-    public void setProductId(String productId)
-    {
-        this.productId = productId;
-    }
-
-    public void setQuestion(String question)
-    {
-        this.question = question;
-    }
-
-    public void setAnswers(List<Answer> answers)
-    {
-        this.answers = answers;
-    }
-
-    public void setOwnerAnswer(Answer ownerAnswer)
-    {
-        this.ownerAnswer = ownerAnswer;
-    }
-
-    public void setVotes(int votes)
-    {
-        this.votes = votes;
-    }
-
-    public void setCreatedOn(Date createdOn)
-    {
-        this.createdOn = createdOn;
-    }
-
-    public void setCustomerId(String customerId)
-    {
-        this.customerId = customerId;
-    }
-
-    public void setBy(String by)
-    {
-        this.by = by;
-    }
 }

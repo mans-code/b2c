@@ -3,6 +3,15 @@ package com.mans.ecommerce.b2c.domain.entity;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Getter
+@Setter
+@ToString(exclude = {})
+@Document(collection = "product_detail")
 public class ProductDetails
 {
     // maybe for every variation comes with description part;

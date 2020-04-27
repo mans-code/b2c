@@ -2,10 +2,16 @@ package com.mans.ecommerce.b2c.domain.entity;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Getter
+@Setter
+@ToString(exclude = {})
+@Document(collection = "order")
 public class Order
 {
     @Id
@@ -80,103 +86,4 @@ public class Order
         }
     }
 
-    public String getId()
-    {
-        return id;
-    }
-
-    public String getCustomerId()
-    {
-        return customerId;
-    }
-
-    public Date getCreatedOn()
-    {
-        return createdOn;
-    }
-
-    public Date getUpdatedOn()
-    {
-        return updatedOn;
-    }
-
-    public double getSalesTax()
-    {
-        return salesTax;
-    }
-
-    public double getShippingCost()
-    {
-        return shippingCost;
-    }
-
-    public double getTotalPrice()
-    {
-        return totalPrice;
-    }
-
-    public double getDiscount()
-    {
-        return discount;
-    }
-
-    public double getImportFee()
-    {
-        return importFee;
-    }
-
-    public OrderDetails getDetails()
-    {
-        return details;
-    }
-
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-
-    public void setCustomerId(String customerId)
-    {
-        this.customerId = customerId;
-    }
-
-    public void setCreatedOn(Date createdOn)
-    {
-        this.createdOn = createdOn;
-    }
-
-    public void setUpdatedOn(Date updatedOn)
-    {
-        this.updatedOn = updatedOn;
-    }
-
-    public void setSalesTax(double salesTax)
-    {
-        this.salesTax = salesTax;
-    }
-
-    public void setShippingCost(double shippingCost)
-    {
-        this.shippingCost = shippingCost;
-    }
-
-    public void setTotalPrice(double totalPrice)
-    {
-        this.totalPrice = totalPrice;
-    }
-
-    public void setDiscount(double discount)
-    {
-        this.discount = discount;
-    }
-
-    public void setImportFee(double importFee)
-    {
-        this.importFee = importFee;
-    }
-
-    public void setDetails(OrderDetails details)
-    {
-        this.details = details;
-    }
 }
