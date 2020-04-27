@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.domain.entity;
+package com.mans.ecommerce.b2c.domain.entity.customer;
 
 import java.util.Date;
 

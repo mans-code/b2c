@@ -1,8 +1,7 @@
-package com.mans.ecommerce.b2c.domain.entity;
+package com.mans.ecommerce.b2c.domain.entity.customer;
 
 import java.util.List;
 
-import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Address;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,5 +54,29 @@ public class Customer
         this.password = password;
         this.email = email;
         this.name = name;
+    }
+
+    @Getter
+    @Setter
+    public class Address
+    {
+        private String name;
+
+        private String address;
+
+        private String city;
+
+        private String state;
+
+        private String zip;
+
+        private String phoneNumber;
+
+        private String accessCode;
+
+        protected Address()
+        {
+
+        }
     }
 }
