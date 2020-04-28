@@ -3,6 +3,7 @@ package com.mans.ecommerce.b2c.domain.entity.customer;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -56,27 +57,19 @@ public class Customer
         this.name = name;
     }
 
-    @Getter
-    @Setter
-    public class Address
+    public Customer(
+            String username,
+            String password,
+            String phoneNumber,
+            String email,
+            String name
+    )
     {
-        private String name;
-
-        private String address;
-
-        private String city;
-
-        private String state;
-
-        private String zip;
-
-        private String phoneNumber;
-
-        private String accessCode;
-
-        protected Address()
-        {
-
-        }
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.name = name;
+        this.numOfItemsInCart = numOfItemsInCart;
     }
 }

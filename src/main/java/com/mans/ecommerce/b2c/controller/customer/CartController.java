@@ -13,7 +13,7 @@ public class CartController
     @GetMapping("/")
     public String getItems()
     {
-
+        return "";
     }
 
     @PostMapping("/:productId")

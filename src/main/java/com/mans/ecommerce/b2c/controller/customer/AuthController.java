@@ -4,7 +4,7 @@ import javax.validation.Valid;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
-import com.mans.ecommerce.b2c.domain.entity.Customer;
+import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

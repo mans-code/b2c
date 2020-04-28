@@ -3,8 +3,8 @@ package com.mans.ecommerce.b2c.service;
 import java.util.Optional;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
-import com.mans.ecommerce.b2c.domain.entity.Customer;
-import com.mans.ecommerce.b2c.repository.CustomerRepository;
+import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,11 +39,19 @@ public class CustomerService
 
     public Optional<Customer> signup(SignupDto signupDto)
     {
-        if (!customerRepository.findByUsername(signupDto.getUsername()).isPresent())
+        if (customerRepository.findByUsername(
+                signupDto.getUsername())
+                               .isPresent()
+        )
         {
-            return Optional.of( mapSignupDtoToCustomer(signupDto));
+            return Optional.empty();
         }
-        return Optional.empty();
+
+        Customer newCustomer = mapSignupDtoToCustomer(signupDto);
+        return Optional.of(
+                customerRepository.save(newCustomer)
+        );
+
     }
 
     private Customer mapSignupDtoToCustomer(SignupDto signupDto)
@@ -56,6 +64,5 @@ public class CustomerService
                         signupDto.getName()
                 );
     }
-
 }
 

@@ -12,9 +12,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@ToString(exclude = { "id", "expireDate"})
+@ToString(exclude = { "id", "expireDate" })
 @Document(collection = "cart")
-public class Cart
+public class CustomerCart
 {
     @Id
     private String id;
@@ -31,8 +31,22 @@ public class Cart
 
     private int totalQuantity;
 
-    protected Cart()
+    protected CustomerCart()
     {
 
+    }
+
+    public CustomerCart(
+            String id,
+            boolean active,
+            Date expireDate,
+            double totalPrice,
+            int totalQuantity)
+    {
+        this.id = id;
+        this.active = active;
+        this.expireDate = expireDate;
+        this.totalPrice = totalPrice;
+        this.totalQuantity = totalQuantity;
     }
 }

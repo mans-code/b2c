@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @ToString(exclude = {})
 @Document(collection = "order")
-public class Order
+public class CustomerOrder
 {
     @Id
     private String id;

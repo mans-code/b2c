@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.repository;
+package com.mans.ecommerce.b2c.repository.customer;
 
 import java.util.Optional;
 

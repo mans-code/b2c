@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class ProductInfo
 {
-    private String productDetailId;
+    private String productId;
 
     private String productName;
 
@@ -23,5 +23,21 @@ public class ProductInfo
 
     protected ProductInfo()
     {
+    }
+
+    public ProductInfo(
+            String productId,
+            String productName,
+            String imageUrl,
+            int quantity,
+            double price,
+            Map<String, String> variation)
+    {
+        this.productId = productId;
+        this.productName = productName;
+        this.imageUrl = imageUrl;
+        this.quantity = quantity;
+        this.price = price;
+        this.variation = variation;
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @ToString(exclude = { "reportedAbuses" })
 @Document(collection = "review")
-public class Review
+public class ProductReview
 {
     private String productId;
 

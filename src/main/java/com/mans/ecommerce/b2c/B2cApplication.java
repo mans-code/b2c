@@ -2,6 +2,7 @@ package com.mans.ecommerce.b2c;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 //TODO ProductDetails: List<?> similarItems
 
@@ -13,5 +14,4 @@ public class B2cApplication
     {
         SpringApplication.run(B2cApplication.class, args);
     }
-
 }

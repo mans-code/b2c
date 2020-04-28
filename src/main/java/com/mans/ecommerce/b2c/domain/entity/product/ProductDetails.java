@@ -31,11 +31,11 @@ public class ProductDetails
     //Customer
     private int numOfQuestions;
 
-    private List<QAndA> topQAndA;
+    private List<ProductQAndA> topProductQAndA;
 
     private int numReviews;
 
-    private List<Review> topReviews;
+    private List<ProductReview> topProductReviews;
 
     // price
     private String priceType; // TODO enum

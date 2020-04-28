@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @ToString(exclude = {})
 @Document(collection = "q_and_a")
-public class QAndA
+public class ProductQAndA
 {
 
     private String productId;
@@ -31,7 +31,7 @@ public class QAndA
 
     private String by;
 
-    protected QAndA()
+    protected ProductQAndA()
     {
 
     }

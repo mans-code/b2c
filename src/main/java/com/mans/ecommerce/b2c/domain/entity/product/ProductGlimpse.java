@@ -40,5 +40,10 @@ public class ProductGlimpse
     protected ProductGlimpse()
     {
     }
+
+    public ProductGlimpse(String title)
+    {
+        this.title = title;
+    }
 }
 
