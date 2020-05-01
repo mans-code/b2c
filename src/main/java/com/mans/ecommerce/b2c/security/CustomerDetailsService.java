@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.security;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

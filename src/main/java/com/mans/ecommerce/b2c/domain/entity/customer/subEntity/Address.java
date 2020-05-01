@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.domain.entity.customer;
+package com.mans.ecommerce.b2c.domain.entity.customer.subEntity;
 
 import lombok.Getter;
 import lombok.Setter;

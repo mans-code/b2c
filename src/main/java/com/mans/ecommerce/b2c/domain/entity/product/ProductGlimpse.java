@@ -3,19 +3,18 @@ package com.mans.ecommerce.b2c.domain.entity.product;
 import java.util.Date;
 import java.util.List;
 
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @ToString(exclude = {})
-@Document(collection = "product_glimpse")
 public class ProductGlimpse
 {
 
-    private String productId;
+    private String id;
 
     private List<String> keyWords; //for search
 
@@ -23,7 +22,7 @@ public class ProductGlimpse
 
     private String imageUrl;
 
-    private double cheapestUnitPrice;
+    private Price cheapestUnitPrice;
 
     private double avgRatingScore;
 
@@ -34,16 +33,5 @@ public class ProductGlimpse
     private Date availableOn;
 
     private List<String> shipTo;
-
-    private String projectDetailsId;//use mapping //TODO
-
-    protected ProductGlimpse()
-    {
-    }
-
-    public ProductGlimpse(String title)
-    {
-        this.title = title;
-    }
 }
 

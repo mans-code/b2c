@@ -5,19 +5,13 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @ToString(exclude = {})
-@Document(collection = "order")
 public class CustomerOrder
 {
-    @Id
     private String id;
-
-    private String customerId;
 
     //Dates
     private Date createdOn;
@@ -38,6 +32,14 @@ public class CustomerOrder
     //Details
     private OrderDetails details;
 
+    protected CustomerOrder()
+    {
+
+    }
+
+    @Getter
+    @Setter
+    @ToString(exclude = {})
     private class OrderDetails
     {
         private OrderHistory OrderHistory;
@@ -46,9 +48,14 @@ public class CustomerOrder
 
         private OrderPaymentInfo payment;
 
+        @Getter
+        @Setter
+        @ToString(exclude = {})
         private class OrderHistory
         {
             private String status; //TODO enum
+
+            private String desc;
 
             private String note;
 
@@ -57,6 +64,9 @@ public class CustomerOrder
             private Date updateOn;
         }
 
+        @Getter
+        @Setter
+        @ToString(exclude = {})
         private class OrderShippingInfo
         {
             private Date cratedOn;
@@ -72,6 +82,9 @@ public class CustomerOrder
             private String trackingNumber;
         }
 
+        @Getter
+        @Setter
+        @ToString(exclude = {})
         private class OrderPaymentInfo
         {
             private String cardOwnerName;

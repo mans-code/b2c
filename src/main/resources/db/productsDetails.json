@@ -1,0 +1,952 @@
+[
+  {
+    "id": "5ea9d936fc13ae2ee4000032",
+    "by": "Auer LLC",
+    "shortDescription": "Mauris lacinia sapien quis libero.",
+    "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+    "fromManufacturer": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+    "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.",
+    "price": {
+      "type": "STATIC",
+      "price": 4.08,
+      "currency": "USD"
+    },
+    "numOfQuestions": 14,
+    "topProductQAndA": [],
+    "numReviews": 61,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000033",
+    "by": "Bashirian Inc",
+    "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+    "productInformation": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+    "fromManufacturer": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+    "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.0,
+      "currency": "USD"
+    },
+    "numOfQuestions": 17,
+    "topProductQAndA": [],
+    "numReviews": 92,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000034",
+    "by": "McKenzie-Torphy",
+    "shortDescription": "Nullam varius. Nulla facilisi.",
+    "productInformation": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
+    "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+    "price": {
+      "type": "STATIC",
+      "price": 6.91,
+      "currency": "USD"
+    },
+    "numOfQuestions": 41,
+    "topProductQAndA": [],
+    "numReviews": 5,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000035",
+    "by": "Ledner Inc",
+    "shortDescription": "Nulla mollis molestie lorem. Quisque ut erat.",
+    "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+    "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
+    "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.13,
+      "currency": "USD"
+    },
+    "numOfQuestions": 28,
+    "topProductQAndA": [],
+    "numReviews": 13,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000036",
+    "by": "Schroeder, Kutch and Ledner",
+    "shortDescription": "Nullam molestie nibh in lectus.",
+    "productInformation": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
+    "fromManufacturer": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+    "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+    "price": {
+      "type": "STATIC",
+      "price": 1.9,
+      "currency": "USD"
+    },
+    "numOfQuestions": 87,
+    "topProductQAndA": [],
+    "numReviews": 9,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000037",
+    "by": "Beahan and Sons",
+    "shortDescription": "Donec posuere metus vitae ipsum.",
+    "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "fromManufacturer": "Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+    "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
+    "price": {
+      "type": "STATIC",
+      "price": 1.11,
+      "currency": "USD"
+    },
+    "numOfQuestions": 88,
+    "topProductQAndA": [],
+    "numReviews": 28,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000038",
+    "by": "Torp, Schuster and Moore",
+    "shortDescription": "Praesent blandit lacinia erat.",
+    "productInformation": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+    "fromManufacturer": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+    "price": {
+      "type": "STATIC",
+      "price": 1.91,
+      "currency": "USD"
+    },
+    "numOfQuestions": 74,
+    "topProductQAndA": [],
+    "numReviews": 68,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000039",
+    "by": "Franecki-Ryan",
+    "shortDescription": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "productInformation": "Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
+    "fromManufacturer": "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
+    "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+    "price": {
+      "type": "STATIC",
+      "price": 6.06,
+      "currency": "USD"
+    },
+    "numOfQuestions": 2,
+    "topProductQAndA": [],
+    "numReviews": 25,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003a",
+    "by": "Stroman, Carroll and Mann",
+    "shortDescription": "Quisque ut erat.",
+    "productInformation": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+    "fromManufacturer": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
+    "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+    "price": {
+      "type": "STATIC",
+      "price": 8.76,
+      "currency": "USD"
+    },
+    "numOfQuestions": 16,
+    "topProductQAndA": [],
+    "numReviews": 11,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003b",
+    "by": "McGlynn-Block",
+    "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque.",
+    "productInformation": "Proin at turpis a pede posuere nonummy. Integer non velit.",
+    "fromManufacturer": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "description": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "price": {
+      "type": "STATIC",
+      "price": 4.45,
+      "currency": "USD"
+    },
+    "numOfQuestions": 88,
+    "topProductQAndA": [],
+    "numReviews": 38,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003c",
+    "by": "Schuppe, Beahan and Bashirian",
+    "shortDescription": "Duis bibendum.",
+    "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "fromManufacturer": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+    "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.01,
+      "currency": "USD"
+    },
+    "numOfQuestions": 4,
+    "topProductQAndA": [],
+    "numReviews": 89,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003d",
+    "by": "McGlynn Inc",
+    "shortDescription": "Suspendisse potenti. Nullam porttitor lacus at turpis.",
+    "productInformation": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+    "fromManufacturer": "Integer tincidunt ante vel ipsum.",
+    "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.33,
+      "currency": "USD"
+    },
+    "numOfQuestions": 80,
+    "topProductQAndA": [],
+    "numReviews": 6,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003e",
+    "by": "Lind LLC",
+    "shortDescription": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+    "productInformation": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+    "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+    "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.75,
+      "currency": "USD"
+    },
+    "numOfQuestions": 77,
+    "topProductQAndA": [],
+    "numReviews": 77,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400003f",
+    "by": "Blanda-Barton",
+    "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "productInformation": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+    "fromManufacturer": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
+    "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.01,
+      "currency": "USD"
+    },
+    "numOfQuestions": 92,
+    "topProductQAndA": [],
+    "numReviews": 70,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000040",
+    "by": "Emmerich LLC",
+    "shortDescription": "Suspendisse accumsan tortor quis turpis.",
+    "productInformation": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
+    "fromManufacturer": "Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+    "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.1,
+      "currency": "USD"
+    },
+    "numOfQuestions": 34,
+    "topProductQAndA": [],
+    "numReviews": 71,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000041",
+    "by": "Russel, Mueller and Murphy",
+    "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
+    "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+    "fromManufacturer": "Nam tristique tortor eu pede.",
+    "description": "Donec posuere metus vitae ipsum.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.42,
+      "currency": "USD"
+    },
+    "numOfQuestions": 62,
+    "topProductQAndA": [],
+    "numReviews": 53,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000042",
+    "by": "O'Kon, Johnson and Runolfsson",
+    "shortDescription": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
+    "productInformation": "Vivamus tortor.",
+    "fromManufacturer": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
+    "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.44,
+      "currency": "USD"
+    },
+    "numOfQuestions": 63,
+    "topProductQAndA": [],
+    "numReviews": 94,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000043",
+    "by": "O'Kon LLC",
+    "shortDescription": "Nulla tempus.",
+    "productInformation": "Pellentesque at nulla.",
+    "fromManufacturer": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
+    "description": "Donec dapibus. Duis at velit eu est congue elementum.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.31,
+      "currency": "USD"
+    },
+    "numOfQuestions": 7,
+    "topProductQAndA": [],
+    "numReviews": 96,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000044",
+    "by": "O'Connell Inc",
+    "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+    "productInformation": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+    "fromManufacturer": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+    "price": {
+      "type": "STATIC",
+      "price": 8.36,
+      "currency": "USD"
+    },
+    "numOfQuestions": 34,
+    "topProductQAndA": [],
+    "numReviews": 71,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000045",
+    "by": "Rodriguez-Dicki",
+    "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
+    "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+    "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+    "description": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "price": {
+      "type": "STATIC",
+      "price": 3.03,
+      "currency": "USD"
+    },
+    "numOfQuestions": 76,
+    "topProductQAndA": [],
+    "numReviews": 38,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000046",
+    "by": "Kuphal-Raynor",
+    "shortDescription": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.",
+    "productInformation": "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.",
+    "fromManufacturer": "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
+    "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
+    "price": {
+      "type": "STATIC",
+      "price": 1.28,
+      "currency": "USD"
+    },
+    "numOfQuestions": 61,
+    "topProductQAndA": [],
+    "numReviews": 10,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000047",
+    "by": "Monahan-Miller",
+    "shortDescription": "Donec dapibus.",
+    "productInformation": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+    "fromManufacturer": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+    "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+    "price": {
+      "type": "STATIC",
+      "price": 6.2,
+      "currency": "USD"
+    },
+    "numOfQuestions": 63,
+    "topProductQAndA": [],
+    "numReviews": 47,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000048",
+    "by": "McCullough Group",
+    "shortDescription": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
+    "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+    "fromManufacturer": "Duis aliquam convallis nunc.",
+    "description": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.06,
+      "currency": "USD"
+    },
+    "numOfQuestions": 39,
+    "topProductQAndA": [],
+    "numReviews": 96,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000049",
+    "by": "Buckridge-Jacobi",
+    "shortDescription": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "productInformation": "Cras non velit nec nisi vulputate nonummy.",
+    "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "description": "Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.89,
+      "currency": "USD"
+    },
+    "numOfQuestions": 14,
+    "topProductQAndA": [],
+    "numReviews": 5,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004a",
+    "by": "Monahan, Schinner and McCullough",
+    "shortDescription": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+    "productInformation": "Mauris lacinia sapien quis libero.",
+    "fromManufacturer": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+    "description": "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+    "price": {
+      "type": "STATIC",
+      "price": 4.21,
+      "currency": "USD"
+    },
+    "numOfQuestions": 93,
+    "topProductQAndA": [],
+    "numReviews": 42,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004b",
+    "by": "Toy-Christiansen",
+    "shortDescription": "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
+    "productInformation": "Maecenas rhoncus aliquam lacus.",
+    "fromManufacturer": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
+    "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.01,
+      "currency": "USD"
+    },
+    "numOfQuestions": 9,
+    "topProductQAndA": [],
+    "numReviews": 17,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004c",
+    "by": "Miller and Sons",
+    "shortDescription": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+    "productInformation": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+    "fromManufacturer": "Donec vitae nisi.",
+    "description": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.76,
+      "currency": "USD"
+    },
+    "numOfQuestions": 42,
+    "topProductQAndA": [],
+    "numReviews": 100,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004d",
+    "by": "Ankunding and Sons",
+    "shortDescription": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+    "productInformation": "Sed ante. Vivamus tortor.",
+    "fromManufacturer": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+    "price": {
+      "type": "STATIC",
+      "price": 8.09,
+      "currency": "USD"
+    },
+    "numOfQuestions": 69,
+    "topProductQAndA": [],
+    "numReviews": 25,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004e",
+    "by": "Ledner and Sons",
+    "shortDescription": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+    "productInformation": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
+    "fromManufacturer": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "description": "Duis bibendum.",
+    "price": {
+      "type": "STATIC",
+      "price": 3.13,
+      "currency": "USD"
+    },
+    "numOfQuestions": 52,
+    "topProductQAndA": [],
+    "numReviews": 15,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400004f",
+    "by": "Schiller, Durgan and Hermiston",
+    "shortDescription": "Donec quis orci eget orci vehicula condimentum.",
+    "productInformation": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+    "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.19,
+      "currency": "USD"
+    },
+    "numOfQuestions": 49,
+    "topProductQAndA": [],
+    "numReviews": 11,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000050",
+    "by": "Howell, Bartell and Bechtelar",
+    "shortDescription": "Etiam vel augue. Vestibulum rutrum rutrum neque.",
+    "productInformation": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "fromManufacturer": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
+    "description": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
+    "price": {
+      "type": "STATIC",
+      "price": 9.8,
+      "currency": "USD"
+    },
+    "numOfQuestions": 36,
+    "topProductQAndA": [],
+    "numReviews": 1,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000051",
+    "by": "Moen Inc",
+    "shortDescription": "Donec ut dolor.",
+    "productInformation": "Donec posuere metus vitae ipsum.",
+    "fromManufacturer": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+    "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.99,
+      "currency": "USD"
+    },
+    "numOfQuestions": 46,
+    "topProductQAndA": [],
+    "numReviews": 44,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000052",
+    "by": "Steuber, Reichert and Wilkinson",
+    "shortDescription": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+    "productInformation": "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+    "fromManufacturer": "Phasellus id sapien in sapien iaculis congue.",
+    "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit.",
+    "price": {
+      "type": "STATIC",
+      "price": 4.01,
+      "currency": "USD"
+    },
+    "numOfQuestions": 57,
+    "topProductQAndA": [],
+    "numReviews": 62,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000053",
+    "by": "Lind-Stanton",
+    "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+    "productInformation": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
+    "fromManufacturer": "Aenean lectus.",
+    "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.",
+    "price": {
+      "type": "STATIC",
+      "price": 9.57,
+      "currency": "USD"
+    },
+    "numOfQuestions": 41,
+    "topProductQAndA": [],
+    "numReviews": 11,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000054",
+    "by": "Lemke and Sons",
+    "shortDescription": "Sed ante.",
+    "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.",
+    "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
+    "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
+    "price": {
+      "type": "STATIC",
+      "price": 2.97,
+      "currency": "USD"
+    },
+    "numOfQuestions": 88,
+    "topProductQAndA": [],
+    "numReviews": 91,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000055",
+    "by": "Parker-Kohler",
+    "shortDescription": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+    "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.",
+    "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+    "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.94,
+      "currency": "USD"
+    },
+    "numOfQuestions": 81,
+    "topProductQAndA": [],
+    "numReviews": 89,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000056",
+    "by": "Stehr LLC",
+    "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
+    "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+    "fromManufacturer": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+    "description": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
+    "price": {
+      "type": "STATIC",
+      "price": 7.97,
+      "currency": "USD"
+    },
+    "numOfQuestions": 35,
+    "topProductQAndA": [],
+    "numReviews": 31,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000057",
+    "by": "Pouros Inc",
+    "shortDescription": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+    "productInformation": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
+    "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
+    "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.",
+    "price": {
+      "type": "STATIC",
+      "price": 7.98,
+      "currency": "USD"
+    },
+    "numOfQuestions": 64,
+    "topProductQAndA": [],
+    "numReviews": 40,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000058",
+    "by": "Huel-Nienow",
+    "shortDescription": "Maecenas rhoncus aliquam lacus.",
+    "productInformation": "In congue.",
+    "fromManufacturer": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+    "description": "Maecenas pulvinar lobortis est.",
+    "price": {
+      "type": "STATIC",
+      "price": 9.81,
+      "currency": "USD"
+    },
+    "numOfQuestions": 41,
+    "topProductQAndA": [],
+    "numReviews": 52,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000059",
+    "by": "Klocko-Douglas",
+    "shortDescription": "Aenean lectus.",
+    "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
+    "fromManufacturer": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
+    "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.",
+    "price": {
+      "type": "STATIC",
+      "price": 0.33,
+      "currency": "USD"
+    },
+    "numOfQuestions": 94,
+    "topProductQAndA": [],
+    "numReviews": 77,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005a",
+    "by": "Macejkovic, Botsford and Howell",
+    "shortDescription": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+    "productInformation": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+    "fromManufacturer": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
+    "description": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.",
+    "price": {
+      "type": "STATIC",
+      "price": 8.17,
+      "currency": "USD"
+    },
+    "numOfQuestions": 36,
+    "topProductQAndA": [],
+    "numReviews": 44,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005b",
+    "by": "Shields-Pfannerstill",
+    "shortDescription": "Etiam faucibus cursus urna. Ut tellus.",
+    "productInformation": "Morbi a ipsum. Integer a nibh. In quis justo.",
+    "fromManufacturer": "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
+    "description": "Suspendisse ornare consequat lectus.",
+    "price": {
+      "type": "STATIC",
+      "price": 7.7,
+      "currency": "USD"
+    },
+    "numOfQuestions": 1,
+    "topProductQAndA": [],
+    "numReviews": 29,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005c",
+    "by": "Corkery and Sons",
+    "shortDescription": "Maecenas pulvinar lobortis est.",
+    "productInformation": "Maecenas pulvinar lobortis est.",
+    "fromManufacturer": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "description": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
+    "price": {
+      "type": "STATIC",
+      "price": 3.91,
+      "currency": "USD"
+    },
+    "numOfQuestions": 1,
+    "topProductQAndA": [],
+    "numReviews": 61,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005d",
+    "by": "Beatty-McGlynn",
+    "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+    "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+    "fromManufacturer": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+    "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.82,
+      "currency": "USD"
+    },
+    "numOfQuestions": 71,
+    "topProductQAndA": [],
+    "numReviews": 64,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005e",
+    "by": "Beer, Grady and Klocko",
+    "shortDescription": "Proin at turpis a pede posuere nonummy.",
+    "productInformation": "Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
+    "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+    "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.",
+    "price": {
+      "type": "STATIC",
+      "price": 5.02,
+      "currency": "USD"
+    },
+    "numOfQuestions": 62,
+    "topProductQAndA": [],
+    "numReviews": 100,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee400005f",
+    "by": "Miller, Wyman and Rice",
+    "shortDescription": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
+    "productInformation": "Pellentesque ultrices mattis odio.",
+    "fromManufacturer": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.",
+    "description": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
+    "price": {
+      "type": "STATIC",
+      "price": 8.19,
+      "currency": "USD"
+    },
+    "numOfQuestions": 75,
+    "topProductQAndA": [],
+    "numReviews": 41,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000060",
+    "by": "Lueilwitz-Macejkovic",
+    "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "productInformation": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
+    "fromManufacturer": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+    "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.",
+    "price": {
+      "type": "STATIC",
+      "price": 6.41,
+      "currency": "USD"
+    },
+    "numOfQuestions": 74,
+    "topProductQAndA": [],
+    "numReviews": 50,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000061",
+    "by": "Swift, Harvey and Feil",
+    "shortDescription": "Morbi non quam nec dui luctus rutrum.",
+    "productInformation": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
+    "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+    "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
+    "price": {
+      "type": "STATIC",
+      "price": 9.45,
+      "currency": "USD"
+    },
+    "numOfQuestions": 100,
+    "topProductQAndA": [],
+    "numReviews": 57,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000062",
+    "by": "Cartwright, Goodwin and Wolff",
+    "shortDescription": "Praesent lectus.",
+    "productInformation": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "fromManufacturer": "Donec ut mauris eget massa tempor convallis.",
+    "description": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
+    "price": {
+      "type": "STATIC",
+      "price": 3.39,
+      "currency": "USD"
+    },
+    "numOfQuestions": 31,
+    "topProductQAndA": [],
+    "numReviews": 97,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  },
+  {
+    "id": "5ea9d936fc13ae2ee4000063",
+    "by": "Senger-Cassin",
+    "shortDescription": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+    "productInformation": "Suspendisse accumsan tortor quis turpis.",
+    "fromManufacturer": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.",
+    "price": {
+      "type": "STATIC",
+      "price": 9.49,
+      "currency": "USD"
+    },
+    "numOfQuestions": 36,
+    "topProductQAndA": [],
+    "numReviews": 79,
+    "topProductReviews": [],
+    "productVariations": null,
+    "similarItems": null
+  }
+]

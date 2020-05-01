@@ -4,9 +4,11 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(exclude = {})
 public class ProductInfo
 {
     private String productId;
@@ -20,24 +22,4 @@ public class ProductInfo
     private double price;
 
     private Map<String, String> variation;
-
-    protected ProductInfo()
-    {
-    }
-
-    public ProductInfo(
-            String productId,
-            String productName,
-            String imageUrl,
-            int quantity,
-            double price,
-            Map<String, String> variation)
-    {
-        this.productId = productId;
-        this.productName = productName;
-        this.imageUrl = imageUrl;
-        this.quantity = quantity;
-        this.price = price;
-        this.variation = variation;
-    }
 }

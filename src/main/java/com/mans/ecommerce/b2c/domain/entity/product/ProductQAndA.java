@@ -3,15 +3,14 @@ package com.mans.ecommerce.b2c.domain.entity.product;
 import java.util.Date;
 import java.util.List;
 
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Answer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @ToString(exclude = {})
-@Document(collection = "q_and_a")
 public class ProductQAndA
 {
 
@@ -21,7 +20,7 @@ public class ProductQAndA
 
     private List<Answer> answers;
 
-    private Answer ownerAnswer = new Answer();
+    private Answer ownerAnswer;
 
     private int votes;
 
@@ -30,20 +29,4 @@ public class ProductQAndA
     private String customerId;
 
     private String by;
-
-    protected ProductQAndA()
-    {
-
-    }
-
-    private class Answer
-    {
-        private String answer;
-
-        private String customerId;
-
-        private String by;
-
-        private Date createdOn;
-    }
 }

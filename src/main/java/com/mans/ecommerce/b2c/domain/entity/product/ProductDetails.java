@@ -1,34 +1,38 @@
 package com.mans.ecommerce.b2c.domain.entity.product;
 
 import java.util.List;
-import java.util.Map;
 
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.ProductVariation;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @ToString(exclude = {})
-@Document(collection = "product_detail")
 public class ProductDetails
 {
-    // maybe for every variation comes with description part;
-    //private  manufacturerInfo; next resales
 
-    private String productId;
+    // About
 
-    // info about the product is recommended to be html
-    private String shortDescription; // CBH
+    private String id;
 
-    private String productInformation; //  CBH
+    private String by;
 
-    private String fromManufacturer; // CBH
+    private String shortDescription; // HTML
 
-    private String description;
+    private String productInformation; //  HTML
 
-    //Customer
+    private String fromManufacturer; // HTML
+
+    private String description; // HTML
+
+    private Price price;
+
+    //feedback
+
     private int numOfQuestions;
 
     private List<ProductQAndA> topProductQAndA;
@@ -37,34 +41,8 @@ public class ProductDetails
 
     private List<ProductReview> topProductReviews;
 
-    // price
-    private String priceType; // TODO enum
-
-    private double price;
-
-    private String priceCurrency; //TODO enum
-
     private ProductVariation productVariations;
 
-    private List<ProductGlimpse> similarItems;
-
-    private class ProductVariation
-    {
-        private Map<String, List<String>> variation; // key:values
-
-        private List<AvailableVariation> availableVariation;
-
-        private class AvailableVariation
-        {
-            private Map<String, String> variation; // key:value  keySets will correspond to whole  keySets defined at ProductVariation variation
-
-            private double price;
-
-            private int quantity;
-
-            private String description;
-
-            private List<String> imagesUrl;
-        }
-    }
+    // others products
+    private List<ProductInfo> similarItems;
 }
