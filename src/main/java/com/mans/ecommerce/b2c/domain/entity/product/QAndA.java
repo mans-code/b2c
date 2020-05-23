@@ -5,14 +5,23 @@ import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Answer;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {})
-public class ProductQAndA
+public class QAndA
 {
+
+    @Id
+    private String Id;
 
     private String productId;
 
@@ -24,6 +33,7 @@ public class ProductQAndA
 
     private int votes;
 
+    @CreatedDate
     private Date createdOn;
 
     private String customerId;

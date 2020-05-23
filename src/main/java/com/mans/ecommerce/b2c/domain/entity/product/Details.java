@@ -6,17 +6,22 @@ import com.mans.ecommerce.b2c.domain.entity.product.subEntity.ProductVariation;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {})
-public class ProductDetails
+public class Details
 {
 
     // About
-
+    @Id
     private String id;
 
     private String by;
@@ -35,11 +40,11 @@ public class ProductDetails
 
     private int numOfQuestions;
 
-    private List<ProductQAndA> topProductQAndA;
+    private List<QAndA> topProductQAndA;
 
     private int numReviews;
 
-    private List<ProductReview> topProductReviews;
+    private List<Review> topProductReviews;
 
     private ProductVariation productVariations;
 

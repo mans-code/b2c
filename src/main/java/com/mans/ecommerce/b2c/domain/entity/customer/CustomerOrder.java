@@ -3,19 +3,29 @@ package com.mans.ecommerce.b2c.domain.entity.customer;
 import java.util.Date;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {})
 public class CustomerOrder
 {
+    @Id
     private String id;
 
-    //Dates
-    private Date createdOn;
+    @CreatedDate
+    private String createdOn;
 
+    @LastModifiedDate
     private Date updatedOn;
 
     // money
@@ -31,11 +41,6 @@ public class CustomerOrder
 
     //Details
     private OrderDetails details;
-
-    protected CustomerOrder()
-    {
-
-    }
 
     @Getter
     @Setter

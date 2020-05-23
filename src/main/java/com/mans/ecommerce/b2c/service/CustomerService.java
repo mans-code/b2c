@@ -61,7 +61,8 @@ public class CustomerService
                         signupDto.getUsername(),
                         passwordEncoder.encode(signupDto.getPassword()),
                         signupDto.getEmail(),
-                        signupDto.getName()
+                        signupDto.getFirstName(),
+                        signupDto.getLastName()
                 );
     }
 }

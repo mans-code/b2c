@@ -3,11 +3,13 @@ package com.mans.ecommerce.b2c.domain.entity.sharedSubEntity;
 import java.util.Map;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString(exclude = {})
 public class ProductInfo
 {
@@ -17,9 +19,9 @@ public class ProductInfo
 
     private String imageUrl;
 
-    private int quantity;
+    private Integer quantity;
 
-    private double price;
+    private Double price;
 
     private Map<String, String> variation;
 }

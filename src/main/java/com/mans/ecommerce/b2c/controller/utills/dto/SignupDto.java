@@ -2,11 +2,11 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.annotation.ValidPassword;
-import com.sun.istack.internal.NotNull;
 
 public class SignupDto
 {
@@ -14,7 +14,7 @@ public class SignupDto
         ASCII letters and digits, with hyphens,
         underscores and spaces as internal separators.
     */
-    @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
+  //  @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
     @Size(min = 4, max = 32)
     private String username;
 
@@ -27,7 +27,11 @@ public class SignupDto
 
     @NotNull
     @Size(min = 4, max = 32)
-    private String name;
+    private String firstName;
+
+    @NotNull
+    @Size(min = 4, max = 32)
+    private String lastName;
 
     protected SignupDto()
     {
@@ -63,13 +67,13 @@ public class SignupDto
         return email;
     }
 
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
 
-    public void setName(String name)
+    public String getLastName()
     {
-        this.name = name;
+        return lastName;
     }
 }
