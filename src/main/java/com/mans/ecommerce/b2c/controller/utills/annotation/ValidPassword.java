@@ -1,10 +1,10 @@
-package com.mans.ecommerce.b2c.controller.utills.dto.annotation;
+package com.mans.ecommerce.b2c.controller.utills.annotation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.validator.PasswordConstraintValidator;
+import com.mans.ecommerce.b2c.controller.utills.validator.PasswordConstraintValidator;
 
 @Documented
 @Constraint(validatedBy = PasswordConstraintValidator.class)

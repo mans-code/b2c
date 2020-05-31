@@ -26,9 +26,9 @@ public class Cart
 
     private Date expireDate;
 
-    private List<ProductInfo> productInfo;
+    private List<ProductInfo> productInfos;
 
-    private Price totalPrice;
+    private Price priceDetails;
 
     private int totalQuantity;
 }

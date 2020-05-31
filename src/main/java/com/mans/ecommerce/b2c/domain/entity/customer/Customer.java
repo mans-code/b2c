@@ -1,11 +1,11 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -26,6 +26,7 @@ public class Customer
 
     private String phoneNumber;
 
+    @Indexed
     private String email;
 
     private String firstName;

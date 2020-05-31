@@ -12,21 +12,21 @@ public class Price
 
     private String type;
 
-    private double price;
+    private double amount;
 
     private String currency;
 
-    public Price(double price, String currency)
+    public Price(double amount, String currency)
     {
-        this.price = price;
+        this.amount = amount;
         this.currency = currency;
         this.type = "STATIC";
     }
 
     public Price()
     {
-        this.price = 0.00;
-        this.currency = "NULL";
+        this.amount = 0.00;
+        this.currency = "CAD";
         this.type = "NULL";
     }
 }

@@ -34,24 +34,23 @@ public class CustomerService
 
     public Authentication signin(String username, String password)
     {
-        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        return authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(username, password));
     }
 
     public Optional<Customer> signup(SignupDto signupDto)
     {
-        if (customerRepository.findByUsername(
-                signupDto.getUsername())
-                               .isPresent()
-        )
+        String username = signupDto.getUsername();
+        Optional<Customer> customer = customerRepository.findByUsername(username);
+
+        if (customer.isPresent())
         {
             return Optional.empty();
         }
 
         Customer newCustomer = mapSignupDtoToCustomer(signupDto);
-        return Optional.of(
-                customerRepository.save(newCustomer)
-        );
-
+        Customer savedCustomer = customerRepository.save(newCustomer);
+        return Optional.of(savedCustomer);
     }
 
     private Customer mapSignupDtoToCustomer(SignupDto signupDto)

@@ -3,7 +3,6 @@ package com.mans.ecommerce.b2c.repository.customer;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.entity.product.QAndA;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

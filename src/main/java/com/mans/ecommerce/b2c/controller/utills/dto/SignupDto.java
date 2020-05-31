@@ -1,12 +1,8 @@
 package com.mans.ecommerce.b2c.controller.utills.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import com.mans.ecommerce.b2c.controller.utills.dto.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
 
 public class SignupDto
 {
@@ -14,7 +10,7 @@ public class SignupDto
         ASCII letters and digits, with hyphens,
         underscores and spaces as internal separators.
     */
-  //  @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
+    @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
     @Size(min = 4, max = 32)
     private String username;
 

@@ -2,6 +2,13 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class LoginDto
 {
     @NotNull
@@ -9,29 +16,5 @@ public class LoginDto
 
     @NotNull
     private String password;
-
-    protected LoginDto()
-    {
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
 }
 

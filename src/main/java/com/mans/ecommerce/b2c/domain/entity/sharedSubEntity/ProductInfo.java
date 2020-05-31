@@ -15,13 +15,15 @@ public class ProductInfo
 {
     private String productId;
 
-    private String productName;
+    private String title;
 
     private String imageUrl;
 
-    private Integer quantity;
+    private int quantity;
 
-    private Double price;
+    private Price price;
 
     private Map<String, String> variation;
+
+    private boolean locked;
 }

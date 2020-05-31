@@ -1,7 +1,5 @@
 package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,13 +9,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(exclude = {})
-public class Answer
+public class Details
 {
-    private String answer;
+    private String shortDescription; // HTML
 
-    private String customerId;
+    private String productInformation; //  HTML
 
-    private String by;
+    private String fromManufacturer; // HTML
 
-    private Date createdOn;
+    private String description; // HTML
 }

@@ -1,6 +1,8 @@
 package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
+import javax.validation.constraints.Min;
 import java.util.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +13,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(exclude = {})
-public class Answer
+public class Availability
 {
-    private String answer;
 
-    private String customerId;
+    private int numUnitsAvailable;
 
-    private String by;
+    private Date availableOn;
 
-    private Date createdOn;
+    private List<String> shipTo;
 }

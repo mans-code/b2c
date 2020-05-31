@@ -10,15 +10,12 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.entity.customer.PaymentInfo;
-import com.mans.ecommerce.b2c.domain.entity.product.Details;
-import com.mans.ecommerce.b2c.domain.entity.product.Glimpse;
+import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.QAndA;
 import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.repository.customer.PaymentInfoRepository;
-import com.mans.ecommerce.b2c.repository.product.DetailsRepository;
-import com.mans.ecommerce.b2c.repository.product.GlimpseRepository;
 import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -80,7 +77,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class));
 
         glimpseRepository.saveAll(loadFile("productsGlimpses", Glimpse.class));
-        detailsRepository.saveAll(loadFile("productsDetails", Details.class));
+        detailsRepository.saveAll(loadFile("productsDetails", Product.class));
         qAndARepository.saveAll(loadFile("qAndAs", QAndA.class));
         reviewRepository.saveAll(loadFile("reviews", Review.class));
     }
