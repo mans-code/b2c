@@ -20,6 +20,7 @@ public class Customer
     @Id
     private String id;
 
+    //Maybe Indexed
     private String username;
 
     private String password;

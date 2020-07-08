@@ -4,8 +4,7 @@
     "active": true,
     "expireDate": 1578614460000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
+    "money": {
       "price": 468.22,
       "currency": "USD"
     },
@@ -16,8 +15,7 @@
     "active": true,
     "expireDate": 1546992420000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
+    "money": {
       "price": 361.55,
       "currency": "USD"
     },
@@ -28,8 +26,7 @@
     "active": true,
     "expireDate": 1546906200000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
+    "money": {
       "price": 1236.29,
       "currency": "USD"
     },
@@ -40,9 +37,8 @@
     "active": false,
     "expireDate": 1579824180000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1256.88,
+    "money": {
+      "price": 1236.29,
       "currency": "USD"
     },
     "totalQuantity": 2
@@ -52,9 +48,8 @@
     "active": false,
     "expireDate": 1548288600000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 268.11,
+    "money": {
+      "price": 1236.29,
       "currency": "USD"
     },
     "totalQuantity": 3
@@ -64,9 +59,8 @@
     "active": true,
     "expireDate": 1579651320000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 346.15,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10
@@ -76,9 +70,8 @@
     "active": true,
     "expireDate": 1548115560000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 836.16,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 3
@@ -88,9 +81,8 @@
     "active": false,
     "expireDate": 1577923380000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1230.82,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 4
@@ -100,9 +92,8 @@
     "active": true,
     "expireDate": 1547337960000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 598.58,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 4
@@ -112,9 +103,8 @@
     "active": false,
     "expireDate": 1546819680000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1074.02,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10
@@ -124,9 +114,8 @@
     "active": true,
     "expireDate": 1546733220000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 532.89,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 5
@@ -136,9 +125,8 @@
     "active": true,
     "expireDate": 1548547500000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1279.36,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10
@@ -148,9 +136,8 @@
     "active": true,
     "expireDate": 1547856300000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1965.75,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -160,9 +147,8 @@
     "active": false,
     "expireDate": 1547424720000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 173.81,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -172,10 +158,9 @@
     "active": false,
     "expireDate": 1547856660000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "NULL",
-      "price": 0.0,
-      "currency": "NULL"
+    "money": {
+      "price": 468.22,
+      "currency": "USD"
     },
     "totalQuantity": 0
   },
@@ -184,9 +169,8 @@
     "active": false,
     "expireDate": 1546992600000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1203.92,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -196,9 +180,8 @@
     "active": true,
     "expireDate": 1579824180000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 727.13,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -208,9 +191,8 @@
     "active": true,
     "expireDate": 1547943060000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1232.5,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -220,9 +202,8 @@
     "active": true,
     "expireDate": 1547251620000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1566.6,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -232,9 +213,8 @@
     "active": false,
     "expireDate": 1546646760000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 774.02,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10
@@ -244,9 +224,8 @@
     "active": true,
     "expireDate": 1548288420000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1296.47,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 2
@@ -256,9 +235,8 @@
     "active": false,
     "expireDate": 1546301160000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1747.74,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 7
@@ -268,9 +246,8 @@
     "active": true,
     "expireDate": 1548375000000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 893.0,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -280,9 +257,8 @@
     "active": true,
     "expireDate": 1580428980000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1707.23,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -292,9 +268,8 @@
     "active": true,
     "expireDate": 1548461100000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 213.21,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -304,10 +279,9 @@
     "active": true,
     "expireDate": 1577923440000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "NULL",
-      "price": 0.0,
-      "currency": "NULL"
+    "money": {
+      "price": 468.22,
+      "currency": "USD"
     },
     "totalQuantity": 0
   },
@@ -316,9 +290,8 @@
     "active": true,
     "expireDate": 1580428860000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1643.25,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 4
@@ -328,9 +301,8 @@
     "active": false,
     "expireDate": 1547856360000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 249.58,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -340,9 +312,8 @@
     "active": false,
     "expireDate": 1579219260000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 119.04,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -352,9 +323,8 @@
     "active": true,
     "expireDate": 1546906320000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 982.28,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 3
@@ -364,10 +334,9 @@
     "active": false,
     "expireDate": 1546733280000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "NULL",
-      "price": 0.0,
-      "currency": "NULL"
+    "money": {
+      "price": 468.22,
+      "currency": "USD"
     },
     "totalQuantity": 0
   },
@@ -376,9 +345,8 @@
     "active": false,
     "expireDate": 1546474080000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 920.98,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 2
@@ -388,9 +356,8 @@
     "active": false,
     "expireDate": 1548288660000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 90.89,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 3
@@ -400,9 +367,8 @@
     "active": false,
     "expireDate": 1547338140000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1209.21,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 9
@@ -412,9 +378,8 @@
     "active": false,
     "expireDate": 1580083440000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1026.55,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 7
@@ -424,9 +389,8 @@
     "active": true,
     "expireDate": 1546387620000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1613.7,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 4
@@ -436,9 +400,8 @@
     "active": false,
     "expireDate": 1547683860000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1903.26,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 1
@@ -448,9 +411,8 @@
     "active": true,
     "expireDate": 1546473900000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1187.77,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 2
@@ -460,9 +422,8 @@
     "active": true,
     "expireDate": 1548547740000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1774.22,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 4
@@ -472,9 +433,8 @@
     "active": true,
     "expireDate": 1580083380000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 661.5,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -484,9 +444,8 @@
     "active": false,
     "expireDate": 1548288720000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 443.12,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 1
@@ -496,9 +455,8 @@
     "active": true,
     "expireDate": 1547683740000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1821.08,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 6
@@ -508,10 +466,9 @@
     "active": false,
     "expireDate": 1547079060000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "NULL",
-      "price": 0.0,
-      "currency": "NULL"
+    "money": {
+      "price": 468.22,
+      "currency": "USD"
     },
     "totalQuantity": 0
   },
@@ -520,9 +477,8 @@
     "active": false,
     "expireDate": 1548461160000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 34.06,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -532,9 +488,8 @@
     "active": true,
     "expireDate": 1546646760000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1072.17,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 6
@@ -544,9 +499,8 @@
     "active": true,
     "expireDate": 1547337900000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1174.71,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 7
@@ -556,9 +510,8 @@
     "active": true,
     "expireDate": 1579564860000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1018.49,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 8
@@ -568,9 +521,8 @@
     "active": true,
     "expireDate": 1548115860000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1582.35,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 3
@@ -580,9 +532,8 @@
     "active": false,
     "expireDate": 1548288720000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 444.51,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10
@@ -592,9 +543,8 @@
     "active": false,
     "expireDate": 1547251800000,
     "productInfo": [],
-    "totalPrice": {
-      "type": "STATIC",
-      "price": 1394.57,
+    "money": {
+      "price": 468.22,
       "currency": "USD"
     },
     "totalQuantity": 10

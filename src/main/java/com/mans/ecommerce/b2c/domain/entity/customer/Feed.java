@@ -25,10 +25,10 @@ public class Feed
 
     private List<ProductInfo> bought;
 
+    private List<ProductInfo> addedToChart;
+
     private ProductInfo lastProductBought;
 
     private ProductInfo lastProductClicked;
-
-    private List<ProductInfo> addedToChart;
 
 }

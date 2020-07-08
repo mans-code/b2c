@@ -1,7 +1,8 @@
-package com.mans.ecommerce.b2c.domain.entity.customer;
+package com.mans.ecommerce.b2c.domain.entity.financial;
 
 import java.util.Date;
 
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,10 +17,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString(exclude = {})
-public class CustomerOrder
+public class Order
 {
     @Id
     private String id;
+
+    private String CustomerId;
 
     @CreatedDate
     private String createdOn;
@@ -27,19 +30,27 @@ public class CustomerOrder
     @LastModifiedDate
     private Date updatedOn;
 
-    // money
-    private double salesTax;
+    private Price totalPrice;
 
-    private double shippingCost;
+    private Financial CC;
 
-    private double totalPrice;
-
-    private double discount;
-
-    private double importFee;
 
     //Details
     private OrderDetails details;
+
+
+    @Getter
+    @Setter
+    @ToString(exclude = {})
+    private class Financial
+    {
+        // money
+        private double salesTax;
+
+        private double shippingCost;
+
+        private double discount;
+    }
 
     @Getter
     @Setter

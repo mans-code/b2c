@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString(exclude = {})
 public class Comment
 {
-    private String commenterID;
+    private String customerId;
 
     private String by;
 

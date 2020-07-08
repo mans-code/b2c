@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -25,7 +24,7 @@ public class Product
     @Id
     private String id;
 
-    private List<String> keyWords; //for search
+    //private List<String> keyWords; //for search
 
     private BasicInfo basicInfo;
 
@@ -36,8 +35,5 @@ public class Product
     private Feedbacks feedback;
 
     private List<ProductInfo> similarItems;
-
-    @Version
-    Long version;
 
 }

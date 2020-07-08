@@ -1,5 +1,8 @@
 package com.mans.ecommerce.b2c.domain.entity.sharedSubEntity;
 
+import java.math.BigDecimal;
+
+import com.mans.ecommerce.b2c.domain.enums.PricingStrategy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,23 +13,19 @@ import lombok.ToString;
 public class Price
 {
 
-    private String type;
+    private PricingStrategy pricingStrategy;
 
-    private double amount;
+    private Money money;
 
-    private String currency;
-
-    public Price(double amount, String currency)
+    public Price(Money money)
     {
-        this.amount = amount;
-        this.currency = currency;
-        this.type = "STATIC";
+        this.money = money;
+        this.pricingStrategy = PricingStrategy.STATIC;
     }
 
-    public Price()
+    public Price(Money money, PricingStrategy pricingStrategy)
     {
-        this.amount = 0.00;
-        this.currency = "CAD";
-        this.type = "NULL";
+        this.money= money;
+        this.pricingStrategy = pricingStrategy;
     }
 }

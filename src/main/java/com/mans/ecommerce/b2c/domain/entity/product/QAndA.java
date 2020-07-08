@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -23,6 +24,7 @@ public class QAndA
     @Id
     private String Id;
 
+    @Indexed
     private String productId;
 
     private String question;
@@ -31,8 +33,10 @@ public class QAndA
 
     private Answer ownerAnswer;
 
+    //Maybe @Indexed
     private int votes;
 
+    //Maybe @Indexed
     @CreatedDate
     private Date createdOn;
 

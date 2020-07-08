@@ -3,7 +3,7 @@ package com.mans.ecommerce.b2c.domain.entity.customer;
 import java.util.Date;
 import java.util.List;
 
-import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +24,12 @@ public class Cart
 
     private boolean active;
 
+    // maybe @Indexed
     private Date expireDate;
 
     private List<ProductInfo> productInfos;
 
-    private Price priceDetails;
+    private Money money;
 
     private int totalQuantity;
 }

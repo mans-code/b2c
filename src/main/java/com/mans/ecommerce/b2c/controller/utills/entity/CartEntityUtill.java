@@ -1,13 +1,15 @@
 package com.mans.ecommerce.b2c.controller.utills.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductInfoDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.enums.Currency;
 
 public class CartEntityUtill
 {
@@ -31,7 +33,6 @@ public class CartEntityUtill
         return productInfoOptional;
     }
 
-
     public List<ProductInfo> removeAllProducts(Cart cart)
     {
         List<ProductInfo> productInfos = cart.getProductInfos();
@@ -48,10 +49,24 @@ public class CartEntityUtill
 
     private void addPrice(Cart cart, ProductInfo productInfo)
     {
-        Price productPriceDetail = productInfo.getPrice();
-        Price cartPriceDetails = cart.getPriceDetails();
-        double newCartAmount = productPriceDetail.getAmount() + cartPriceDetails.getAmount();
-        cartPriceDetails.setAmount(newCartAmount);
+        Money productCost = productInfo.getPrice()
+                                       .getMoney();
+        Money oldCartCost = cart.getMoney();
+        Money newCartCost = sum(productCost, oldCartCost);
+        cart.setMoney(newCartCost);
+    }
+
+    private Money sum(Money productCost, Money cartCost)
+    {
+        if (productCost.getCurrency() != cartCost.getCurrency())
+        {
+            throw new UnsupportedOperationException();
+        }
+
+        BigDecimal firstAmount = productCost.getAmount();
+        BigDecimal secondAmount = cartCost.getAmount();
+        BigDecimal sumAmount = firstAmount.add(secondAmount);
+        return new Money(sumAmount, cartCost.getCurrency());
     }
 
     private void addQuantity(Cart cart, ProductInfo productInfo)
@@ -74,8 +89,9 @@ public class CartEntityUtill
 
     private void resetPrice(Cart cart)
     {
-        Price cartPriceDetails = cart.getPriceDetails();
-        cartPriceDetails.setAmount(0);
+        Currency currency = cart.getMoney().getCurrency();
+        Money money = new Money(new BigDecimal("0.00"), currency);
+        cart.setMoney(money);
     }
 
     private void deductPriceAndQuantity(Cart cart, ProductInfo productInfo)
@@ -86,14 +102,22 @@ public class CartEntityUtill
 
     private void deductPrice(Cart cart, ProductInfo product)
     {
-        Price productPriceDetails = product.getPrice();
-        Price cartPriceDetails = cart.getPriceDetails();
+        Money productCost = product.getPrice().getMoney();
+        if (productCost.getCurrency() != cart.getMoney().getCurrency())
+        {
+            throw new UnsupportedOperationException();
+        }
 
-        double productAmount = productPriceDetails.getAmount();
-        double oldCartAmount = cartPriceDetails.getAmount();
-        double newCartAmount = oldCartAmount - productAmount;
+        Money newCartMoney = subtract(productCost, cart.getMoney());
+        cart.setMoney(newCartMoney);
+    }
 
-        cartPriceDetails.setAmount(newCartAmount);
+    private Money subtract(Money productCost, Money cartCost)
+    {
+        BigDecimal cartAmount = cartCost.getAmount();
+        BigDecimal productAmount = productCost.getAmount();
+        BigDecimal subtractAmount = cartAmount.subtract(productAmount);
+        return new Money(subtractAmount, cartCost.getCurrency());
     }
 
     private void deductQuantity(Cart cart, ProductInfo product)
