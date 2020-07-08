@@ -13,5 +13,4 @@ public interface ReviewRepository extends MongoRepository<Review, String>
 
     <S extends Review> S save(S entity);
 
-
 }

@@ -16,6 +16,7 @@ import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.repository.customer.PaymentInfoRepository;
+import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -34,9 +35,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
 
     private PaymentInfoRepository paymentInfoRepository;
 
-    private GlimpseRepository glimpseRepository;
-
-    private DetailsRepository detailsRepository;
+    private ProductRepository productRepository;
 
     private QAndARepository qAndARepository;
 
@@ -50,8 +49,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
             CustomerRepository customerRepository,
             CartRepository cartRepository,
             PaymentInfoRepository paymentInfoRepository,
-            GlimpseRepository glimpseRepository,
-            DetailsRepository detailsRepository,
+            ProductRepository productRepository,
             QAndARepository qAndARepository,
             ReviewRepository reviewRepository,
             ObjectMapper objectMapper,
@@ -60,8 +58,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         this.customerRepository = customerRepository;
         this.cartRepository = cartRepository;
         this.paymentInfoRepository = paymentInfoRepository;
-        this.glimpseRepository = glimpseRepository;
-        this.detailsRepository = detailsRepository;
+        this.productRepository = productRepository;
         this.qAndARepository = qAndARepository;
         this.reviewRepository = reviewRepository;
         this.resourceLoader = resourceLoader;
@@ -76,8 +73,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         cartRepository.saveAll(loadFile("carts", Cart.class));
         paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class));
 
-        glimpseRepository.saveAll(loadFile("productsGlimpses", Glimpse.class));
-        detailsRepository.saveAll(loadFile("productsDetails", Product.class));
+        productRepository.saveAll(loadFile("products", Product.class));
         qAndARepository.saveAll(loadFile("qAndAs", QAndA.class));
         reviewRepository.saveAll(loadFile("reviews", Review.class));
     }
