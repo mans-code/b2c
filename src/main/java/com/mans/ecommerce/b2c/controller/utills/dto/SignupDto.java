@@ -3,15 +3,22 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 import javax.validation.constraints.*;
 
 import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class SignupDto
 {
     /*
         ASCII letters and digits, with hyphens,
         underscores and spaces as internal separators.
     */
-    @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/")
-    @Size(min = 4, max = 32)
+    @Pattern(regexp = "^[a-z0-9_-]{4,15}$")
     private String username;
 
     @ValidPassword
@@ -29,47 +36,17 @@ public class SignupDto
     @Size(min = 4, max = 32)
     private String lastName;
 
-    protected SignupDto()
-    {
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setUsername(String username)
+    public SignupDto(
+            String username,
+            String password,
+            String email,
+            String firstName,
+            String lastName)
     {
         this.username = username;
-    }
-
-    public void setPassword(String password)
-    {
         this.password = password;
-    }
-
-    public void setEmail(String email)
-    {
         this.email = email;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

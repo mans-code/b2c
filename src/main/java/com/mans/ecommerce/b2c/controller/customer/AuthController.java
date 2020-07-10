@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
-import com.mans.ecommerce.b2c.domain.exception.SignupException;
+import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,7 +37,7 @@ public class AuthController
     public Customer signup(@RequestBody @Valid SignupDto signupDto)
     {
         return customerService.signup(signupDto)
-                              .orElseThrow(() -> new SignupException());
+                              .orElseThrow(() -> new UserAlreadyExistException());
     }
 
     //TODO Reset Password

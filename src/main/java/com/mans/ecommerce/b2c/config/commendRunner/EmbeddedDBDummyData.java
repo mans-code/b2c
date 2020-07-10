@@ -20,12 +20,13 @@ import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 @Component
-
+@Profile("!prod")
 public class EmbeddedDBDummyData implements CommandLineRunner
 {
 

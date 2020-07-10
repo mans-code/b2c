@@ -10,7 +10,9 @@ import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.Currency;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CartEntityUtill
 {
 

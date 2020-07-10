@@ -7,7 +7,9 @@ import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductRepository extends MongoRepository<Product, String>
 {
 
@@ -18,5 +20,5 @@ public interface ProductRepository extends MongoRepository<Product, String>
     @Query(value="{ 'id' : ?0 }", fields="{ 'id' : 1, 'basicInfo' : 1}")
     Optional<Product> findProductBasicInfo(String productId);
 
-    void unLock(String productId, int quantityToUnlock);
+//    void unLock(String productId, int quantityToUnlock);
 }

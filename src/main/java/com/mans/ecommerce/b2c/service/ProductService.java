@@ -64,7 +64,7 @@ public class ProductService
 
         String productId = productInfo.getProductId();
         int quantityToUnlock = productInfo.getQuantity();
-        productRepository.unLock(productId, quantityToUnlock);
+        //productRepository.unLock(productId, quantityToUnlock);
     }
 
     public void lock(ProductInfo productInfo)

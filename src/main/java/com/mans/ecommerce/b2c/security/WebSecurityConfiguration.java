@@ -20,7 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     {
         http.authorizeRequests()
             .antMatchers("/products/**").permitAll()
-            .antMatchers("/customers/signin").permitAll()
+            .antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated();
 
         // Disable CSRF (cross site request forgery)
@@ -31,7 +31,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     }
 
     @Bean
-
     @Override protected AuthenticationManager authenticationManager()
             throws Exception
     {

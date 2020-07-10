@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.app;
+package com.mans.ecommerce.b2c;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

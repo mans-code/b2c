@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@NoArgsConstructor
 @Getter
 @ToString(exclude = {})
 public class Money
