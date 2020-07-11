@@ -23,6 +23,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -46,6 +47,8 @@ public class EmbeddedDBDummyData implements CommandLineRunner
 
     private ResourceLoader resourceLoader;
 
+    private PasswordEncoder passwordEncoder;
+
     public EmbeddedDBDummyData(
             CustomerRepository customerRepository,
             CartRepository cartRepository,
@@ -54,7 +57,8 @@ public class EmbeddedDBDummyData implements CommandLineRunner
             QAndARepository qAndARepository,
             ReviewRepository reviewRepository,
             ObjectMapper objectMapper,
-            ResourceLoader resourceLoader)
+            ResourceLoader resourceLoader,
+            PasswordEncoder passwordEncoder)
     {
         this.customerRepository = customerRepository;
         this.cartRepository = cartRepository;
@@ -64,19 +68,32 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         this.reviewRepository = reviewRepository;
         this.resourceLoader = resourceLoader;
         this.objectMapper = objectMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override public void run(String... args)
             throws Exception
     {
 
-        customerRepository.saveAll(loadFile("customers", Customer.class));
         cartRepository.saveAll(loadFile("carts", Cart.class));
         paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class));
 
         productRepository.saveAll(loadFile("products", Product.class));
         qAndARepository.saveAll(loadFile("qAndAs", QAndA.class));
         reviewRepository.saveAll(loadFile("reviews", Review.class));
+
+        List<Customer> customers = loadFile("customers", Customer.class);
+        encodeAllPassword(customers);
+        customerRepository.saveAll(customers);
+    }
+
+    private void encodeAllPassword(List<Customer> customers)
+    {
+        customers.forEach(customer -> {
+            String password = customer.getPassword();
+            String encodedPassword = passwordEncoder.encode(password);
+            customer.setPassword(encodedPassword);
+        });
     }
 
     private <T> List<T> loadFile(String fileName, Class<T> tClass)
