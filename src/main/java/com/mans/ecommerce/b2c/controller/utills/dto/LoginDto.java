@@ -1,23 +1,22 @@
 package com.mans.ecommerce.b2c.controller.utills.dto;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utills.annotation.ValidUsername;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
+@ToString(exclude = { "password" })
 public class LoginDto
 {
-    @NotNull
-    @Size(min = 4, max = 32)
+    @ValidUsername
     private String username;
 
-    @NotNull
-    @Size(min = 6)
+    @ValidPassword
     private String password;
 
 }

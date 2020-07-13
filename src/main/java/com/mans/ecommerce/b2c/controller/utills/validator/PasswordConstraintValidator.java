@@ -9,26 +9,30 @@ import java.util.stream.Collectors;
 import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
 import org.passay.*;
 
-public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String>
+public class PasswordConstraintValidator extends Validator implements ConstraintValidator<ValidPassword, String>
 {
-    @Override
-    public void initialize(ValidPassword constraintAnnotation)
-    {
-
-    }
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context)
     {
 
+        if (password == null || password.isEmpty())
+        {
+            context.buildConstraintViolationWithTemplate("must not be empty")
+                   .addConstraintViolation()
+                   .disableDefaultConstraintViolation();
+            return false;
+        }
+
         PasswordValidator validator = new PasswordValidator(
                 Arrays.asList(
-                        new LengthRule(8, 30),
+                        new LengthRule(8, 32),
                         new CharacterRule(EnglishCharacterData.UpperCase, 1),
                         new CharacterRule(EnglishCharacterData.LowerCase, 1),
                         new CharacterRule(EnglishCharacterData.Digit, 1),
                         new CharacterRule(EnglishCharacterData.Special, 1),
-                        new WhitespaceRule()));
+                        new WhitespaceRule()
+                ));
 
         RuleResult result = validator.validate(new PasswordData(password));
         if (result.isValid())
@@ -36,16 +40,11 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             return true;
         }
 
-        //we aggregated all the failed condition's error messages in a String separated
-        // by "," and then put it into the context and returned false.
-
-        List<String> messages = validator.getMessages(result);
-        String messageTemplate = messages.stream()
-                .collect(Collectors.joining(","));
-        context.buildConstraintViolationWithTemplate(messageTemplate)
-               .addConstraintViolation()
-               .disableDefaultConstraintViolation();
+        List<String> errors = validator.getMessages(result);
+        String allErrorMessages = joinErrorMessages(errors);
+        buildConstraintValidatorContext(context, allErrorMessages);
 
         return false;
     }
+
 }

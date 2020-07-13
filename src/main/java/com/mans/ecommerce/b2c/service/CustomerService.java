@@ -1,19 +1,17 @@
 package com.mans.ecommerce.b2c.service;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Optional;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
+import com.mans.ecommerce.b2c.utill.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,20 +42,18 @@ public class CustomerService
         this.jwtProvider = jwtProvider;
     }
 
-    public Optional<String> signin(String username, String password) {
+    public Optional<Token> signin(String username, String password) {
         LOGGER.info("New user attempting to sign in");
-        Optional<String> token = Optional.empty();
+        Optional<Token> token = Optional.empty();
         Optional<Customer> user = customerRepository.findByUsername(username);
         if (user.isPresent()) {
             try {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-                token = Optional.of(jwtProvider.createToken(username));
-                System.out.println(token);
+                String tokenString = jwtProvider.createToken(username);
+                token = Optional.of(new Token(tokenString));
             } catch (AuthenticationException e){
                 LOGGER.info("Log in failed for user {}", username);
             }
-        }else {
-            System.out.println("/////////////////////////////////////////////////");
         }
         return token;
     }

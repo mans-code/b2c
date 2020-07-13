@@ -2,13 +2,13 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 
-import java.util.Optional;
-
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.service.CustomerService;
+import com.mans.ecommerce.b2c.utill.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +29,10 @@ public class AuthController
     }
 
     @PostMapping("/signin")
-    public Optional<String> login(@RequestBody @Valid LoginDto loginDto)
+    public Token login(@RequestBody @Valid LoginDto loginDto)
     {
-        return customerService.signin(loginDto.getUsername(), loginDto.getPassword());
+        return customerService.signin(loginDto.getUsername(), loginDto.getPassword())
+                .orElseThrow(() -> new LoginException());
     }
 
     @PostMapping("/signup")

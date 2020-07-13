@@ -5,13 +5,13 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public class PartialOutOfStock extends RuntimeDomainException
+public class PartialOutOfStock extends RuntimeException
 {
     private Cart cart;
 
     public PartialOutOfStock(String message, Cart cart)
     {
-        super(HttpStatus.BAD_REQUEST, message);
+        super(message);
         this.cart = cart;
     }
 

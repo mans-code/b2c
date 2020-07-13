@@ -1,10 +1,9 @@
 package com.mans.ecommerce.b2c.controller.advicer;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
+import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,15 +19,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
 {
 
     @ExceptionHandler(UserAlreadyExistException.class)
-    public ResponseEntity<Object> handle(Exception ex, WebRequest request)
+    public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
     {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("message", ex.getMessage());
-
-        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+        return messageResponse(HttpStatus.CONFLICT, ex.getMessage());
     }
 
+    @ExceptionHandler(LoginException.class)
+    public ResponseEntity<Object> handleUnauthorized(Exception ex, WebRequest request)
+    {
+        return messageResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -38,13 +38,21 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
 
         Map<String, Object> body = new LinkedHashMap<>();
 
-        List<String> errors = ex.getBindingResult()
-                                .getFieldErrors()
-                                .stream()
-                                .map(x -> x.getDefaultMessage())
-                                .collect(Collectors.toList());
+        ex.getBindingResult()
+          .getFieldErrors()
+          .forEach(fieldError -> {
+              String fieldName = fieldError.getField();
+              String errorMessage = fieldError.getDefaultMessage();
+              body.put(fieldName, errorMessage);
+          });
 
-        return new ResponseEntity<>(errors, status);
+        return new ResponseEntity<>(body, status);
     }
 
+    private ResponseEntity<Object> messageResponse(HttpStatus status, String message)
+    {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", message);
+        return new ResponseEntity<>(body, status);
+    }
 }

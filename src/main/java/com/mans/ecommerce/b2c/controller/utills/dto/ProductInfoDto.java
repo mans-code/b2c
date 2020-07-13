@@ -3,20 +3,20 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Map;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
-@Setter
+@AllArgsConstructor
 @Getter
+@Builder
 public class ProductInfoDto
 {
     //TODO product variation
 
-    @NotBlank
+    @NotEmpty
     private String productId;
 
     @Min(1)

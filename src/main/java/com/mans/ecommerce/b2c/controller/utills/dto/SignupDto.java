@@ -3,48 +3,40 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.mans.ecommerce.b2c.controller.utills.annotation.ValidUsername;
+import lombok.*;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
-@ToString
+@Builder
+@ToString(exclude = {"password"})
 public class SignupDto
 {
-    @Pattern(regexp = "^[a-z0-9_-]{4,15}$",
-            message = "Length at least 3 characters and maximum of 15, and only contain a-z, 0-9, underscore, or hyphen")
+
+    @ValidUsername
     private String username;
 
     @ValidPassword
     private String password;
 
     @NotEmpty
-    @Email(message = "The given email must be a valid email")
+    @Email(message = "must be a valid email")
     private String email;
 
-    @Pattern(regexp = "^[a-zA-Z]{2,32}$", message = "First Name: must be between 2 and 32 characters long")
-    // TODO what about other languages
+    @NotEmpty
+    @Size(min = 2, message = "must be 2 or more characters in length")
+    @Size(max = 32, message = "must be no more than 32 characters in length")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "must only be characters")
     private String firstName;
 
-    @Pattern(regexp = "^[a-zA-Z]{2,32}$", message = "Last Name: must be between 2 and 32 characters long")
+    @NotEmpty
+    @Size(min = 2, message = "must be 2 or more characters in length")
+    @Size(max = 32, message = "must be no more than 32 characters in length")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "must only be characters")
     private String lastName;
 
-    public SignupDto(
-            String username,
-            String password,
-            String email,
-            String firstName,
-            String lastName)
-    {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }
