@@ -4,7 +4,7 @@ import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SignupDtoIT
+public class SignupDtoUT
 {
     private final String USERNAME_FIELD = "username";
 

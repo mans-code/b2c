@@ -5,7 +5,7 @@ import com.mans.ecommerce.b2c.controller.utills.dto.ProductInfoDto;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ProductInfoDtoIT
+public class ProductInfoDtoUT
 {
 
     private final String PRODUCT_FIELD = "productId";
