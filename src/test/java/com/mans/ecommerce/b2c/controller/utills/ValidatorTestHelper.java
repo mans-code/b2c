@@ -20,6 +20,8 @@ public class ValidatorTestHelper
 
     private final String validPassword;
 
+    private final String validId;
+
     private final String validEmail;
 
     private final String inValidEmail;
@@ -43,13 +45,14 @@ public class ValidatorTestHelper
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
+        validId = "5eaa32339e58d82df4319992";
         validUsername = "valid";
         validPassword = "Valid@1234";
         validEmail = "mans@mans.com";
         inValidEmail = "ohoh.com.co";
         nullString = null;
         withDigitsString = "digits12";
-        withSpecialsLettersString ="specialsLetters$%";
+        withSpecialsLettersString = "specialsLetters$%";
         noCapitalLettersString = "nocapitalletters";
         noSpecialLettersString = "noSymbols1";
         withWhiteSpacesString = "with White Spaces";
@@ -73,6 +76,20 @@ public class ValidatorTestHelper
     public void validation_fail_Null(Object object, String fieldToValidate)
     {
         String expectedErrorMessage = "must not be empty";
+        assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
+    }
+
+    public void validation_fail_TooSmall(Object object, String fieldToValidate, int min)
+    {
+        String messageTemplate = "must be %d or more";
+        String expectedErrorMessage = String.format(messageTemplate, min);
+        assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
+    }
+
+    public void validation_fail_TooLarge(Object object, String fieldToValidate, int min)
+    {
+        String messageTemplate = "must be no more than %d";
+        String expectedErrorMessage = String.format(messageTemplate, min);
         assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
     }
 
@@ -125,7 +142,6 @@ public class ValidatorTestHelper
         String expectedErrorMessage = "must be a valid email";
         assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
     }
-
 
     private void assertErrorMessageContainGiven(String expectedErrorMessage, String fieldToValidate, Object object)
     {

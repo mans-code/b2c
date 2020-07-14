@@ -1,9 +1,6 @@
 package com.mans.ecommerce.b2c.controller.utills.dto;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.util.Map;
 
 import lombok.*;
@@ -17,10 +14,11 @@ public class ProductInfoDto
     //TODO product variation
 
     @NotEmpty
+    @Size(min = 8, message = "must be 8 or more characters in length")
     private String productId;
 
-    @Min(1)
-    @Max(20) //TODO find a good number
+    @Min(value = 1 , message = "must be 1 or more")
+    @Max(value = 20, message = "must be no more than 20")
     private int quantity;
 
     private Map<String, String> variation;
