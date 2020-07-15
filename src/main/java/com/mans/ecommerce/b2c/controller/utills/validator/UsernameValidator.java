@@ -16,7 +16,7 @@ public class UsernameValidator
 
     private final int MAX_LENGTH = 32;
 
-    public static String REGEX = "^[a-zA-Z0-9_.-]+$";
+    private static String REGEX = "^[a-zA-Z0-9_.-]+$";
 
     public UsernameValidator(String username)
     {
@@ -43,7 +43,7 @@ public class UsernameValidator
         if (!username.matches(REGEX))
         {
             valid = false;
-            messages.add("must only contain a-z, 0-9, period,underscore, or hyphen");
+            addMessage("must only contain a-z, 0-9, period,underscore, or hyphen");
         }
 
     }
@@ -53,7 +53,7 @@ public class UsernameValidator
         if (username.length() > MAX_LENGTH)
         {
             valid = false;
-            messages.add("must be no more than 32 characters in length");
+            addMessage("must be no more than 32 characters in length");
         }
     }
 
@@ -62,19 +62,24 @@ public class UsernameValidator
         if (username.length() < MIN_LENGTH)
         {
             valid = false;
-            messages.add("must be 4 or more characters in length");
+            addMessage("must be 4 or more characters in length");
         }
     }
 
     private boolean isNullOrEmpty()
     {
-        if (this.username == null)
+        if (this.username == null || username.isEmpty())
         {
             valid = false;
-            messages.add("must not be empty");
+            addMessage("must not be empty");
             return true;
         }
         return false;
+    }
+
+    private void addMessage(String message)
+    {
+        messages.add(message);
     }
 
     public boolean isValid()

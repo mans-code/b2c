@@ -21,9 +21,7 @@ public class JwtProvider
 
     private final String ROLES_KEY = "roles";
 
-    private final String ROLE = "customer";
-
-    private JwtParser parser;
+    private final String ROLE = "user";
 
     private String secretKey;
 

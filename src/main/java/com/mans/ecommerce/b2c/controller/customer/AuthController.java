@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
-import javax.validation.Valid;
+import javax.validation.*;
+import java.util.Set;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
@@ -29,10 +30,15 @@ public class AuthController
     }
 
     @PostMapping("/signin")
-    public Token login(@RequestBody @Valid LoginDto loginDto)
+    public Token login(@RequestBody LoginDto loginDto)
     {
-        return customerService.signin(loginDto.getUsername(), loginDto.getPassword())
-                .orElseThrow(() -> new LoginException());
+        if (!isValid(loginDto))
+        {
+            throw new LoginException();
+        }
+
+        return customerService.signin(loginDto)
+                              .orElseThrow(() -> new LoginException());
     }
 
     @PostMapping("/signup")
@@ -40,6 +46,15 @@ public class AuthController
     {
         return customerService.signup(signupDto)
                               .orElseThrow(() -> new UserAlreadyExistException());
+    }
+
+    private boolean isValid(LoginDto loginDto)
+    {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Object>> violations = validator.validate(loginDto);
+
+        return violations.size() == 0;
     }
 
     //TODO Reset Password

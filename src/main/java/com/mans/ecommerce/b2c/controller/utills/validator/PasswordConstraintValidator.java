@@ -4,7 +4,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
 import org.passay.*;

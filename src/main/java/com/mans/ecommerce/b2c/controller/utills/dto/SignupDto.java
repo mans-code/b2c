@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Builder
-@ToString(exclude = {"password"})
+@ToString()
 public class SignupDto
 {
 

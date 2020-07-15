@@ -8,8 +8,8 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 import lombok.Getter;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.*;
 
 @Getter
 public class ValidatorTestHelper
@@ -146,13 +146,18 @@ public class ValidatorTestHelper
     private void assertErrorMessageContainGiven(String expectedErrorMessage, String fieldToValidate, Object object)
     {
         Set<ConstraintViolation<Object>> constraintViolations = validator.validateProperty(object, fieldToValidate);
-        String acutalErrorMessage = constraintViolations.iterator().next().getMessage();
-        String failMessageTemplate = "validating filed=%s should return errorMessage=%s, however errorMessage=%s";
-        String failMessage = String.format(failMessageTemplate,
-                                           fieldToValidate,
-                                           expectedErrorMessage,
-                                           acutalErrorMessage);
+        String failMessageTemplate = "validating field=%s should return errorMessage=%s, however errorMessage=%s";
+        String failMessage;
+        if (constraintViolations.isEmpty())
+        {
+            failMessage = String.format(failMessageTemplate, fieldToValidate, expectedErrorMessage, null);
+            fail(failMessage);
+            return;
+        }
 
-        assertTrue(failMessage, acutalErrorMessage.contains(expectedErrorMessage));
+        String acutalErrorMessage = constraintViolations.iterator().next().getMessage();
+        failMessage = String.format(failMessageTemplate, fieldToValidate, expectedErrorMessage, acutalErrorMessage);
+
+        assertThat(failMessage, acutalErrorMessage, containsString(expectedErrorMessage));
     }
 }

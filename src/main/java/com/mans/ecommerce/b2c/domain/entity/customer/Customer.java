@@ -1,33 +1,30 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {})
+@Builder
 public class Customer
 {
 
     @Id
     private String id;
 
-    //Maybe Indexed
+    @Indexed
     private String username;
 
     private String password;
 
     private String phoneNumber;
 
-    @Indexed
+    //Maybe Indexed
     private String email;
 
     private String firstName;
@@ -36,12 +33,4 @@ public class Customer
 
     private int numOfItemsInCart;
 
-    public Customer(String username, String password, String email, String firstName, String lastName)
-    {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }

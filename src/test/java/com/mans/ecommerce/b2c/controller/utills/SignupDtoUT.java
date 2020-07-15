@@ -31,7 +31,6 @@ public class SignupDtoUT
         validatorTestHelper.validation_pass(signupDto);
     }
 
-
     @Test
     public void validation_fail_invalidEmail()
     {
@@ -65,7 +64,6 @@ public class SignupDtoUT
 
         validatorTestHelper.validation_fail_Null(signupDto, FIRST_NAME_FIELD);
     }
-
 
     @Test
     public void validation_fail_invalidFirstName_TooShort()
@@ -147,7 +145,7 @@ public class SignupDtoUT
     public void validation_fail_invalidUsername_TooLong()
     {
         int maxCharacterSize = 32;
-        String longUsername = validatorTestHelper.getStringOfLength(maxCharacterSize + 1);
+        String longUsername = validatorTestHelper.getStringOfLength(maxCharacterSize + 2);
         SignupDto signupDto = SignupDto.builder().username(longUsername).build();
 
         validatorTestHelper.validation_fail_TooLong(signupDto, USERNAME_FIELD, maxCharacterSize);

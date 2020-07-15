@@ -35,8 +35,7 @@ public class AuthControllerUT
         Optional<Token> optionalToken = Optional.of(expected);
         LoginDto loginDto = new LoginDto();
 
-        when(customerService
-                     .signin(any(), any()))
+        when(customerService.signin(any()))
                 .thenReturn(optionalToken);
 
         Token actual = authController.login(loginDto);
@@ -50,8 +49,7 @@ public class AuthControllerUT
         Optional<Token> optionalToken = Optional.empty();
         LoginDto loginDto = new LoginDto();
 
-        when(customerService
-                     .signin(any(), any()))
+        when(customerService.signin(any()))
                 .thenReturn(optionalToken);
 
         authController.login(loginDto);
@@ -65,8 +63,7 @@ public class AuthControllerUT
         SignupDto signupDto = new SignupDto();
         Optional<Customer> optionalCustomer = Optional.of(given);
 
-        when(customerService
-                     .signup(any()))
+        when(customerService.signup(any()))
                 .thenReturn(optionalCustomer);
 
         Customer expected = authController.signup(signupDto);

@@ -18,7 +18,7 @@ public class CustomerDetailsService implements UserDetailsService
 
     private JwtProvider jwtProvider;
 
-    private final String ROLE = "customer";
+    private final String ROLE = "user";
 
     protected CustomerDetailsService(CustomerRepository customerRepository,
                                      JwtProvider jwtProvider)
@@ -35,7 +35,6 @@ public class CustomerDetailsService implements UserDetailsService
                                                       String.format("User with name %s does not exist", username)
                                               ));
 
-        System.out.println("reach hear");
         //org.springframework.security.core.userdetails.User.withUsername() builder
         return withUsername(customer.getUsername())
                 .password(customer.getPassword())

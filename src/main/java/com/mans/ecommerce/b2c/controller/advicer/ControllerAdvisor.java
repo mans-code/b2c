@@ -35,7 +35,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
             MethodArgumentNotValidException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request)
     {
-
         Map<String, Object> body = new LinkedHashMap<>();
 
         ex.getBindingResult()

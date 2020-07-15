@@ -18,7 +18,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 
     private CustomerDetailsService customerDetailsService;
 
-    WebSecurityConfiguration(CustomerDetailsService customerDetailsService)
+    public WebSecurityConfiguration(CustomerDetailsService customerDetailsService)
     {
         this.customerDetailsService = customerDetailsService;
     }
