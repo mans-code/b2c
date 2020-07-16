@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends CrudRepository<Customer, String>
 {
     Optional<Customer> findByUsername(String s);
+
+    @Override Optional<Customer> findById(String s);
 }

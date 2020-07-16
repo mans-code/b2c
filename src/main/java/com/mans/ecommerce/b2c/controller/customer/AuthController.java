@@ -9,12 +9,11 @@ import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.service.CustomerService;
+import com.mans.ecommerce.b2c.utill.NewCustomerResponse;
 import com.mans.ecommerce.b2c.utill.Token;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -42,10 +41,16 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public Customer signup(@RequestBody @Valid SignupDto signupDto)
+    @ResponseStatus(HttpStatus.CREATED)
+    public NewCustomerResponse signup(@RequestBody @Valid SignupDto signupDto)
     {
-        return customerService.signup(signupDto)
-                              .orElseThrow(() -> new UserAlreadyExistException());
+        Customer newCustomer = customerService.signup(signupDto)
+                                              .orElseThrow(() -> new UserAlreadyExistException());
+
+        Token token = customerService.getToken(newCustomer.getUsername());
+        NewCustomerResponse response = new NewCustomerResponse(newCustomer.getId(), token.getToken());
+
+        return response;
     }
 
     private boolean isValid(LoginDto loginDto)

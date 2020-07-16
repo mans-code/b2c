@@ -21,13 +21,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
     @ExceptionHandler(UserAlreadyExistException.class)
     public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
     {
-        return messageResponse(HttpStatus.CONFLICT, ex.getMessage());
+        return getResponseMessage(HttpStatus.CONFLICT, ex.getMessage());
     }
 
     @ExceptionHandler(LoginException.class)
     public ResponseEntity<Object> handleUnauthorized(Exception ex, WebRequest request)
     {
-        return messageResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        return getResponseMessage(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, status);
     }
 
-    private ResponseEntity<Object> messageResponse(HttpStatus status, String message)
+    private ResponseEntity<Object> getResponseMessage(HttpStatus status, String message)
     {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("message", message);

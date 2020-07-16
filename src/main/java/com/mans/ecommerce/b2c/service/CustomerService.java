@@ -45,24 +45,17 @@ public class CustomerService
     {
         LOGGER.info("New user attempting to sign in");
 
-        Optional<Token> token = Optional.empty();
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
 
-        try
+        if (!isPermitted(username, password))
         {
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-            authenticationManager.authenticate(authToken);
-            String tokenString = jwtProvider.createToken(username);
-            token = Optional.of(new Token(tokenString));
-        }
-        catch (AuthenticationException e)
-        {
-            System.out.println(e.getMessage());
             LOGGER.info("Log in failed for user {}", username);
+            return Optional.empty();
         }
 
-        return token;
+        Token token = getToken(username);
+        return Optional.of(token);
     }
 
     public Optional<Customer> signup(SignupDto signupDto)
@@ -78,6 +71,26 @@ public class CustomerService
         Customer newCustomer = mapSignupDtoToCustomer(signupDto);
         Customer savedCustomer = customerRepository.save(newCustomer);
         return Optional.of(savedCustomer);
+    }
+
+    public Token getToken(String username)
+    {
+        String tokenString = jwtProvider.createToken(username);
+        return new Token(tokenString);
+    }
+
+    private boolean isPermitted(String username, String password)
+    {
+        try
+        {
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+            authenticationManager.authenticate(authToken);
+        }
+        catch (AuthenticationException e)
+        {
+            return false;
+        }
+        return true;
     }
 
     private Customer mapSignupDtoToCustomer(SignupDto signupDto)
