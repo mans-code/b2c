@@ -8,8 +8,10 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 import lombok.Getter;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Getter
 public class ValidatorTestHelper

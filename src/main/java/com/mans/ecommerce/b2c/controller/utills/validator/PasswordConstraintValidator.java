@@ -17,9 +17,8 @@ public class PasswordConstraintValidator extends Validator implements Constraint
 
         if (password == null || password.isEmpty())
         {
-            context.buildConstraintViolationWithTemplate("must not be empty")
-                   .addConstraintViolation()
-                   .disableDefaultConstraintViolation();
+            String errorMessage = "must not be empty";
+            buildConstraintValidatorContext(context, errorMessage);
             return false;
         }
 

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.enums.PricingStrategy;
-import com.mans.ecommerce.b2c.domain.exception.UnknownCurrency;
+import com.mans.ecommerce.b2c.domain.exception.UnknownCurrencyException;
 import org.bson.types.Decimal128;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -65,7 +65,7 @@ public class CustomConverter
             }
             catch (IllegalArgumentException e)
             {
-                throw new UnknownCurrency();
+                throw new UnknownCurrencyException();
             }
         }
     }

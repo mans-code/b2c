@@ -5,54 +5,56 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.ProductInfoDto;
+import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.BasicInfo;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService
 {
+
     private final int FIVE_MINUTES = 300000;
+
+    @Getter
+    private final String NOT_FOUNT_TEMPLATE = "Couldn't find product with id = %s";
 
     private ProductRepository productRepository;
 
-    ProductService(ProductRepository productRepository)
+    public ProductService(ProductRepository productRepository)
     {
         this.productRepository = productRepository;
     }
 
-    public Optional<Product> findById(String id)
+    public Product findById(String id)
     {
-        return productRepository.findById(id);
-    }
-
-    public Product findByIdOrElseThrow(String id)
-    {
-        Optional<Product> optionalDetails = findById(id);
+        Optional<Product> optionalDetails = productRepository.findById(id);
 
         if (!optionalDetails.isPresent())
         {
-            throw new ResourceNotFoundException(String.format(" couldn't find product  with id = %s", id));
+            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, id));
         }
-
         return optionalDetails.get();
     }
 
-    public void unlock(Cart cart, List<ProductInfo> productInfoList)
+    public ProductInfo lockAndGetProductInfo(ProductDto productInfoDto)
     {
-        for (ProductInfo productInfo : productInfoList)
-        {
-            unLock(cart, productInfo);
-        }
+        Product product = lockAndGetProductBasicInfoAndAvailability(productInfoDto);
+        int requestedQuantity = productInfoDto.getQuantity();
+        int availableQuantity = product.getAvailability().getNumUnitsAvailable();
+        int lockedQuantity = getLockedQuantity(availableQuantity, requestedQuantity);
+
+        return mapProductToProductInfo(product, lockedQuantity);
     }
 
-    public void unLock(Cart cart, ProductInfo productInfo)
+    public void unlock(Cart cart, ProductInfo productInfo, int quantityToUnlock)
     {
-        if (cart.isActive() && expireIn5MinsOrLess(cart.getExpireDate()))
+        if (!cart.isActive() && expireIn5MinsOrLess(cart.getExpireDate()))
         {
             return;
         }
@@ -62,31 +64,42 @@ public class ProductService
             return;
         }
 
-        String productId = productInfo.getProductId();
-        int quantityToUnlock = productInfo.getQuantity();
-        //productRepository.unLock(productId, quantityToUnlock);
+        productRepository.unlock(productId, quantityToUnlock);
+    }
+    public void unlock(Cart cart, ProductInfo productInfo)
+    {
+        unlock(cart, productInfo, productInfo.getQuantity());
     }
 
-    public void lock(ProductInfo productInfo)
+    public void unlock(Cart cart, List<ProductInfo> productInfoList)
     {
-        String productId = productInfo.getProductId();
-        int quantityToLock = productInfo.getQuantity();
-        //has only 16 of these available
-        //find&Modfiy
+        for (ProductInfo productInfo : productInfoList)
+        {
+            unlock(cart, productInfo);
+        }
     }
 
-    public ProductInfo getProductInfoOrElseThrow(ProductInfoDto productInfoDto)
+    private int getLockedQuantity(int availableQuantity, int requestedQuantity)
     {
+        if (availableQuantity > requestedQuantity)
+        {
+            return requestedQuantity;
+        }
+            return availableQuantity;
+    }
 
-        String productId = productInfoDto.getProductId();
-        Optional<Product> productOptional = productRepository.findProductBasicInfo(productId);
+    private Product lockAndGetProductBasicInfoAndAvailability(ProductDto productInfoDto)
+    {
+        String id = productInfoDto.getProductId();
+        int requestedQuantity = productInfoDto.getQuantity();
+        Optional<Product> productOptional = productRepository.lockAndProjectBasicInfoAndPrevAvailability(id, requestedQuantity);
+
         if (!productOptional.isPresent())
         {
-            throw new ResourceNotFoundException(String.format("Couldn't find product with id = %s", productId));
+            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, id));
         }
 
-        ProductInfo productInfo = mapProductToProductInfo(productOptional.get());
-        return productInfo;
+        return productOptional.get();
     }
 
     private boolean expireIn5MinsOrLess(Date expireDate)
@@ -96,15 +109,17 @@ public class ProductService
         return now - initTime <= FIVE_MINUTES;
     }
 
-    private ProductInfo mapProductToProductInfo(Product product)
+    private ProductInfo mapProductToProductInfo(Product product, int quantity)
     {
-        ProductInfo productInfo = new ProductInfo();
-
-        productInfo.setProductId(product.getId());
-        productInfo.setTitle(product.getBasicInfo().getTitle());
-        productInfo.setPrice(product.getBasicInfo().getPriceGlimpse());
-        productInfo.setImageUrl(product.getBasicInfo().getMainImageUrl());
-
-        return productInfo;
+        BasicInfo productBasicInfo = product.getBasicInfo();
+        return ProductInfo
+                       .builder()
+                       .productId(product.getId())
+                       .title(productBasicInfo.getTitle())
+                       .imageUrl(productBasicInfo.getMainImageUrl())
+                       .price(productBasicInfo.getPriceGlimpse())
+                       .quantity(quantity)
+                       .locked(true)
+                       .build();
     }
 }

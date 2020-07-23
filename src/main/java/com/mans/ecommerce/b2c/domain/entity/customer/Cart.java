@@ -5,15 +5,15 @@ import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @ToString(exclude = {})
@@ -24,7 +24,6 @@ public class Cart
 
     private boolean active;
 
-    // maybe @Indexed
     private Date expireDate;
 
     private List<ProductInfo> productInfos;
@@ -32,4 +31,7 @@ public class Cart
     private Money money;
 
     private int totalQuantity;
+
+    @Version
+    private long version;
 }

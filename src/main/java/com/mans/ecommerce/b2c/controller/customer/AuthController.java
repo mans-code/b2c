@@ -36,17 +36,14 @@ public class AuthController
             throw new LoginException();
         }
 
-        return customerService.signin(loginDto)
-                              .orElseThrow(() -> new LoginException());
+        return customerService.signin(loginDto);
     }
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public NewCustomerResponse signup(@RequestBody @Valid SignupDto signupDto)
     {
-        Customer newCustomer = customerService.signup(signupDto)
-                                              .orElseThrow(() -> new UserAlreadyExistException());
-
+        Customer newCustomer = customerService.signup(signupDto);
         Token token = customerService.getToken(newCustomer.getUsername());
         NewCustomerResponse response = new NewCustomerResponse(newCustomer.getId(), token.getToken());
 

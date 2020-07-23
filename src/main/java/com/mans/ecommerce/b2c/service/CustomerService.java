@@ -5,6 +5,8 @@ import java.util.Optional;
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.domain.exception.LoginException;
+import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
 import com.mans.ecommerce.b2c.utill.Token;
@@ -41,7 +43,7 @@ public class CustomerService
         this.jwtProvider = jwtProvider;
     }
 
-    public Optional<Token> signin(LoginDto loginDto)
+    public Token signin(LoginDto loginDto)
     {
         LOGGER.info("New user attempting to sign in");
 
@@ -51,26 +53,24 @@ public class CustomerService
         if (!isPermitted(username, password))
         {
             LOGGER.info("Log in failed for user {}", username);
-            return Optional.empty();
+            throw new LoginException();
         }
 
-        Token token = getToken(username);
-        return Optional.of(token);
+        return getToken(username);
     }
 
-    public Optional<Customer> signup(SignupDto signupDto)
+    public Customer signup(SignupDto signupDto)
     {
         String username = signupDto.getUsername();
-        Optional<Customer> customer = customerRepository.findByUsername(username);
+        boolean usernameTaken = customerRepository.existsByUsername(username);
 
-        if (customer.isPresent())
+        if (usernameTaken)
         {
-            return Optional.empty();
+            throw new UserAlreadyExistException();
         }
 
         Customer newCustomer = mapSignupDtoToCustomer(signupDto);
-        Customer savedCustomer = customerRepository.save(newCustomer);
-        return Optional.of(savedCustomer);
+        return customerRepository.save(newCustomer);
     }
 
     public Token getToken(String username)
@@ -86,7 +86,7 @@ public class CustomerService
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
             authenticationManager.authenticate(authToken);
         }
-        catch (AuthenticationException e)
+        catch (Exception e)
         {
             return false;
         }

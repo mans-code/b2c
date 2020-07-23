@@ -1,12 +1,11 @@
 package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @ToString(exclude = {})

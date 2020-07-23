@@ -2,18 +2,17 @@ package com.mans.ecommerce.b2c.domain.entity.sharedSubEntity;
 
 import java.util.Map;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString(exclude = {})
 public class ProductInfo
 {
-    private String productId;
+    private String sku;
 
     private String title;
 

@@ -1,7 +1,5 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
-import java.util.Optional;
-
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
@@ -15,10 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import sun.rmi.runtime.Log;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -26,11 +23,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class AuthControllerUT
 {
-    @Mock
-    private CustomerService customerService;
 
     @InjectMocks
     private AuthController authController;
+
+    @Mock
+    private CustomerService customerService;
 
     private final String VALID_USERNAME = "valid";
 
@@ -40,11 +38,10 @@ public class AuthControllerUT
     public void sign_pass()
     {
         Token expected = new Token("pass");
-        Optional<Token> optionalToken = Optional.of(expected);
         LoginDto loginDto = new LoginDto(VALID_USERNAME, VALID_PASSWORD);
 
         when(customerService.signin(any()))
-                .thenReturn(optionalToken);
+                .thenReturn(expected);
 
         Token actual = authController.login(loginDto);
 
@@ -52,19 +49,15 @@ public class AuthControllerUT
     }
 
     @Test()
-    public void sign_fail_invalidUsernameOrPassword()
+    public void sign_fail_invalidUsernameOrPassword(@Mock LoginDto loginDto)
     {
-        LoginDto loginDto = new LoginDto();
-
         assertThrows(LoginException.class,
                      () -> authController.login(loginDto));
     }
 
     @Test()
-    public void signin_fail_validationError()
+    public void signin_fail_validationError(@Mock LoginDto loginDto)
     {
-        LoginDto loginDto = new LoginDto();
-
         assertThrows(LoginException.class,
                      () -> authController.login(loginDto));
 
@@ -72,17 +65,15 @@ public class AuthControllerUT
     }
 
     @Test
-    public void signup_pass()
+    public void signup_pass(@Mock SignupDto signupDto)
     {
 
         Customer customer = Customer.builder().id("id").build();
-        Optional<Customer> optionalCustomer = Optional.of(customer);
         String expectedToken = "pass";
         Token token = new Token(expectedToken);
-        SignupDto signupDto = new SignupDto();
 
         when(customerService.signup(any()))
-                .thenReturn(optionalCustomer);
+                .thenReturn(customer);
 
         when(customerService.getToken(any()))
                 .thenReturn(token);
@@ -97,7 +88,7 @@ public class AuthControllerUT
     public void signup_fail_userAlreadyExist()
     {
         when(customerService.signup(any()))
-                .thenReturn(Optional.empty());
+                .thenThrow(UserAlreadyExistException.class);
 
         assertThrows(UserAlreadyExistException.class,
                      () -> authController.signup(new SignupDto()));
