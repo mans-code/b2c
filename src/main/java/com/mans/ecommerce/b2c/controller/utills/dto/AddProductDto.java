@@ -2,6 +2,8 @@ package com.mans.ecommerce.b2c.controller.utills.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,6 +15,12 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddProductDto extends ProductDto
 {
+
+    @JsonProperty("id")
+    @NotEmpty
+    @Size(min = 8, message = "must be 8 or more characters in length")
+    private String sku;
+
     @Min(value = 1, message = "must be 1 or more")
     @Max(value = 20, message = "must be no more than 20")
     private int quantity;
@@ -28,7 +36,7 @@ public class AddProductDto extends ProductDto
     @Override
     public String getVariationSku()
     {
-        if (variationSku == null && variation != null )
+        if (variationSku == null && variation != null)
         {
             variationSku = construct();
         }
@@ -37,12 +45,12 @@ public class AddProductDto extends ProductDto
 
     private String construct()
     {
-        String underscore = "_";
+        String dash = "-";
         StringBuilder str = new StringBuilder();
+
+        variation.forEach((k, v) -> str.append(dash + v));
+        str.append(SEPARATOR);
         str.append(sku);
-
-        variation.forEach((k, v) -> str.append(underscore + v));
-
         return str.toString();
     }
 }
