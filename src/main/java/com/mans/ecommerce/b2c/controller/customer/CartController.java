@@ -73,9 +73,33 @@ public class CartController
 
     private Cart removerProductInCart(Cart cart, ProductDto dto)
     {
-        ProductInfo productInfo = cartLogic.removeProductInfo(cart, dto);
+        ProductInfo productInfo = cartLogic.removeProduct(cart, dto);
         productService.unlock(cart, productInfo);
         return cartService.save(cart);
+    }
+
+    private Cart addProductToCart(Cart cart, ProductDto dto)
+    {
+        ProductInfo productInfo = productService.getProductInfo(dto);
+        int availableQuantity = productInfo.getQuantity();
+        int requestedQuantity = dto.getQuantity();
+
+        if (availableQuantity == 0)
+        {
+            throw new OutOfStockException();
+        }
+        else if (availableQuantity < requestedQuantity)
+        {
+            productInfo.setQuantity(availableQuantity);
+            Cart savedCart = cartService.save(cart);
+            throw new PartialOutOfStockException(savedCart, availableQuantity);
+        }
+        else
+        {
+            cartLogic.addProduct(cart, productInfo);
+            return cartService.save(cart);
+        }
+
     }
 
     private Cart updateProductInCart(Cart cart, ProductDto dto)
@@ -85,16 +109,17 @@ public class CartController
             return removerProductInCart(cart, dto);
         }
 
-        int difference = getQuantityDifference(cart, dto);
+        ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
+        int difference = getQuantityDifference(dto, cartProduct);
         int absDifference = Math.abs(difference);
 
-        if (difference == 0)
+        if (difference == ZERO)
         {
             return cart;
         }
         else if (difference < ZERO)
         {
-            return reduceQuantity(cart, dto, absDifference);
+            return reduceQuantity(cart, cartProduct, absDifference);
         }
         else
         {
@@ -103,38 +128,14 @@ public class CartController
         }
     }
 
-    private Cart addProductToCart(Cart cart, ProductDto dto)
+    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int deductedQuantity)
     {
-        ProductInfo productInfo = productService.lockAndGetProductInfo(dto);
-        int lockedQuantity = productInfo.getQuantity();
-        int requestedQuantity = dto.getQuantity();
-
-        if (lockedQuantity == 0)
-        {
-            throw new OutOfStockException();
-        }
-
-        cartLogic.addProduct(cart, productInfo);
-        Cart savedCart = cartService.save(cart);
-
-        if (lockedQuantity < requestedQuantity)
-        {
-            throw new PartialOutOfStockException(savedCart, lockedQuantity);
-        }
-
-        return savedCart;
-    }
-
-    private Cart reduceQuantity(Cart cart, ProductDto dto, int requestQuantity)
-    {
-        ProductInfo cartProduct = cartLogic.updateProductQuantity(cart, dto);
-        productService.unlock(cart, cartProduct, requestQuantity);
+        cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
         return cartService.save(cart);
     }
 
-    private int getQuantityDifference(Cart cart, ProductDto dto)
+    private int getQuantityDifference(ProductDto dto, ProductInfo cartProduct)
     {
-        ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
         int oldQuantity = cartProduct.getQuantity();
         int newQuantity = dto.getQuantity();
         int difference = oldQuantity - newQuantity;

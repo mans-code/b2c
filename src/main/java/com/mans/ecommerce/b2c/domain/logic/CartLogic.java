@@ -1,8 +1,9 @@
 package com.mans.ecommerce.b2c.domain.logic;
 
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -11,6 +12,7 @@ import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,26 +22,40 @@ public class CartLogic
     @Getter
     private final String NOT_FOUND = "couldn't find a product with the ID = %s in cart";
 
-    public void addProduct(Cart cart, ProductInfo productInfo)
-    {
-        //TODO shouldn't throw
-        List<ProductInfo> productInfos = cart.getProductInfos();
-        int quantity = productInfo.getQuantity();
+    @Value("${app.cart.expiration}")
+    private long validityInMinutes;
 
-        addMoneyAndQuantity(cart, productInfo, quantity);
-        productInfos.add(productInfo);
+    CartLogic(@Value("${app.cart.expiration}") long validityInMinutes)
+    {
+        this.validityInMinutes = validityInMinutes;
     }
 
-    public ProductInfo removeProductInfo(
-            Cart cart,
-            ProductDto dto)
+    public void addProduct(Cart cart, ProductInfo productInfo)
+    {
+        Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku());
+        int requestedQuantity = productInfo.getQuantity();
+
+        if (cartProductOpt.isPresent())
+        {
+            ProductInfo cartProduct = cartProductOpt.get();
+            addQuantityToProduct(cartProduct, requestedQuantity);
+        }
+        else
+        {
+            List<ProductInfo> productInfos = cart.getProductInfos();
+            productInfos.add(productInfo);
+        }
+
+        addMoneyAndQuantity(cart, productInfo, requestedQuantity);
+    }
+
+    public ProductInfo removeProduct(Cart cart, ProductDto dto)
     {
         ProductInfo productInfo = getProduct(cart, dto);
         int quantity = productInfo.getQuantity();
 
         deductMoneyAndQuantity(cart, productInfo, quantity);
         cart.getProductInfos().remove(productInfo);
-
         return productInfo;
     }
 
@@ -50,36 +66,30 @@ public class CartLogic
         return productInfos;
     }
 
-    public ProductInfo updateProductQuantity(Cart cart, ProductDto dto)
+    public void deductMoneyAndQuantity(Cart cart, ProductInfo productInfo, int quantity)
     {
-        ProductInfo productInfo = getProduct(cart, dto);
-        int oldQuantity = productInfo.getQuantity();
-        int newQuantity = dto.getQuantity();
-        int absDifference = Math.abs(oldQuantity - newQuantity);
-
-        if (oldQuantity < newQuantity)
-        {
-            addMoneyAndQuantity(cart, productInfo, absDifference);
-        }
-        else
-        {
-            deductMoneyAndQuantity(cart, productInfo, absDifference);
-        }
-
-        productInfo.setQuantity(newQuantity);
-        return productInfo;
+        Money moneyToDeduct = getMoney(productInfo, quantity);
+        deductMoney(cart, moneyToDeduct);
+        deductQuantity(cart, quantity);
     }
 
     public ProductInfo getProduct(Cart cart, ProductDto dto)
     {
-        String desireSku = constructSku(dto);
-        List<ProductInfo> productInfoList = cart.getProductInfos();
-        OptionalInt index = getIndex(cart, dto);
-        if(!index.isPresent())
+        String sku = dto.getSku();
+        Optional<ProductInfo> optional = getProduct(cart, sku);
+
+        if (!optional.isPresent())
         {
             throw new ResourceNotFoundException(NOT_FOUND);
         }
-        return productInfoList.get(index.getAsInt());
+        return optional.get();
+    }
+
+    private void addQuantityToProduct(ProductInfo cartProduct, int requestedQuantity)
+    {
+        int prevQuantity = cartProduct.getQuantity();
+        int newQuantity = requestedQuantity + prevQuantity;
+        cartProduct.setQuantity(newQuantity);
     }
 
     private List<ProductInfo> resetProductInfoList(Cart cart)
@@ -108,13 +118,6 @@ public class CartLogic
         int oldQuantity = cart.getTotalQuantity();
         int newQuantity = oldQuantity + quantity;
         cart.setTotalQuantity(newQuantity);
-    }
-
-    private void deductMoneyAndQuantity(Cart cart, ProductInfo productInfo, int quantity)
-    {
-        Money moneyToDeduct = getMoney(productInfo, quantity);
-        deductMoney(cart, moneyToDeduct);
-        deductQuantity(cart, quantity);
     }
 
     private void deductMoney(Cart cart, Money deduct)
@@ -184,14 +187,13 @@ public class CartLogic
         return new Money(totalCost, productMoney.getCurrency());
     }
 
-    private OptionalInt getIndex(List<ProductInfo> productInfoList, String desireSku)
+    private Optional<ProductInfo> getProduct(Cart cart, String desireSku)
     {
-        return IntStream
-                       .range(0, productInfoList.size())
-                       .filter(i -> productInfoList.get(i).getSku().equals(desireSku))
+        return cart
+                       .getProductInfos()
+                       .stream()
+                       .filter(product -> product.getSku().equals(desireSku))
                        .findFirst();
     }
-
-
 
 }

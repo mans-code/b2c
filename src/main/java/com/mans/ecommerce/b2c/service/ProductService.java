@@ -22,7 +22,7 @@ public class ProductService
     private final int FIVE_MINUTES = 300000;
 
     @Getter
-    private final String NOT_FOUNT_TEMPLATE = "Couldn't find product with id = %s";
+    private final String NOT_FOUNT_TEMPLATE = "Couldn't find product with sku = %s";
 
     private ProductRepository productRepository;
 
@@ -42,17 +42,14 @@ public class ProductService
         return optionalDetails.get();
     }
 
-    public ProductInfo lockAndGetProductInfo(ProductDto productInfoDto)
+    public ProductInfo getProductInfo(ProductDto dto)
     {
-        Product product = lockAndGetProductBasicInfoAndAvailability(productInfoDto);
-        int requestedQuantity = productInfoDto.getQuantity();
-        int availableQuantity = product.getAvailability().getNumUnitsAvailable();
-        int lockedQuantity = getLockedQuantity(availableQuantity, requestedQuantity);
-
-        return mapProductToProductInfo(product, lockedQuantity);
+        String mainSku = getMainSku();
+        Product product = productRepository.getProductToAddToCart(mainSku);
+        return mapProductToProductInfo(product, dto);
     }
 
-    public void unlock(Cart cart, ProductInfo productInfo, int quantityToUnlock)
+    public void unlock(Cart cart, ProductInfo productInfo)
     {
         if (!cart.isActive() && expireIn5MinsOrLess(cart.getExpireDate()))
         {
@@ -63,12 +60,9 @@ public class ProductService
         {
             return;
         }
-
-        productRepository.unlock(productId, quantityToUnlock);
-    }
-    public void unlock(Cart cart, ProductInfo productInfo)
-    {
-        unlock(cart, productInfo, productInfo.getQuantity());
+        String sku = productInfo.getSku();
+        int quantityToUnlock = productInfo.getQuantity();
+        productRepository.unlock(sku, quantityToUnlock);
     }
 
     public void unlock(Cart cart, List<ProductInfo> productInfoList)
@@ -79,27 +73,31 @@ public class ProductService
         }
     }
 
+    private String getMainSku()
+    {
+    }
+
     private int getLockedQuantity(int availableQuantity, int requestedQuantity)
     {
         if (availableQuantity > requestedQuantity)
         {
             return requestedQuantity;
         }
-            return availableQuantity;
+        return availableQuantity;
     }
 
-    private Product lockAndGetProductBasicInfoAndAvailability(ProductDto productInfoDto)
+    private int lock(ProductInfo cartProduct)
     {
-        String id = productInfoDto.getProductId();
-        int requestedQuantity = productInfoDto.getQuantity();
-        Optional<Product> productOptional = productRepository.lockAndProjectBasicInfoAndPrevAvailability(id, requestedQuantity);
+        String sku = cartProduct.getSku();
+        int requestedQuantity = cartProduct.getQuantity();
+        int availableQuantity = productRepository.lock(sku, requestedQuantity);
 
-        if (!productOptional.isPresent())
+        if (availableQuantity < requestedQuantity)
         {
-            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, id));
+            return availableQuantity;
         }
 
-        return productOptional.get();
+        return requestedQuantity;
     }
 
     private boolean expireIn5MinsOrLess(Date expireDate)
@@ -109,12 +107,14 @@ public class ProductService
         return now - initTime <= FIVE_MINUTES;
     }
 
-    private ProductInfo mapProductToProductInfo(Product product, int quantity)
+    private ProductInfo mapProductToProductInfo(Product product, ;)
     {
         BasicInfo productBasicInfo = product.getBasicInfo();
+        int availableQuantity = product.getAvailability().getNumUnitsAvailable();
+
         return ProductInfo
                        .builder()
-                       .productId(product.getId())
+                       .sku(product.getSku())
                        .title(productBasicInfo.getTitle())
                        .imageUrl(productBasicInfo.getMainImageUrl())
                        .price(productBasicInfo.getPriceGlimpse())

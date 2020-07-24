@@ -1,7 +1,5 @@
 package com.mans.ecommerce.b2c.domain.entity.product;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
 
@@ -26,19 +24,20 @@ public class Product
     private String id;
 
     @Indexed(unique = true)
-    @JsonProperty("sku")
-    private String mainSku;
+    private String sku;
+
+    @JsonProperty(value = "dSku")
+    private String dealtVariationSku;
 
     private BasicInfo basicInfo;
 
     private Details details;
 
-    private Availability availability;
+    private List<VariationLevel> variations;
+
+    private Map<String, Availability> availability; // key=VariationSku if no variation map{this.sku:Availability}
 
     private Feedbacks feedback;
 
-    private Map<String, List<Variation>> variations;
-
     private List<ProductInfo> similarItems;
-
 }

@@ -7,7 +7,6 @@ import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import com.mans.ecommerce.b2c.utill.NewCustomerResponse;
 import com.mans.ecommerce.b2c.utill.Token;

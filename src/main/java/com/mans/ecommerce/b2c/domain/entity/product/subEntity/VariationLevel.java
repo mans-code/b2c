@@ -1,5 +1,7 @@
 package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,16 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Variation
+public class VariationLevel
 {
+    private String title;
 
-    private String subSku;
+    private int priority;//FrontEnd ordering
 
-    private String display;
-
-    private BasicInfo basicInfo;
-
-    private Details details;
-
-    private Availability availability;
+    List<Node> nodes;
 }
