@@ -2,13 +2,11 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.AddProductDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
-import com.mans.ecommerce.b2c.controller.utills.dto.UpdateProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.enums.CartAction;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
@@ -48,26 +46,28 @@ public class CartController
         return cartService.findById(cartId);
     }
 
-    @PatchMapping("/add")
-    public Cart add(@PathVariable("cartId") @NotBlank String cartId, @RequestBody @Valid AddProductDto dto)
+    @PatchMapping("/")
+    public Cart add(@PathVariable("cartId") @NotBlank String cartId, @RequestBody @Valid ProductDto dto)
     {
         Cart cart = cartService.findById(cartId);
-        return addProductToCart(cart, dto);
+        CartAction action = dto.getCartAction();
+
+        switch (action)
+        {
+        case UPDATE:
+            return updateProductInCart(cart, dto);
+        case DELETE:
+            return removerProductInCart(cart, dto);
+        case RESET:
+            return reset(cart, dto);
+        default:
+            return addProductToCart(cart, dto);
+        }
     }
 
-    @PatchMapping("/update")
-    public Cart update(@PathVariable("cartId") @NotBlank String cartId, @RequestBody @Valid UpdateProductDto dto)
+    public Cart reset(Cart cart, ProductDto dto)
     {
-        Cart cart = cartService.findById(cartId);
-        return updateProductInCart(cart, dto);
-    }
-
-    @PutMapping("/reset")
-    public Cart reset(@PathVariable("cartId") @NotBlank String cartId)
-    {
-        Cart cart = cartService.findById(cartId);
-        List<ProductInfo> productInfoList = cartLogic.removeAllProducts(cart);
-        productService.unlock(cart, productInfoList);
+        productService.unlock(cart);
         return cartService.save(cart);
     }
 

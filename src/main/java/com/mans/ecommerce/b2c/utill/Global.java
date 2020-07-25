@@ -12,4 +12,5 @@ public class Global
         Date now = new Date();
         return new Date(now.getTime() + minutes * MILLISECONDS_IN_MINUTE);
     }
+
 }

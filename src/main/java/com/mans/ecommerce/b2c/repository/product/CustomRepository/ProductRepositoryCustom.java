@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepositoryCustom
 {
-    Optional<Product> lockAndProjectBasicInfoAndPrevAvailability(String productId, int quantity);
+    int lock(String productSku, String availabilitySku, int quantity);
 
-    boolean unlock(String productId, int quantity);
+    void unlock(String productSku, String availabilitySku, int quantity);
 }

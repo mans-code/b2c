@@ -4,9 +4,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
-import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -30,15 +28,15 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     }
 
     @Override
-    public Optional<Product> lockAndProjectBasicInfoAndPrevAvailability(String productId, int quantity)
+    public int lock(String sku, String variationId, int quantity)
     {
-
+        String quantityField = String.format("availability.%s.quantity", variationId);
         String ops =
                 "db.products.findAndModify("
-                        + "{query:{ _id :ObjectId(\"" + productId + "\") },"
-                        + "update: [{ $set: { \"availability.numUnitsAvailable\": "
-                        + "{ $cond: { if: { $gt: [\"$availability.numUnitsAvailable\"," + quantity
-                        + "] }, then: {$sum:[ \"$availability.numUnitsAvailable\", -" + quantity
+                        + "{query:{ sku : " + sku + ") },"
+                        + "update: [{ $set: { \"" + quantityField + "\": "
+                        + "{ $cond: { if: { $gt: [\"$" + quantityField + "\"," + quantity
+                        + "] }, then: {$sum:[ \"$" + quantityField + "\", -" + quantity
                         + "]}, else:0 } } } } ],"
                         + "new: false,"
                         + "fields: {\"basicInfo\": 1},"
@@ -50,20 +48,16 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     }
 
     @Override
-    public boolean unlock(String productId, int quantity)
+    public void unlock(String sku, String variationId, int quantity)
     {
-        ObjectId mongoId = new ObjectId(productId);
-        Query query = new Query(Criteria.where("id").is(mongoId));
+
+        Query query = new Query(Criteria.where("sku").is(sku));
 
         Update update = new Update();
         update.inc(QUANTITY_FIELD, quantity);
 
         UpdateResult result = mongoOperations.updateFirst(query, update, Product.class);
-        if (result.getMatchedCount() == 0)
-        {
-            throw new ResourceNotFoundException(String.format(PRODUCT_NOT_FOUNT_TEMPLATE, productId));
-        }
-        return result.getModifiedCount() == 1;
+
     }
 
     private Product getProductObj(String productJson)

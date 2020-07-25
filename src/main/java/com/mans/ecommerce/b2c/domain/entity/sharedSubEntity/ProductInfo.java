@@ -1,7 +1,5 @@
 package com.mans.ecommerce.b2c.domain.entity.sharedSubEntity;
 
-import java.util.Map;
-
 import lombok.*;
 
 @Getter
@@ -14,6 +12,8 @@ public class ProductInfo
 {
     private String sku;
 
+    private String variationId;
+
     private String title;
 
     private String imageUrl;
@@ -21,8 +21,4 @@ public class ProductInfo
     private int quantity;
 
     private Price price;
-
-    private Map<String, String> variation;
-
-    private boolean locked;
 }

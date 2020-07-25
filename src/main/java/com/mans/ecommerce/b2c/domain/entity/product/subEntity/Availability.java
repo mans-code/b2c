@@ -14,7 +14,7 @@ import lombok.*;
 public class Availability
 {
 
-    private int numUnitsAvailable;
+    private int quantity;
 
     private Date availableOn;
 

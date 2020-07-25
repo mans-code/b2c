@@ -16,7 +16,7 @@ public interface ProductRepository extends MongoRepository<Product, String>, Pro
 
     <S extends Product> S save(S entity);
 
-    @Query(value="{ 'sku' : ?0 }", fields="{ 'firstname' : 1, 'lastname' : 1}")
+    @Query(value = "{ 'sku' : ?0 }", fields = "{ 'basicInfo' : 1, 'availability' : 1, 'dSku' : 1}")
     <S extends Product> S getProductToAddToCart(String sku);
 
 }
