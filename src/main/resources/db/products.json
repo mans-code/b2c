@@ -20,9 +20,11 @@
       "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
     },
     "availability": {
-      "numUnitsAvailable": 374,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 374,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 61,
@@ -32,7 +34,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-1",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -55,9 +60,11 @@
       "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
     },
     "availability": {
-      "numUnitsAvailable": 117,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 117,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 92,
@@ -67,7 +74,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-2",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -90,9 +100,11 @@
       "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
     },
     "availability": {
-      "numUnitsAvailable": 602,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 602,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 5,
@@ -102,7 +114,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-3",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -125,9 +140,11 @@
       "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
     },
     "availability": {
-      "numUnitsAvailable": 90,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 90,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 13,
@@ -137,7 +154,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-4",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -160,9 +180,11 @@
       "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
     },
     "availability": {
-      "numUnitsAvailable": 968,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 968,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 9,
@@ -172,7 +194,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-5",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -195,9 +220,11 @@
       "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
     },
     "availability": {
-      "numUnitsAvailable": 683,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 683,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 28,
@@ -207,7 +234,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-6",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -230,9 +260,11 @@
       "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
     },
     "availability": {
-      "numUnitsAvailable": 919,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 919,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 68,
@@ -242,7 +274,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-7",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -265,9 +300,11 @@
       "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla."
     },
     "availability": {
-      "numUnitsAvailable": 413,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 413,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 25,
@@ -277,7 +314,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-8",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -300,9 +340,11 @@
       "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis."
     },
     "availability": {
-      "numUnitsAvailable": 621,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 621,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 11,
@@ -312,7 +354,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-9",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -335,9 +380,11 @@
       "description": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
     },
     "availability": {
-      "numUnitsAvailable": 324,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 324,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 38,
@@ -347,7 +394,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-10",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -370,9 +420,11 @@
       "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui."
     },
     "availability": {
-      "numUnitsAvailable": 193,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 193,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 89,
@@ -382,7 +434,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-11",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -405,9 +460,11 @@
       "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo."
     },
     "availability": {
-      "numUnitsAvailable": 603,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 603,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 6,
@@ -417,7 +474,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-12",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -440,9 +500,11 @@
       "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque."
     },
     "availability": {
-      "numUnitsAvailable": 88,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 88,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 77,
@@ -452,7 +514,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-13",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -475,9 +540,11 @@
       "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
     },
     "availability": {
-      "numUnitsAvailable": 657,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 657,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 70,
@@ -487,7 +554,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-14",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -510,9 +580,11 @@
       "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
     },
     "availability": {
-      "numUnitsAvailable": 351,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 351,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 71,
@@ -522,7 +594,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-15",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -545,9 +620,11 @@
       "description": "Donec posuere metus vitae ipsum."
     },
     "availability": {
-      "numUnitsAvailable": 653,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 653,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 53,
@@ -557,7 +634,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-16",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -580,9 +660,11 @@
       "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     "availability": {
-      "numUnitsAvailable": 260,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 260,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 94,
@@ -592,7 +674,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-17",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -615,9 +700,11 @@
       "description": "Donec dapibus. Duis at velit eu est congue elementum."
     },
     "availability": {
-      "numUnitsAvailable": 939,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 939,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 96,
@@ -627,7 +714,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-18",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -650,9 +740,11 @@
       "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus."
     },
     "availability": {
-      "numUnitsAvailable": 295,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 295,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 71,
@@ -662,7 +754,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-19",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -685,9 +780,11 @@
       "description": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros."
     },
     "availability": {
-      "numUnitsAvailable": 56,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 56,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 38,
@@ -697,7 +794,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-20",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -720,9 +820,11 @@
       "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt."
     },
     "availability": {
-      "numUnitsAvailable": 325,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 325,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 10,
@@ -732,7 +834,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-21",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -755,9 +860,11 @@
       "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
     },
     "availability": {
-      "numUnitsAvailable": 299,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 299,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 47,
@@ -767,7 +874,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-22",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -790,9 +900,11 @@
       "description": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus."
     },
     "availability": {
-      "numUnitsAvailable": 655,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 655,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 96,
@@ -802,7 +914,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-23",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -825,9 +940,11 @@
       "description": "Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst."
     },
     "availability": {
-      "numUnitsAvailable": 627,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 627,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 5,
@@ -837,7 +954,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-24",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -860,9 +980,11 @@
       "description": "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
     },
     "availability": {
-      "numUnitsAvailable": 573,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 573,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 42,
@@ -872,7 +994,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-25",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -895,9 +1020,11 @@
       "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
     },
     "availability": {
-      "numUnitsAvailable": 378,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 378,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 17,
@@ -907,7 +1034,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-26",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -930,9 +1060,11 @@
       "description": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
     },
     "availability": {
-      "numUnitsAvailable": 617,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 617,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 100,
@@ -942,7 +1074,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-27",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -965,9 +1100,11 @@
       "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula."
     },
     "availability": {
-      "numUnitsAvailable": 485,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 485,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 25,
@@ -977,7 +1114,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-28",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1000,9 +1140,11 @@
       "description": "Duis bibendum."
     },
     "availability": {
-      "numUnitsAvailable": 185,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 185,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 15,
@@ -1012,7 +1154,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-29",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1035,9 +1180,11 @@
       "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
     },
     "availability": {
-      "numUnitsAvailable": 727,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 727,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 11,
@@ -1047,7 +1194,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-30",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1070,9 +1220,11 @@
       "description": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
     },
     "availability": {
-      "numUnitsAvailable": 213,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 213,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 1,
@@ -1082,7 +1234,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-31",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1105,9 +1260,11 @@
       "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
     },
     "availability": {
-      "numUnitsAvailable": 177,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 177,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 44,
@@ -1117,7 +1274,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-32",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1140,9 +1300,11 @@
       "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit."
     },
     "availability": {
-      "numUnitsAvailable": 569,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 569,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 62,
@@ -1152,7 +1314,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-33",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1175,9 +1340,11 @@
       "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo."
     },
     "availability": {
-      "numUnitsAvailable": 141,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 141,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 11,
@@ -1187,7 +1354,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-34",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1210,9 +1380,11 @@
       "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam."
     },
     "availability": {
-      "numUnitsAvailable": 390,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 390,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 91,
@@ -1222,7 +1394,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-35",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1245,9 +1420,11 @@
       "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede."
     },
     "availability": {
-      "numUnitsAvailable": 924,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 924,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 89,
@@ -1257,7 +1434,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-36",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1280,9 +1460,11 @@
       "description": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
     },
     "availability": {
-      "numUnitsAvailable": 727,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 727,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 31,
@@ -1292,7 +1474,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-37",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1315,9 +1500,11 @@
       "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat."
     },
     "availability": {
-      "numUnitsAvailable": 206,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 206,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 40,
@@ -1327,7 +1514,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-38",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1350,9 +1540,11 @@
       "description": "Maecenas pulvinar lobortis est."
     },
     "availability": {
-      "numUnitsAvailable": 237,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 237,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 52,
@@ -1362,7 +1554,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-39",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1385,9 +1580,11 @@
       "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum."
     },
     "availability": {
-      "numUnitsAvailable": 592,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 592,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 77,
@@ -1397,7 +1594,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-40",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1420,9 +1620,11 @@
       "description": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum."
     },
     "availability": {
-      "numUnitsAvailable": 887,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 887,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 44,
@@ -1432,7 +1634,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-41",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1455,9 +1660,11 @@
       "description": "Suspendisse ornare consequat lectus."
     },
     "availability": {
-      "numUnitsAvailable": 376,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 376,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 29,
@@ -1467,7 +1674,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-42",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1490,9 +1700,11 @@
       "description": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
     },
     "availability": {
-      "numUnitsAvailable": 544,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 544,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 61,
@@ -1502,7 +1714,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-43",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1525,9 +1740,11 @@
       "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl."
     },
     "availability": {
-      "numUnitsAvailable": 357,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 357,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 64,
@@ -1537,7 +1754,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-44",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1560,9 +1780,11 @@
       "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus."
     },
     "availability": {
-      "numUnitsAvailable": 989,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 989,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 100,
@@ -1572,7 +1794,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-45",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1595,9 +1820,11 @@
       "description": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat."
     },
     "availability": {
-      "numUnitsAvailable": 173,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 173,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 41,
@@ -1607,7 +1834,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-46",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1630,9 +1860,11 @@
       "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum."
     },
     "availability": {
-      "numUnitsAvailable": 892,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 892,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 50,
@@ -1642,7 +1874,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-47",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1665,9 +1900,11 @@
       "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius."
     },
     "availability": {
-      "numUnitsAvailable": 502,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 502,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 57,
@@ -1677,7 +1914,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-48",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1700,9 +1940,11 @@
       "description": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
     },
     "availability": {
-      "numUnitsAvailable": 155,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 155,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 97,
@@ -1712,7 +1954,10 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-49",
+    "defaultVariationId": "mans",
+    "variations": null
   },
   {
     "id": null,
@@ -1735,9 +1980,11 @@
       "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque."
     },
     "availability": {
-      "numUnitsAvailable": 530,
-      "availableOn": null,
-      "shipTo": null
+      "mans": {
+        "quantity": 530,
+        "availableOn": null,
+        "shipTo": null
+      }
     },
     "feedback": {
       "numReviews": 79,
@@ -1747,6 +1994,9 @@
       "topProductReviews": [],
       "topProductQAndA": []
     },
-    "similarItems": null
+    "similarItems": null,
+    "sku": "mans-50",
+    "defaultVariationId": "mans",
+    "variations": null
   }
 ]

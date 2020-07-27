@@ -22,7 +22,7 @@ public class Product
     @Indexed(unique = true)
     private String sku;
 
-    private String dealtVariationId;
+    private String defaultVariationId;
 
     private BasicInfo basicInfo;
 
