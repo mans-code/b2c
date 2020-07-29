@@ -3,8 +3,7 @@ package com.mans.ecommerce.b2c.controller.advicer;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
+import com.mans.ecommerce.b2c.domain.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -22,11 +21,10 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerAdvisor.class);
 
-    @ExceptionHandler(UserAlreadyExistException.class)
+    @ExceptionHandler({ UserAlreadyExistException.class, ConflictException.class })
     public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
     {
         String message = ex.getMessage();
-        LOGGER.debug(message);
         return getResponseMessage(HttpStatus.CONFLICT, message);
     }
 
@@ -34,6 +32,19 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
     public ResponseEntity<Object> handleUnauthorized(Exception ex, WebRequest request)
     {
         return getResponseMessage(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler({ ResourceNotFoundException.class })
+    public ResponseEntity<Object> handleBadRequest(Exception ex, WebRequest request)
+    {
+        return getResponseMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler({ SystemConstraintViolation.class, Exception.class })
+    public ResponseEntity<Object> handleSystemConstraint(Exception ex, WebRequest request)
+    {
+        //TODO Send Email
+        return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
     @Override

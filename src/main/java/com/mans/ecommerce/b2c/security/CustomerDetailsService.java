@@ -34,7 +34,11 @@ public class CustomerDetailsService implements UserDetailsService
                                               .orElseThrow(() -> new UsernameNotFoundException(
                                                       String.format("User with name %s does not exist", username)
                                               ));
+        return getUserDetails(customer);
+    }
 
+    public UserDetails getUserDetails(Customer customer)
+    {
         //org.springframework.security.core.userdetails.User.withUsername() builder
         return withUsername(customer.getUsername())
                        .password(customer.getPassword())
@@ -75,7 +79,7 @@ public class CustomerDetailsService implements UserDetailsService
      * @param jwtToken
      * @return
      */
-    public Optional<UserDetails> loadUserByJwtTokenAndDatabase(String jwtToken)
+   public Optional<UserDetails> loadUserByJwtTokenAndDatabase(String jwtToken)
     {
         if (jwtProvider.isValidToken(jwtToken))
         {

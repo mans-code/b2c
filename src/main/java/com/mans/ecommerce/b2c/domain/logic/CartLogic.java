@@ -122,11 +122,6 @@ public class CartLogic
 
     private void deductMoney(Cart cart, Money deduct)
     {
-        if (deduct.getCurrency() != cart.getMoney().getCurrency())
-        {
-            throw new UnsupportedOperationException();
-        }
-
         Money newCartMoney = subtract(deduct, cart);
         cart.setMoney(newCartMoney);
     }
