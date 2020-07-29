@@ -1,7 +1,5 @@
 package com.mans.ecommerce.b2c.service;
 
-import java.util.Optional;
-
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
@@ -9,12 +7,11 @@ import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
-import com.mans.ecommerce.b2c.utill.Token;
+import com.mans.ecommerce.b2c.utill.response.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,14 +42,11 @@ public class CustomerService
 
     public Token signin(LoginDto loginDto)
     {
-        LOGGER.info("New user attempting to sign in");
-
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
 
         if (!isPermitted(username, password))
         {
-            LOGGER.info("Log in failed for user {}", username);
             throw new LoginException();
         }
 

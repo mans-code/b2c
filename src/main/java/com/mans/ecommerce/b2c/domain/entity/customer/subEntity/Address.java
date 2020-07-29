@@ -1,9 +1,9 @@
 package com.mans.ecommerce.b2c.domain.entity.customer.subEntity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {})
@@ -23,27 +23,4 @@ public class Address
     private String phoneNumber;
 
     private String accessCode;
-
-    protected Address()
-    {
-
-    }
-
-    public Address(
-            String name,
-            String address,
-            String city,
-            String state,
-            String zip,
-            String phoneNumber,
-            String accessCode)
-    {
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.accessCode = accessCode;
-    }
 }

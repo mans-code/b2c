@@ -3,7 +3,6 @@ package com.mans.ecommerce.b2c.domain.entity.product;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.*;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.*;
@@ -23,6 +22,8 @@ public class Product
     private String sku;
 
     private String defaultVariationId;
+
+    private int notify;
 
     private BasicInfo basicInfo;
 

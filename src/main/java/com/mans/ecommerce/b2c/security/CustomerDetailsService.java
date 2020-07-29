@@ -20,15 +20,15 @@ public class CustomerDetailsService implements UserDetailsService
 
     private final String ROLE = "user";
 
-    protected CustomerDetailsService(CustomerRepository customerRepository,
-                                     JwtProvider jwtProvider)
+    protected CustomerDetailsService(
+            CustomerRepository customerRepository,
+            JwtProvider jwtProvider)
     {
         this.customerRepository = customerRepository;
         this.jwtProvider = jwtProvider;
     }
 
     @Override public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException
     {
         Customer customer = customerRepository.findByUsername(username)
                                               .orElseThrow(() -> new UsernameNotFoundException(
@@ -37,13 +37,13 @@ public class CustomerDetailsService implements UserDetailsService
 
         //org.springframework.security.core.userdetails.User.withUsername() builder
         return withUsername(customer.getUsername())
-                .password(customer.getPassword())
-                .authorities(ROLE)
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(false)
-                .build();
+                       .password(customer.getPassword())
+                       .authorities(ROLE)
+                       .accountExpired(false)
+                       .accountLocked(false)
+                       .credentialsExpired(false)
+                       .disabled(false)
+                       .build();
     }
 
     /**
@@ -52,8 +52,10 @@ public class CustomerDetailsService implements UserDetailsService
      * @param jwtToken jwt string
      * @return UserDetails if valid, Empty otherwise
      */
-    public Optional<UserDetails> loadUserByJwtToken(String jwtToken) {
-        if (jwtProvider.isValidToken(jwtToken)) {
+    public Optional<UserDetails> loadUserByJwtToken(String jwtToken)
+    {
+        if (jwtProvider.isValidToken(jwtToken))
+        {
             return Optional.of(
                     withUsername(jwtProvider.getUsername(jwtToken))
                             .authorities(jwtProvider.getRoles(jwtToken))
@@ -73,10 +75,14 @@ public class CustomerDetailsService implements UserDetailsService
      * @param jwtToken
      * @return
      */
-    public Optional<UserDetails> loadUserByJwtTokenAndDatabase(String jwtToken) {
-        if (jwtProvider.isValidToken(jwtToken)) {
+    public Optional<UserDetails> loadUserByJwtTokenAndDatabase(String jwtToken)
+    {
+        if (jwtProvider.isValidToken(jwtToken))
+        {
             return Optional.of(loadUserByUsername(jwtProvider.getUsername(jwtToken)));
-        } else {
+        }
+        else
+        {
             return Optional.empty();
         }
     }

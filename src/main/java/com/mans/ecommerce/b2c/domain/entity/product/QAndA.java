@@ -25,7 +25,7 @@ public class QAndA
     private String Id;
 
     @Indexed
-    private String productId;
+    private String sku;
 
     private String question;
 
@@ -34,7 +34,7 @@ public class QAndA
     private Answer ownerAnswer;
 
     //Maybe @Indexed
-    private int votes;
+    private int helpful;
 
     //Maybe @Indexed
     @CreatedDate

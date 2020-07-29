@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.repository.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.repository.product.CustomRepository.ProductRepositoryCustom;
@@ -17,6 +18,7 @@ public interface ProductRepository extends MongoRepository<Product, String>, Pro
     <S extends Product> S save(S entity);
 
     @Query(value = "{ 'sku' : ?0 }", fields = "{ 'basicInfo' : 1, 'availability' : 1, 'dSku' : 1}")
-    <S extends Product> S getProductToAddToCart(String sku);
+    Optional<Product> getProductToAddToCart(String sku);
 
+    Optional<Product> getBySku(String sku);
 }

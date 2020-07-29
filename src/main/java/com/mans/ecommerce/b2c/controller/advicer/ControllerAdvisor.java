@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ControllerAdvisor extends ResponseEntityExceptionHandler
 {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ControllerAdvisor.class);
+
     @ExceptionHandler(UserAlreadyExistException.class)
     public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
     {
-        return getResponseMessage(HttpStatus.CONFLICT, ex.getMessage());
+        String message = ex.getMessage();
+        LOGGER.debug(message);
+        return getResponseMessage(HttpStatus.CONFLICT, message);
     }
 
     @ExceptionHandler(LoginException.class)

@@ -1,16 +1,15 @@
-package com.mans.ecommerce.b2c.utill;
+package com.mans.ecommerce.b2c.utill.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class NewCustomerResponse
+public class Token
 {
-    private String customerId;
     private String token;
 }

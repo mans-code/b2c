@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.enums.PricingStrategy;
-import com.mans.ecommerce.b2c.domain.exception.UnknownCurrencyException;
+import com.mans.ecommerce.b2c.domain.enums.SortBy;
 import org.bson.types.Decimal128;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -16,10 +16,25 @@ import org.springframework.data.convert.WritingConverter;
 public class CustomConverter
 {
 
+    public static class StringToSortConverter implements Converter<String, SortBy>
+    {
+        @Override
+        public SortBy convert(String source)
+        {
+            try
+            {
+                return SortBy.valueOf(source);
+            }
+            catch (Exception e)
+            {
+                return SortBy.HELPFUL;
+            }
+        }
+    }
+
     @WritingConverter
     static class PricingStrategyStringConverter implements Converter<PricingStrategy, String>
     {
-
         @Override public String convert(PricingStrategy source)
         {
             return source.getPricingStrategy();
@@ -36,7 +51,7 @@ public class CustomConverter
             {
                 return PricingStrategy.valueOf(source);
             }
-            catch (IllegalArgumentException e)
+            catch (Exception e)
             {
                 return PricingStrategy.STATIC;
             }
@@ -61,11 +76,11 @@ public class CustomConverter
         {
             try
             {
-                return  Currency.valueOf(source);
+                return Currency.valueOf(source);
             }
-            catch (IllegalArgumentException e)
+            catch (Exception e)
             {
-                throw new UnknownCurrencyException();
+                return Currency.USD;
             }
         }
     }

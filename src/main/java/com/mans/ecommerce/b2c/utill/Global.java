@@ -13,4 +13,7 @@ public class Global
         return new Date(now.getTime() + minutes * MILLISECONDS_IN_MINUTE);
     }
 
+    //    private JsonResult json = JsonResult.instance();
+    //        json.use(JsonView.with(user).onClass(User.class, Match.match()
+    //                    .exclude("password").exclude("yetAnothertopSecretField")));
 }

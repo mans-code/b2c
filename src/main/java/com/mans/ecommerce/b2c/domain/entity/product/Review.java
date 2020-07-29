@@ -24,7 +24,7 @@ public class Review
     private String id;
 
     @Indexed
-    private String productId;
+    private String sku;
 
     private String customerId;
 
@@ -33,6 +33,10 @@ public class Review
     private String title;
 
     private String review;
+
+    private boolean verified;
+
+    private int stars;
 
     private List<Comment> comments;
 

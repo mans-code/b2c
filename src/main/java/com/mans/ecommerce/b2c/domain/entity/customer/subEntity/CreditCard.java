@@ -1,17 +1,16 @@
 package com.mans.ecommerce.b2c.domain.entity.customer.subEntity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {"cardNumber"})
 public class CreditCard
 {
-    protected CreditCard()
-    {
-    }
 
     private String nameOnCard;
 

@@ -7,7 +7,7 @@ import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
-import com.mans.ecommerce.b2c.utill.Token;
+import com.mans.ecommerce.b2c.utill.response.Token;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

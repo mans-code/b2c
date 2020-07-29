@@ -33,8 +33,7 @@ public class ValueOfEnumValidator extends Validator implements ConstraintValidat
     {
         if (value == null)
         {
-            buildConstraintValidatorContext(context, NOT_EMPTY);
-            return false;
+            return true;
         }
 
         boolean found = acceptedValues.contains(value.toString());
