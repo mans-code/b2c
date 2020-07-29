@@ -1,11 +1,16 @@
 package com.mans.ecommerce.b2c.controller.advicer;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.exception.*;
+import com.mans.ecommerce.b2c.utill.Emailing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +25,18 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerAdvisor.class);
+
+    private Emailing emailing;
+
+    private ObjectMapper mapper;
+
+    private String to;
+
+    ControllerAdvisor(Emailing emailing, ObjectMapper mapper, @Value("${app.crash.email}") String to)
+    {
+        this.emailing = emailing;
+        this.to = to;
+    }
 
     @ExceptionHandler({ UserAlreadyExistException.class, ConflictException.class })
     public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
@@ -43,7 +60,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
     @ExceptionHandler({ SystemConstraintViolation.class, Exception.class })
     public ResponseEntity<Object> handleSystemConstraint(Exception ex, WebRequest request)
     {
-        //TODO Send Email
+        sendEmail(ex);
         return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
@@ -70,5 +87,28 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("message", message);
         return new ResponseEntity<>(body, status);
+    }
+
+    private void sendEmail(Exception ex)
+    {
+        String subject = "APP Crash!!!!!!!!!!!!";
+        String body_template = "Time=%s\n"
+                                       + "exception=%s";
+        String exception = getJson(ex);
+        String time = LocalDate.now().toString();
+        String body = String.format(body_template, time, exception);
+        emailing.sendEmail(to, subject, body);
+    }
+
+    private String getJson(Exception ex)
+    {
+        try
+        {
+            return mapper.writeValueAsString(ex);
+        }
+        catch (JsonProcessingException e)
+        {
+            return ex.getMessage();
+        }
     }
 }
