@@ -6,4 +6,5 @@ public class SystemConstraintViolation extends RuntimeException
     {
         super(message);
     }
+
 }

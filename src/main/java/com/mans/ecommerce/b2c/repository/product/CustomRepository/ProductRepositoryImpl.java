@@ -29,27 +29,25 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
     private final String ID = "id";
 
-    private final String CART_ID = "cartId";
+    private final String MATCHING = "matching";
 
-    private final String EQ_Op = "equalityOperator";
+    private final String NIN = "$nin";
 
-    private final String EQUAL = "$eq";
-
-    private final String NOT_EQUAL = "$ne";
+    private final String ELEMENT_MATCH = "$elemMatch";
 
     private final String REQ_QTY = "requestedQuantity";
-
-    private final String VARIATION_ID = "variationId";
 
     private final String QUANTITY_FIELD_TEMPLATE = "\"availability.${variationId}.quantity\"";
 
     private final String RESERVATION_QUANTITY_POSITION = "reservations.$.quantity";
 
+    private final String VARIATION_ID = "variationId";
+
     private final String QUANTITY_NOT_FOUND_TEMPLATE = "Couldn't find quantity for sku= %s variationId = %s";
 
     private final String lockQuery =
             "db.products.findAndModify({ "
-                    + "query: { sku : \"${sku}\", \"reservations.id\": { ${equalityOperator}: \"${cartId}\" } }, "
+                    + "query: { sku : \"${sku}\", reservations: { ${matching}: ${l}${reservation}${r} } }, "
                     + "update: ["
                     + "{ $set: { \"availability.${variationId}.quantity\": { $cond: { "
                     + "if: { $gte: [ \"$availability.${variationId}.quantity\", ${requestedQuantity}] }, "
@@ -113,7 +111,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
         update.push(RESERVATIONS, reservation);
 
-        executeUpdate(query, update, sku, cartId, variationId, ReservationOperation.ADD);
+        executeUpdate(query, update, ReservationOperation.ADD);
     }
 
     private void updateReservation(String sku, String variationId, String cartId, int lockedQuantity)
@@ -123,7 +121,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
         update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
 
-        executeUpdate(query, update, sku, variationId, cartId, ReservationOperation.LOCK_UPDATE);
+        executeUpdate(query, update, ReservationOperation.LOCK_UPDATE);
     }
 
     private Query getProductQuery(String sku, String variationId, String cartId, boolean withReservation)
@@ -135,11 +133,12 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
         if (withReservation)
         {
-            query.addCriteria(Criteria.where(RESERVATIONS).is(reservation));
+            query.addCriteria(Criteria.where(RESERVATIONS)
+                                      .elemMatch(Criteria.where(ID).is(cartId).and(VARIATION_ID).is(variationId)));
         }
         else
         {
-            query.addCriteria(Criteria.where(RESERVATIONS).ne(reservation));
+            query.addCriteria(Criteria.where(RESERVATIONS).nin(reservation));
         }
 
         return query;
@@ -173,22 +172,20 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
             update.set(RESERVATION_QUANTITY_POSITION, newReservedQuantity);
             resOp = ReservationOperation.UNLOCK_UPDATE;
         }
-        executeUpdate(query, update, sku, variationId, cartId, resOp);
+        executeUpdate(query, update, resOp);
     }
 
     private void executeUpdate(
             Query query,
             Update update,
-            String sku,
-            String variationId,
-            String cartId,
             ReservationOperation resOp)
     {
         UpdateResult result = mongoOperations.updateFirst(query, update, Product.class);
 
         if ((result.getMatchedCount() != 1 || result.getModifiedCount() != 1))
         {
-            throw new SystemConstraintViolation("");// TODO
+            String message = resOp + "\n" + query.toString() + "\n" + update.toString();
+            throw new SystemConstraintViolation(message);
         }
     }
 
@@ -221,19 +218,25 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
             int requestedQuantity,
             int newReservedQuantity)
     {
+        BasicDBObject reservation = getReservation(variationId, cartId);
+
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put(CART_ID, cartId);
         map.put(SKU, sku);
+        map.put(RESERVATIONS, reservation);
         map.put(VARIATION_ID, variationId);
         map.put(REQ_QTY, requestedQuantity);
 
         if (newReservedQuantity == -1)
         {
-            map.put(EQ_Op, NOT_EQUAL);
+            map.put(MATCHING, NIN);
+            map.put("l", "[");
+            map.put("r", "]");
         }
         else
         {
-            map.put(EQ_Op, EQUAL);
+            map.put(MATCHING, ELEMENT_MATCH);
+            map.put("l", "");
+            map.put("r", "");
         }
 
         String query = getString(lockQuery, map);

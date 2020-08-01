@@ -89,6 +89,11 @@ public class CartLogic
         return optional.get();
     }
 
+    public void avoidUnlock(Cart cart) // TODO
+    {
+
+    }
+
     private void addQuantityToProduct(ProductInfo cartProduct, int requestedQuantity)
     {
         int prevQuantity = cartProduct.getQuantity();
@@ -193,10 +198,5 @@ public class CartLogic
                        .stream()
                        .filter(product -> product.getSku().equals(desireSku))
                        .findFirst();
-    }
-
-    public void avoidUnlock(Cart cart) // TODO
-    {
-
     }
 }
