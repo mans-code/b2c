@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString(exclude = {})
-public class ProductInfo
+public class ProductInfo implements Cloneable
 {
     private String sku;
 
@@ -21,4 +21,16 @@ public class ProductInfo
     private int quantity;
 
     private Price price;
+
+    @Override public Object clone()
+    {
+        return ProductInfo
+                       .builder()
+                       .sku(sku)
+                       .variationId(variationId)
+                       .title(title)
+                       .imageUrl(imageUrl)
+                       .quantity(quantity)
+                       .price(price);
+    }
 }

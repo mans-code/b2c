@@ -6,4 +6,9 @@ public class ConflictException extends RuntimeException
     {
         super("cannot perform action at the moment");
     }
+
+    public ConflictException(String message)
+    {
+        super(message);
+    }
 }

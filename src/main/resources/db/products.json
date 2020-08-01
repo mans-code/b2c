@@ -37,7 +37,8 @@
     "similarItems": null,
     "sku": "mans-1",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -77,7 +78,13 @@
     "similarItems": null,
     "sku": "mans-2",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -117,7 +124,8 @@
     "similarItems": null,
     "sku": "mans-3",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -157,7 +165,13 @@
     "similarItems": null,
     "sku": "mans-4",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -197,7 +211,8 @@
     "similarItems": null,
     "sku": "mans-5",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -237,7 +252,13 @@
     "similarItems": null,
     "sku": "mans-6",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -277,7 +298,8 @@
     "similarItems": null,
     "sku": "mans-7",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -317,7 +339,13 @@
     "similarItems": null,
     "sku": "mans-8",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -357,7 +385,8 @@
     "similarItems": null,
     "sku": "mans-9",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -397,7 +426,13 @@
     "similarItems": null,
     "sku": "mans-10",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -437,7 +472,8 @@
     "similarItems": null,
     "sku": "mans-11",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -477,7 +513,13 @@
     "similarItems": null,
     "sku": "mans-12",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -517,7 +559,8 @@
     "similarItems": null,
     "sku": "mans-13",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -557,7 +600,13 @@
     "similarItems": null,
     "sku": "mans-14",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -597,7 +646,8 @@
     "similarItems": null,
     "sku": "mans-15",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -637,7 +687,13 @@
     "similarItems": null,
     "sku": "mans-16",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -677,7 +733,8 @@
     "similarItems": null,
     "sku": "mans-17",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -717,7 +774,13 @@
     "similarItems": null,
     "sku": "mans-18",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -757,7 +820,8 @@
     "similarItems": null,
     "sku": "mans-19",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -797,7 +861,13 @@
     "similarItems": null,
     "sku": "mans-20",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -837,7 +907,8 @@
     "similarItems": null,
     "sku": "mans-21",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -877,7 +948,13 @@
     "similarItems": null,
     "sku": "mans-22",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -917,7 +994,8 @@
     "similarItems": null,
     "sku": "mans-23",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -957,7 +1035,13 @@
     "similarItems": null,
     "sku": "mans-24",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -997,7 +1081,8 @@
     "similarItems": null,
     "sku": "mans-25",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1037,7 +1122,13 @@
     "similarItems": null,
     "sku": "mans-26",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1077,7 +1168,8 @@
     "similarItems": null,
     "sku": "mans-27",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1117,7 +1209,13 @@
     "similarItems": null,
     "sku": "mans-28",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1157,7 +1255,8 @@
     "similarItems": null,
     "sku": "mans-29",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1197,7 +1296,13 @@
     "similarItems": null,
     "sku": "mans-30",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1237,7 +1342,8 @@
     "similarItems": null,
     "sku": "mans-31",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1277,7 +1383,13 @@
     "similarItems": null,
     "sku": "mans-32",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1317,7 +1429,8 @@
     "similarItems": null,
     "sku": "mans-33",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1357,7 +1470,13 @@
     "similarItems": null,
     "sku": "mans-34",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1397,7 +1516,8 @@
     "similarItems": null,
     "sku": "mans-35",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1437,7 +1557,13 @@
     "similarItems": null,
     "sku": "mans-36",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1477,7 +1603,8 @@
     "similarItems": null,
     "sku": "mans-37",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1517,7 +1644,13 @@
     "similarItems": null,
     "sku": "mans-38",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1557,7 +1690,8 @@
     "similarItems": null,
     "sku": "mans-39",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1597,7 +1731,13 @@
     "similarItems": null,
     "sku": "mans-40",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1637,7 +1777,8 @@
     "similarItems": null,
     "sku": "mans-41",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1677,7 +1818,13 @@
     "similarItems": null,
     "sku": "mans-42",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1717,7 +1864,8 @@
     "similarItems": null,
     "sku": "mans-43",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1757,7 +1905,13 @@
     "similarItems": null,
     "sku": "mans-44",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1797,7 +1951,8 @@
     "similarItems": null,
     "sku": "mans-45",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1837,7 +1992,13 @@
     "similarItems": null,
     "sku": "mans-46",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1877,7 +2038,8 @@
     "similarItems": null,
     "sku": "mans-47",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1917,7 +2079,13 @@
     "similarItems": null,
     "sku": "mans-48",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   },
   {
     "id": null,
@@ -1957,7 +2125,8 @@
     "similarItems": null,
     "sku": "mans-49",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": []
   },
   {
     "id": null,
@@ -1997,6 +2166,12 @@
     "similarItems": null,
     "sku": "mans-50",
     "defaultVariationId": "mans",
-    "variations": null
+    "variations": null,
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 10
+      }
+    ]
   }
 ]

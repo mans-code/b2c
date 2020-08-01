@@ -1,74 +1,201 @@
 package com.mans.ecommerce.b2c.repository.product.CustomRepository;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
 import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.result.UpdateResult;
+import org.apache.commons.text.StringSubstitutor;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductRepositoryImpl implements ProductRepositoryCustom
 {
 
-    private final String QUANTITY_FIELD_TEMPLATE = "availability.%s.quantity";
+    private enum ReservationOperation
+    {LOCK_UPDATE, UNLOCK_UPDATE, DELETE, ADD}
 
-    private final String PRODUCT_NOT_FOUNT_TEMPLATE = "Couldn't find product with id = %s";
+    private final String RESERVATIONS = "reservations";
+
+    private final String SKU = "sku";
+
+    private final String ID = "id";
+
+    private final String CART_ID = "cartId";
+
+    private final String EQ_Op = "equalityOperator";
+
+    private final String EQUAL = "$eq";
+
+    private final String NOT_EQUAL = "$ne";
+
+    private final String REQ_QTY = "requestedQuantity";
+
+    private final String VARIATION_ID = "variationId";
+
+    private final String QUANTITY_FIELD_TEMPLATE = "\"availability.${variationId}.quantity\"";
+
+    private final String RESERVATION_QUANTITY_POSITION = "reservations.$.quantity";
 
     private final String QUANTITY_NOT_FOUND_TEMPLATE = "Couldn't find quantity for sku= %s variationId = %s";
 
-    private MongoOperations mongoOperations;
+    private final String lockQuery =
+            "db.products.findAndModify({ "
+                    + "query: { sku : \"${sku}\", \"reservations.id\": { ${equalityOperator}: \"${cartId}\" } }, "
+                    + "update: ["
+                    + "{ $set: { \"availability.${variationId}.quantity\": { $cond: { "
+                    + "if: { $gte: [ \"$availability.${variationId}.quantity\", ${requestedQuantity}] }, "
+                    + "then: {$sum:[ \"$availability.${variationId}.quantity\", -${requestedQuantity}]}, "
+                    + "else: 0 } } } } ], "
+                    + "new: false, "
+                    + "fields: { \"availability.${variationId}.quantity\": 1 }, "
+                    + "upsert: false }) ";
 
-    private ObjectMapper objectMapper;
+    private final MongoOperations mongoOperations;
 
-    public ProductRepositoryImpl(MongoOperations mongoOperations, ObjectMapper objectMapper)
+    public ProductRepositoryImpl(MongoOperations mongoOperations)
     {
         this.mongoOperations = mongoOperations;
-        this.objectMapper = objectMapper;
     }
 
     @Override
-    public int lock(String sku, String variationId, int requestedQuantity)
+    public int lock(String sku, String variationId, String cartId, int requestedQuantity)
     {
-        String quantityField = String.format(QUANTITY_FIELD_TEMPLATE, variationId);
-        String ops =
-                "db.products.findAndModify("
-                        + "{query:{ sku : " + sku + ") },"
-                        + "update: [{ $set: { \"" + quantityField + "\": "
-                        + "{ $cond: { if: { $gt: [\"$" + quantityField + "\"," + requestedQuantity
-                        + "] }, then: {$sum:[ \"$" + quantityField + "\", -" + requestedQuantity
-                        + "]}, else:0 } } } } ],"
-                        + "new: false,"
-                        + "fields: {\"" + quantityField + "\": 1},"
-                        + "upsert: false})";
+        int oldQuantity = executeLock(sku, variationId, cartId, requestedQuantity, -1);
+        int lockedQuantity = getLockQuantity(oldQuantity, requestedQuantity);
+        addReservation(sku, variationId, cartId, lockedQuantity);
+        return lockedQuantity;
+    }
 
-        Integer oldQuantity = mongoOperations.executeCommand(ops).getInteger(quantityField);
+    @Override public int partialLock(
+            String sku,
+            String variationId,
+            String cartId,
+            int requestedQuantity,
+            int newReservedQuantity)
+    {
+        int oldQuantity = executeLock(sku, variationId, cartId, requestedQuantity, newReservedQuantity);
+        int lockedQuantity = getLockQuantity(oldQuantity, requestedQuantity);
+        updateReservation(sku, variationId, cartId, lockedQuantity);
+        return lockedQuantity;
+    }
 
-        if (oldQuantity == null)
+    @Override
+    public void unlock(String sku, String variationId, String cartId, int quantity)
+    {
+        unlock(sku, variationId, cartId, quantity, -1);
+    }
+
+    @Override public void partialUnlock(
+            String sku,
+            String variationId,
+            String cartId,
+            int quantity,
+            int newReservedQuantity)
+    {
+
+        unlock(sku, variationId, cartId, quantity, newReservedQuantity);
+    }
+
+    private void addReservation(String sku, String variationId, String cartId, int lockedQuantity)
+    {
+        Query query = getProductQuery(sku, variationId, cartId, false);
+        Reservation reservation = new Reservation(cartId, variationId, lockedQuantity);
+        Update update = new Update();
+
+        update.push(RESERVATIONS, reservation);
+
+        executeUpdate(query, update, sku, cartId, variationId, ReservationOperation.ADD);
+    }
+
+    private void updateReservation(String sku, String variationId, String cartId, int lockedQuantity)
+    {
+        Query query = getProductQuery(sku, variationId, cartId, true);
+        Update update = new Update();
+
+        update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
+
+        executeUpdate(query, update, sku, variationId, cartId, ReservationOperation.LOCK_UPDATE);
+    }
+
+    private Query getProductQuery(String sku, String variationId, String cartId, boolean withReservation)
+    {
+        BasicDBObject reservation = getReservation(variationId, cartId);
+        Query query = new Query();
+
+        query.addCriteria(Criteria.where(SKU).is(sku));
+
+        if (withReservation)
         {
-            throw new SystemConstraintViolation(String.format(QUANTITY_NOT_FOUND_TEMPLATE, sku, variationId));
+            query.addCriteria(Criteria.where(RESERVATIONS).is(reservation));
+        }
+        else
+        {
+            query.addCriteria(Criteria.where(RESERVATIONS).ne(reservation));
         }
 
-        return getLockQuantity(oldQuantity, requestedQuantity);
+        return query;
     }
 
-    @Override
-    public void unlock(String sku, String variationId, int quantity)
+    private BasicDBObject getReservation(String variationId, String cartId)
     {
-        String quantityField = String.format(QUANTITY_FIELD_TEMPLATE, variationId);
+        Map map = new HashMap();
+        map.put(ID, cartId);
+        map.put(VARIATION_ID, variationId);
+        return new BasicDBObject(map);
+    }
 
-        Query query = new Query(Criteria.where("sku").is(sku));
-
+    private void unlock(String sku, String variationId, String cartId, int quantity, int newReservedQuantity)
+    {
+        Query query = getProductQuery(sku, variationId, cartId, true);
+        String quantityField = getString(QUANTITY_FIELD_TEMPLATE,
+                                         ImmutableMap.of(VARIATION_ID, variationId));
         Update update = new Update();
-        update.inc(quantityField, quantity);
+        ReservationOperation resOp;
 
+        update.inc(quantityField, quantity);
+        if (newReservedQuantity == -1)
+        {
+            BasicDBObject reservation = getReservation(variationId, cartId);
+            update.pull(RESERVATIONS, reservation);
+            resOp = ReservationOperation.DELETE;
+        }
+        else
+        {
+            update.set(RESERVATION_QUANTITY_POSITION, newReservedQuantity);
+            resOp = ReservationOperation.UNLOCK_UPDATE;
+        }
+        executeUpdate(query, update, sku, variationId, cartId, resOp);
+    }
+
+    private void executeUpdate(
+            Query query,
+            Update update,
+            String sku,
+            String variationId,
+            String cartId,
+            ReservationOperation resOp)
+    {
         UpdateResult result = mongoOperations.updateFirst(query, update, Product.class);
 
-        if (result.getMatchedCount() == 1 && result.getModifiedCount() == 1)
+        if ((result.getMatchedCount() != 1 || result.getModifiedCount() != 1))
         {
-            throw new SystemConstraintViolation(String.format(QUANTITY_NOT_FOUND_TEMPLATE, sku, variationId));
+            throw new SystemConstraintViolation("");// TODO
         }
+    }
+
+    private String getString(String template, Map<String, Object> valuesMap)
+    {
+        StringSubstitutor sub = new StringSubstitutor(valuesMap);
+        return sub.replace(template);
     }
 
     private int getLockQuantity(int productPreQuantity, int requestedQuantity)
@@ -85,5 +212,39 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         {
             return requestedQuantity;
         }
+    }
+
+    private int executeLock(
+            String sku,
+            String variationId,
+            String cartId,
+            int requestedQuantity,
+            int newReservedQuantity)
+    {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put(CART_ID, cartId);
+        map.put(SKU, sku);
+        map.put(VARIATION_ID, variationId);
+        map.put(REQ_QTY, requestedQuantity);
+
+        if (newReservedQuantity == -1)
+        {
+            map.put(EQ_Op, NOT_EQUAL);
+        }
+        else
+        {
+            map.put(EQ_Op, EQUAL);
+        }
+
+        String query = getString(lockQuery, map);
+        String quantityField = String.format(QUANTITY_FIELD_TEMPLATE, variationId);
+        Integer oldQuantity = mongoOperations.executeCommand(query).getInteger(quantityField);
+
+        if (oldQuantity == null)
+        {
+            throw new SystemConstraintViolation(String.format(QUANTITY_NOT_FOUND_TEMPLATE, sku, variationId));
+        }
+
+        return oldQuantity;
     }
 }

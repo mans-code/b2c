@@ -11,6 +11,7 @@ import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.CartService;
+import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class CartController
 
     private CartLogic cartLogic;
 
+    private CheckoutService checkoutService;
+
     private final String CART = "cart";
 
     private final int ZERO = 0;
@@ -33,11 +36,13 @@ public class CartController
     CartController(
             CartService cartService,
             ProductService productService,
-            CartLogic cartLogic)
+            CartLogic cartLogic,
+            CheckoutService checkoutService)
     {
         this.cartService = cartService;
         this.productService = productService;
         this.cartLogic = cartLogic;
+        this.checkoutService = checkoutService;
     }
 
     @GetMapping("/")
@@ -67,14 +72,24 @@ public class CartController
 
     public Cart reset(Cart cart, ProductDto dto)
     {
-        productService.unlock(cart);
+
+        if (cart.isActive())
+        {
+            checkoutService.unlock(cart);
+        }
+
+        cartLogic.removeAllProducts(cart);
         return cartService.save(cart);
     }
 
     private Cart removerProductInCart(Cart cart, ProductDto dto)
     {
         ProductInfo productInfo = cartLogic.removeProduct(cart, dto);
-        productService.unlock(cart, productInfo);
+        if (cart.isActive())
+        {
+            checkoutService.unlock(cart, productInfo);
+        }
+
         return cartService.save(cart);
     }
 
@@ -83,23 +98,38 @@ public class CartController
         ProductInfo productInfo = productService.getProductInfo(dto);
         int availableQuantity = productInfo.getQuantity();
         int requestedQuantity = dto.getQuantity();
+        boolean partialOutOfStock = availableQuantity < requestedQuantity;
 
         if (availableQuantity == 0)
         {
             throw new OutOfStockException();
         }
-        else if (availableQuantity < requestedQuantity)
+
+        ProductInfo cartProduct = cartLogic.addProduct(cart, productInfo);
+        Cart savedCart = cartService.save(cart);
+        int quantityToLock = partialOutOfStock ? availableQuantity : requestedQuantity;
+
+        lockIfNeeded(savedCart, cartProduct, quantityToLock);
+
+        if (partialOutOfStock)
         {
-            productInfo.setQuantity(availableQuantity);
-            Cart savedCart = cartService.save(cart);
             throw new PartialOutOfStockException(savedCart, availableQuantity);
         }
-        else
-        {
-            cartLogic.addProduct(cart, productInfo);
-            return cartService.save(cart);
-        }
 
+        return savedCart;
+    }
+
+    private void lockIfNeeded(Cart cart, ProductInfo cartProduct, int quantityToLock)
+    {
+        if (!cart.isActive())
+        {
+            return;
+        }
+        int locked = checkoutService.partialLock(cart, cartProduct, quantityToLock);
+        if (locked < quantityToLock)
+        {
+            throw new PartialOutOfStockException(cart, locked);
+        }
     }
 
     private Cart updateProductInCart(Cart cart, ProductDto dto)
@@ -110,6 +140,7 @@ public class CartController
         }
 
         ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
+        int newQuantity = dto.getQuantity();
         int difference = getQuantityDifference(dto, cartProduct);
         int absDifference = Math.abs(difference);
 
@@ -119,7 +150,7 @@ public class CartController
         }
         else if (difference < ZERO)
         {
-            return reduceQuantity(cart, cartProduct, absDifference);
+            return reduceQuantity(cart, cartProduct, newQuantity, absDifference);
         }
         else
         {
@@ -128,9 +159,10 @@ public class CartController
         }
     }
 
-    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int deductedQuantity)
+    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int newQuantity, int deductedQuantity)
     {
         cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
+        checkoutService.unlock(cart, cartProduct, deductedQuantity);
         return cartService.save(cart);
     }
 

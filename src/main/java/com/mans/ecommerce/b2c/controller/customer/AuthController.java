@@ -10,7 +10,6 @@ import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import com.mans.ecommerce.b2c.utill.response.NewCustomerResponse;
 import com.mans.ecommerce.b2c.utill.response.Token;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,6 @@ public class AuthController
 
     private CustomerService customerService;
 
-    @Autowired
     public AuthController(CustomerService customerService)
     {
         this.customerService = customerService;

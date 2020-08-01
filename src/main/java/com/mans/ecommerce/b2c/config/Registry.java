@@ -1,6 +1,6 @@
 package com.mans.ecommerce.b2c.config;
 
-import com.mans.ecommerce.b2c.utill.Welcoming;
+import com.mans.ecommerce.b2c.config.Interceptor.Welcoming;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -30,23 +30,26 @@ public class CartLogic
         this.validityInMinutes = validityInMinutes;
     }
 
-    public void addProduct(Cart cart, ProductInfo productInfo)
+    public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
     {
         Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku());
         int requestedQuantity = productInfo.getQuantity();
+        ProductInfo cartProduct;
 
         if (cartProductOpt.isPresent())
         {
-            ProductInfo cartProduct = cartProductOpt.get();
+            cartProduct = cartProductOpt.get();
             addQuantityToProduct(cartProduct, requestedQuantity);
         }
         else
         {
+            cartProduct = productInfo;
             List<ProductInfo> productInfos = cart.getProductInfos();
             productInfos.add(productInfo);
         }
 
         addMoneyAndQuantity(cart, productInfo, requestedQuantity);
+        return cartProduct;
     }
 
     public ProductInfo removeProduct(Cart cart, ProductDto dto)
@@ -71,6 +74,7 @@ public class CartLogic
         Money moneyToDeduct = getMoney(productInfo, quantity);
         deductMoney(cart, moneyToDeduct);
         deductQuantity(cart, quantity);
+        productInfo.setQuantity(quantity);
     }
 
     public ProductInfo getProduct(Cart cart, ProductDto dto)
@@ -191,4 +195,8 @@ public class CartLogic
                        .findFirst();
     }
 
+    public void avoidUnlock(Cart cart) // TODO
+    {
+
+    }
 }
