@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
-import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +14,26 @@ public class CheckoutService
 
     private ProductRepository productRepository;
 
-    private CartLogic carService;
+    private CartService carService;
 
-    CheckoutService(ProductRepository productRepository, CartLogic carService)
+    CheckoutService(ProductRepository productRepository, CartService carService)
     {
         this.productRepository = productRepository;
         this.carService = carService;
     }
 
-    public List<ProductInfo> lock(Cart cart)
+    public List<ProductLockInfo> lock(Cart cart)
     {
         carService.avoidUnlock(cart);
-        List<ProductInfo> lockedProductInfos = new ArrayList<>();
+
+        List<ProductLockInfo> lockInfo = new ArrayList<>();
         for (ProductInfo productInfo : cart.getProductInfos())
         {
-            int locked = lock(cart, productInfo);
-            ProductInfo lockedProductInfo = getLockProductInfo(productInfo, locked);
-            lockedProductInfos.add(lockedProductInfo);
+            int lockedQuantity = lock(cart, productInfo);
+            ProductLockInfo productLockInfo = getProductLockInfo(productInfo, lockedQuantity);
+            lockInfo.add(productLockInfo);
         }
-        return lockedProductInfos;
+        return lockInfo;
     }
 
     public int lock(Cart cart, ProductInfo cartProduct)
@@ -84,6 +84,11 @@ public class CheckoutService
         String cartId = cart.getId();
         int newQuantity = cartProduct.getQuantity();
         productRepository.partialUnlock(sku, variationId, cartId, toUnlock, newQuantity);
+    }
+
+    private ProductLockInfo getProductLockInfo(ProductInfo productInfo, int lockedQuantity)
+    {
+        ProductLockInfo.builder().sku(productIn).
     }
 
     private ProductInfo getLockProductInfo(ProductInfo productInfo, int locked)

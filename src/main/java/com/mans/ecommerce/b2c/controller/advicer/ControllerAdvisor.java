@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.exception.*;
 import com.mans.ecommerce.b2c.utill.Emailing;
+import com.stripe.exception.StripeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,6 +56,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
     public ResponseEntity<Object> handleBadRequest(Exception ex, WebRequest request)
     {
         return getResponseMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler({ PaymentFailedException.class, StripeException.class })
+    public ResponseEntity<Object> handlePaymentError(Exception ex, WebRequest request)
+    {
+
+        return getResponseMessage(HttpStatus.FAILED_DEPENDENCY, ex.getMessage());
     }
 
     @ExceptionHandler({ SystemConstraintViolation.class, Exception.class })

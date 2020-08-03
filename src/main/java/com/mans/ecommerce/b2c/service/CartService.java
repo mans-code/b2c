@@ -68,6 +68,12 @@ public class CartService
         }
     }
 
+    public boolean extendsExpirationDate(Cart cart)
+    {
+        String id = cart.getId();
+        Date date = Global.getFuture(validityInMinutes / 2);
+        return cartRepository.extendsExpirationDate(id, date);
+    }
     private boolean expireIn10Mins(Date date)
     {
         int TEN_MINUTES = 10;
@@ -82,12 +88,4 @@ public class CartService
         }
         return false;
     }
-
-    private boolean extendsExpirationDate(Cart cart)
-    {
-        String id = cart.getId();
-        Date date = Global.getFuture(validityInMinutes / 2);
-        return cartRepository.extendsExpirationDate(id, date);
-    }
-
 }
