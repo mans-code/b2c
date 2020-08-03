@@ -61,7 +61,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
     @ExceptionHandler({ PaymentFailedException.class, StripeException.class })
     public ResponseEntity<Object> handlePaymentError(Exception ex, WebRequest request)
     {
-
         return getResponseMessage(HttpStatus.FAILED_DEPENDENCY, ex.getMessage());
     }
 

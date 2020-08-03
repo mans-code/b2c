@@ -5,20 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
+import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.domain.exception.PaymentFailedException;
+import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.*;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
-import com.stripe.model.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/checkout/{cartId}")
@@ -66,14 +64,14 @@ public class CheckoutController
         Cart savedCart = cartService.activateAndSave(cart);
         CheckoutResponse res = new CheckoutResponse(savedCart, stripePublicKey);
         List<ProductLockInfo> lockedProduct = checkoutService.lock(cart);
-        chekForFailedLocking(lockedProduct, res);
+        checkForFailedLocking(lockedProduct, res);
         return res;
     }
 
-    @GetMapping("/complete")
+    @PostMapping("/complete")
     public Order complete(
             @PathVariable("cartId") @NotBlank String cartId,
-            @RequestParam(defaultValue = "helpful") @NotBlank String token)
+            @RequestParam @NotBlank String token)
             throws StripeException
     {
         Cart cart = cartService.findById(cartId);
@@ -91,7 +89,7 @@ public class CheckoutController
         return createOrder(cart);
     }
 
-    @GetMapping("/leaving")
+    @PostMapping("/leaving")
     public void unlock(@PathVariable("cartId") @NotBlank String cartId)
     {
         Cart cart = cartService.findById(cartId);
@@ -104,19 +102,20 @@ public class CheckoutController
 
     private Order createOrder(Cart cart)
     {
-
+        return new Order();//TODO
     }
 
-    private void chekForFailedLocking(List<ProductLockInfo> lockedProduct, CheckoutResponse res)
+    private void checkForFailedLocking(List<ProductLockInfo> lockedProduct, CheckoutResponse res)
     {
         List<ProductLockInfo> failed = lockedProduct
                                                .stream()
-                                               .filter(product -> product.)
+                                               .filter(product -> product.getLockedQuentity()
+                                                                          != product.getRequestedQuentity())
                                                .collect(Collectors.toList());
 
         if (!failed.isEmpty())
         {
-            throw new;
+            throw new UncompletedCheckoutException(res, failed);
         }
     }
 
