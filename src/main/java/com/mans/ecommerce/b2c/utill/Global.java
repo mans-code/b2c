@@ -1,6 +1,9 @@
 package com.mans.ecommerce.b2c.utill;
 
 import java.util.Date;
+import java.util.Map;
+
+import org.apache.commons.text.StringSubstitutor;
 
 public class Global
 {
@@ -11,6 +14,12 @@ public class Global
     {
         Date now = new Date();
         return new Date(now.getTime() + minutes * MILLISECONDS_IN_MINUTE);
+    }
+
+    public static String getString(String template, Map<String, Object> valuesMap)
+    {
+        StringSubstitutor sub = new StringSubstitutor(valuesMap);
+        return sub.replace(template);
     }
 
     //    private JsonResult json = JsonResult.instance();

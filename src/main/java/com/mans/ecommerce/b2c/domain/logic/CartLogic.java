@@ -22,12 +22,16 @@ public class CartLogic
     @Getter
     private final String NOT_FOUND = "couldn't find a product with the ID = %s in cart";
 
-    @Value("${app.cart.expiration}")
-    private long validityInMinutes;
+    private int validityInMinutes;
 
-    CartLogic(@Value("${app.cart.expiration}") long validityInMinutes)
+    private com.mans.ecommerce.b2c.service.CartService cartService;
+
+    CartLogic(
+            @Value("${app.cart.expiration}") int validityInMinutes,
+            com.mans.ecommerce.b2c.service.CartService cartService)
     {
         this.validityInMinutes = validityInMinutes;
+        this.cartService = cartService;
     }
 
     public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
@@ -87,11 +91,6 @@ public class CartLogic
             throw new ResourceNotFoundException(NOT_FOUND);
         }
         return optional.get();
-    }
-
-    public void avoidUnlock(Cart cart) // TODO
-    {
-
     }
 
     private void addQuantityToProduct(ProductInfo cartProduct, int requestedQuantity)
@@ -199,4 +198,5 @@ public class CartLogic
                        .filter(product -> product.getSku().equals(desireSku))
                        .findFirst();
     }
+
 }

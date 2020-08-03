@@ -6,7 +6,7 @@ import java.util.List;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
-import com.mans.ecommerce.b2c.service.CartService;
+import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -20,18 +20,22 @@ public class CheckoutController
 {
     private ProductService productService;
 
-    private CartService cartService;
+    private com.mans.ecommerce.b2c.service.CartService cartService;
+
+    private CartLogic cartLogic;
 
     private CheckoutService checkoutService;
 
     CheckoutController(
             ProductService productService,
-            CartService cartService,
-            CheckoutService checkoutService)
+            com.mans.ecommerce.b2c.service.CartService cartService,
+            CheckoutService checkoutService,
+            CartLogic cartLogic)
     {
         this.productService = productService;
         this.cartService = cartService;
         this.checkoutService = checkoutService;
+        this.cartLogic = cartLogic;
     }
 
     @GetMapping("/")
@@ -44,7 +48,8 @@ public class CheckoutController
         }
 
         List<ProductInfo> lockedProduct = checkoutService.lock(cart);
-        return cartService.save(cart);
+
+        return cartService.activateAndSave(cart);
     }
 
     @GetMapping("/leaving")

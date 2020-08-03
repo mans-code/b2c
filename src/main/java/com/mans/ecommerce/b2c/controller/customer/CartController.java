@@ -10,7 +10,6 @@ import com.mans.ecommerce.b2c.domain.enums.CartAction;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
-import com.mans.ecommerce.b2c.service.CartService;
 import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class CartController
 {
 
-    private CartService cartService;
+    private com.mans.ecommerce.b2c.service.CartService cartService;
 
     private ProductService productService;
 
@@ -34,7 +33,7 @@ public class CartController
     private final int ZERO = 0;
 
     CartController(
-            CartService cartService,
+            com.mans.ecommerce.b2c.service.CartService cartService,
             ProductService productService,
             CartLogic cartLogic,
             CheckoutService checkoutService)
@@ -85,6 +84,7 @@ public class CartController
     private Cart removerProductInCart(Cart cart, ProductDto dto)
     {
         ProductInfo productInfo = cartLogic.removeProduct(cart, dto);
+
         if (cart.isActive())
         {
             checkoutService.unlock(cart, productInfo);

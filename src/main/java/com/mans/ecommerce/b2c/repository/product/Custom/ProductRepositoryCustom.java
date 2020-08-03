@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.repository.product.CustomRepository;
+package com.mans.ecommerce.b2c.repository.product.Custom;
 
 import org.springframework.stereotype.Repository;
 

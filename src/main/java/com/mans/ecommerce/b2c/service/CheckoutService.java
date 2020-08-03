@@ -15,17 +15,17 @@ public class CheckoutService
 
     private ProductRepository productRepository;
 
-    private CartLogic cartLogic;
+    private CartLogic carService;
 
-    CheckoutService(ProductRepository productRepository, CartLogic cartLogic)
+    CheckoutService(ProductRepository productRepository, CartLogic carService)
     {
         this.productRepository = productRepository;
-        this.cartLogic = cartLogic;
+        this.carService = carService;
     }
 
     public List<ProductInfo> lock(Cart cart)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         List<ProductInfo> lockedProductInfos = new ArrayList<>();
         for (ProductInfo productInfo : cart.getProductInfos())
         {
@@ -38,7 +38,7 @@ public class CheckoutService
 
     public int lock(Cart cart, ProductInfo cartProduct)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
         String cartId = cart.getId();
@@ -49,7 +49,7 @@ public class CheckoutService
 
     public int partialLock(Cart cart, ProductInfo cartProduct, int toLock)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
         String cartId = cart.getId();
@@ -59,7 +59,7 @@ public class CheckoutService
 
     public void unlock(Cart cart)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         for (ProductInfo productInfo : cart.getProductInfos())
         {
             unlock(cart, productInfo);
@@ -68,7 +68,7 @@ public class CheckoutService
 
     public void unlock(Cart cart, ProductInfo cartProduct)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
         int quantityToUnlock = cartProduct.getQuantity();
@@ -78,7 +78,7 @@ public class CheckoutService
 
     public void unlock(Cart cart, ProductInfo cartProduct, int toUnlock)
     {
-        cartLogic.avoidUnlock(cart);
+        carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
         String cartId = cart.getId();

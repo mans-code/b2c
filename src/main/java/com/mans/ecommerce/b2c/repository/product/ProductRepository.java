@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
-import com.mans.ecommerce.b2c.repository.product.CustomRepository.ProductRepositoryCustom;
+import com.mans.ecommerce.b2c.repository.product.Custom.ProductRepositoryCustom;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

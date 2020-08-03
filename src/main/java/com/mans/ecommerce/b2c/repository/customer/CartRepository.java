@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.repository.customer;
 
+import java.util.Date;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -13,4 +14,5 @@ public interface CartRepository extends MongoRepository<Cart, String>
 
     <S extends Cart> S save(S entity);
 
+    boolean extendsExpirationDate(String id, Date date);
 }
