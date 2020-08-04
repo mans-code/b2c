@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.service;
+package com.mans.ecommerce.b2c.utill;
 
 import lombok.*;
 

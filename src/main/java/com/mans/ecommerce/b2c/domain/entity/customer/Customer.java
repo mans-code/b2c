@@ -1,5 +1,8 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
+import java.util.List;
+
+import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -32,5 +35,7 @@ public class Customer
     private String lastName;
 
     private int numOfItemsInCart;
+
+    private List<Address> shippingAddresses;
 
 }

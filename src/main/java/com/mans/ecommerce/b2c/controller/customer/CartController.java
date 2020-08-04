@@ -7,6 +7,7 @@ import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.CartAction;
+import com.mans.ecommerce.b2c.domain.exception.MissingVariationIdException;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
@@ -53,8 +54,17 @@ public class CartController
     @PatchMapping("/")
     public Cart add(@PathVariable("cartId") @NotBlank String cartId, @RequestBody @Valid ProductDto dto)
     {
-        Cart cart = cartService.findById(cartId);
         CartAction action = dto.getCartAction();
+
+        if (action == CartAction.DELETE || action == CartAction.UPDATE)
+        {
+            if (dto.getVariationId() == null)
+            {
+                throw new MissingVariationIdException();
+            }
+        }
+
+        Cart cart = cartService.findById(cartId);
 
         switch (action)
         {
@@ -63,20 +73,18 @@ public class CartController
         case DELETE:
             return removerProductInCart(cart, dto);
         case RESET:
-            return reset(cart, dto);
+            return reset(cart);
         default:
             return addProductToCart(cart, dto);
         }
     }
 
-    public Cart reset(Cart cart, ProductDto dto)
+    public Cart reset(Cart cart)
     {
-
         if (cart.isActive())
         {
             checkoutService.unlock(cart);
         }
-
         cartLogic.removeAllProducts(cart);
         return cartService.save(cart);
     }
@@ -134,6 +142,7 @@ public class CartController
 
     private Cart updateProductInCart(Cart cart, ProductDto dto)
     {
+
         if (dto.getQuantity() == ZERO)
         {
             return removerProductInCart(cart, dto);

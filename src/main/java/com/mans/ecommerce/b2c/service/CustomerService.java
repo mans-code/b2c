@@ -1,9 +1,13 @@
 package com.mans.ecommerce.b2c.service;
 
+import java.util.List;
+
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
+import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
@@ -73,6 +77,22 @@ public class CustomerService
         return new Token(tokenString);
     }
 
+    public List<Address> getShippingAddresses(String customerId)
+    {
+        Customer customer = customerRepository.getShippingAddresses(customerId)
+                                              .orElseThrow(() -> new SystemConstraintViolation(
+                                                      String.format("Customer not found id=%s", customerId)));
+
+        return customer.getShippingAddresses();
+    }
+
+    public Address getDefaultShippingAddress(String customerId)
+    {
+        //TODO
+        // customerRepository.getDefaultShippingAddress(customerId)
+        return null;
+    }
+
     private boolean isPermitted(String username, String password)
     {
         try
@@ -99,6 +119,5 @@ public class CustomerService
                        .lastName(signupDto.getLastName())
                        .build();
     }
-
 }
 

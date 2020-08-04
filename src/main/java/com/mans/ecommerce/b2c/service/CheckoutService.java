@@ -6,6 +6,7 @@ import java.util.List;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
+import com.mans.ecommerce.b2c.utill.ProductLockInfo;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -88,16 +89,13 @@ public class CheckoutService
 
     private ProductLockInfo getProductLockInfo(ProductInfo productInfo, int lockedQuantity)
     {
-        ProductLockInfo.builder().sku(productIn).
-    }
-
-    private ProductInfo getLockProductInfo(ProductInfo productInfo, int locked)
-    {
-        return ProductInfo
+        return ProductLockInfo
                        .builder()
                        .sku(productInfo.getSku())
-                       .variationId(productInfo.getVariationId())
-                       .quantity(locked)
+                       .title(productInfo.getTitle())
+                       .lockedQuentity(lockedQuantity)
+                       .requestedQuentity(productInfo.getQuantity())
                        .build();
     }
+
 }

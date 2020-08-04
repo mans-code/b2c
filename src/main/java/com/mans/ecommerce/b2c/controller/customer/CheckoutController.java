@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
+import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.entity.financial.Order;
+import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.Financial;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.domain.exception.PaymentFailedException;
 import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.*;
+import com.mans.ecommerce.b2c.utill.ProductLockInfo;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -29,9 +32,13 @@ public class CheckoutController
 
     private CartService cartService;
 
+    private CustomerService customerService;
+
     private CartLogic cartLogic;
 
     private CheckoutService checkoutService;
+
+    private OrderService orderService;
 
     private StripeService stripeService;
 
@@ -39,10 +46,12 @@ public class CheckoutController
 
     CheckoutController(
             ProductService productService,
-            com.mans.ecommerce.b2c.service.CartService cartService,
+            CartService cartService,
             CheckoutService checkoutService,
             CartLogic cartLogic,
             StripeService stripeService,
+            CustomerService customerService,
+            OrderService orderService,
             @Value("${app.stripe.public.key}") String stripePublicKey)
     {
         this.productService = productService;
@@ -51,6 +60,7 @@ public class CheckoutController
         this.cartLogic = cartLogic;
         this.stripeService = stripeService;
         this.stripePublicKey = stripePublicKey;
+        this.orderService = orderService;
     }
 
     @GetMapping("/")
@@ -69,16 +79,18 @@ public class CheckoutController
     }
 
     @PostMapping("/complete")
-    public Order complete(
+    public Financial complete(
             @PathVariable("cartId") @NotBlank String cartId,
+            @RequestParam @NotBlank String shippingId,
             @RequestParam @NotBlank String token)
             throws StripeException
     {
         Cart cart = cartService.findById(cartId);
-        double amount = cart.getMoney().getAmount().doubleValue();
+        Address address = customerService.getDefaultShippingAddress(cartId);
+        double totalAmount = calculateTotalAmount(cart, address, shippingId);
         String currency = cart.getMoney().getCurrency().getCurrencyCode();
-
-        Charge charge = stripeService.chargeNewCard(token, amount, currency);
+        
+        Charge charge = stripeService.chargeNewCard(token, totalAmount, currency);
         boolean succeeded = charge.getStatus().equals(SUCCEEDED);
 
         if (!succeeded)
@@ -86,7 +98,10 @@ public class CheckoutController
             throw new PaymentFailedException(charge.getFailureMessage());
         }
 
-        return createOrder(cart);
+        Order order = new Order(cart, address, charge);
+        orderService.save(order);
+
+        return order.getFinancial();
     }
 
     @PostMapping("/leaving")
@@ -100,11 +115,21 @@ public class CheckoutController
         checkoutService.unlock(cart);
     }
 
-    private Order createOrder(Cart cart)
+    @GetMapping("/shipping")
+    public List<Address> getShippingAddresses(@PathVariable("cartId") @NotBlank String customerId)
     {
-        return new Order();//TODO
+        return customerService.getShippingAddresses(customerId);
     }
 
+
+    private double calculateTotalAmount(//TODO
+            Cart cart,
+            Address address,
+            String shippingId)
+    {
+        return cart.getMoney().getAmount().doubleValue();
+    }
+    
     private void checkForFailedLocking(List<ProductLockInfo> lockedProduct, CheckoutResponse res)
     {
         List<ProductLockInfo> failed = lockedProduct

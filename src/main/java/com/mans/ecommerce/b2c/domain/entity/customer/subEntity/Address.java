@@ -10,6 +10,8 @@ import lombok.*;
 public class Address
 {
 
+    private int id;
+
     private String name;
 
     private String address;
@@ -23,4 +25,6 @@ public class Address
     private String phoneNumber;
 
     private String accessCode;
+
+    private boolean def;
 }

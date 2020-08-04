@@ -2,7 +2,7 @@ package com.mans.ecommerce.b2c.domain.exception;
 
 import java.util.List;
 
-import com.mans.ecommerce.b2c.service.ProductLockInfo;
+import com.mans.ecommerce.b2c.utill.ProductLockInfo;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 
 public class UncompletedCheckoutException extends RuntimeException
