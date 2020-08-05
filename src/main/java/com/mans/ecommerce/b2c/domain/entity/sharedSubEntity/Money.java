@@ -21,4 +21,10 @@ public class Money
         this.amount = amount;
         this.currency = currency;
     }
+
+    public Money(Money money)
+    {
+        this.amount = money.amount;
+        this.currency = money.currency;
+    }
 }

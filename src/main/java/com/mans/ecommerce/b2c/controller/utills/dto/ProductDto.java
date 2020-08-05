@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.controller.utills.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.mans.ecommerce.b2c.controller.utills.annotation.ValueOfEnum;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class ProductDto
 {
 
+    @NotNull
     @NotBlank
     @Size(min = 8, message = "must be 8 or more characters in length")
     private String sku;
@@ -21,6 +23,7 @@ public class ProductDto
 
     private int quantity;
 
+    @NotNull
     @NotBlank
     @ValueOfEnum(enumClass = CartAction.class)
     private CartAction cartAction;

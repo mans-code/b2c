@@ -2,6 +2,7 @@ package com.mans.ecommerce.b2c.domain.entity.customer;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
@@ -17,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString(exclude = {})
-public class Cart
+public class Cart implements Cloneable
 {
     @Id
     private String id;
@@ -34,4 +35,17 @@ public class Cart
 
     @Version
     private long version;
+
+    public Cart(Cart cart)
+    {
+        id = cart.id;
+        active = cart.active;
+        expireDate = new Date(cart.expireDate.getTime());
+        money = new Money(cart.money);
+        totalQuantity = cart.totalQuantity;
+        productInfos = cart.getProductInfos()
+                           .stream()
+                           .map(info -> new ProductInfo(info))
+                           .collect(Collectors.toList());
+    }
 }

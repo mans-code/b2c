@@ -29,8 +29,6 @@ public class CartController
 
     private CheckoutService checkoutService;
 
-    private final String CART = "cart";
-
     private final int ZERO = 0;
 
     CartController(
@@ -83,22 +81,24 @@ public class CartController
     {
         if (cart.isActive())
         {
-            checkoutService.unlock(cart);
+            checkoutService.unlock(cart.getId(), cart.getProductInfos());
         }
         cartLogic.removeAllProducts(cart);
-        return cartService.save(cart);
+        cartService.save(cart);
+        return cart;
     }
 
     private Cart removerProductInCart(Cart cart, ProductDto dto)
     {
-        ProductInfo productInfo = cartLogic.removeProduct(cart, dto);
-
         if (cart.isActive())
         {
-            checkoutService.unlock(cart, productInfo);
+            ProductInfo productInfo = cartLogic.getProduct(cart, dto);
+            checkoutService.unlock(cart.getId(), productInfo);
         }
 
-        return cartService.save(cart);
+        cartLogic.removeProduct(cart, dto);
+        cartService.save(cart);
+        return cart;
     }
 
     private Cart addProductToCart(Cart cart, ProductDto dto)
@@ -114,17 +114,17 @@ public class CartController
         }
 
         ProductInfo cartProduct = cartLogic.addProduct(cart, productInfo);
-        Cart savedCart = cartService.save(cart);
+        cartService.save(cart);
         int quantityToLock = partialOutOfStock ? availableQuantity : requestedQuantity;
 
-        lockIfNeeded(savedCart, cartProduct, quantityToLock);
+        lockIfNeeded(cart, cartProduct, quantityToLock);
 
         if (partialOutOfStock)
         {
-            throw new PartialOutOfStockException(savedCart, availableQuantity);
+            throw new PartialOutOfStockException(cart, availableQuantity);
         }
 
-        return savedCart;
+        return cart;
     }
 
     private void lockIfNeeded(Cart cart, ProductInfo cartProduct, int quantityToLock)
@@ -133,7 +133,7 @@ public class CartController
         {
             return;
         }
-        int locked = checkoutService.partialLock(cart, cartProduct, quantityToLock);
+        int locked = checkoutService.lock(cart, cartProduct, quantityToLock);
         if (locked < quantityToLock)
         {
             throw new PartialOutOfStockException(cart, locked);
@@ -149,7 +149,6 @@ public class CartController
         }
 
         ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
-        int newQuantity = dto.getQuantity();
         int difference = getQuantityDifference(dto, cartProduct);
         int absDifference = Math.abs(difference);
 
@@ -159,7 +158,7 @@ public class CartController
         }
         else if (difference < ZERO)
         {
-            return reduceQuantity(cart, cartProduct, newQuantity, absDifference);
+            return reduceQuantity(cart, cartProduct, absDifference);
         }
         else
         {
@@ -168,11 +167,17 @@ public class CartController
         }
     }
 
-    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int newQuantity, int deductedQuantity)
+    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int deductedQuantity)
     {
+
         cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
-        checkoutService.unlock(cart, cartProduct, deductedQuantity);
-        return cartService.save(cart);
+        cartService.save(cart);
+
+        if (cart.isActive())
+        {
+            checkoutService.unlock(cart.getId(), cartProduct, deductedQuantity, cartProduct.getQuantity());
+        }
+        return cart;
     }
 
     private int getQuantityDifference(ProductDto dto, ProductInfo cartProduct)
@@ -183,5 +188,4 @@ public class CartController
 
         return difference;
     }
-
 }

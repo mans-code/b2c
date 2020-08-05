@@ -7,9 +7,11 @@ import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
+import com.mans.ecommerce.b2c.server.eventListener.entity.CartSavingEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,8 @@ public class CartService
     private final int validityInMinutes;
 
     private CartRepository cartRepository;
+
+    private ApplicationEventPublisher publisher;
 
     CartService(
             CartRepository cartRepository,
@@ -43,24 +47,29 @@ public class CartService
         return optionalCart.get();
     }
 
-    public Cart save(Cart cart)
+    public void save(Cart cart)
+    {
+        publisher.publishEvent(new CartSavingEvent(cart));
+    }
+
+    public Cart syncSave(Cart cart)
     {
         return cartRepository.save(cart);
     }
 
-    public Cart activateAndSave(Cart cart)
+    public void activateAndSave(Cart cart)
     {
         cart.setActive(true);
         Date date = Global.getFuture(validityInMinutes);
         cart.setExpireDate(date);
-        return save(cart);
+        save(cart);
     }
 
     public void avoidUnlock(Cart cart)
     {
         if (cart.isActive() && expireIn10Mins(cart.getExpireDate()))
         {
-            boolean stillActive = extendsExpirationDate(cart);
+            boolean stillActive = extendsExpirationDateAndGetActivationStatus(cart.getId());
             if (!stillActive)
             {
                 throw new ConflictException("please start checkout procedure again");
@@ -68,12 +77,12 @@ public class CartService
         }
     }
 
-    public boolean extendsExpirationDate(Cart cart)
+    public boolean extendsExpirationDateAndGetActivationStatus(String cartId)
     {
-        String id = cart.getId();
         Date date = Global.getFuture(validityInMinutes / 2);
-        return cartRepository.extendsExpirationDate(id, date);
+        return cartRepository.extendsExpirationDateAndGetActivationStatus(cartId, date);
     }
+
     private boolean expireIn10Mins(Date date)
     {
         int TEN_MINUTES = 10;

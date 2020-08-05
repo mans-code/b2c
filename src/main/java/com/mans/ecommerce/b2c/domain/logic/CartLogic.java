@@ -70,6 +70,7 @@ public class CartLogic
     {
         List<ProductInfo> productInfos = resetProductInfoList(cart);
         resetMoneyAndQuantity(cart);
+        cart.setActive(false);
         return productInfos;
     }
 

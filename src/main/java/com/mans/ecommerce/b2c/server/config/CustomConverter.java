@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.config;
+package com.mans.ecommerce.b2c.server.config;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;

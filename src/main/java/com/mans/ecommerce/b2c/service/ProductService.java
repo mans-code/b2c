@@ -10,6 +10,7 @@ import com.mans.ecommerce.b2c.domain.entity.product.QAndA;
 import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Availability;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.BasicInfo;
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
@@ -88,6 +89,31 @@ public class ProductService
         return new ReviewPage(reviews, next);
     }
 
+    public boolean unlock(String sku, String variationId, String cartId, int quantityToUnlock)
+    {
+        return productRepository.unlock(sku, variationId, cartId, quantityToUnlock);
+    }
+
+    public boolean partialUnlock(
+            String sku,
+            String variationId,
+            String cartId,
+            int quantityToUnlock,
+            int newReservedQuantity)
+    {
+        return productRepository.partialUnlock(sku, variationId, cartId, quantityToUnlock, newReservedQuantity);
+    }
+
+    public boolean addReservation(Reservation reservation)
+    {
+        return productRepository.addReservation(reservation);
+    }
+
+    public boolean updateReservation(Reservation reservation, int locked)
+    {
+        return productRepository.updateReservation(reservation, locked);
+    }
+
     private void hideQuantity(Product product)
     {
         product
@@ -144,4 +170,5 @@ public class ProductService
         return Objects.isNull(dtoVariationId) ?
                        product.getDefaultVariationId() : dtoVariationId;
     }
+
 }

@@ -8,11 +8,14 @@ import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
 import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
+import com.mans.ecommerce.b2c.server.eventListener.entity.ReservationCreationEvent;
+import com.mans.ecommerce.b2c.server.eventListener.entity.ReservationUpdateEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.aggregation.AggregationUpdate;
@@ -25,9 +28,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductRepositoryImpl implements ProductRepositoryCustom
 {
-
-    private enum ReservationOperation
-    {LOCK_UPDATE, UNLOCK_UPDATE, DELETE, ADD}
 
     private final String RESERVATIONS = "reservations";
 
@@ -45,18 +45,22 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
     private final String VARIATION_ID = "variationId";
 
-    private final MongoOperations mongoOperations;
+    private MongoOperations mongoOperations;
 
-    public ProductRepositoryImpl(MongoOperations mongoOperations)
+    private ApplicationEventPublisher publisher;
+
+    public ProductRepositoryImpl(MongoOperations mongoOperations, ApplicationEventPublisher publisher)
     {
         this.mongoOperations = mongoOperations;
+        this.publisher = publisher;
     }
 
     @Override
     public int lock(String sku, String variationId, String cartId, int requestedQuantity)
     {
         int lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, -1);
-        addReservation(sku, variationId, cartId, lockedQuantity);
+        Reservation reservation = new Reservation(sku, variationId, cartId, lockedQuantity);
+        publisher.publishEvent(new ReservationCreationEvent(reservation));
         return lockedQuantity;
     }
 
@@ -68,17 +72,18 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
             int newReservedQuantity)
     {
         int lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, newReservedQuantity);
-        updateReservation(sku, variationId, cartId, lockedQuantity);
+        Reservation reservation = new Reservation(sku, variationId, cartId, lockedQuantity);
+        publisher.publishEvent(new ReservationUpdateEvent(reservation, lockedQuantity));
         return lockedQuantity;
     }
 
     @Override
-    public void unlock(String sku, String variationId, String cartId, int quantity)
+    public boolean unlock(String sku, String variationId, String cartId, int quantity)
     {
-        unlock(sku, variationId, cartId, quantity, -1);
+        return unlock(sku, variationId, cartId, quantity, -1);
     }
 
-    @Override public void partialUnlock(
+    @Override public boolean partialUnlock(
             String sku,
             String variationId,
             String cartId,
@@ -86,7 +91,28 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
             int newReservedQuantity)
     {
 
-        unlock(sku, variationId, cartId, quantity, newReservedQuantity);
+        return unlock(sku, variationId, cartId, quantity, newReservedQuantity);
+    }
+
+    @Override public boolean addReservation(Reservation reservation)
+    {
+
+        Query query = getProductQuery(reservation, false);
+        Update update = new Update();
+
+        update.push(RESERVATIONS, reservation);
+
+        return executeUpdate(query, update);
+    }
+
+    @Override public boolean updateReservation(Reservation reservation, int lockedQuantity)
+    {
+        Query query = getProductQuery(reservation, true);
+        Update update = new Update();
+
+        update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
+
+        return executeUpdate(query, update);
     }
 
     private int lock(String sku, String variationId, String cartId, int requestedQuantity, int newReservedQuantity)
@@ -110,7 +136,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
         if (Objects.isNull(product))
         {
-            String message = "Couldn't lock product, sku=%s\n variationId=%s\n cartId=%s\n withReservation=$s" ;
+            String message = "Couldn't lock product, sku=%s\n variationId=%s\n cartId=%s\n withReservation=$s";
             throw new SystemConstraintViolation(String.format(message, sku, variationId, cartId, withReservation));
         }
 
@@ -122,48 +148,33 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return getLockQuantity(oldQuantity, requestedQuantity);
     }
 
-    private void unlock(String sku, String variationId, String cartId, int quantity, int newReservedQuantity)
+    private boolean unlock(String sku, String variationId, String cartId, int quantity, int newReservedQuantity)
     {
         Query query = getProductQuery(sku, variationId, cartId, true);
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
                                                 ImmutableMap.of(VARIATION_ID, variationId));
-        Update update = new Update();
-        ReservationOperation resOp;
 
+        Update update = new Update();
         update.inc(quantityField, quantity);
+
         if (newReservedQuantity == -1)
         {
             BasicDBObject reservation = getReservation(variationId, cartId);
             update.pull(RESERVATIONS, reservation);
-            resOp = ReservationOperation.DELETE;
         }
         else
         {
             update.set(RESERVATION_QUANTITY_POSITION, newReservedQuantity);
-            resOp = ReservationOperation.UNLOCK_UPDATE;
         }
-        executeUpdate(query, update, resOp);
+        return executeUpdate(query, update);
     }
 
-    private void addReservation(String sku, String variationId, String cartId, int lockedQuantity)
+    private Query getProductQuery(Reservation reservation, boolean withReservation)
     {
-        Query query = getProductQuery(sku, variationId, cartId, false);
-        Reservation reservation = new Reservation(cartId, variationId, lockedQuantity);
-        Update update = new Update();
-
-        update.push(RESERVATIONS, reservation);
-
-        executeUpdate(query, update, ReservationOperation.ADD);
-    }
-
-    private void updateReservation(String sku, String variationId, String cartId, int lockedQuantity)
-    {
-        Query query = getProductQuery(sku, variationId, cartId, true);
-        Update update = new Update();
-
-        update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
-
-        executeUpdate(query, update, ReservationOperation.LOCK_UPDATE);
+        String sku = reservation.getSku();
+        String variationId = reservation.getVariationId();
+        String cartId = reservation.getCartId();
+        return getProductQuery(sku, variationId, cartId, withReservation);
     }
 
     private Query getProductQuery(String sku, String variationId, String cartId, boolean withReservation)
@@ -214,18 +225,16 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
                                        .otherwise(0));
     }
 
-    private void executeUpdate(
-            Query query,
-            Update update,
-            ReservationOperation resOp)
+    private boolean executeUpdate(Query query, Update update)
     {
         UpdateResult result = mongoOperations.updateFirst(query, update, Product.class);
 
         if ((result.getMatchedCount() != 1 || result.getModifiedCount() != 1))
         {
-            String message = resOp + "\n" + query.toString() + "\n" + update.toString();
-            throw new SystemConstraintViolation(message);
+            return false;
         }
+
+        return true;
     }
 
     private int getLockQuantity(int productPreQuantity, int requestedQuantity)

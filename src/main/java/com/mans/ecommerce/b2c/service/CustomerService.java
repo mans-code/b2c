@@ -11,9 +11,11 @@ import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
+import com.mans.ecommerce.b2c.server.eventListener.entity.CustomerCreationEvent;
 import com.mans.ecommerce.b2c.utill.response.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,10 +34,13 @@ public class CustomerService
 
     private JwtProvider jwtProvider;
 
+    private ApplicationEventPublisher publisher;
+
     public CustomerService(
             CustomerRepository customerRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder,
+            ApplicationEventPublisher publisher,
             JwtProvider jwtProvider)
     {
         this.customerRepository = customerRepository;
@@ -59,16 +64,16 @@ public class CustomerService
 
     public Customer signup(SignupDto signupDto)
     {
-        String username = signupDto.getUsername();
-        boolean usernameTaken = customerRepository.existsByUsername(username);
+        Customer newCustomer = mapSignupDtoToCustomer(signupDto);
+        Customer saved = customerRepository.save(newCustomer);
 
-        if (usernameTaken)
+        if (saved == null)
         {
             throw new UserAlreadyExistException();
         }
 
-        Customer newCustomer = mapSignupDtoToCustomer(signupDto);
-        return customerRepository.save(newCustomer);
+        publisher.publishEvent(new CustomerCreationEvent(newCustomer));
+        return saved;
     }
 
     public Token getToken(String username)

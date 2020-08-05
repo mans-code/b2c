@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.config.commendRunner;
+package com.mans.ecommerce.b2c.server.commendRunner;
 
 import java.io.IOException;
 import java.io.InputStream;

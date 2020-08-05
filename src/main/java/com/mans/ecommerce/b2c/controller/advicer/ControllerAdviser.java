@@ -1,17 +1,12 @@
 package com.mans.ecommerce.b2c.controller.advicer;
 
-import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.exception.*;
-import com.mans.ecommerce.b2c.utill.Emailing;
+import com.mans.ecommerce.b2c.server.eventListener.entity.ServerErrorEvent;
 import com.stripe.exception.StripeException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,21 +17,13 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ControllerAdvisor extends ResponseEntityExceptionHandler
+public class ControllerAdviser extends ResponseEntityExceptionHandler
 {
+    private ApplicationEventPublisher publisher;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ControllerAdvisor.class);
-
-    private Emailing emailing;
-
-    private ObjectMapper mapper;
-
-    private String to;
-
-    ControllerAdvisor(Emailing emailing, ObjectMapper mapper, @Value("${app.crash.email}") String to)
+    ControllerAdviser(ApplicationEventPublisher publisher)
     {
-        this.emailing = emailing;
-        this.to = to;
+        this.publisher = publisher;
     }
 
     @ExceptionHandler({ UserAlreadyExistException.class, ConflictException.class })
@@ -64,10 +51,35 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
         return getResponseMessage(HttpStatus.FAILED_DEPENDENCY, ex.getMessage());
     }
 
+    @ExceptionHandler({ OutOfStockException.class })
+    public ResponseEntity<Object> outOfStockException(OutOfStockException ex, WebRequest request)
+    {
+        return getResponseMessage(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler({ PartialOutOfStockException.class })
+    public ResponseEntity<Object> partialStockException(PartialOutOfStockException ex, WebRequest request)
+    {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("cart", ex.getCart());
+        return new ResponseEntity<>(body, HttpStatus.PARTIAL_CONTENT);
+    }
+
+    @ExceptionHandler({ UncompletedCheckoutException.class })
+    public ResponseEntity<Object> uncompletedCheckoutException(UncompletedCheckoutException ex, WebRequest request)
+    {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", ex.getMessage());
+        body.put("uncompleted", ex.getUncompleted());
+        body.put("checkoutResponse", ex.getCheckoutResponse());
+        return new ResponseEntity<>(body, HttpStatus.PARTIAL_CONTENT);
+    }
+
     @ExceptionHandler({ SystemConstraintViolation.class, Exception.class })
     public ResponseEntity<Object> handleSystemConstraint(Exception ex, WebRequest request)
     {
-        sendEmail(ex);
+        publisher.publishEvent(new ServerErrorEvent(ex));
         return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
@@ -96,26 +108,5 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, status);
     }
 
-    private void sendEmail(Exception ex)
-    {
-        String subject = "APP Crash!!!!!!!!!!!!";
-        String body_template = "Time=%s\n"
-                                       + "exception=%s";
-        String exception = getJson(ex);
-        String time = LocalDate.now().toString();
-        String body = String.format(body_template, time, exception);
-        emailing.sendEmail(to, subject, body);
-    }
 
-    private String getJson(Exception ex)
-    {
-        try
-        {
-            return mapper.writeValueAsString(ex);
-        }
-        catch (JsonProcessingException e)
-        {
-            return ex.getMessage();
-        }
-    }
 }

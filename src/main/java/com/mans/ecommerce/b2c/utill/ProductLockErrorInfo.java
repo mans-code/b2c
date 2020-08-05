@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString(exclude = {})
-public class ProductLockInfo
+public class ProductLockErrorInfo
 {
     private String sku;
 
@@ -16,7 +16,7 @@ public class ProductLockInfo
 
     private String title;
 
-    private int requestedQuentity;
+    private int requestedQuantity;
 
-    private int lockedQuentity;
+    private int lockedQuantity;
 }

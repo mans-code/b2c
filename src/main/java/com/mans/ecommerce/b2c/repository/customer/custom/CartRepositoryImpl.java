@@ -20,7 +20,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
     private MongoOperations mongoOperations;
 
-    @Override public boolean extendsExpirationDate(String id, Date date)
+    @Override public boolean extendsExpirationDateAndGetActivationStatus(String id, Date date)
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));
@@ -30,7 +30,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
         FindAndModifyOptions options = FindAndModifyOptions
                                                .options()
-                                               .returnNew(false)
+                                               .returnNew(true)
                                                .upsert(false)
                                                .remove(false);
 

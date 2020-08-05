@@ -20,7 +20,7 @@ public class Customer
     @Id
     private String id;
 
-    @Indexed
+    @Indexed(unique = true)
     private String username;
 
     private String password;
@@ -35,6 +35,10 @@ public class Customer
     private String lastName;
 
     private int numOfItemsInCart;
+
+    private String token;
+
+    private boolean enabled;
 
     private List<Address> shippingAddresses;
 

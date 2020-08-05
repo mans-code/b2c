@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.config.Interceptor;
+package com.mans.ecommerce.b2c.server.Interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -2,7 +2,6 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
@@ -13,7 +12,7 @@ import com.mans.ecommerce.b2c.domain.exception.PaymentFailedException;
 import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.*;
-import com.mans.ecommerce.b2c.utill.ProductLockInfo;
+import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -61,9 +60,10 @@ public class CheckoutController
         this.stripeService = stripeService;
         this.stripePublicKey = stripePublicKey;
         this.orderService = orderService;
+        this.customerService = customerService;
     }
 
-    @GetMapping("/")
+    @PostMapping("/")
     public CheckoutResponse lock(@PathVariable("cartId") @NotBlank String cartId)
     {
         Cart cart = cartService.findById(cartId);
@@ -71,10 +71,14 @@ public class CheckoutController
         {
             throw new ConflictException("cart already locked");
         }
-        Cart savedCart = cartService.activateAndSave(cart);
-        CheckoutResponse res = new CheckoutResponse(savedCart, stripePublicKey);
-        List<ProductLockInfo> lockedProduct = checkoutService.lock(cart);
-        checkForFailedLocking(lockedProduct, res);
+        List<ProductLockErrorInfo> lockedProductError = checkoutService.lock(cart);
+        CheckoutResponse res = new CheckoutResponse(cart, stripePublicKey);
+        cartService.activateAndSave(cart);
+
+        if (!lockedProductError.isEmpty())
+        {
+            throw new UncompletedCheckoutException(res, lockedProductError);
+        }
         return res;
     }
 
@@ -89,7 +93,7 @@ public class CheckoutController
         Address address = customerService.getDefaultShippingAddress(cartId);
         double totalAmount = calculateTotalAmount(cart, address, shippingId);
         String currency = cart.getMoney().getCurrency().getCurrencyCode();
-        
+
         Charge charge = stripeService.chargeNewCard(token, totalAmount, currency);
         boolean succeeded = charge.getStatus().equals(SUCCEEDED);
 
@@ -100,7 +104,6 @@ public class CheckoutController
 
         Order order = new Order(cart, address, charge);
         orderService.save(order);
-
         return order.getFinancial();
     }
 
@@ -108,40 +111,14 @@ public class CheckoutController
     public void unlock(@PathVariable("cartId") @NotBlank String cartId)
     {
         Cart cart = cartService.findById(cartId);
-        if (!cart.isActive())
-        {
-            return;
-        }
         checkoutService.unlock(cart);
     }
 
-    @GetMapping("/shipping")
-    public List<Address> getShippingAddresses(@PathVariable("cartId") @NotBlank String customerId)
-    {
-        return customerService.getShippingAddresses(customerId);
-    }
-
-
     private double calculateTotalAmount(//TODO
-            Cart cart,
-            Address address,
-            String shippingId)
+                                        Cart cart,
+                                        Address address,
+                                        String shippingId)
     {
         return cart.getMoney().getAmount().doubleValue();
     }
-    
-    private void checkForFailedLocking(List<ProductLockInfo> lockedProduct, CheckoutResponse res)
-    {
-        List<ProductLockInfo> failed = lockedProduct
-                                               .stream()
-                                               .filter(product -> product.getLockedQuentity()
-                                                                          != product.getRequestedQuentity())
-                                               .collect(Collectors.toList());
-
-        if (!failed.isEmpty())
-        {
-            throw new UncompletedCheckoutException(res, failed);
-        }
-    }
-
 }

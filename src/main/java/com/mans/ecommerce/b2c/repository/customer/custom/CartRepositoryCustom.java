@@ -4,5 +4,5 @@ import java.util.Date;
 
 public interface CartRepositoryCustom
 {
-    public boolean extendsExpirationDate(String id, Date date);
+    public boolean extendsExpirationDateAndGetActivationStatus(String id, Date date);
 }

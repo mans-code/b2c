@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.config;
+package com.mans.ecommerce.b2c.server.config;
 
 import java.util.Arrays;
 

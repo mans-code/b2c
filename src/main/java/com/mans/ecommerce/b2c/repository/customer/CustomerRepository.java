@@ -14,7 +14,9 @@ public interface CustomerRepository extends CrudRepository<Customer, String>
     @Override
     Optional<Customer> findById(String s);
 
-    Optional<Customer> findByUsername(String s);
+    Optional<Customer> findByUsername(String username);
+
+    Optional<Customer> findByToken(String token);
 
     boolean existsByUsername(String s);
 
