@@ -30,6 +30,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
         http.authorizeRequests()
             .antMatchers("/products/**").permitAll()
             .antMatchers("/auth/**").permitAll()
+            .antMatchers("/carts/anonymous/**").permitAll()
             .anyRequest()
             .authenticated();
 

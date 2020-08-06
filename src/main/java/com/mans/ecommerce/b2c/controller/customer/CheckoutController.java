@@ -18,7 +18,10 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/checkout/{cartId}")
@@ -111,7 +114,10 @@ public class CheckoutController
     public void unlock(@PathVariable("cartId") @NotBlank String cartId)
     {
         Cart cart = cartService.findById(cartId);
-        checkoutService.unlock(cart);
+        if (cart.isActive())
+        {
+            checkoutService.unlock(cartId, cart.getProductInfos());
+        }
     }
 
     private double calculateTotalAmount(//TODO

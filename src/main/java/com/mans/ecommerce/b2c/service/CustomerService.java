@@ -47,6 +47,7 @@ public class CustomerService
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
+        this.publisher = publisher;
     }
 
     public Token signin(LoginDto loginDto)

@@ -33,8 +33,8 @@ public class JwtProvider
 
     @Autowired
     public JwtProvider(
-            @Value("${security.jwt.token.secret-key}") String secretKey,
-            @Value("${security.jwt.token.expiration}") int validityInMinutes)
+            @Value("${app.security.jwt.token.secret-key}") String secretKey,
+            @Value("${app.security.jwt.token.expiration}") int validityInMinutes)
     {
 
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());

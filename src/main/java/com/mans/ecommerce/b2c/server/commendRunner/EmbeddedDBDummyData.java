@@ -75,15 +75,25 @@ public class EmbeddedDBDummyData implements CommandLineRunner
             throws Exception
     {
 
+        cartRepository.deleteAll();
         cartRepository.saveAll(loadFile("carts", Cart.class));
+
+        paymentInfoRepository.deleteAll();
         paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class));
 
+        productRepository.deleteAll();
         productRepository.saveAll(loadFile("products", Product.class));
+
+        qAndARepository.deleteAll();
         qAndARepository.saveAll(loadFile("qAndAs", QAndA.class));
+
+        reviewRepository.deleteAll();
         reviewRepository.saveAll(loadFile("reviews", Review.class));
 
         List<Customer> customers = loadFile("customers", Customer.class);
         encodeAllPassword(customers);
+
+        customerRepository.deleteAll();
         customerRepository.saveAll(customers);
     }
 
