@@ -1,5 +1,7 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.*;
 import java.util.Set;
 
@@ -8,6 +10,7 @@ import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
 import com.mans.ecommerce.b2c.service.CustomerService;
+import com.mans.ecommerce.b2c.utill.Global;
 import com.mans.ecommerce.b2c.utill.response.NewCustomerResponse;
 import com.mans.ecommerce.b2c.utill.response.Token;
 import org.springframework.http.HttpStatus;
@@ -38,12 +41,13 @@ public class AuthController
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public NewCustomerResponse signup(@RequestBody @Valid SignupDto signupDto)
+    public NewCustomerResponse signup(@RequestBody @Valid SignupDto signupDto, HttpServletRequest req,HttpServletResponse httpRes)
     {
-        Customer newCustomer = customerService.signup(signupDto);
+        Customer newCustomer = customerService.signup(signupDto, req);
         Token token = customerService.getToken(newCustomer.getUsername());
-        NewCustomerResponse response = new NewCustomerResponse(newCustomer.getId(), token.getToken());
-
+        String id = newCustomer.getId();
+        NewCustomerResponse response = new NewCustomerResponse(id, token.getToken());
+        Global.setId(httpRes, id);
         return response;
     }
 

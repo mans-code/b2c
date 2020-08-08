@@ -8,6 +8,7 @@ import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
 import com.mans.ecommerce.b2c.server.eventListener.entity.CartSavingEvent;
+import com.mans.ecommerce.b2c.server.eventListener.entity.CreateFeedEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import lombok.Getter;
 import org.bson.types.ObjectId;
@@ -55,7 +56,9 @@ public class CartService
 
     public Cart syncSave(Cart cart)
     {
-        return cartRepository.save(cart);
+        Cart saved = cartRepository.save(cart);
+        publisher.publishEvent(new CreateFeedEvent(saved.getIdObj()));
+        return saved;
     }
 
     public void activateAndSave(Cart cart)

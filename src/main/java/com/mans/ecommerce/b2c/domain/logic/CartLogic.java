@@ -11,8 +11,11 @@ import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
+import com.mans.ecommerce.b2c.server.eventListener.entity.AddProductToCartEvent;
+import com.mans.ecommerce.b2c.service.CartService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,18 +27,23 @@ public class CartLogic
 
     private int validityInMinutes;
 
-    private com.mans.ecommerce.b2c.service.CartService cartService;
+    private ApplicationEventPublisher publisher;
+
+    private CartService cartService;
 
     CartLogic(
             @Value("${app.cart.expiration}") int validityInMinutes,
-            com.mans.ecommerce.b2c.service.CartService cartService)
+            CartService cartService,
+            ApplicationEventPublisher publisher)
     {
         this.validityInMinutes = validityInMinutes;
         this.cartService = cartService;
+        this.publisher = publisher;
     }
 
     public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
     {
+        publisher.publishEvent(new AddProductToCartEvent(cart.getId(), productInfo));
         Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku());
         int requestedQuantity = productInfo.getQuantity();
         ProductInfo cartProduct;
@@ -53,6 +61,7 @@ public class CartLogic
         }
 
         addMoneyAndQuantity(cart, productInfo, requestedQuantity);
+
         return cartProduct;
     }
 

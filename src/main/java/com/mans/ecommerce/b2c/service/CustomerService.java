@@ -1,9 +1,12 @@
 package com.mans.ecommerce.b2c.service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
+import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
@@ -12,6 +15,7 @@ import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
 import com.mans.ecommerce.b2c.server.eventListener.entity.CustomerCreationEvent;
+import com.mans.ecommerce.b2c.utill.Global;
 import com.mans.ecommerce.b2c.utill.response.Token;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -36,6 +40,8 @@ public class CustomerService
     private JwtProvider jwtProvider;
 
     private ApplicationEventPublisher publisher;
+
+    private CartService cartService;
 
     public CustomerService(
             CustomerRepository customerRepository,
@@ -64,9 +70,11 @@ public class CustomerService
         return getToken(username);
     }
 
-    public Customer signup(SignupDto signupDto)
+    public Customer signup(SignupDto signupDto, HttpServletRequest req)
     {
+        ObjectId id = getCustomerId(req);
         Customer newCustomer = mapSignupDtoToCustomer(signupDto);
+        newCustomer.setId(id);
         Customer saved = customerRepository.save(newCustomer);
 
         if (saved == null)
@@ -74,8 +82,19 @@ public class CustomerService
             throw new UserAlreadyExistException();
         }
 
-        publisher.publishEvent(new CustomerCreationEvent(newCustomer));
+        publisher.publishEvent(new CustomerCreationEvent(saved));
         return saved;
+    }
+
+    private ObjectId getCustomerId(HttpServletRequest req)
+    {
+        Optional<String> idOptional = Global.getId(req);
+        if (idOptional.isPresent())
+        {
+            return new ObjectId(idOptional.get());
+        }
+        Cart cart = cartService.syncSave(new Cart());
+        return cart.getIdObj();
     }
 
     public Token getToken(String username)

@@ -87,7 +87,7 @@ public class CustomerServiceUT
         when(customerRepository.save(any()))
                 .thenAnswer(funParams -> (Customer) funParams.getArguments()[0]);
 
-        Customer actual = customerService.signup(signupDto);
+        Customer actual = customerService.signup(signupDto, req);
         assertSignupResult(actual, signupDto, encodedPassword);
     }
 
@@ -111,7 +111,7 @@ public class CustomerServiceUT
                 .thenReturn(true);
 
         assertThrows(UserAlreadyExistException.class,
-                     () -> customerService.signup(new SignupDto()));
+                     () -> customerService.signup(new SignupDto(), req));
     }
 
     private void assertSignupResult(Customer customer, SignupDto signupDto, String encodedPassword)

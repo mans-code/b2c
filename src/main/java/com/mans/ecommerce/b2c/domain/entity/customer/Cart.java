@@ -34,8 +34,15 @@ public class Cart implements Cloneable
 
     private int totalQuantity;
 
+    private boolean anonymous;
+
     @Version
     private long version;
+
+    public Cart(boolean anonymous)
+    {
+        this.anonymous = anonymous;
+    }
 
     public Cart(Cart cart)
     {

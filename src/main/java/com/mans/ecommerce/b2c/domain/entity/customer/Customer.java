@@ -43,5 +43,13 @@ public class Customer
 
     private List<Address> shippingAddresses;
 
-    public String getId() { return id.toHexString(); }
+    public ObjectId getObjId()
+    {
+        return id;
+    }
+
+    public String getId()
+    {
+        return id.toHexString();
+    }
 }

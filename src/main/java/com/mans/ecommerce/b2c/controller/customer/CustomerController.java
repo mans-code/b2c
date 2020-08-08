@@ -26,7 +26,7 @@ public class CustomerController
     @GetMapping(value = "/shipping")
     public List<Address> getShippingAddresses(@PathVariable("id") @NotNull ObjectId id)
     {
-        return null;
+        return customerService.getShippingAddresses(id);
     }
 
 }

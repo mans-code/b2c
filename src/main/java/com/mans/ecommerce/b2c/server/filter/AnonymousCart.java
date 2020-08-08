@@ -2,7 +2,6 @@ package com.mans.ecommerce.b2c.server.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,8 +21,6 @@ public class AnonymousCart extends GenericFilterBean
 {
 
     private final String ANONYMOUS = "anonymous";
-
-    private final String CUSTOMER_ID = "customerId";
 
     private CartService cartService;
 
@@ -64,27 +61,22 @@ public class AnonymousCart extends GenericFilterBean
 
     private String getCustomerId(HttpServletRequest request, HttpServletResponse response)
     {
-        Optional<Cookie> cookieOptional = Global.getCookie(request, CUSTOMER_ID);
-        if (cookieOptional.isPresent())
+        Optional<String> optional = Global.getId(request);
+        if (optional.isPresent())
         {
-            return cookieOptional.get().getValue();
+            return optional.get();
         }
-        return createCookieAndGetCartId(response);
+        return createIdAndStoreInHeader(response);
     }
 
-    private String createCookieAndGetCartId(HttpServletResponse response)
+    private String createIdAndStoreInHeader(HttpServletResponse response)
     {
         String customerId = cartService
-                                    .syncSave(new Cart())
+                                    .syncSave(new Cart(true))
                                     .getId();
 
-        addCookie(customerId, response);
+        Global.addCookie(customerId, response);
         return customerId;
     }
 
-    private void addCookie(String customerId, HttpServletResponse response)
-    {
-        Cookie cookie = new Cookie(CUSTOMER_ID, customerId);
-        response.addCookie(cookie);
-    }
 }

@@ -62,7 +62,7 @@ public class AuthControllerUT
         assertThrows(LoginException.class,
                      () -> authController.login(loginDto));
 
-        verify(customerService, never()).signup(any());
+        verify(customerService, never()).signup(any(), req);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AuthControllerUT
         String expectedToken = "pass";
         Token token = new Token(expectedToken);
 
-        when(customerService.signup(any()))
+        when(customerService.signup(any(), req))
                 .thenReturn(customer);
 
         when(customerService.getToken(any()))
@@ -88,7 +88,7 @@ public class AuthControllerUT
     @Test()
     public void signup_fail_userAlreadyExist()
     {
-        when(customerService.signup(any()))
+        when(customerService.signup(any(), req))
                 .thenThrow(UserAlreadyExistException.class);
 
         assertThrows(UserAlreadyExistException.class,

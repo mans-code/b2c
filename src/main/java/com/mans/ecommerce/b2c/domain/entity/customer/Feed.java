@@ -22,7 +22,7 @@ public class Feed
     @Id
     private ObjectId id;
 
-    private List<ProductInfo> clicks;
+    private List<String> clicks;
 
     private List<ProductInfo> bought;
 
@@ -30,7 +30,18 @@ public class Feed
 
     private ProductInfo lastProductBought;
 
-    private ProductInfo lastProductClicked;
+    private String lastProductAdded;
 
-    public String getId() { return id.toHexString(); }
+    private String lastProductClicked;
+
+    public Feed(ObjectId id)
+    {
+        this.id = id;
+    }
+
+    public String getId()
+    {
+        return id.toHexString();
+    }
+
 }

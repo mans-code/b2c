@@ -1,25 +1,36 @@
 package com.mans.ecommerce.b2c.controller.product;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.enums.SortBy;
+import com.mans.ecommerce.b2c.server.eventListener.entity.ClickedOnProductEvent;
 import com.mans.ecommerce.b2c.service.ProductService;
 import com.mans.ecommerce.b2c.utill.response.QAndAPage;
 import com.mans.ecommerce.b2c.utill.response.ReviewPage;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products/{sku}")
 public class ProductController
 {
-    @Autowired
+
     private ProductService productService;
 
-    @GetMapping("/detail")
-    public Product getProduct(@PathVariable("sku") @NotBlank String sku)
+    private ApplicationEventPublisher publisher;
+
+    ProductController(ProductService productService, ApplicationEventPublisher publisher)
     {
+        this.productService = productService;
+        this.publisher = publisher;
+    }
+
+    @GetMapping("/detail")
+    public Product getProduct(@PathVariable("sku") @NotBlank String sku, HttpServletRequest req)
+    {
+        publisher.publishEvent(new ClickedOnProductEvent(sku, req));
         return productService.getProductDetails(sku);
     }
 

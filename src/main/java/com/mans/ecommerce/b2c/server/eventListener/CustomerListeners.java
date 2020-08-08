@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerListeners
 {
-
     private Emailing emailing;
 
     CustomerListeners(Emailing emailing)
@@ -28,5 +27,4 @@ public class CustomerListeners
         String body = "nice To have on border";
         emailing.sendEmail(to, subject, body);
     }
-
 }
