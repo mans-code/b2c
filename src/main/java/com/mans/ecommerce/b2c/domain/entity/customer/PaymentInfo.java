@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +19,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PaymentInfo
 {
     @Id
-    private String id;
+    private ObjectId id;
 
     private List<CreditCard> creditCardList;
+
+    public String getId()
+    {
+        return id.toHexString();
+    }
 }

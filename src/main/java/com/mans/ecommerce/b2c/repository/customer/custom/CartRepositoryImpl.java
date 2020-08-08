@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Query;
@@ -20,7 +21,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
     private MongoOperations mongoOperations;
 
-    @Override public boolean extendsExpirationDateAndGetActivationStatus(String id, Date date)
+    @Override public boolean extendsExpirationDateAndGetActivationStatus(ObjectId id, Date date)
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));

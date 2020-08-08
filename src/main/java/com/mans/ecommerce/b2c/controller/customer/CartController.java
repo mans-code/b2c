@@ -1,7 +1,7 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -13,10 +13,10 @@ import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
-import org.springframework.stereotype.Controller;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/carts/{cartId}")
 public class CartController
 {
@@ -43,14 +43,14 @@ public class CartController
         this.checkoutService = checkoutService;
     }
 
-    @GetMapping("/")
-    public Cart getCart(@PathVariable("cartId") @NotBlank String cartId)
+    @GetMapping
+    public Cart getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         return cartService.findById(cartId);
     }
 
-    @PatchMapping("/")
-    public Cart add(@PathVariable("cartId") @NotBlank String cartId, @RequestBody @Valid ProductDto dto)
+    @PatchMapping
+    public Cart add(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
     {
         CartAction action = dto.getCartAction();
 
@@ -81,7 +81,7 @@ public class CartController
     {
         if (cart.isActive())
         {
-            checkoutService.unlock(cart.getId(), cart.getProductInfos());
+            checkoutService.unlock(cart.getIdObj(), cart.getProductInfos());
         }
         cartLogic.removeAllProducts(cart);
         cartService.save(cart);
@@ -93,7 +93,7 @@ public class CartController
         if (cart.isActive())
         {
             ProductInfo productInfo = cartLogic.getProduct(cart, dto);
-            checkoutService.unlock(cart.getId(), productInfo);
+            checkoutService.unlock(cart.getIdObj(), productInfo);
         }
 
         cartLogic.removeProduct(cart, dto);
@@ -175,7 +175,7 @@ public class CartController
 
         if (cart.isActive())
         {
-            checkoutService.unlock(cart.getId(), cartProduct, deductedQuantity, cartProduct.getQuantity());
+            checkoutService.unlock(cart.getIdObj(), cartProduct, deductedQuantity, cartProduct.getQuantity());
         }
         return cart;
     }

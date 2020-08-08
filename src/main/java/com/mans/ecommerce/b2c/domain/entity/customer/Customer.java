@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +19,7 @@ public class Customer
 {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     @Indexed(unique = true)
     private String username;
@@ -42,4 +43,5 @@ public class Customer
 
     private List<Address> shippingAddresses;
 
+    public String getId() { return id.toHexString(); }
 }

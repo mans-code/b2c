@@ -6,13 +6,14 @@ import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 
 @AllArgsConstructor
 @Getter
 @Setter
 public class UnlockCartEvent
 {
-    private String cartId;
+    private ObjectId cartId;
 
     private List<ProductInfo> productInfos;
 }

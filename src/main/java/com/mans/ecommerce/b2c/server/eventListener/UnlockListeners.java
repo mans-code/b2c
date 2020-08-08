@@ -7,6 +7,7 @@ import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductPartiallyEvent;
 import com.mans.ecommerce.b2c.service.CartService;
 import com.mans.ecommerce.b2c.service.ProductService;
+import org.bson.types.ObjectId;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 
@@ -27,7 +28,7 @@ public class UnlockListeners
     @EventListener
     void unlockCart(UnlockCartEvent event)
     {
-        String cartId = event.getCartId();
+        ObjectId cartId = event.getCartId();
         boolean stillActive = cartService.extendsExpirationDateAndGetActivationStatus(cartId);
         if (!stillActive)
         {
@@ -41,7 +42,7 @@ public class UnlockListeners
     @EventListener
     void unlockProduct(UnlockProductEvent event)
     {
-        String cartId = event.getCartId();
+        ObjectId cartId = event.getCartId();
         boolean stillActive = cartService.extendsExpirationDateAndGetActivationStatus(cartId);
         if (!stillActive)
         {
@@ -56,7 +57,7 @@ public class UnlockListeners
     @EventListener
     void unlockProductPartially(UnlockProductPartiallyEvent event)
     {
-        String cartId = event.getCartId();
+        ObjectId cartId = event.getCartId();
         boolean stillActive = cartService.extendsExpirationDateAndGetActivationStatus(cartId);
         if (!stillActive)
         {
@@ -69,12 +70,12 @@ public class UnlockListeners
         unlock(productInfo, cartId, toUnlock, newReservedQuantity);
     }
 
-    private void unlock(ProductInfo productInfo, String cartId)
+    private void unlock(ProductInfo productInfo, ObjectId cartId)
     {
         unlock(productInfo, cartId, productInfo.getQuantity(), -1);
     }
 
-    private void unlock(ProductInfo productInfo, String cartId, int toUnlock, int newReservedQuantity)
+    private void unlock(ProductInfo productInfo, ObjectId cartId, int toUnlock, int newReservedQuantity)
     {
         String sku = productInfo.getSku();
         String variationId = productInfo.getVariationId();

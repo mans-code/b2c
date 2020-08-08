@@ -14,6 +14,7 @@ import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.utill.response.NewCustomerResponse;
 import com.mans.ecommerce.b2c.utill.response.Token;
 import com.mans.ecommerce.b2c.utills.Message;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,10 +112,10 @@ public class AuthControllerIT
         assertSameStatus(result, HttpStatus.CREATED);
 
         NewCustomerResponse response = getResponse(result, NewCustomerResponse.class);
-        assertFalse(response.getCustomerId().isEmpty());
+        assertTrue(response.getCustomerId() == null);
         assertFalse(response.getToken().isEmpty());
 
-        Optional<Customer> dbCustomerOption = customerRepository.findById(response.getCustomerId());
+        Optional<Customer> dbCustomerOption = customerRepository.findById(new ObjectId(response.getCustomerId()));
         assertTrue(dbCustomerOption.isPresent());
 
         Customer dbCustomer = dbCustomerOption.get();

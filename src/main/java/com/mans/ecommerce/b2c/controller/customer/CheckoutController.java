@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -16,14 +17,11 @@ import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/checkout/{cartId}")
 public class CheckoutController
 {
@@ -67,7 +65,7 @@ public class CheckoutController
     }
 
     @PostMapping("/")
-    public CheckoutResponse lock(@PathVariable("cartId") @NotBlank String cartId)
+    public CheckoutResponse lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         Cart cart = cartService.findById(cartId);
         if (cart.isActive())
@@ -87,7 +85,7 @@ public class CheckoutController
 
     @PostMapping("/complete")
     public Financial complete(
-            @PathVariable("cartId") @NotBlank String cartId,
+            @PathVariable("cartId") @NotNull ObjectId cartId,
             @RequestParam @NotBlank String shippingId,
             @RequestParam @NotBlank String token)
             throws StripeException
@@ -111,7 +109,7 @@ public class CheckoutController
     }
 
     @PostMapping("/leaving")
-    public void unlock(@PathVariable("cartId") @NotBlank String cartId)
+    public void unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         Cart cart = cartService.findById(cartId);
         if (cart.isActive())

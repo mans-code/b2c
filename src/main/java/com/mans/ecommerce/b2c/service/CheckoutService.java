@@ -10,6 +10,7 @@ import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockCartEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductPartiallyEvent;
 import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
+import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,7 @@ public class CheckoutService
         carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
-        String cartId = cart.getId();
+        ObjectId cartId = cart.getIdObj();
         int toLock = cartProduct.getQuantity();
 
         return productRepository.lock(sku, variationId, cartId, toLock);
@@ -67,22 +68,22 @@ public class CheckoutService
         carService.avoidUnlock(cart);
         String sku = cartProduct.getSku();
         String variationId = cartProduct.getVariationId();
-        String cartId = cart.getId();
+        ObjectId cartId = cart.getIdObj();
         int newReservedQuantity = cartProduct.getQuantity();
         return productRepository.partialLock(sku, variationId, cartId, toLock, newReservedQuantity);
     }
 
-    public void unlock(String cartId, List<ProductInfo> productInfos)
+    public void unlock(ObjectId cartId, List<ProductInfo> productInfos)
     {
         publisher.publishEvent(new UnlockCartEvent(cartId, productInfos));
     }
 
-    public void unlock(String cartId, ProductInfo cartProduct)
+    public void unlock(ObjectId cartId, ProductInfo cartProduct)
     {
         publisher.publishEvent(new UnlockProductEvent(cartId, cartProduct));
     }
 
-    public void unlock(String cartId, ProductInfo cartProduct, int toUnlock, int newReservedQuantity)
+    public void unlock(ObjectId cartId, ProductInfo cartProduct, int toUnlock, int newReservedQuantity)
     {
         publisher.publishEvent(new UnlockProductPartiallyEvent(cartId, cartProduct, toUnlock, newReservedQuantity));
     }

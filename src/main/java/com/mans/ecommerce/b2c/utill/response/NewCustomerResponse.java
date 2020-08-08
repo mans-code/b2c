@@ -12,5 +12,8 @@ import lombok.Setter;
 public class NewCustomerResponse
 {
     private String customerId;
+
     private String token;
+
+
 }

@@ -15,6 +15,7 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -56,7 +57,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     }
 
     @Override
-    public int lock(String sku, String variationId, String cartId, int requestedQuantity)
+    public int lock(String sku, String variationId, ObjectId cartId, int requestedQuantity)
     {
         int lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, -1);
         Reservation reservation = new Reservation(sku, variationId, cartId, lockedQuantity);
@@ -67,7 +68,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     @Override public int partialLock(
             String sku,
             String variationId,
-            String cartId,
+            ObjectId cartId,
             int requestedQuantity,
             int newReservedQuantity)
     {
@@ -78,7 +79,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     }
 
     @Override
-    public boolean unlock(String sku, String variationId, String cartId, int quantity)
+    public boolean unlock(String sku, String variationId, ObjectId cartId, int quantity)
     {
         return unlock(sku, variationId, cartId, quantity, -1);
     }
@@ -86,7 +87,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     @Override public boolean partialUnlock(
             String sku,
             String variationId,
-            String cartId,
+            ObjectId cartId,
             int quantity,
             int newReservedQuantity)
     {
@@ -115,7 +116,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return executeUpdate(query, update);
     }
 
-    private int lock(String sku, String variationId, String cartId, int requestedQuantity, int newReservedQuantity)
+    private int lock(String sku, String variationId, ObjectId cartId, int requestedQuantity, int newReservedQuantity)
     {
         boolean withReservation = newReservedQuantity == -1;
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
@@ -148,7 +149,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return getLockQuantity(oldQuantity, requestedQuantity);
     }
 
-    private boolean unlock(String sku, String variationId, String cartId, int quantity, int newReservedQuantity)
+    private boolean unlock(String sku, String variationId, ObjectId cartId, int quantity, int newReservedQuantity)
     {
         Query query = getProductQuery(sku, variationId, cartId, true);
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
@@ -173,11 +174,11 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     {
         String sku = reservation.getSku();
         String variationId = reservation.getVariationId();
-        String cartId = reservation.getCartId();
+        ObjectId cartId = reservation.getCartId();
         return getProductQuery(sku, variationId, cartId, withReservation);
     }
 
-    private Query getProductQuery(String sku, String variationId, String cartId, boolean withReservation)
+    private Query getProductQuery(String sku, String variationId, ObjectId cartId, boolean withReservation)
     {
         BasicDBObject reservation = getReservation(variationId, cartId);
         Query query = new Query();
@@ -197,7 +198,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return query;
     }
 
-    private BasicDBObject getReservation(String variationId, String cartId)
+    private BasicDBObject getReservation(String variationId, ObjectId cartId)
     {
         Map map = new HashMap();
         map.put(ID, cartId);

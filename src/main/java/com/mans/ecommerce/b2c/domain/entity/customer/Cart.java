@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,7 +22,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cart implements Cloneable
 {
     @Id
-    private String id;
+    private ObjectId id;
 
     private boolean active;
 
@@ -47,5 +48,15 @@ public class Cart implements Cloneable
                            .stream()
                            .map(info -> new ProductInfo(info))
                            .collect(Collectors.toList());
+    }
+
+    public String getId()
+    {
+        return id.toHexString();
+    }
+
+    public ObjectId getIdObj()
+    {
+        return id;
     }
 }

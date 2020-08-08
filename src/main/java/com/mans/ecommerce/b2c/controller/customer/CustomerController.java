@@ -1,16 +1,17 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.service.CustomerService;
-import org.springframework.stereotype.Controller;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/customer/{id}")
 public class CustomerController
 {
@@ -22,10 +23,10 @@ public class CustomerController
         this.customerService = customerService;
     }
 
-    @GetMapping("/shipping")
-    public List<Address> getShippingAddresses(@PathVariable("idd") @NotBlank String id)
+    @GetMapping(value = "/shipping")
+    public List<Address> getShippingAddresses(@PathVariable("id") @NotNull ObjectId id)
     {
-        return customerService.getShippingAddresses(id);
+        return null;
     }
 
 }

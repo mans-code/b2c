@@ -3,6 +3,7 @@ package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 import java.util.Date;
 
 import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 
 @NoArgsConstructor
@@ -17,14 +18,14 @@ public class Reservation
 
     private String variationId;
 
-    private String cartId;
+    private ObjectId cartId;
 
     private int quantity;
 
     @CreatedDate
     private Date createdOn;
 
-    public Reservation(String sku, String variationId, String cartId, int quantity)
+    public Reservation(String sku, String variationId, ObjectId cartId, int quantity)
     {
         this.sku = sku;
         this.variationId = variationId;

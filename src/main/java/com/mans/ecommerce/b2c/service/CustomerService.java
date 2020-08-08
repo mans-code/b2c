@@ -13,6 +13,7 @@ import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
 import com.mans.ecommerce.b2c.server.eventListener.entity.CustomerCreationEvent;
 import com.mans.ecommerce.b2c.utill.response.Token;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
@@ -83,7 +84,7 @@ public class CustomerService
         return new Token(tokenString);
     }
 
-    public List<Address> getShippingAddresses(String customerId)
+    public List<Address> getShippingAddresses(ObjectId customerId)
     {
         Customer customer = customerRepository.getShippingAddresses(customerId)
                                               .orElseThrow(() -> new SystemConstraintViolation(
@@ -92,7 +93,7 @@ public class CustomerService
         return customer.getShippingAddresses();
     }
 
-    public Address getDefaultShippingAddress(String customerId)
+    public Address getDefaultShippingAddress(ObjectId customerId)
     {
         //TODO
         // customerRepository.getDefaultShippingAddress(customerId)

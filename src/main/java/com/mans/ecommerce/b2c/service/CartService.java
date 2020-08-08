@@ -10,6 +10,7 @@ import com.mans.ecommerce.b2c.repository.customer.CartRepository;
 import com.mans.ecommerce.b2c.server.eventListener.entity.CartSavingEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import lombok.Getter;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class CartService
         this.validityInMinutes = validityInMinutes;
     }
 
-    public Cart findById(String id)
+    public Cart findById(ObjectId id)
     {
         Optional<Cart> optionalCart = cartRepository.findById(id);
 
@@ -69,7 +70,7 @@ public class CartService
     {
         if (cart.isActive() && expireIn10Mins(cart.getExpireDate()))
         {
-            boolean stillActive = extendsExpirationDateAndGetActivationStatus(cart.getId());
+            boolean stillActive = extendsExpirationDateAndGetActivationStatus(cart.getIdObj());
             if (!stillActive)
             {
                 throw new ConflictException("please start checkout procedure again");
@@ -77,7 +78,7 @@ public class CartService
         }
     }
 
-    public boolean extendsExpirationDateAndGetActivationStatus(String cartId)
+    public boolean extendsExpirationDateAndGetActivationStatus(ObjectId cartId)
     {
         Date date = Global.getFuture(validityInMinutes / 2);
         return cartRepository.extendsExpirationDateAndGetActivationStatus(cartId, date);

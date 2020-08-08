@@ -19,6 +19,7 @@ import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
 import com.mans.ecommerce.b2c.utill.response.QAndAPage;
 import com.mans.ecommerce.b2c.utill.response.ReviewPage;
 import lombok.Getter;
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -89,7 +90,7 @@ public class ProductService
         return new ReviewPage(reviews, next);
     }
 
-    public boolean unlock(String sku, String variationId, String cartId, int quantityToUnlock)
+    public boolean unlock(String sku, String variationId, ObjectId cartId, int quantityToUnlock)
     {
         return productRepository.unlock(sku, variationId, cartId, quantityToUnlock);
     }
@@ -97,7 +98,7 @@ public class ProductService
     public boolean partialUnlock(
             String sku,
             String variationId,
-            String cartId,
+            ObjectId cartId,
             int quantityToUnlock,
             int newReservedQuantity)
     {

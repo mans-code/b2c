@@ -7,13 +7,14 @@ import java.util.Optional;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
+import org.springframework.web.filter.GenericFilterBean;
 
 /**
  * Filter for Java Web Token Authentication and Authorization
  * <p>
  * Created by Mary Ellen Bowman
  */
-public class JwtTokenFilter implements Filter
+public class JwtTokenFilter extends GenericFilterBean
 {
     private static final String BEARER = "Bearer";
 
