@@ -19,7 +19,6 @@ public class ClickedOnProductEvent
     {
         this.sku = sku;
         this.feedId = getId(req);
-
     }
 
     private ObjectId getId(HttpServletRequest req)
