@@ -10,11 +10,10 @@ import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
+import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.security.JwtProvider;
-import com.mans.ecommerce.b2c.server.eventListener.entity.CustomerCreationEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import com.mans.ecommerce.b2c.utill.response.Token;
 import org.bson.types.ObjectId;
@@ -25,6 +24,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CustomerService
@@ -70,31 +70,20 @@ public class CustomerService
         return getToken(username);
     }
 
-    public Customer signup(SignupDto signupDto, HttpServletRequest req)
+    public Mono<Customer> signup(SignupDto signupDto, HttpServletRequest req)
     {
-        ObjectId id = getCustomerId(req);
-        Customer newCustomer = mapSignupDtoToCustomer(signupDto);
-        newCustomer.setId(id);
-        Customer saved = customerRepository.save(newCustomer);
+        Mono<ObjectId> idMono = getCustomerId(req);
+        Mono<Customer> customerMono = idMono.flatMap(id -> {
+            Customer newCustomer = mapSignupDtoToCustomer(id, signupDto);
+            return customerRepository.save(newCustomer);
+        });
 
-        if (saved == null)
-        {
-            throw new UserAlreadyExistException();
-        }
-
-        publisher.publishEvent(new CustomerCreationEvent(saved));
-        return saved;
-    }
-
-    private ObjectId getCustomerId(HttpServletRequest req)
-    {
-        Optional<String> idOptional = Global.getId(req);
-        if (idOptional.isPresent())
-        {
-            return new ObjectId(idOptional.get());
-        }
-        Cart cart = cartService.syncSave(new Cart());
-        return cart.getIdObj();
+        return customerMono.doOnSuccess(customer -> { //TODO error or Success test
+            if (customer == null)
+            {
+                throw new UserAlreadyExistException();
+            }
+        });
     }
 
     public Token getToken(String username)
@@ -103,13 +92,18 @@ public class CustomerService
         return new Token(tokenString);
     }
 
-    public List<Address> getShippingAddresses(ObjectId customerId)
+    public Mono<List<Address>> getShippingAddresses(ObjectId customerId)
     {
-        Customer customer = customerRepository.getShippingAddresses(customerId)
-                                              .orElseThrow(() -> new SystemConstraintViolation(
-                                                      String.format("Customer not found id=%s", customerId)));
+        Mono<Customer> customerMono = customerRepository.getShippingAddresses(customerId);
 
-        return customer.getShippingAddresses();
+        customerMono.doOnSuccess(customer -> {
+            if (customer == null)
+            {
+                throw new ResourceNotFoundException("customer not found");
+            }
+        });
+
+        return customerMono.flatMap(customer -> Mono.just(customer.getShippingAddresses()));
     }
 
     public Address getDefaultShippingAddress(ObjectId customerId)
@@ -117,6 +111,18 @@ public class CustomerService
         //TODO
         // customerRepository.getDefaultShippingAddress(customerId)
         return null;
+    }
+
+    private Mono<ObjectId> getCustomerId(HttpServletRequest req)
+    {
+        Optional<String> idOptional = Global.getId(req);
+        if (idOptional.isPresent())
+        {
+            ObjectId id = new ObjectId(idOptional.get());
+            return Mono.just(id);
+        }
+        Mono<Cart> cartMono = cartService.create(false);
+        return cartMono.flatMap(cart -> Mono.just(cart.getIdObj()));
     }
 
     private boolean isPermitted(String username, String password)
@@ -133,16 +139,19 @@ public class CustomerService
         return true;
     }
 
-    private Customer mapSignupDtoToCustomer(SignupDto signupDto)
+    private Customer mapSignupDtoToCustomer(ObjectId id, SignupDto signupDto)
     {
         String encodedPassword = passwordEncoder.encode(signupDto.getPassword());
+        String token = getToken(signupDto.getUsername()).getToken();
         return Customer
                        .builder()
+                       .id(id)
                        .username(signupDto.getUsername())
                        .password(encodedPassword)
                        .email(signupDto.getEmail())
                        .firstName(signupDto.getFirstName())
                        .lastName(signupDto.getLastName())
+                       .token(token)
                        .build();
     }
 }

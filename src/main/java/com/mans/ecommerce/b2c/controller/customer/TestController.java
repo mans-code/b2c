@@ -17,9 +17,9 @@ public class TestController
     @GetMapping("/get")
     public void get()
     {
-        int looked = productRepository.lock("mans-2", "mans", new ObjectId("2222222222"), 300);
-        System.out.println(looked + "---------------------------------");
-        System.out.println(productRepository.getBySku("mans-2"));
+//        int looked = productRepository.lock("mans-2", "mans", new ObjectId("2222222222"), 300);
+//        System.out.println(looked + "---------------------------------");
+//        System.out.println(productRepository.getBySku("mans-2"));
     }
 
     @GetMapping("/getpr")

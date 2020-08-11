@@ -13,6 +13,8 @@ import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
 import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CheckoutService
@@ -34,14 +36,20 @@ public class CheckoutService
         this.publisher = publisher;
     }
 
-    public List<ProductLockErrorInfo> lock(Cart cart)
+    public Flux<ProductLockErrorInfo> lock(Cart cart)
     {
-        carService.avoidUnlock(cart);
+        return carService.avoidUnlock(cart).flatMap(_ -> {
+            for (ProductInfo productInfo : cart.getProductInfos())
+            {
+                Mono<Integer> lockedQuantity = lock(cart, productInfo);
+            }
+        });
 
-        List<ProductLockErrorInfo> lockInfo = new ArrayList<>();
+        Flux<ProductLockErrorInfo> productLockErrorInfoFlux = new ArrayList<>();
         for (ProductInfo productInfo : cart.getProductInfos())
         {
-            int lockedQuantity = lock(cart, productInfo);
+            Mono<Integer> lockedQuantity = lock(cart, productInfo);
+            lockedQuantity
             if (productInfo.getQuantity() != lockedQuantity)
             {
                 productInfo.setQuantity(lockedQuantity);
@@ -49,28 +57,31 @@ public class CheckoutService
                 lockInfo.add(productLockInfo);
             }
         }
-        return lockInfo;
+        return (Mono<List<ProductLockErrorInfo>>) lockInfo;
     }
 
-    public int lock(Cart cart, ProductInfo cartProduct)
+    public Mono<Integer> lock(Cart cart, ProductInfo cartProduct)
     {
-        carService.avoidUnlock(cart);
-        String sku = cartProduct.getSku();
-        String variationId = cartProduct.getVariationId();
-        ObjectId cartId = cart.getIdObj();
-        int toLock = cartProduct.getQuantity();
+        return carService.avoidUnlock(cart).flatMap(_ -> {
+            String sku = cartProduct.getSku();
+            String variationId = cartProduct.getVariationId();
+            ObjectId cartId = cart.getIdObj();
+            int toLock = cartProduct.getQuantity();
 
-        return productRepository.lock(sku, variationId, cartId, toLock);
+            return productRepository.lock(sku, variationId, cartId, toLock);
+        });
     }
 
-    public int lock(Cart cart, ProductInfo cartProduct, int toLock)
+    public Mono<Integer> lock(Cart cart, ProductInfo cartProduct, int toLock)
     {
-        carService.avoidUnlock(cart);
-        String sku = cartProduct.getSku();
-        String variationId = cartProduct.getVariationId();
-        ObjectId cartId = cart.getIdObj();
-        int newReservedQuantity = cartProduct.getQuantity();
-        return productRepository.partialLock(sku, variationId, cartId, toLock, newReservedQuantity);
+        return carService.avoidUnlock(cart).flatMap(_ -> {
+            String sku = cartProduct.getSku();
+            String variationId = cartProduct.getVariationId();
+            ObjectId cartId = cart.getIdObj();
+            int newReservedQuantity = cartProduct.getQuantity();
+
+            return productRepository.partialLock(sku, variationId, cartId, toLock, newReservedQuantity);
+        });
     }
 
     public void unlock(ObjectId cartId, List<ProductInfo> productInfos)

@@ -1,15 +1,17 @@
 package com.mans.ecommerce.b2c.repository.customer;
 
-import java.util.List;
-
-import com.mans.ecommerce.b2c.domain.entity.customer.Feed;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface FeedRepository extends MongoRepository<Feed, String>
+public interface FeedRepository extends ReactiveMongoRepository<Customer, ObjectId>
 {
-    <S extends Feed> List<S> saveAll(Iterable<S> entities);
 
-    <S extends Feed> S save(S entity);
+    @Override <S extends Customer> Mono<S> save(S entity);
+
+    @Override <S extends Customer> Flux<S> saveAll(Iterable<S> entities);
 }

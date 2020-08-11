@@ -2,29 +2,26 @@ package com.mans.ecommerce.b2c.repository.product.Custom;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
-import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import com.mans.ecommerce.b2c.server.eventListener.entity.ReservationCreationEvent;
-import com.mans.ecommerce.b2c.server.eventListener.entity.ReservationUpdateEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
-import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.AggregationUpdate;
 import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 public class ProductRepositoryImpl implements ProductRepositoryCustom
@@ -46,45 +43,45 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
     private final String VARIATION_ID = "variationId";
 
-    private MongoOperations mongoOperations;
+    private final int ZERO = 0;
+
+    private ReactiveMongoTemplate mongoTemplate;
 
     private ApplicationEventPublisher publisher;
 
-    public ProductRepositoryImpl(MongoOperations mongoOperations, ApplicationEventPublisher publisher)
+    public ProductRepositoryImpl(ReactiveMongoTemplate mongoTemplate, ApplicationEventPublisher publisher)
     {
-        this.mongoOperations = mongoOperations;
+        this.mongoTemplate = mongoTemplate;
         this.publisher = publisher;
     }
 
     @Override
-    public int lock(String sku, String variationId, ObjectId cartId, int requestedQuantity)
+    public Mono<Integer> lock(String sku, String variationId, ObjectId cartId, int requestedQuantity)
     {
-        int lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, -1);
-        Reservation reservation = new Reservation(sku, variationId, cartId, lockedQuantity);
-        publisher.publishEvent(new ReservationCreationEvent(reservation));
+        Mono<Integer> lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, -1);
+        publishReservationEvent(sku, variationId, cartId, lockedQuantity);
         return lockedQuantity;
     }
 
-    @Override public int partialLock(
+    @Override public Mono<Integer> partialLock(
             String sku,
             String variationId,
             ObjectId cartId,
             int requestedQuantity,
             int newReservedQuantity)
     {
-        int lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, newReservedQuantity);
-        Reservation reservation = new Reservation(sku, variationId, cartId, lockedQuantity);
-        publisher.publishEvent(new ReservationUpdateEvent(reservation, lockedQuantity));
+        Mono<Integer> lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, newReservedQuantity);
+        publishReservationEvent(sku, variationId, cartId, lockedQuantity);
         return lockedQuantity;
     }
 
     @Override
-    public boolean unlock(String sku, String variationId, ObjectId cartId, int quantity)
+    public Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantity)
     {
         return unlock(sku, variationId, cartId, quantity, -1);
     }
 
-    @Override public boolean partialUnlock(
+    @Override public Mono<Boolean> partialUnlock(
             String sku,
             String variationId,
             ObjectId cartId,
@@ -95,7 +92,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return unlock(sku, variationId, cartId, quantity, newReservedQuantity);
     }
 
-    @Override public boolean addReservation(Reservation reservation)
+    @Override public Mono<Boolean> addReservation(Reservation reservation)
     {
 
         Query query = getProductQuery(reservation, false);
@@ -106,7 +103,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return executeUpdate(query, update);
     }
 
-    @Override public boolean updateReservation(Reservation reservation, int lockedQuantity)
+    @Override public Mono<Boolean> updateReservation(Reservation reservation, int lockedQuantity)
     {
         Query query = getProductQuery(reservation, true);
         Update update = new Update();
@@ -116,7 +113,12 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         return executeUpdate(query, update);
     }
 
-    private int lock(String sku, String variationId, ObjectId cartId, int requestedQuantity, int newReservedQuantity)
+    private Mono<Integer> lock(
+            String sku,
+            String variationId,
+            ObjectId cartId,
+            int requestedQuantity,
+            int newReservedQuantity)
     {
         boolean withReservation = newReservedQuantity == -1;
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
@@ -133,23 +135,45 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
                                                .upsert(false)
                                                .remove(false);
 
-        Product product = mongoOperations.findAndModify(query, update, options, Product.class);
+        Mono<Product> productMono = mongoTemplate.findAndModify(query, update, options, Product.class);
 
-        if (Objects.isNull(product))
-        {
-            String message = "Couldn't lock product, sku=%s\n variationId=%s\n cartId=%s\n withReservation=$s";
-            throw new SystemConstraintViolation(String.format(message, sku, variationId, cartId, withReservation));
-        }
-
-        int oldQuantity = product
-                                  .getAvailability()
-                                  .get(variationId)
-                                  .getQuantity();
-
-        return getLockQuantity(oldQuantity, requestedQuantity);
+        return getLockQuantity(productMono, variationId, requestedQuantity);
     }
 
-    private boolean unlock(String sku, String variationId, ObjectId cartId, int quantity, int newReservedQuantity)
+    private Mono<Integer> getLockQuantity(
+            Mono<Product> productMono,
+            String variationId,
+            int requestedQuantity)
+    {//TODO test If empty
+        return productMono.flatMap(product -> {
+            int oldQuantity = product
+                                      .getAvailability()
+                                      .get(variationId)
+                                      .getQuantity();
+
+            int lockedQuantity = getLockQuantity(oldQuantity, requestedQuantity);
+
+            return Mono.just(lockedQuantity);
+        }).defaultIfEmpty(ZERO);
+    }
+
+    private void publishReservationEvent(
+            String sku,
+            String variationId,
+            ObjectId cartId,
+            Mono<Integer> lockedQuantity)
+    {
+
+        lockedQuantity.doOnSuccess(qty -> {
+            if (qty > ZERO)
+            {
+                Reservation reservation = new Reservation(sku, variationId, cartId, qty);
+                publisher.publishEvent(new ReservationCreationEvent(reservation));
+            }
+        });
+    }
+
+    private Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantity, int newReservedQuantity)
     {
         Query query = getProductQuery(sku, variationId, cartId, true);
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
@@ -223,26 +247,25 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
                                            sumExpression.put(SUM, list);
                                            return new Document().append(SUM, list);
                                        })
-                                       .otherwise(0));
+                                       .otherwise(ZERO));
     }
 
-    private boolean executeUpdate(Query query, Update update)
+    private Mono<Boolean> executeUpdate(Query query, Update update)
     {
-        UpdateResult result = mongoOperations.updateFirst(query, update, Product.class);
-
-        if ((result.getMatchedCount() != 1 || result.getModifiedCount() != 1))
-        {
-            return false;
-        }
-
-        return true;
+        return mongoTemplate
+                       .updateFirst(query, update, Product.class)
+                       .flatMap(result ->
+                                {
+                                    Boolean found = result.getModifiedCount() > ZERO;
+                                    return Mono.just(found);
+                                });
     }
 
     private int getLockQuantity(int productPreQuantity, int requestedQuantity)
     {
-        if (productPreQuantity == 0)
+        if (productPreQuantity == ZERO)
         {
-            return 0;
+            return ZERO;
         }
         else if (productPreQuantity < requestedQuantity)
         {

@@ -17,6 +17,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 public class CartLogic
@@ -43,7 +44,7 @@ public class CartLogic
 
     public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
     {
-        publisher.publishEvent(new AddProductToCartEvent(cart.getId(), productInfo));
+        publisher.publishEvent(new AddProductToCartEvent(cart.getIdObj(), productInfo));
         Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku());
         int requestedQuantity = productInfo.getQuantity();
         ProductInfo cartProduct;

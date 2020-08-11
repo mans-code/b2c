@@ -1,16 +1,15 @@
 package com.mans.ecommerce.b2c.repository.customer;
 
-import java.util.List;
-
-import com.mans.ecommerce.b2c.domain.entity.customer.Feed;
 import com.mans.ecommerce.b2c.domain.entity.customer.PaymentInfo;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface PaymentInfoRepository extends MongoRepository<PaymentInfo, String>
+public interface PaymentInfoRepository extends ReactiveMongoRepository<PaymentInfo, String>
 {
-    <S extends PaymentInfo> List<S> saveAll(Iterable<S> entities);
+    @Override <S extends PaymentInfo> Mono<S> save(S entity);
 
-    <S extends PaymentInfo> S save(S entity);
+    @Override <S extends PaymentInfo> Flux<S> saveAll(Iterable<S> entities);
 }

@@ -1,24 +1,25 @@
 package com.mans.ecommerce.b2c.repository.product;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.repository.product.Custom.ProductRepositoryCustom;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProductRepository extends MongoRepository<Product, String>, ProductRepositoryCustom
+public interface ProductRepository extends ReactiveMongoRepository<Product, ObjectId>, ProductRepositoryCustom
 {
 
-    <S extends Product> List<S> saveAll(Iterable<S> entities);
+    @Override <S extends Product> Mono<S> save(S entity);
 
-    <S extends Product> S save(S entity);
+    @Override <S extends Product> Flux<S> saveAll(Iterable<S> entities);
+
 
     @Query(value = "{ 'sku' : ?0 }", fields = "{ 'basicInfo' : 1, 'availability' : 1, 'dSku' : 1}")
-    Optional<Product> getProductToAddToCart(String sku);
+    Mono<Product> getProductToAddToCart(String sku);
 
-    Optional<Product> getBySku(String sku);
+    Mono<Product> getBySku(String sku);
 }

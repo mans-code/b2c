@@ -3,21 +3,22 @@ package com.mans.ecommerce.b2c.repository.product.Custom;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 public interface ProductRepositoryCustom
 {
 
-    int lock(String sku, String variationId, ObjectId cartId, int requestedQuantity);
+    Mono<Integer> lock(String sku, String variationId, ObjectId cartId, int requestedQuantity);
 
-    int partialLock(String sku, String variationId, ObjectId cartId, int toLock, int newReservedQuantity);
+    Mono<Integer> partialLock(String sku, String variationId, ObjectId cartId, int toLock, int newReservedQuantity);
 
-    boolean unlock(String sku, String variationId, ObjectId cartId, int quantity);
+    Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantity);
 
-    boolean partialUnlock(String sku, String variationId, ObjectId cartId, int toLock, int newReservedQuantity);
+    Mono<Boolean> partialUnlock(String sku, String variationId, ObjectId cartId, int toLock, int newReservedQuantity);
 
-    boolean addReservation(Reservation reservation);
+    Mono<Boolean> addReservation(Reservation reservation);
 
-    boolean updateReservation(Reservation reservation, int lockedQuantity);
+    Mono<Boolean> updateReservation(Reservation reservation, int lockedQuantity);
 
 }

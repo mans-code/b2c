@@ -2,7 +2,6 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
@@ -20,6 +19,7 @@ import com.stripe.model.Charge;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/checkout/{cartId}")
@@ -67,12 +67,12 @@ public class CheckoutController
     @PostMapping("/")
     public CheckoutResponse lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        Cart cart = cartService.findById(cartId);
-        if (cart.isActive())
-        {
-            throw new ConflictException("cart already locked");
-        }
-        List<ProductLockErrorInfo> lockedProductError = checkoutService.lock(cart);
+        Mono<Cart> cartMono = cartService.findById(cartId);
+        throwIfCartLocked(cartMono);
+
+        Mono<ProductLockErrorInfo> productLockErrorInfoMono =
+                cartMono.flatMap(cart -> Mono.just(checkoutService.lock(cart)));
+
         CheckoutResponse res = new CheckoutResponse(cart, stripePublicKey);
         cartService.activateAndSave(cart);
 
@@ -109,13 +109,25 @@ public class CheckoutController
     }
 
     @PostMapping("/leaving")
-    public void unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
+    public Mono<Cart> unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        Cart cart = cartService.findById(cartId);
-        if (cart.isActive())
-        {
-            checkoutService.unlock(cartId, cart.getProductInfos());
-        }
+        Mono<Cart> cartMono = cartService.findById(cartId);
+        return cartMono.doOnSuccess(cart -> {
+            if (cart.isActive())
+            {
+                checkoutService.unlock(cartId, cart.getProductInfos());
+            }
+        });
+    }
+
+    private void throwIfCartLocked(Mono<Cart> cartMono)
+    {
+        cartMono.doOnSuccess(cart -> {
+            if (cart.isActive())
+            {
+                throw new ConflictException("cart already locked");
+            }
+        });
     }
 
     private double calculateTotalAmount(//TODO

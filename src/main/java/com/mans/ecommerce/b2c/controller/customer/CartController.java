@@ -2,6 +2,8 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -15,6 +17,8 @@ import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
 import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
 @RestController
 @RequestMapping("/carts/{cartId}")
@@ -44,13 +48,13 @@ public class CartController
     }
 
     @GetMapping
-    public Cart getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
+    public Mono<Cart> getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         return cartService.findById(cartId);
     }
 
     @PatchMapping
-    public Cart add(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
+    public Mono<Cart> add(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
     {
         CartAction action = dto.getCartAction();
 
@@ -62,14 +66,14 @@ public class CartController
             }
         }
 
-        Cart cart = cartService.findById(cartId);
+        Mono<Cart> cart = cartService.findById(cartId);
 
         switch (action)
         {
         case UPDATE:
             return updateProductInCart(cart, dto);
         case DELETE:
-            return removerProductInCart(cart, dto);
+            return removerProductFromCart(cart, dto);
         case RESET:
             return reset(cart);
         default:
@@ -77,107 +81,150 @@ public class CartController
         }
     }
 
-    public Cart reset(Cart cart)
+    public Mono<Cart> reset(Mono<Cart> cartMono)
     {
-        if (cart.isActive())
-        {
-            checkoutService.unlock(cart.getIdObj(), cart.getProductInfos());
-        }
-        cartLogic.removeAllProducts(cart);
-        cartService.save(cart);
-        return cart;
+        return cartMono.flatMap(cart -> {
+            if (cart.isActive())
+            {
+                checkoutService.unlock(cart.getIdObj(), cart.getProductInfos());
+            }
+            cartLogic.removeAllProducts(cart);
+            return cartService.update(cart);
+        });
     }
 
-    private Cart removerProductInCart(Cart cart, ProductDto dto)
+    private Mono<Cart> removerProductFromCart(Mono<Cart> cartMono, ProductDto dto)
     {
-        if (cart.isActive())
-        {
-            ProductInfo productInfo = cartLogic.getProduct(cart, dto);
-            checkoutService.unlock(cart.getIdObj(), productInfo);
-        }
-
-        cartLogic.removeProduct(cart, dto);
-        cartService.save(cart);
-        return cart;
+        return cartMono.flatMap(cart -> {
+            ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
+            if (cart.isActive())
+            {
+                checkoutService.unlock(cart.getIdObj(), cartProduct);
+            }
+            cartLogic.removeProduct(cart, dto);
+            return cartService.update(cart);
+        });
     }
 
-    private Cart addProductToCart(Cart cart, ProductDto dto)
+    private Mono<Cart> addProductToCart(Mono<Cart> cartMono, ProductDto dto)
     {
-        ProductInfo productInfo = productService.getProductInfo(dto);
-        int availableQuantity = productInfo.getQuantity();
-        int requestedQuantity = dto.getQuantity();
-        boolean partialOutOfStock = availableQuantity < requestedQuantity;
 
-        if (availableQuantity == 0)
-        {
-            throw new OutOfStockException();
-        }
+        Mono<ProductInfo> productInfoMono = productService.getProductInfo(dto);
+        Mono<Tuple2<Cart, ProductInfo>> tuple2Mono = cartMono.zipWith(productInfoMono);
+        Mono<Cart> savedCartMon = tuple2Mono.flatMap(tuple2 -> {
+            Cart cart = tuple2.getT1();
+            ProductInfo productInfo = tuple2.getT2();
+            if (productInfo.getQuantity() == 0)
+            {
+                throw new OutOfStockException();
+            }
+            return addProductToCart(cart, productInfo);
+        });
 
-        ProductInfo cartProduct = cartLogic.addProduct(cart, productInfo);
-        cartService.save(cart);
-        int quantityToLock = partialOutOfStock ? availableQuantity : requestedQuantity;
-
-        lockIfNeeded(cart, cartProduct, quantityToLock);
-
-        if (partialOutOfStock)
-        {
-            throw new PartialOutOfStockException(cart, availableQuantity);
-        }
-
-        return cart;
+        return savedCartMon;
     }
 
-    private void lockIfNeeded(Cart cart, ProductInfo cartProduct, int quantityToLock)
+    private Mono<Cart> addProductToCart(Cart cart, ProductInfo cartProduct)
     {
         if (!cart.isActive())
         {
-            return;
+            cartLogic.addProduct(cart, cartProduct);
+            return cartService.update(cart);
         }
-        int locked = checkoutService.lock(cart, cartProduct, quantityToLock);
-        if (locked < quantityToLock)
-        {
-            throw new PartialOutOfStockException(cart, locked);
-        }
+
+        AtomicBoolean partialOutOfStock = new AtomicBoolean(false);
+        AtomicInteger quantity = new AtomicInteger(cartProduct.getQuantity());
+        Mono<Integer> lockedMono = checkoutService.lock(cart, cartProduct, cartProduct.getQuantity());
+
+        Mono<Cart> cartMono = addLockedProduct(cart,
+                                               cartProduct,
+                                               partialOutOfStock,
+                                               quantity,
+                                               lockedMono);
+
+        throwPartialOutOfStockIfNeeded(cartMono, partialOutOfStock, quantity);
+
+        return cartMono;
     }
 
-    private Cart updateProductInCart(Cart cart, ProductDto dto)
+    private Mono<Cart> addLockedProduct(
+            Cart cart,
+            ProductInfo cartProduct,
+            AtomicBoolean partialOutOfStock,
+            AtomicInteger quantity, Mono<Integer> lockedMono)
+    {
+        return lockedMono.flatMap(locked -> {
+            if (locked < cartProduct.getQuantity())
+            {
+                quantity.set(locked);
+                partialOutOfStock.set(true);
+            }
+            cartProduct.setQuantity(locked);
+            cartLogic.addProduct(cart, cartProduct);
+            return cartService.update(cart);
+        });
+    }
+
+    private void throwPartialOutOfStockIfNeeded(
+            Mono<Cart> cartMono,
+            AtomicBoolean partialOutOfStock,
+            AtomicInteger quantity)
+    {
+        cartMono.doOnSuccess(savedCart -> {
+            if (savedCart != null && partialOutOfStock.get())
+            {
+                throw new PartialOutOfStockException(savedCart, quantity.get());
+            }
+        });
+    }
+
+    private Mono<Cart> updateProductInCart(Mono<Cart> cartMono, ProductDto dto)
     {
 
         if (dto.getQuantity() == ZERO)
         {
-            return removerProductInCart(cart, dto);
+            return removerProductFromCart(cartMono, dto);
         }
 
-        ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
-        int difference = getQuantityDifference(dto, cartProduct);
-        int absDifference = Math.abs(difference);
+        return cartMono.flatMap(cart -> {
+            ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
+            int difference = getQuantityDifference(dto, cartProduct);
+            int absDifference = Math.abs(difference);
 
-        if (difference == ZERO)
-        {
-            return cart;
-        }
-        else if (difference < ZERO)
-        {
-            return reduceQuantity(cart, cartProduct, absDifference);
-        }
-        else
-        {
-            dto.setQuantity(absDifference);
-            return addProductToCart(cart, dto);
-        }
+            if (difference == ZERO)
+            {
+                return cartMono;
+            }
+            else if (difference < ZERO)
+            {
+                return reduceQuantity(cartMono, cartProduct, absDifference);
+            }
+            else
+            {
+                dto.setQuantity(absDifference);
+                return addProductToCart(cartMono, dto);
+            }
+        });
+
     }
 
-    private Cart reduceQuantity(Cart cart, ProductInfo cartProduct, int deductedQuantity)
+    private Mono<Cart> reduceQuantity(Mono<Cart> cartMono, ProductInfo cartProduct, int deductedQuantity)
     {
 
-        cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
-        cartService.save(cart);
+        Mono<Cart> savedCart = cartMono.flatMap(cart -> {
+            cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
+            return cartService.update(cart);
+        });
 
-        if (cart.isActive())
-        {
-            checkoutService.unlock(cart.getIdObj(), cartProduct, deductedQuantity, cartProduct.getQuantity());
-        }
-        return cart;
+        savedCart.doOnSuccess(cart -> {
+            if (cart != null && cart.isActive())
+            {
+                int newReservedQuantity = cartProduct.getQuantity();
+                checkoutService.unlock(cart.getIdObj(), cartProduct, deductedQuantity, newReservedQuantity);
+            }
+        });
+
+        return savedCart;
     }
 
     private int getQuantityDifference(ProductDto dto, ProductInfo cartProduct)

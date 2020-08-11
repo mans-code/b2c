@@ -7,8 +7,7 @@ import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.enums.SortBy;
 import com.mans.ecommerce.b2c.server.eventListener.entity.ClickedOnProductEvent;
 import com.mans.ecommerce.b2c.service.ProductService;
-import com.mans.ecommerce.b2c.utill.response.QAndAPage;
-import com.mans.ecommerce.b2c.utill.response.ReviewPage;
+import com.mans.ecommerce.b2c.utill.response.Page;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +34,7 @@ public class ProductController
     }
 
     @GetMapping("/qanda")
-    public QAndAPage getQ8A(
+    public Page getQ8A(
             @PathVariable("sku") @NotBlank String sku,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "helpful") SortBy sortBy)

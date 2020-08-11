@@ -7,9 +7,10 @@ import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
-import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import reactor.core.publisher.Mono;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 public class CartRepositoryImpl implements CartRepositoryCustom
@@ -19,9 +20,16 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
     private final String EXPIRE_DATE = "expireDate";
 
-    private MongoOperations mongoOperations;
+    private final String ERROR = "Couldn't find cart, cartId=%s";
 
-    @Override public boolean extendsExpirationDateAndGetActivationStatus(ObjectId id, Date date)
+    private ReactiveMongoTemplate mongoTemplate;
+
+    CartRepositoryImpl(ReactiveMongoTemplate mongoTemplate)
+    {
+        this.mongoTemplate = mongoTemplate;
+    }
+
+    @Override public Mono<Boolean> extendsExpirationDateAndGetActivationStatus(ObjectId id, Date date)
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));
@@ -35,14 +43,24 @@ public class CartRepositoryImpl implements CartRepositoryCustom
                                                .upsert(false)
                                                .remove(false);
 
-        Cart cart = mongoOperations.findAndModify(query, update, options, Cart.class);
+        Mono<Cart> cartMono = mongoTemplate.findAndModify(query, update, options, Cart.class);
 
-        if (Objects.isNull(cart))
-        {
-            String message = "Couldn't find cart, cartId=%s";
-            throw new SystemConstraintViolation(String.format(message, id));
-        }
+        return getActivationStatus(cartMono, id);
+    }
 
-        return cart.isActive();
+    private Mono<Boolean> getActivationStatus(Mono<Cart> cartMono, ObjectId id)
+    {
+        throwIfNull(cartMono);
+        return cartMono.flatMap(cart -> Mono.just(cart.isActive()));
+    }
+
+    private void throwIfNull(Mono<Cart> cartMono)
+    {
+        cartMono.doOnSuccess(cart -> {
+            if (Objects.isNull(cart))
+            {
+                throw new SystemConstraintViolation(String.format(ERROR, cart.getId()));
+            }
+        });
     }
 }

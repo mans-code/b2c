@@ -10,9 +10,10 @@ import lombok.*;
 @Getter
 @Setter
 @ToString()
-public class QAndAPage
+public class Page<T>
 {
-    private List<QAndA> qAndAS;
+    private List<T> list;
 
     private String next;
+
 }

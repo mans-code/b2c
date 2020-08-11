@@ -3,6 +3,7 @@ package com.mans.ecommerce.b2c.service;
 import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.repository.financial.OrderRepository;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class OrderService
@@ -15,7 +16,7 @@ public class OrderService
         this.orderRepository = orderRepository;
     }
 
-    public Order save(Order order)
+    public Mono<Order> save(Order order)
     {
         return orderRepository.save(order);
     }

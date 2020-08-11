@@ -16,14 +16,15 @@ import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
-import com.mans.ecommerce.b2c.utill.response.QAndAPage;
-import com.mans.ecommerce.b2c.utill.response.ReviewPage;
+import com.mans.ecommerce.b2c.utill.response.Page;
 import lombok.Getter;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ProductService
@@ -53,49 +54,45 @@ public class ProductService
         this.reviewRepository = reviewRepository;
     }
 
-    public Product getProductDetails(String sku)
+    public Mono<Product> getProductDetails(String sku)
     {
-        Product product = productRepository.getBySku(sku)
-                                           .orElseThrow(() -> new ResourceNotFoundException(
-                                                   String.format(NOT_FOUNT_TEMPLATE, sku)
-                                           ));
-        hideQuantity(product);
-
-        return product;
+        Mono<Product> productMono = productRepository.getBySku(sku);
+        productMono.doOnSuccess(product -> throwIfNull(product));
+        return productMono.flatMap(product -> hideQuantity(product));
     }
 
-    public ProductInfo getProductInfo(ProductDto dto)
+    public Mono<ProductInfo> getProductInfo(ProductDto dto)
     {
         String sku = dto.getSku();
-        Product product = productRepository.getProductToAddToCart(sku)
-                                           .orElseThrow(() -> new ResourceNotFoundException(
-                                                   String.format(NOT_FOUNT_TEMPLATE, sku)
-                                           ));
-        return mapProductToProductInfo(product, dto);
+        Mono<Product> productMono = productRepository.getProductToAddToCart(sku);
+        productMono.doOnSuccess(product -> throwIfNull(product));
+        return productMono.flatMap(product -> mapProductToProductInfo(product, dto));
     }
 
-    public QAndAPage getQ8A(String sku, int page, String sortBy)
+    public Mono<Page> getQ8A(String sku, int page, String sortBy)
     {
         Pageable pageable = getPageable(page, sortBy);
-        List<QAndA> q8AS = qAndARepository.findBySku(sku, pageable);
-        String next = String.format(REVIEW_LINK_TEMPLATE, sku, ++page, sortBy);
-        return new QAndAPage(q8AS, next);
+        Flux<QAndA> qAndAFlux = qAndARepository.findBySku(sku, pageable);
+        Mono<List<QAndA>> qAndAMono = qAndAFlux.collectList();
+        Mono<Page> qAndAPageMono = qAndAMono.flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
+        return qAndAPageMono;
     }
 
-    public ReviewPage getReview(String sku, int page, String sortBy)
+    public Mono<Page> getReview(String sku, int page, String sortBy)
     {
         Pageable pageable = getPageable(page, sortBy);
-        List<Review> reviews = reviewRepository.findBySku(sku, pageable);
-        String next = String.format(REVIEW_LINK_TEMPLATE, sku, ++page, sortBy);
-        return new ReviewPage(reviews, next);
+        Flux<Review> reviewFlux = reviewRepository.findBySku(sku, pageable);
+        Mono<List<Review>> reviewsMono = reviewFlux.collectList();
+        Mono<Page> reviewsPageMono = reviewsMono.flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
+        return reviewsPageMono;
     }
 
-    public boolean unlock(String sku, String variationId, ObjectId cartId, int quantityToUnlock)
+    public Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantityToUnlock)
     {
         return productRepository.unlock(sku, variationId, cartId, quantityToUnlock);
     }
 
-    public boolean partialUnlock(
+    public Mono<Boolean> partialUnlock(
             String sku,
             String variationId,
             ObjectId cartId,
@@ -105,17 +102,34 @@ public class ProductService
         return productRepository.partialUnlock(sku, variationId, cartId, quantityToUnlock, newReservedQuantity);
     }
 
-    public boolean addReservation(Reservation reservation)
+    public Mono<Boolean> addReservation(Reservation reservation)
     {
         return productRepository.addReservation(reservation);
     }
 
-    public boolean updateReservation(Reservation reservation, int locked)
+    public Mono<Boolean> updateReservation(Reservation reservation, int locked)
     {
         return productRepository.updateReservation(reservation, locked);
     }
 
-    private void hideQuantity(Product product)
+    private <T> Mono<Page> getPage(List<T> q8AS, String sku, int pageNum, String sortBy)
+    {
+        String next = getNext(q8AS, sku, pageNum, sortBy);
+        Page page = new Page(q8AS, next);
+        return Mono.just(page);
+    }
+
+    private <T> String getNext(List<T> list, String sku, int page, String sortBy)
+    {
+        String next = null;
+        if (list.isEmpty())
+        {
+            next = String.format(REVIEW_LINK_TEMPLATE, sku, ++page, sortBy);
+        }
+        return next;
+    }
+
+    private Mono<Product> hideQuantity(Product product)
     {
         product
                 .getAvailability()
@@ -126,6 +140,8 @@ public class ProductService
                         variation.setQuantity(1);
                     }
                 });
+
+        return Mono.just(product);
     }
 
     private Pageable getPageable(Integer page, String sortBy)
@@ -134,21 +150,31 @@ public class ProductService
         return PageRequest.of(page, PAGE_SIZE, sort);
     }
 
-    private ProductInfo mapProductToProductInfo(Product product, ProductDto dto)
+    private Mono<ProductInfo> mapProductToProductInfo(Product product, ProductDto dto)
     {
         BasicInfo productBasicInfo = product.getBasicInfo();
         int quantity = getQuantity(product, dto);
         String variationId = getVariationId(product, dto);
 
-        return ProductInfo
-                       .builder()
-                       .sku(dto.getSku())
-                       .variationId(variationId)
-                       .title(productBasicInfo.getTitle())
-                       .imageUrl(productBasicInfo.getMainImageUrl())
-                       .price(productBasicInfo.getPriceGlimpse())
-                       .quantity(quantity)
-                       .build();
+        ProductInfo productInfo = ProductInfo
+                                          .builder()
+                                          .sku(dto.getSku())
+                                          .variationId(variationId)
+                                          .title(productBasicInfo.getTitle())
+                                          .imageUrl(productBasicInfo.getMainImageUrl())
+                                          .price(productBasicInfo.getPriceGlimpse())
+                                          .quantity(quantity)
+                                          .build();
+
+        return Mono.just(productInfo);
+    }
+
+    private void throwIfNull(Product product)
+    {
+        if (product == null)
+        {
+            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, product.getSku()));
+        }
     }
 
     private int getQuantity(Product product, ProductDto dto)
