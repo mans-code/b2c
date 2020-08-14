@@ -15,11 +15,11 @@ public interface CustomerRepository extends ReactiveMongoRepository<Customer, Ob
 
     Mono<Customer> findById(ObjectId objectId);
 
-    Mono<Customer> findByUsername(String username);
-
-    Mono<Customer> findByToken(String token);
 
     boolean existsByUsername(String s);
+
+    @Query(value = "{ 'username' : ?0 }", fields = "{ 'username' : 1, 'password' : 1}")
+    Mono<Customer> findToLogin(String usernameS);
 
     @Query(value = "{ 'id' : ?0 }", fields = "{ 'shippingAddresses' : 1, 'id' : 0}")
     Mono<Customer> getShippingAddresses(ObjectId id);

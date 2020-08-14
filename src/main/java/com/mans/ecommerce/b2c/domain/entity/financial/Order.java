@@ -1,5 +1,7 @@
 package com.mans.ecommerce.b2c.domain.entity.financial;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -30,10 +32,10 @@ public class Order
     private ObjectId CustomerId;
 
     @CreatedDate
-    private String createdOn;
+    private LocalDateTime createdOn;
 
     @LastModifiedDate
-    private Date updatedOn;
+    private LocalDateTime updatedOn;
 
     private Money totalAmount;
 

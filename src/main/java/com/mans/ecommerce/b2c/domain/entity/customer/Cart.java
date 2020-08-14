@@ -1,8 +1,7 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
@@ -26,7 +25,9 @@ public class Cart implements Cloneable
 
     private boolean active;
 
-    private Date expireDate;
+    private boolean locking;
+
+    private LocalTime expireDate;
 
     private List<ProductInfo> productInfos;
 
@@ -42,19 +43,6 @@ public class Cart implements Cloneable
     public Cart(boolean anonymous)
     {
         this.anonymous = anonymous;
-    }
-
-    public Cart(Cart cart)
-    {
-        id = cart.id;
-        active = cart.active;
-        expireDate = new Date(cart.expireDate.getTime());
-        money = new Money(cart.money);
-        totalQuantity = cart.totalQuantity;
-        productInfos = cart.getProductInfos()
-                           .stream()
-                           .map(info -> new ProductInfo(info))
-                           .collect(Collectors.toList());
     }
 
     public String getId()

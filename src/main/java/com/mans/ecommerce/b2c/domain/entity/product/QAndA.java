@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.domain.entity.product;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class QAndA
 
     //Maybe @Indexed
     @CreatedDate
-    private Date createdOn;
+    private LocalDateTime createdOn;
 
     private String customerId;
 

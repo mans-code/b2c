@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString(exclude = {})
-public class ProductLockErrorInfo
+public class LockError
 {
     private String sku;
 

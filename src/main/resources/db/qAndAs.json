@@ -13,11 +13,9 @@
     "ownerAnswer": {
       "answer": "Praesent blandit lacinia erat.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302578136
+      "by": "Seller"
     },
     "votes": 49,
-    "createdOn": 1588262315213,
     "customerId": "5eaa32339e58d82df4319992",
     "by": "nkinnen0"
   },
@@ -28,18 +26,15 @@
       {
         "answer": "Phasellus in felis.",
         "customerId": "5eaa32339e58d82df43199c2",
-        "by": "etregona1c",
-        "createdOn": 1588303641869
+        "by": "etregona1c"
       }
     ],
     "ownerAnswer": {
       "answer": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302964085
+      "by": "Seller"
     },
     "votes": 25,
-    "createdOn": 1588176688744,
     "customerId": "5eaa32339e58d82df4319993",
     "by": "credmain1"
   },
@@ -50,18 +45,15 @@
       {
         "answer": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
         "customerId": "5eaa32339e58d82df43199c1",
-        "by": "lmorffew1b",
-        "createdOn": 1588302693858
+        "by": "lmorffew1b"
       }
     ],
     "ownerAnswer": {
       "answer": "Morbi vel lectus in quam fringilla rhoncus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304825568
+      "by": "Seller"
     },
     "votes": 89,
-    "createdOn": 1588219217421,
     "customerId": "5eaa32339e58d82df4319994",
     "by": "mhowsley2"
   },
@@ -72,18 +64,15 @@
       {
         "answer": "Nulla suscipit ligula in lacus.",
         "customerId": "5eaa32339e58d82df43199c0",
-        "by": "dverissimo1a",
-        "createdOn": 1588303824428
+        "by": "dverissimo1a"
       }
     ],
     "ownerAnswer": {
       "answer": "Etiam faucibus cursus urna.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305188658
+      "by": "Seller"
     },
     "votes": 52,
-    "createdOn": 1588215918470,
     "customerId": "5eaa32339e58d82df4319995",
     "by": "hcordeau3"
   },
@@ -94,18 +83,15 @@
       {
         "answer": "Etiam faucibus cursus urna.",
         "customerId": "5eaa32339e58d82df43199bf",
-        "by": "mnewing19",
-        "createdOn": 1588305655710
+        "by": "mnewing19"
       }
     ],
     "ownerAnswer": {
       "answer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305038252
+      "by": "Seller"
     },
     "votes": 38,
-    "createdOn": 1588147622423,
     "customerId": "5eaa32339e58d82df4319996",
     "by": "jgettins4"
   },
@@ -116,18 +102,15 @@
       {
         "answer": "Duis bibendum.",
         "customerId": "5eaa32339e58d82df43199be",
-        "by": "kviggars18",
-        "createdOn": 1588304405966
+        "by": "kviggars18"
       }
     ],
     "ownerAnswer": {
       "answer": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304940757
+      "by": "Seller"
     },
     "votes": 96,
-    "createdOn": 1588159422742,
     "customerId": "5eaa32339e58d82df4319997",
     "by": "odaveridge5"
   },
@@ -138,18 +121,15 @@
       {
         "answer": "Donec vitae nisi.",
         "customerId": "5eaa32339e58d82df43199bd",
-        "by": "mcholdcroft17",
-        "createdOn": 1588304877347
+        "by": "mcholdcroft17"
       }
     ],
     "ownerAnswer": {
       "answer": "Praesent blandit lacinia erat.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304819700
+      "by": "Seller"
     },
     "votes": 86,
-    "createdOn": 1588119897973,
     "customerId": "5eaa32339e58d82df4319998",
     "by": "pfansy6"
   },
@@ -160,18 +140,15 @@
       {
         "answer": "Integer a nibh.",
         "customerId": "5eaa32339e58d82df43199bc",
-        "by": "ptooke16",
-        "createdOn": 1588304717679
+        "by": "ptooke16"
       }
     ],
     "ownerAnswer": {
       "answer": "Ut at dolor quis odio consequat varius.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302738040
+      "by": "Seller"
     },
     "votes": 9,
-    "createdOn": 1588247069982,
     "customerId": "5eaa32339e58d82df4319999",
     "by": "fjeness7"
   },
@@ -182,18 +159,15 @@
       {
         "answer": "Nullam molestie nibh in lectus.",
         "customerId": "5eaa32339e58d82df43199bb",
-        "by": "kgunthorpe15",
-        "createdOn": 1588304093057
+        "by": "kgunthorpe15"
       }
     ],
     "ownerAnswer": {
       "answer": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302761773
+      "by": "Seller"
     },
     "votes": 68,
-    "createdOn": 1588190802048,
     "customerId": "5eaa32339e58d82df431999a",
     "by": "rcansdale8"
   },
@@ -204,18 +178,15 @@
       {
         "answer": "Sed sagittis.",
         "customerId": "5eaa32339e58d82df43199ba",
-        "by": "bfairnie14",
-        "createdOn": 1588305198566
+        "by": "bfairnie14"
       }
     ],
     "ownerAnswer": {
       "answer": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302623300
+      "by": "Seller"
     },
     "votes": 37,
-    "createdOn": 1588179915842,
     "customerId": "5eaa32339e58d82df431999b",
     "by": "rlamps9"
   },
@@ -226,18 +197,14 @@
       {
         "answer": "Pellentesque eget nunc.",
         "customerId": "5eaa32339e58d82df43199b9",
-        "by": "fmilby13",
-        "createdOn": 1588304806842
+        "by": "fmilby13"
       }
     ],
     "ownerAnswer": {
       "answer": "Nunc purus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305062126
-    },
+      "by": "Seller"    },
     "votes": 99,
-    "createdOn": 1588239779249,
     "customerId": "5eaa32339e58d82df431999c",
     "by": "gastletta"
   },
@@ -255,11 +222,8 @@
     "ownerAnswer": {
       "answer": "Curabitur at ipsum ac tellus semper interdum.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305080767
-    },
+      "by": "Seller"    },
     "votes": 46,
-    "createdOn": 1588165734182,
     "customerId": "5eaa32339e58d82df431999d",
     "by": "vlindenboimb"
   },
@@ -277,11 +241,8 @@
     "ownerAnswer": {
       "answer": "Etiam justo.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305749597
-    },
+      "by": "Seller"    },
     "votes": 46,
-    "createdOn": 1588292771848,
     "customerId": "5eaa32339e58d82df431999e",
     "by": "omcgeochc"
   },
@@ -299,11 +260,8 @@
     "ownerAnswer": {
       "answer": "Aliquam quis turpis eget elit sodales scelerisque.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304393908
-    },
+      "by": "Seller"    },
     "votes": 58,
-    "createdOn": 1588096129126,
     "customerId": "5eaa32339e58d82df431999f",
     "by": "ncassard"
   },
@@ -321,11 +279,8 @@
     "ownerAnswer": {
       "answer": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588306118126
-    },
+      "by": "Seller"    },
     "votes": 72,
-    "createdOn": 1588111808907,
     "customerId": "5eaa32339e58d82df43199a0",
     "by": "lalsoppe"
   },
@@ -343,11 +298,8 @@
     "ownerAnswer": {
       "answer": "Nulla mollis molestie lorem.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304803617
-    },
+      "by": "Seller"    },
     "votes": 45,
-    "createdOn": 1588061255746,
     "customerId": "5eaa32339e58d82df43199a1",
     "by": "mtruranf"
   },
@@ -365,11 +317,8 @@
     "ownerAnswer": {
       "answer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302651080
-    },
+      "by": "Seller"    },
     "votes": 26,
-    "createdOn": 1588212930050,
     "customerId": "5eaa32339e58d82df43199a2",
     "by": "etosspellg"
   },
@@ -387,11 +336,8 @@
     "ownerAnswer": {
       "answer": "Suspendisse potenti.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304363948
-    },
+      "by": "Seller"    },
     "votes": 14,
-    "createdOn": 1588226582145,
     "customerId": "5eaa32339e58d82df43199a3",
     "by": "shatherleyh"
   },
@@ -409,11 +355,8 @@
     "ownerAnswer": {
       "answer": "Nam nulla.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305889258
-    },
+      "by": "Seller"    },
     "votes": 43,
-    "createdOn": 1588269155949,
     "customerId": "5eaa32339e58d82df43199a4",
     "by": "tbaldassii"
   },
@@ -431,11 +374,8 @@
     "ownerAnswer": {
       "answer": "Cras pellentesque volutpat dui.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305752516
-    },
+      "by": "Seller"    },
     "votes": 15,
-    "createdOn": 1588109469237,
     "customerId": "5eaa32339e58d82df43199a5",
     "by": "dsteuartj"
   },
@@ -453,11 +393,8 @@
     "ownerAnswer": {
       "answer": "Maecenas ut massa quis augue luctus tincidunt.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305162200
-    },
+      "by": "Seller"    },
     "votes": 10,
-    "createdOn": 1588298677081,
     "customerId": "5eaa32339e58d82df43199a6",
     "by": "cshipk"
   },
@@ -475,11 +412,8 @@
     "ownerAnswer": {
       "answer": "Nunc purus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304711058
-    },
+      "by": "Seller"    },
     "votes": 79,
-    "createdOn": 1588221878411,
     "customerId": "5eaa32339e58d82df43199a7",
     "by": "gdimaggiol"
   },
@@ -497,11 +431,8 @@
     "ownerAnswer": {
       "answer": "Duis mattis egestas metus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304083208
-    },
+      "by": "Seller"    },
     "votes": 60,
-    "createdOn": 1588183945287,
     "customerId": "5eaa32339e58d82df43199a8",
     "by": "cacumm"
   },
@@ -519,11 +450,8 @@
     "ownerAnswer": {
       "answer": "Phasellus in felis.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302771048
-    },
+      "by": "Seller"    },
     "votes": 16,
-    "createdOn": 1588084421556,
     "customerId": "5eaa32339e58d82df43199a9",
     "by": "rcubbinellin"
   },
@@ -541,11 +469,8 @@
     "ownerAnswer": {
       "answer": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303199406
-    },
+      "by": "Seller"    },
     "votes": 77,
-    "createdOn": 1588073760151,
     "customerId": "5eaa32339e58d82df43199aa",
     "by": "lvanniekerko"
   },
@@ -563,11 +488,8 @@
     "ownerAnswer": {
       "answer": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303721406
-    },
+      "by": "Seller"    },
     "votes": 58,
-    "createdOn": 1588184944483,
     "customerId": "5eaa32339e58d82df43199ab",
     "by": "jelcomep"
   },
@@ -585,11 +507,8 @@
     "ownerAnswer": {
       "answer": "Pellentesque eget nunc.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588306047824
-    },
+      "by": "Seller"    },
     "votes": 2,
-    "createdOn": 1588055958305,
     "customerId": "5eaa32339e58d82df43199ac",
     "by": "eguestq"
   },
@@ -607,11 +526,8 @@
     "ownerAnswer": {
       "answer": "Duis aliquam convallis nunc.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305362907
-    },
+      "by": "Seller"    },
     "votes": 74,
-    "createdOn": 1588126047141,
     "customerId": "5eaa32339e58d82df43199ad",
     "by": "pcornaur"
   },
@@ -629,11 +545,8 @@
     "ownerAnswer": {
       "answer": "Integer ac leo.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588306046635
-    },
+      "by": "Seller"    },
     "votes": 56,
-    "createdOn": 1588107626836,
     "customerId": "5eaa32339e58d82df43199ae",
     "by": "sgossans"
   },
@@ -651,11 +564,8 @@
     "ownerAnswer": {
       "answer": "Aenean fermentum.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303625713
-    },
+      "by": "Seller"    },
     "votes": 30,
-    "createdOn": 1588192805584,
     "customerId": "5eaa32339e58d82df43199af",
     "by": "manderert"
   },
@@ -673,11 +583,8 @@
     "ownerAnswer": {
       "answer": "Etiam pretium iaculis justo.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304090822
-    },
+      "by": "Seller"    },
     "votes": 7,
-    "createdOn": 1588077391046,
     "customerId": "5eaa32339e58d82df43199b0",
     "by": "cshakeshaftu"
   },
@@ -695,11 +602,8 @@
     "ownerAnswer": {
       "answer": "Vivamus vestibulum sagittis sapien.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588306163578
-    },
+      "by": "Seller"    },
     "votes": 3,
-    "createdOn": 1588056412296,
     "customerId": "5eaa32339e58d82df43199b1",
     "by": "llamburnv"
   },
@@ -717,11 +621,8 @@
     "ownerAnswer": {
       "answer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304523312
-    },
+      "by": "Seller"    },
     "votes": 4,
-    "createdOn": 1588211687958,
     "customerId": "5eaa32339e58d82df43199b2",
     "by": "dfrostw"
   },
@@ -739,11 +640,8 @@
     "ownerAnswer": {
       "answer": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304460311
-    },
+      "by": "Seller"    },
     "votes": 79,
-    "createdOn": 1588139069523,
     "customerId": "5eaa32339e58d82df43199b3",
     "by": "bmcgahernx"
   },
@@ -761,11 +659,8 @@
     "ownerAnswer": {
       "answer": "Duis bibendum.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304694597
-    },
+      "by": "Seller"    },
     "votes": 30,
-    "createdOn": 1588173476751,
     "customerId": "5eaa32339e58d82df43199b4",
     "by": "wheky"
   },
@@ -783,11 +678,8 @@
     "ownerAnswer": {
       "answer": "Curabitur convallis.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588302781678
-    },
+      "by": "Seller"    },
     "votes": 13,
-    "createdOn": 1588191817314,
     "customerId": "5eaa32339e58d82df43199b5",
     "by": "dlawsz"
   },
@@ -805,11 +697,8 @@
     "ownerAnswer": {
       "answer": "Duis mattis egestas metus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305539493
-    },
+      "by": "Seller"    },
     "votes": 97,
-    "createdOn": 1588143091439,
     "customerId": "5eaa32339e58d82df43199b6",
     "by": "couterbridge10"
   },
@@ -827,11 +716,8 @@
     "ownerAnswer": {
       "answer": "Nulla justo.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305535645
-    },
+      "by": "Seller"    },
     "votes": 11,
-    "createdOn": 1588256436670,
     "customerId": "5eaa32339e58d82df43199b7",
     "by": "ebottrell11"
   },
@@ -849,11 +735,8 @@
     "ownerAnswer": {
       "answer": "Etiam justo.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305521187
-    },
+      "by": "Seller"    },
     "votes": 14,
-    "createdOn": 1588111053161,
     "customerId": "5eaa32339e58d82df43199b8",
     "by": "sperkinson12"
   },
@@ -871,11 +754,8 @@
     "ownerAnswer": {
       "answer": "Pellentesque eget nunc.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305101214
-    },
+      "by": "Seller"    },
     "votes": 50,
-    "createdOn": 1588182659756,
     "customerId": "5eaa32339e58d82df43199b9",
     "by": "fmilby13"
   },
@@ -893,11 +773,8 @@
     "ownerAnswer": {
       "answer": "Sed sagittis.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303184480
-    },
+      "by": "Seller"    },
     "votes": 6,
-    "createdOn": 1588165127373,
     "customerId": "5eaa32339e58d82df43199ba",
     "by": "bfairnie14"
   },
@@ -915,11 +792,8 @@
     "ownerAnswer": {
       "answer": "Nullam molestie nibh in lectus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303751941
-    },
+      "by": "Seller"    },
     "votes": 63,
-    "createdOn": 1588157827864,
     "customerId": "5eaa32339e58d82df43199bb",
     "by": "kgunthorpe15"
   },
@@ -937,11 +811,8 @@
     "ownerAnswer": {
       "answer": "Integer a nibh.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588306054132
-    },
+      "by": "Seller"    },
     "votes": 52,
-    "createdOn": 1588292138143,
     "customerId": "5eaa32339e58d82df43199bc",
     "by": "ptooke16"
   },
@@ -959,11 +830,8 @@
     "ownerAnswer": {
       "answer": "Donec vitae nisi.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304671722
-    },
+      "by": "Seller"    },
     "votes": 44,
-    "createdOn": 1588114607280,
     "customerId": "5eaa32339e58d82df43199bd",
     "by": "mcholdcroft17"
   },
@@ -981,11 +849,8 @@
     "ownerAnswer": {
       "answer": "Duis bibendum.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303277380
-    },
+      "by": "Seller"    },
     "votes": 15,
-    "createdOn": 1588155926740,
     "customerId": "5eaa32339e58d82df43199be",
     "by": "kviggars18"
   },
@@ -1003,11 +868,8 @@
     "ownerAnswer": {
       "answer": "Etiam faucibus cursus urna.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303445812
-    },
+      "by": "Seller"    },
     "votes": 87,
-    "createdOn": 1588132534886,
     "customerId": "5eaa32339e58d82df43199bf",
     "by": "mnewing19"
   },
@@ -1025,11 +887,8 @@
     "ownerAnswer": {
       "answer": "Nulla suscipit ligula in lacus.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305190223
-    },
+      "by": "Seller"    },
     "votes": 35,
-    "createdOn": 1588107183574,
     "customerId": "5eaa32339e58d82df43199c0",
     "by": "dverissimo1a"
   },
@@ -1047,11 +906,8 @@
     "ownerAnswer": {
       "answer": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588305629062
-    },
+      "by": "Seller"    },
     "votes": 28,
-    "createdOn": 1588169823061,
     "customerId": "5eaa32339e58d82df43199c1",
     "by": "lmorffew1b"
   },
@@ -1069,11 +925,8 @@
     "ownerAnswer": {
       "answer": "Phasellus in felis.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588303309824
-    },
+      "by": "Seller"    },
     "votes": 65,
-    "createdOn": 1588073552751,
     "customerId": "5eaa32339e58d82df43199c2",
     "by": "etregona1c"
   },
@@ -1091,11 +944,8 @@
     "ownerAnswer": {
       "answer": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
       "customerId": null,
-      "by": "Seller",
-      "createdOn": 1588304531891
-    },
+      "by": "Seller"    },
     "votes": 67,
-    "createdOn": 1588056297439,
     "customerId": "5eaa32339e58d82df43199c3",
     "by": "jfay1d"
   }

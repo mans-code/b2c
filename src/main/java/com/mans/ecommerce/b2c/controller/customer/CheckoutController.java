@@ -2,24 +2,22 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
-import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.Financial;
-import com.mans.ecommerce.b2c.domain.exception.ConflictException;
-import com.mans.ecommerce.b2c.domain.exception.PaymentFailedException;
+import com.mans.ecommerce.b2c.domain.exception.UnableToUpdateCartAfterUncompletedCheckout;
 import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.service.*;
-import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
+import com.mans.ecommerce.b2c.utill.LockError;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.exception.StripeException;
-import com.stripe.model.Charge;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
 @RestController
 @RequestMapping("/checkout/{cartId}")
@@ -42,8 +40,6 @@ public class CheckoutController
 
     private StripeService stripeService;
 
-    private String stripePublicKey;
-
     CheckoutController(
             ProductService productService,
             CartService cartService,
@@ -51,61 +47,67 @@ public class CheckoutController
             CartLogic cartLogic,
             StripeService stripeService,
             CustomerService customerService,
-            OrderService orderService,
-            @Value("${app.stripe.public.key}") String stripePublicKey)
+            OrderService orderService)
     {
         this.productService = productService;
         this.cartService = cartService;
         this.checkoutService = checkoutService;
         this.cartLogic = cartLogic;
         this.stripeService = stripeService;
-        this.stripePublicKey = stripePublicKey;
         this.orderService = orderService;
         this.customerService = customerService;
     }
 
     @PostMapping("/")
-    public CheckoutResponse lock(@PathVariable("cartId") @NotNull ObjectId cartId)
+    public Mono<CheckoutResponse> lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        Mono<Cart> cartMono = cartService.findById(cartId);
-        throwIfCartLocked(cartMono);
 
-        Mono<ProductLockErrorInfo> productLockErrorInfoMono =
-                cartMono.flatMap(cart -> Mono.just(checkoutService.lock(cart)));
+        Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId);
 
-        CheckoutResponse res = new CheckoutResponse(cart, stripePublicKey);
-        cartService.activateAndSave(cart);
+        return tuple2Mono.flatMap(tuple2 -> {
+            List<LockError> lockErrors = tuple2.getT2();
+            Cart cart = tuple2.getT1();
+            CheckoutResponse res = new CheckoutResponse(cart);
 
-        if (!lockedProductError.isEmpty())
-        {
-            throw new UncompletedCheckoutException(res, lockedProductError);
-        }
-        return res;
+            if (!lockErrors.isEmpty())
+            {
+                return Mono.just(res);
+            }
+
+            cartLogic.update(cart, lockErrors);
+            return cartService.update(cart)
+                              .doOnError(err -> Mono.error(
+                                      new UnableToUpdateCartAfterUncompletedCheckout(cart, lockErrors)))
+                              .flatMap(updatedCart -> Mono.error(
+                                      new UncompletedCheckoutException(updatedCart, lockErrors)));
+        });
     }
 
     @PostMapping("/complete")
     public Financial complete(
             @PathVariable("cartId") @NotNull ObjectId cartId,
             @RequestParam @NotBlank String shippingId,
-            @RequestParam @NotBlank String token)
+            @RequestParam @NotBlank String token,
+            @RequestParam String shippingAddressId)
             throws StripeException
     {
-        Cart cart = cartService.findById(cartId);
-        Address address = customerService.getDefaultShippingAddress(cartId);
-        double totalAmount = calculateTotalAmount(cart, address, shippingId);
-        String currency = cart.getMoney().getCurrency().getCurrencyCode();
+        Mono<Cart> cart = cartService.findById(cartId);
 
-        Charge charge = stripeService.chargeNewCard(token, totalAmount, currency);
-        boolean succeeded = charge.getStatus().equals(SUCCEEDED);
-
-        if (!succeeded)
-        {
-            throw new PaymentFailedException(charge.getFailureMessage());
-        }
-
-        Order order = new Order(cart, address, charge);
-        orderService.save(order);
-        return order.getFinancial();
+        //        double totalAmount = calculateTotalAmount(cart, address, shippingId);
+        //        String currency = cart.getMoney().getCurrency().getCurrencyCode();
+        //
+        //        Charge charge = stripeService.chargeNewCard(token, totalAmount, currency);
+        //        boolean succeeded = charge.getStatus().equals(SUCCEEDED);
+        //
+        //        if (!succeeded)
+        //        {
+        //            throw new PaymentFailedException(charge.getFailureMessage());
+        //        }
+        //
+        //        Order order = new Order(cart, address, charge);
+        //        orderService.save(order);
+        //        return order.getFinancial();
+        return null;
     }
 
     @PostMapping("/leaving")
@@ -116,16 +118,6 @@ public class CheckoutController
             if (cart.isActive())
             {
                 checkoutService.unlock(cartId, cart.getProductInfos());
-            }
-        });
-    }
-
-    private void throwIfCartLocked(Mono<Cart> cartMono)
-    {
-        cartMono.doOnSuccess(cart -> {
-            if (cart.isActive())
-            {
-                throw new ConflictException("cart already locked");
             }
         });
     }

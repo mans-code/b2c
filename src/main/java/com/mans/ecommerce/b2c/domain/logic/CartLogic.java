@@ -13,11 +13,11 @@ import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.server.eventListener.entity.AddProductToCartEvent;
 import com.mans.ecommerce.b2c.service.CartService;
+import com.mans.ecommerce.b2c.utill.LockError;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Component
 public class CartLogic
@@ -45,7 +45,7 @@ public class CartLogic
     public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
     {
         publisher.publishEvent(new AddProductToCartEvent(cart.getIdObj(), productInfo));
-        Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku());
+        Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku(), productInfo.getVariationId());
         int requestedQuantity = productInfo.getQuantity();
         ProductInfo cartProduct;
 
@@ -69,11 +69,7 @@ public class CartLogic
     public ProductInfo removeProduct(Cart cart, ProductDto dto)
     {
         ProductInfo productInfo = getProduct(cart, dto);
-        int quantity = productInfo.getQuantity();
-
-        deductMoneyAndQuantity(cart, productInfo, quantity);
-        cart.getProductInfos().remove(productInfo);
-        return productInfo;
+        return removeProduct(cart, productInfo);
     }
 
     public List<ProductInfo> removeAllProducts(Cart cart)
@@ -94,8 +90,7 @@ public class CartLogic
 
     public ProductInfo getProduct(Cart cart, ProductDto dto)
     {
-        String sku = dto.getSku();
-        Optional<ProductInfo> optional = getProduct(cart, sku);
+        Optional<ProductInfo> optional = getProduct(cart, dto.getSku(), dto.getVariationId());
 
         if (!optional.isPresent())
         {
@@ -201,13 +196,40 @@ public class CartLogic
         return new Money(totalCost, productMoney.getCurrency());
     }
 
-    private Optional<ProductInfo> getProduct(Cart cart, String desireSku)
+    private Optional<ProductInfo> getProduct(Cart cart, String sku, String variationId)
     {
         return cart
                        .getProductInfos()
                        .stream()
-                       .filter(product -> product.getSku().equals(desireSku))
+                       .filter(product ->
+                                       product.getSku().equals(sku) &&
+                                               product.getVariationId().equals(variationId))
                        .findFirst();
     }
 
+    private ProductInfo removeProduct(Cart cart, ProductInfo productInfo)
+    {
+        int quantity = productInfo.getQuantity();
+        deductMoneyAndQuantity(cart, productInfo, quantity);
+        cart.getProductInfos().remove(productInfo);
+        return productInfo;
+    }
+
+    public void update(Cart cart, List<LockError> lockErrors)
+    {
+        lockErrors.forEach(lockError -> {
+            int lockedQyt = lockError.getLockedQuantity();
+            ProductInfo cartProduct = getProduct(cart, lockError.getSku(), lockError.getVariationId()).get();
+
+            if (lockedQyt == 0)
+            {
+                removeProduct(cart, cartProduct);
+            }
+            else
+            {
+                int toDeduct = cartProduct.getQuantity() - lockError.getLockedQuantity();
+                deductMoneyAndQuantity(cart, cartProduct, toDeduct);
+            }
+        });
+    }
 }

@@ -13,13 +13,6 @@ import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 public class BeansFactory
 {
 
-    @Bean
-    public ObjectMapper objectMapper()
-    {
-        return new ObjectMapper()
-                       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                       .setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    }
 
     @Bean
     public MongoCustomConversions mongoCustomConversions()

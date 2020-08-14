@@ -15,29 +15,29 @@ public class ReservationListeners
 
     private ProductService productService;
 
-    @Async
-    @EventListener
-    void saveReservation(ReservationCreationEvent event)
-    {
-        Reservation reservation = event.getReservation();
-        boolean added = productService.addReservation(reservation);
-        if(!added)
-        {
-            new SystemConstraintViolation(String.format("couldn't save reservation=", reservation.toString()));
-        }
-    }
-
-    @Async
-    @EventListener
-    void updateReservation(ReservationUpdateEvent event)
-    {
-        Reservation reservation = event.getReservation();
-        int  locked = event.getLockedQuantity();
-        boolean updated = productService.updateReservation(reservation, locked);
-        if(!updated)
-        {
-            new SystemConstraintViolation(String.format("couldn't update reservation=", reservation.toString()));
-        }
-    }
+//    @Async
+//    @EventListener
+//    void saveReservation(ReservationCreationEvent event)
+//    {
+//        Reservation reservation = event.getReservation();
+//        boolean added = productService.addReservation(reservation);
+//        if(!added)
+//        {
+//            new SystemConstraintViolation(String.format("couldn't save reservation=", reservation.toString()));
+//        }
+//    }
+//
+//    @Async
+//    @EventListener
+//    void updateReservation(ReservationUpdateEvent event)
+//    {
+//        Reservation reservation = event.getReservation();
+//        int  locked = event.getLockedQuantity();
+//        boolean updated = productService.updateReservation(reservation, locked);
+//        if(!updated)
+//        {
+//            new SystemConstraintViolation(String.format("couldn't update reservation=", reservation.toString()));
+//        }
+//    }
 
 }

@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.domain.entity.financial.subEntity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class OrderHistory
 
     private String note;
 
-    private Date cratedOn;
+    private LocalDateTime cratedOn;
 
-    private Date updateOn;
+    private LocalDateTime updateOn;
 }

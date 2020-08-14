@@ -1,20 +1,22 @@
 package com.mans.ecommerce.b2c.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockCartEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.UnlockProductPartiallyEvent;
-import com.mans.ecommerce.b2c.utill.ProductLockErrorInfo;
+import com.mans.ecommerce.b2c.utill.LockError;
 import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
 @Service
 public class CheckoutService
@@ -22,7 +24,7 @@ public class CheckoutService
 
     private ProductRepository productRepository;
 
-    private CartService carService;
+    private CartService cartService;
 
     private ApplicationEventPublisher publisher;
 
@@ -32,37 +34,24 @@ public class CheckoutService
             ApplicationEventPublisher publisher)
     {
         this.productRepository = productRepository;
-        this.carService = carService;
+        this.cartService = carService;
         this.publisher = publisher;
     }
 
-    public Flux<ProductLockErrorInfo> lock(Cart cart)
+    public Mono<Tuple2<Cart, List<LockError>>> lock(ObjectId cartId)
     {
-        return carService.avoidUnlock(cart).flatMap(_ -> {
-            for (ProductInfo productInfo : cart.getProductInfos())
-            {
-                Mono<Integer> lockedQuantity = lock(cart, productInfo);
-            }
-        });
+        Mono<Cart> cartMono = cartService.findAndLock(cartId);
+        Mono<List<LockError>> productLockErrorInfoMono = cartMono.flatMapMany(cart ->
+                                            Flux.<LockError>create(
+                                                    emitter -> getProductsLockErrorInfo(cart, emitter)))
+                                                                 .collectList();
 
-        Flux<ProductLockErrorInfo> productLockErrorInfoFlux = new ArrayList<>();
-        for (ProductInfo productInfo : cart.getProductInfos())
-        {
-            Mono<Integer> lockedQuantity = lock(cart, productInfo);
-            lockedQuantity
-            if (productInfo.getQuantity() != lockedQuantity)
-            {
-                productInfo.setQuantity(lockedQuantity);
-                ProductLockErrorInfo productLockInfo = getProductLockInfo(productInfo, lockedQuantity);
-                lockInfo.add(productLockInfo);
-            }
-        }
-        return (Mono<List<ProductLockErrorInfo>>) lockInfo;
+        return cartMono.zipWith(productLockErrorInfoMono);
     }
 
     public Mono<Integer> lock(Cart cart, ProductInfo cartProduct)
     {
-        return carService.avoidUnlock(cart).flatMap(_ -> {
+        return cartService.avoidUnlock(cart).flatMap( x -> {
             String sku = cartProduct.getSku();
             String variationId = cartProduct.getVariationId();
             ObjectId cartId = cart.getIdObj();
@@ -74,7 +63,7 @@ public class CheckoutService
 
     public Mono<Integer> lock(Cart cart, ProductInfo cartProduct, int toLock)
     {
-        return carService.avoidUnlock(cart).flatMap(_ -> {
+        return cartService.avoidUnlock(cart).flatMap( x -> {
             String sku = cartProduct.getSku();
             String variationId = cartProduct.getVariationId();
             ObjectId cartId = cart.getIdObj();
@@ -99,9 +88,26 @@ public class CheckoutService
         publisher.publishEvent(new UnlockProductPartiallyEvent(cartId, cartProduct, toUnlock, newReservedQuantity));
     }
 
-    private ProductLockErrorInfo getProductLockInfo(ProductInfo productInfo, int lockedQuantity)
+    private void getProductsLockErrorInfo(Cart cart, FluxSink<LockError> emitter)
     {
-        return ProductLockErrorInfo
+        for (ProductInfo productInfo : cart.getProductInfos())
+        {
+            Mono<Integer> lockedQuantityMono = lock(cart, productInfo);
+            lockedQuantityMono.doOnSuccess(quantity -> {
+                if (productInfo.getQuantity() != quantity)
+                {
+                    productInfo.setQuantity(quantity);
+                    LockError productLockInfo = getProductLockInfo(productInfo, quantity);
+                    emitter.next(productLockInfo);
+                }
+                emitter.complete();
+            });
+        }
+    }
+
+    private LockError getProductLockInfo(ProductInfo productInfo, int lockedQuantity)
+    {
+        return LockError
                        .builder()
                        .sku(productInfo.getSku())
                        .title(productInfo.getTitle())

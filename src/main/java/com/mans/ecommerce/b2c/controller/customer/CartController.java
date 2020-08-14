@@ -2,8 +2,6 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -13,6 +11,7 @@ import com.mans.ecommerce.b2c.domain.exception.MissingVariationIdException;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
+import com.mans.ecommerce.b2c.service.CartService;
 import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
 import org.bson.types.ObjectId;
@@ -25,7 +24,7 @@ import reactor.util.function.Tuple2;
 public class CartController
 {
 
-    private com.mans.ecommerce.b2c.service.CartService cartService;
+    private CartService cartService;
 
     private ProductService productService;
 
@@ -36,7 +35,7 @@ public class CartController
     private final int ZERO = 0;
 
     CartController(
-            com.mans.ecommerce.b2c.service.CartService cartService,
+            CartService cartService,
             ProductService productService,
             CartLogic cartLogic,
             CheckoutService checkoutService)
@@ -62,7 +61,7 @@ public class CartController
         {
             if (dto.getVariationId() == null)
             {
-                throw new MissingVariationIdException();
+                return Mono.error(new MissingVariationIdException());
             }
         }
 
@@ -116,7 +115,7 @@ public class CartController
             ProductInfo productInfo = tuple2.getT2();
             if (productInfo.getQuantity() == 0)
             {
-                throw new OutOfStockException();
+                return Mono.error(new OutOfStockException());
             }
             return addProductToCart(cart, productInfo);
         });
@@ -132,17 +131,11 @@ public class CartController
             return cartService.update(cart);
         }
 
-        AtomicBoolean partialOutOfStock = new AtomicBoolean(false);
-        AtomicInteger quantity = new AtomicInteger(cartProduct.getQuantity());
         Mono<Integer> lockedMono = checkoutService.lock(cart, cartProduct, cartProduct.getQuantity());
 
         Mono<Cart> cartMono = addLockedProduct(cart,
                                                cartProduct,
-                                               partialOutOfStock,
-                                               quantity,
                                                lockedMono);
-
-        throwPartialOutOfStockIfNeeded(cartMono, partialOutOfStock, quantity);
 
         return cartMono;
     }
@@ -150,31 +143,21 @@ public class CartController
     private Mono<Cart> addLockedProduct(
             Cart cart,
             ProductInfo cartProduct,
-            AtomicBoolean partialOutOfStock,
-            AtomicInteger quantity, Mono<Integer> lockedMono)
+            Mono<Integer> lockedMono)
     {
         return lockedMono.flatMap(locked -> {
-            if (locked < cartProduct.getQuantity())
-            {
-                quantity.set(locked);
-                partialOutOfStock.set(true);
-            }
+
             cartProduct.setQuantity(locked);
             cartLogic.addProduct(cart, cartProduct);
-            return cartService.update(cart);
-        });
-    }
+            Mono<Cart> cartUpdateMono = cartService.update(cart);
 
-    private void throwPartialOutOfStockIfNeeded(
-            Mono<Cart> cartMono,
-            AtomicBoolean partialOutOfStock,
-            AtomicInteger quantity)
-    {
-        cartMono.doOnSuccess(savedCart -> {
-            if (savedCart != null && partialOutOfStock.get())
+            if (locked < cartProduct.getQuantity())
             {
-                throw new PartialOutOfStockException(savedCart, quantity.get());
+
+                return cartUpdateMono.flatMap(updated -> Mono.error(new PartialOutOfStockException(updated, locked)));
             }
+
+            return cartUpdateMono;
         });
     }
 

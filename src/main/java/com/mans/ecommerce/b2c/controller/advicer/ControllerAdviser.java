@@ -11,13 +11,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.server.ServerWebInputException;
 
-@ControllerAdvice
-public class ControllerAdviser extends ResponseEntityExceptionHandler
+@RestControllerAdvice
+public class ControllerAdviser
 {
     private ApplicationEventPublisher publisher;
 
@@ -27,38 +27,44 @@ public class ControllerAdviser extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler({ UserAlreadyExistException.class, ConflictException.class })
-    public ResponseEntity<Object> handleConflictException(Exception ex, WebRequest request)
+    public ResponseEntity<Object> handleConflictException(Exception ex)
     {
         String message = ex.getMessage();
         return getResponseMessage(HttpStatus.CONFLICT, message);
     }
 
-    @ExceptionHandler(LoginException.class)
-    public ResponseEntity<Object> handleUnauthorized(Exception ex, WebRequest request)
+    @ExceptionHandler({LoginException.class, UnauthorizedException.class})
+    public ResponseEntity<Object> handleUnauthorized(Exception ex)
     {
         return getResponseMessage(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
-    @ExceptionHandler({ ResourceNotFoundException.class })
-    public ResponseEntity<Object> handleBadRequest(Exception ex, WebRequest request)
+    @ExceptionHandler({ ResourceNotFoundException.class})
+    public ResponseEntity<Object> handleBadRequest(Exception ex)
     {
         return getResponseMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
+    @ExceptionHandler(ServerWebInputException.class)
+    public ResponseEntity<Object> handleBadRequest(ServerWebInputException ex)
+    {
+        return getResponseMessage(HttpStatus.BAD_REQUEST, ex.getRootCause().getMessage());
+    }
+
     @ExceptionHandler({ PaymentFailedException.class, StripeException.class })
-    public ResponseEntity<Object> handlePaymentError(Exception ex, WebRequest request)
+    public ResponseEntity<Object> handlePaymentError(Exception ex)
     {
         return getResponseMessage(HttpStatus.FAILED_DEPENDENCY, ex.getMessage());
     }
 
     @ExceptionHandler({ OutOfStockException.class })
-    public ResponseEntity<Object> outOfStockException(OutOfStockException ex, WebRequest request)
+    public ResponseEntity<Object> outOfStockException(OutOfStockException ex)
     {
         return getResponseMessage(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler({ PartialOutOfStockException.class })
-    public ResponseEntity<Object> partialStockException(PartialOutOfStockException ex, WebRequest request)
+    public ResponseEntity<Object> partialStockException(PartialOutOfStockException ex)
     {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("message", ex.getMessage());
@@ -67,7 +73,7 @@ public class ControllerAdviser extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler({ UncompletedCheckoutException.class })
-    public ResponseEntity<Object> uncompletedCheckoutException(UncompletedCheckoutException ex, WebRequest request)
+    public ResponseEntity<Object> uncompletedCheckoutException(UncompletedCheckoutException ex)
     {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("message", ex.getMessage());
@@ -77,13 +83,13 @@ public class ControllerAdviser extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler({ SystemConstraintViolation.class, Exception.class })
-    public ResponseEntity<Object> handleSystemConstraint(Exception ex, WebRequest request)
+    public ResponseEntity<Object> handleSystemConstraint(Exception ex)
     {
+        System.err.println(ex.getClass().getName());
         publisher.publishEvent(new ServerErrorEvent(ex));
         return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
-    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request)
@@ -107,6 +113,5 @@ public class ControllerAdviser extends ResponseEntityExceptionHandler
         body.put("message", message);
         return new ResponseEntity<>(body, status);
     }
-
 
 }

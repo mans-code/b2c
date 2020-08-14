@@ -1,6 +1,5 @@
 package com.mans.ecommerce.b2c.controller.product;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
@@ -9,7 +8,9 @@ import com.mans.ecommerce.b2c.server.eventListener.entity.ClickedOnProductEvent;
 import com.mans.ecommerce.b2c.service.ProductService;
 import com.mans.ecommerce.b2c.utill.response.Page;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/products/{sku}")
@@ -27,14 +28,14 @@ public class ProductController
     }
 
     @GetMapping("/detail")
-    public Product getProduct(@PathVariable("sku") @NotBlank String sku, HttpServletRequest req)
+    public Mono<Product> getProduct(@PathVariable("sku") @NotBlank String sku, ServerHttpRequest req)
     {
         publisher.publishEvent(new ClickedOnProductEvent(sku, req));
         return productService.getProductDetails(sku);
     }
 
     @GetMapping("/qanda")
-    public Page getQ8A(
+    public Mono<Page> getQ8A(
             @PathVariable("sku") @NotBlank String sku,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "helpful") SortBy sortBy)
@@ -43,7 +44,7 @@ public class ProductController
     }
 
     @GetMapping("/review")
-    public ReviewPage getReview(
+    public Mono<Page> getReview(
             @PathVariable("sku") @NotBlank String sku,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(value = "sortby", defaultValue = "helpful") SortBy sortBy)

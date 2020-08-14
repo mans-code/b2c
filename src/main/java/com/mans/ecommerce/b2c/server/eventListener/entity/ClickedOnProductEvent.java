@@ -1,11 +1,11 @@
 package com.mans.ecommerce.b2c.server.eventListener.entity;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 import com.mans.ecommerce.b2c.utill.Global;
 import lombok.Getter;
 import org.bson.types.ObjectId;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 
 @Getter
 public class ClickedOnProductEvent
@@ -15,19 +15,19 @@ public class ClickedOnProductEvent
 
     private String sku;
 
-    public ClickedOnProductEvent(String sku, HttpServletRequest req)
-    {
-        this.sku = sku;
-        this.feedId = getId(req);
-    }
-
-    private ObjectId getId(HttpServletRequest req)
-    {
-        Optional<String> idOptional = Global.getId(req);
-        if (idOptional.isPresent())
+        public ClickedOnProductEvent(String sku, ServerHttpRequest req)
         {
-            return new ObjectId(idOptional.get());
+            this.sku = sku;
+            this.feedId = getId(req);
         }
-        return null;
-    }
+
+        private ObjectId getId(ServerHttpRequest req)
+        {
+            Optional<String> idOptional = Global.getId(req);
+            if (idOptional.isPresent())
+            {
+                return new ObjectId(idOptional.get());
+            }
+            return null;
+        }
 }

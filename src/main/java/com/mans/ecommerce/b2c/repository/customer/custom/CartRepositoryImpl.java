@@ -20,6 +20,10 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
     private final String EXPIRE_DATE = "expireDate";
 
+    private final String ACTIVE = "active";
+
+    private final String LOCKING = "locking";
+
     private final String ERROR = "Couldn't find cart, cartId=%s";
 
     private ReactiveMongoTemplate mongoTemplate;
@@ -33,7 +37,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));
-        query.fields().exclude(ID).include(EXPIRE_DATE);
+        query.fields().exclude(ID).include(ACTIVE);
 
         Update update = Update.update(EXPIRE_DATE, date);
 
@@ -46,6 +50,25 @@ public class CartRepositoryImpl implements CartRepositoryCustom
         Mono<Cart> cartMono = mongoTemplate.findAndModify(query, update, options, Cart.class);
 
         return getActivationStatus(cartMono, id);
+    }
+
+    @Override public Mono<Cart> findAndLock(ObjectId id, Date date)
+    {
+        Query query = new Query();
+        query.addCriteria(where(ID).is(id));
+        query.addCriteria(where(ACTIVE).is(false));
+
+        Update update = new Update();
+        update.set(ACTIVE, true);
+        update.set(EXPIRE_DATE, date);
+
+        FindAndModifyOptions options = FindAndModifyOptions
+                                               .options()
+                                               .returnNew(false)
+                                               .upsert(false)
+                                               .remove(false);
+
+        return mongoTemplate.findAndModify(query, update, options, Cart.class);
     }
 
     private Mono<Boolean> getActivationStatus(Mono<Cart> cartMono, ObjectId id)

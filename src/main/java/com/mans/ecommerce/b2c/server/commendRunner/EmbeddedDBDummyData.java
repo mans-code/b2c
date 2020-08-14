@@ -75,26 +75,28 @@ public class EmbeddedDBDummyData implements CommandLineRunner
             throws Exception
     {
 
-        cartRepository.deleteAll();
-        cartRepository.saveAll(loadFile("carts", Cart.class));
+        cartRepository.deleteAll().block();
+        cartRepository.saveAll(loadFile("carts", Cart.class)).subscribe();
 
-        paymentInfoRepository.deleteAll();
-        paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class));
+        paymentInfoRepository.deleteAll().block();
+        paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class)).subscribe();
 
-        productRepository.deleteAll();
-        productRepository.saveAll(loadFile("products", Product.class));
+        productRepository.deleteAll().subscribe();
+        productRepository.saveAll(loadFile("products", Product.class)).subscribe();
 
-        qAndARepository.deleteAll();
-        qAndARepository.saveAll(loadFile("qAndAs", QAndA.class));
+        qAndARepository.deleteAll().block();
+        qAndARepository.saveAll(loadFile("qAndAs", QAndA.class)).subscribe();
 
-        reviewRepository.deleteAll();
-        reviewRepository.saveAll(loadFile("reviews", Review.class));
+        reviewRepository.deleteAll().block();
+        reviewRepository.saveAll(loadFile("reviews", Review.class)).subscribe();
 
         List<Customer> customers = loadFile("customers", Customer.class);
         encodeAllPassword(customers);
 
-        customerRepository.deleteAll();
-        customerRepository.saveAll(customers);
+        customerRepository.deleteAll().block();
+        customerRepository.saveAll(customers).subscribe();
+
+        cartRepository.findAll().subscribe(System.out::println);
     }
 
     private void encodeAllPassword(List<Customer> customers)

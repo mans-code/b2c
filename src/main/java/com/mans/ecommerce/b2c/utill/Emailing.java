@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 public class Emailing
@@ -30,14 +31,21 @@ public class Emailing
         msg.setFrom(from);
         msg.setSubject(subject);
         msg.setText(body);
-
-        emailSender.send(msg);
+        sendAsync(msg);
     }
 
     public void sendEmail(String to, String subject, String body)
     {
         List<String> tos = new ArrayList<String>(Arrays.asList(to));
         sendEmail(tos, subject, body);
+    }
+
+    private void sendAsync(SimpleMailMessage msg)
+    {
+        Mono.fromCallable(() -> {
+            emailSender.send(msg);
+            return true;
+        }).subscribe();
     }
 
     private String getFrom(String emailId)

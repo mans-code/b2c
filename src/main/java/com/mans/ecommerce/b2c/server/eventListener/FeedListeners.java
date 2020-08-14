@@ -29,7 +29,7 @@ public class FeedListeners
     {
         ObjectId id = event.getId();
         Feed feed = new Feed(id);
-        feedRepository.save(feed);
+        //feedRepository.save(feed);
     }
 
     @Async

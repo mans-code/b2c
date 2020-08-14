@@ -16,6 +16,5 @@ public interface CartRepository  extends CartRepositoryCustom, ReactiveMongoRepo
 
     @Override <S extends Cart> Flux<S> saveAll(Iterable<S> entities);
 
-    @Override Mono<Boolean> existsById(ObjectId objectId);
 
 }

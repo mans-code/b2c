@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.service;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 @Service
 public class CartService
@@ -45,19 +47,28 @@ public class CartService
         return cartMono;
     }
 
-    private void throwIfNull(Cart cart)
+    public Mono<Cart> findAndLock(ObjectId id)
+    {
+        Date date = Global.getFuture(validityInMinutes);
+        Mono<Cart> cartMono = cartRepository.findAndLock(id, date);
+        cartMono.doOnSuccess(cart -> throwIfNull(cart));
+        return cartMono;
+    }
+
+    private Mono<Object> throwIfNull(Cart cart)
     {
         if (cart == null)
         {
-            throw new ResourceNotFoundException(String.format(NOT_FOUND_TEMPLATE, cart.getId()));
+            return Mono.error(new ResourceNotFoundException(String.format(NOT_FOUND_TEMPLATE, cart.getId())));
         }
+        return null;
     }
 
     public Mono<Cart> update(Cart cart)
     {
         Mono<Cart> cartMono = cartRepository.save(cart);
         cartMono.doOnError(ex -> {
-            throw new DBException(String.format("can't save cart id=%s", cart.getId()));
+            Mono.error(new DBException(String.format("can't save cart id=%s", cart.getId())));
         });
         return cartMono;
     }
@@ -68,14 +79,6 @@ public class CartService
         Mono<Cart> saved = cartRepository.save(cart);
         createFeedEvent(saved);
         return saved;
-    }
-
-    public void activateAndSave(Cart cart)
-    {
-        cart.setActive(true);
-        Date date = Global.getFuture(validityInMinutes);
-        cart.setExpireDate(date);
-        update(cart);
     }
 
     public Mono<Boolean> avoidUnlock(Cart cart)
@@ -114,15 +117,11 @@ public class CartService
         });
     }
 
-    private boolean expireIn10Mins(Date date)
+    private boolean expireIn10Mins(LocalTime time)
     {
         int TEN_MINUTES = 10;
-        int MINUS_TEN = -10;
-        Date after10Mins = Global.getFuture(TEN_MINUTES);
-        long diff = date.getTime() - after10Mins.getTime();
-        int diffmin = (int) (diff / (60 * 1000));
-
-        if (diffmin > 0 || diffmin >= MINUS_TEN)
+        long diffMins = MINUTES.between(time, LocalTime.now());
+        if (diffMins <= TEN_MINUTES)
         {
             return true;
         }

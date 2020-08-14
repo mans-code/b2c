@@ -1,14 +1,13 @@
 package com.mans.ecommerce.b2c.utill;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.text.StringSubstitutor;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 
 public class Global
 {
@@ -29,39 +28,22 @@ public class Global
         return sub.replace(template);
     }
 
-    public static Optional<Cookie> getCookie(HttpServletRequest request, String name)
+    public static Optional<String> getId(ServerHttpRequest request)
     {
-        Cookie[] cookies = request.getCookies();
-        if (cookies == null)
+        String id = request.getCookies()
+                           .getFirst(CUSTOMER_ID)
+                           .getValue();
+        if (id == null)
         {
             return Optional.empty();
         }
-        return Arrays.stream(request.getCookies())
-                     .filter(cookie -> cookie.getName().equalsIgnoreCase(name))
-                     .findFirst();
+        return Optional.of(id);
     }
 
-    public static void addCookie(String customerId, HttpServletResponse response)
+    public static void setId(ServerHttpResponse res, String id)
     {
-        Cookie cookie = new Cookie(CUSTOMER_ID, customerId);
-        response.addCookie(cookie);
-    }
-
-    public static void setId(HttpServletResponse res, String id)
-    {
-        Cookie cookie = new Cookie(CUSTOMER_ID, id);
+        ResponseCookie cookie =  ResponseCookie.from(CUSTOMER_ID, id).build();
         res.addCookie(cookie);
-    }
-
-    public static Optional<String> getId(HttpServletRequest request)
-    {
-        Optional<Cookie> cookieOptional = getCookie(request, CUSTOMER_ID);
-        if (cookieOptional.isPresent())
-        {
-            String id = cookieOptional.get().getValue();
-            return Optional.of(id);
-        }
-        return Optional.empty();
     }
 
     //    private JsonResult json = JsonResult.instance();
