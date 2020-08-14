@@ -47,6 +47,11 @@ public class CartService
         return cartMono;
     }
 
+    public Mono<Cart> findById(String id)
+    {
+        return findById(new ObjectId(id));
+    }
+
     public Mono<Cart> findAndLock(ObjectId id)
     {
         Date date = Global.getFuture(validityInMinutes);

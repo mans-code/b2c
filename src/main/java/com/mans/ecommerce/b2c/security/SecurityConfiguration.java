@@ -28,8 +28,10 @@ public class SecurityConfiguration
 
     private static final String[] AUTH_WHITELIST = {
             "/products/**",
+            "/anonymous/**",
+            "/test/**",
             "/carts/**",
-            "/auth/**",
+            "/auths/**",
             "/favicon.ico",
             };
 

@@ -8,6 +8,7 @@ import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
 import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.exception.LoginException;
+import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.security.jwt.JWTReactiveAuthenticationManager;
 import com.mans.ecommerce.b2c.security.jwt.JWTToken;
 import com.mans.ecommerce.b2c.security.jwt.TokenProvider;
@@ -78,6 +79,7 @@ public class AuthController
             ServerHttpRequest req,
             ServerHttpResponse res)
     {
+
         Mono<Customer> customerMono = customerService.signup(signupDto, req);
         customerMono.doOnSuccess(customer -> {
             if (!Objects.isNull(customer))

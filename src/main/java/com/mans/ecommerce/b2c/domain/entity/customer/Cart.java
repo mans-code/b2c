@@ -25,8 +25,6 @@ public class Cart implements Cloneable
 
     private boolean active;
 
-    private boolean locking;
-
     private LocalTime expireDate;
 
     private List<ProductInfo> productInfos;
