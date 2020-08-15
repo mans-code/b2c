@@ -42,7 +42,7 @@ public class ServerErrorListeners
     {
         Exception exception = event.getException();
         sendEmail(exception);
-        sendPhoneMessage();
+        sendPhoneMessage(exception);
     }
 
     private void sendEmail(Exception ex)
@@ -56,7 +56,7 @@ public class ServerErrorListeners
         emailing.sendEmail(teamEmail, subject, body);
     }
 
-    private void sendPhoneMessage()
+    private void sendPhoneMessage(Exception exception)
     {
     }
 

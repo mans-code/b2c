@@ -75,6 +75,7 @@ public class CustomerService
             {
                 throw new UserAlreadyExistException();
             }
+            publisher.publishEvent(new CustomerCreationEvent(customer));
         });
     }
 

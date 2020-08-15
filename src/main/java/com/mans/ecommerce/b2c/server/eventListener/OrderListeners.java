@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
-import com.mans.ecommerce.b2c.server.eventListener.entity.BoughtProductsEvent;
 import com.mans.ecommerce.b2c.server.eventListener.entity.OrderEvent;
 import org.bson.types.ObjectId;
 import org.springframework.context.ApplicationEventPublisher;
@@ -31,7 +30,7 @@ public class OrderListeners
 
         List<ProductInfo> productInfos = order.getDetail().getProductInfos();
         ObjectId customerId = order.getCustomerId();
-        publisher.publishEvent(new BoughtProductsEvent(customerId, productInfos));
+        //publisher.publishEvent(new BoughtProductsEvent(customerId, productInfos));
     }
 
     @Async

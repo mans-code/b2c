@@ -22,6 +22,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -44,20 +45,25 @@ public class ProductService
 
     private ReviewRepository reviewRepository;
 
+    private FeedService feedService;
+
     public ProductService(
             ProductRepository productRepository,
             QAndARepository qAndARepository,
+            FeedService feedService,
             ReviewRepository reviewRepository)
     {
         this.productRepository = productRepository;
         this.qAndARepository = qAndARepository;
         this.reviewRepository = reviewRepository;
+        this.feedService = feedService;
     }
 
-    public Mono<Product> getProductDetails(String sku)
+    public Mono<Product> getProductDetails(String sku, ServerHttpRequest req)
     {
         Mono<Product> productMono = productRepository.getBySku(sku);
         productMono.doOnSuccess(product -> throwIfNull(product));
+        productMono.doOnSuccess(product -> feedService.addToClicked(sku, req));
         return productMono.flatMap(product -> hideQuantity(product));
     }
 
@@ -85,31 +91,6 @@ public class ProductService
         Mono<List<Review>> reviewsMono = reviewFlux.collectList();
         Mono<Page> reviewsPageMono = reviewsMono.flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
         return reviewsPageMono;
-    }
-
-    public Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantityToUnlock)
-    {
-        return productRepository.unlock(sku, variationId, cartId, quantityToUnlock);
-    }
-
-    public Mono<Boolean> partialUnlock(
-            String sku,
-            String variationId,
-            ObjectId cartId,
-            int quantityToUnlock,
-            int newReservedQuantity)
-    {
-        return productRepository.partialUnlock(sku, variationId, cartId, quantityToUnlock, newReservedQuantity);
-    }
-
-    public Mono<Boolean> addReservation(Reservation reservation)
-    {
-        return productRepository.addReservation(reservation);
-    }
-
-    public Mono<Boolean> updateReservation(Reservation reservation, int locked)
-    {
-        return productRepository.updateReservation(reservation, locked);
     }
 
     private <T> Mono<Page> getPage(List<T> q8AS, String sku, int pageNum, String sortBy)

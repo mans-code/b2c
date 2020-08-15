@@ -2,11 +2,12 @@ package com.mans.ecommerce.b2c.repository.product.Custom;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
-import com.mans.ecommerce.b2c.server.eventListener.entity.ReservationCreationEvent;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.utill.Global;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -56,71 +57,81 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     }
 
     @Override
-    public Mono<Integer> lock(String sku, String variationId, ObjectId cartId, int requestedQuantity)
+    public Mono<Integer> lock(ProductInfo productInfo, ObjectId cartId)
     {
-        Mono<Integer> lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, -1);
-        publishReservationEvent(sku, variationId, cartId, lockedQuantity);
+        Mono<Integer> lockedQuantity = lock(productInfo, cartId, productInfo.getQuantity(), false);
+        addReservation(productInfo, cartId, lockedQuantity);
         return lockedQuantity;
     }
 
     @Override public Mono<Integer> partialLock(
-            String sku,
-            String variationId,
+            ProductInfo productInfo,
             ObjectId cartId,
-            int requestedQuantity,
-            int newReservedQuantity)
+            int requestedQuantity)
     {
-        Mono<Integer> lockedQuantity = lock(sku, variationId, cartId, requestedQuantity, newReservedQuantity);
-        publishReservationEvent(sku, variationId, cartId, lockedQuantity);
+        Mono<Integer> lockedQuantity = lock(productInfo, cartId, requestedQuantity, true);
+        updateReservation(productInfo, cartId, lockedQuantity);
         return lockedQuantity;
     }
 
     @Override
-    public Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantity)
+    public void unlock(ProductInfo productInfo, ObjectId cartId)
     {
-        return unlock(sku, variationId, cartId, quantity, -1);
+        unlock(productInfo, cartId, productInfo.getQuantity(), false);
     }
 
-    @Override public Mono<Boolean> partialUnlock(
-            String sku,
-            String variationId,
+    @Override public void partialUnlock(
+            ProductInfo productInfo,
             ObjectId cartId,
-            int quantity,
-            int newReservedQuantity)
+            int quantity)
     {
 
-        return unlock(sku, variationId, cartId, quantity, newReservedQuantity);
+        unlock(productInfo, cartId, quantity, true);
     }
 
-    @Override public Mono<Boolean> addReservation(Reservation reservation)
+    private void addReservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity)
     {
-
-        Query query = getProductQuery(reservation, false);
-        Update update = new Update();
-
-        update.push(RESERVATIONS, reservation);
-
-        return executeUpdate(query, update);
+        reservation(productInfo, cartId, lockedQuantity, true);
     }
 
-    @Override public Mono<Boolean> updateReservation(Reservation reservation, int lockedQuantity)
+    private void updateReservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity)
     {
-        Query query = getProductQuery(reservation, true);
-        Update update = new Update();
+        reservation(productInfo, cartId, lockedQuantity, false);
+    }
 
-        update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
+    void reservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity, boolean add)
+    {
+        lockedQuantity.doOnSuccess(quantity -> {
+            if (Objects.isNull(quantity) || quantity == 0)
+            {
+                return;
+            }
+            Reservation reservation = new Reservation(productInfo, cartId, quantity);
+            Query query = getProductQuery(reservation, true);
+            Update update = new Update();
 
-        return executeUpdate(query, update);
+            if (add)
+            {
+                update.push(RESERVATIONS, reservation);
+            }
+            else
+            {
+                update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
+            }
+
+            executeUpdate(query, update);
+        });
+
     }
 
     private Mono<Integer> lock(
-            String sku,
-            String variationId,
+            ProductInfo productInfo,
             ObjectId cartId,
             int requestedQuantity,
-            int newReservedQuantity)
+            boolean withReservation)
     {
-        boolean withReservation = newReservedQuantity == -1;
+        String sku = productInfo.getSku();
+        String variationId = productInfo.getVariationId();
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
                                                 ImmutableMap.of(VARIATION_ID, variationId));
 
@@ -144,7 +155,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
             Mono<Product> productMono,
             String variationId,
             int requestedQuantity)
-    {//TODO test If empty
+    {
         return productMono.flatMap(product -> {
             int oldQuantity = product
                                       .getAvailability()
@@ -157,24 +168,11 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         }).defaultIfEmpty(ZERO);
     }
 
-    private void publishReservationEvent(
-            String sku,
-            String variationId,
-            ObjectId cartId,
-            Mono<Integer> lockedQuantity)
+    private Mono<Boolean> unlock(ProductInfo productInfo, ObjectId cartId, int quantity, boolean updateReservation)
     {
+        String sku = productInfo.getSku();
+        String variationId = productInfo.getVariationId();
 
-        lockedQuantity.doOnSuccess(qty -> {
-            if (qty > ZERO)
-            {
-                Reservation reservation = new Reservation(sku, variationId, cartId, qty);
-                publisher.publishEvent(new ReservationCreationEvent(reservation));
-            }
-        });
-    }
-
-    private Mono<Boolean> unlock(String sku, String variationId, ObjectId cartId, int quantity, int newReservedQuantity)
-    {
         Query query = getProductQuery(sku, variationId, cartId, true);
         String quantityField = Global.getString(QUANTITY_FIELD_TEMPLATE,
                                                 ImmutableMap.of(VARIATION_ID, variationId));
@@ -182,14 +180,15 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
         Update update = new Update();
         update.inc(quantityField, quantity);
 
-        if (newReservedQuantity == -1)
+        if (updateReservation)
         {
-            BasicDBObject reservation = getReservation(variationId, cartId);
-            update.pull(RESERVATIONS, reservation);
+            update.inc(RESERVATION_QUANTITY_POSITION, -quantity);
+
         }
         else
         {
-            update.set(RESERVATION_QUANTITY_POSITION, newReservedQuantity);
+            BasicDBObject reservation = getReservation(variationId, cartId);
+            update.pull(RESERVATIONS, reservation);
         }
         return executeUpdate(query, update);
     }

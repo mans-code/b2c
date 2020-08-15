@@ -4,7 +4,6 @@ import javax.validation.constraints.NotBlank;
 
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.enums.SortBy;
-import com.mans.ecommerce.b2c.server.eventListener.entity.ClickedOnProductEvent;
 import com.mans.ecommerce.b2c.service.ProductService;
 import com.mans.ecommerce.b2c.utill.response.Page;
 import org.springframework.context.ApplicationEventPublisher;
@@ -30,8 +29,7 @@ public class ProductController
     @GetMapping("/detail")
     public Mono<Product> getProduct(@PathVariable("sku") @NotBlank String sku, ServerHttpRequest req)
     {
-        publisher.publishEvent(new ClickedOnProductEvent(sku, req));
-        return productService.getProductDetails(sku);
+        return productService.getProductDetails(sku, req);
     }
 
     @GetMapping("/qanda")

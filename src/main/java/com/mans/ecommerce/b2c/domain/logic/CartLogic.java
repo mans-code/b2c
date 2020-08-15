@@ -11,12 +11,11 @@ import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
-import com.mans.ecommerce.b2c.server.eventListener.entity.AddProductToCartEvent;
 import com.mans.ecommerce.b2c.service.CartService;
+import com.mans.ecommerce.b2c.service.FeedService;
 import com.mans.ecommerce.b2c.utill.LockError;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -26,25 +25,24 @@ public class CartLogic
     @Getter
     private final String NOT_FOUND = "couldn't find a product with the ID = %s in cart";
 
-    private int validityInMinutes;
+    private final int validityInMinutes;
 
-    private ApplicationEventPublisher publisher;
+    private final FeedService feedService;
 
-    private CartService cartService;
+    private final CartService cartService;
 
     CartLogic(
-            @Value("${app.cart.expiration}") int validityInMinutes,
             CartService cartService,
-            ApplicationEventPublisher publisher)
+            FeedService feedService,
+            @Value("${app.cart.expiration}") int validityInMinutes)
     {
-        this.validityInMinutes = validityInMinutes;
         this.cartService = cartService;
-        this.publisher = publisher;
+        this.feedService = feedService;
+        this.validityInMinutes = validityInMinutes;
     }
 
     public ProductInfo addProduct(Cart cart, ProductInfo productInfo)
     {
-        publisher.publishEvent(new AddProductToCartEvent(cart.getIdObj(), productInfo));
         Optional<ProductInfo> cartProductOpt = getProduct(cart, productInfo.getSku(), productInfo.getVariationId());
         int requestedQuantity = productInfo.getQuantity();
         ProductInfo cartProduct;
@@ -62,7 +60,7 @@ public class CartLogic
         }
 
         addMoneyAndQuantity(cart, productInfo, requestedQuantity);
-
+        feedService.addToCart(cart.getId(), productInfo);
         return cartProduct;
     }
 

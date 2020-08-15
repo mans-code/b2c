@@ -8,12 +8,10 @@ import com.mans.ecommerce.b2c.domain.exception.ConflictException;
 import com.mans.ecommerce.b2c.domain.exception.DBException;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
-import com.mans.ecommerce.b2c.server.eventListener.entity.CreateFeedEvent;
 import com.mans.ecommerce.b2c.utill.Global;
 import lombok.Getter;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -29,13 +27,15 @@ public class CartService
 
     private CartRepository cartRepository;
 
-    private ApplicationEventPublisher publisher;
+    private FeedService feedService;
 
     CartService(
             CartRepository cartRepository,
+            FeedService feedService,
             @Value("${app.cart.expiration}") int validityInMinutes)
     {
         this.cartRepository = cartRepository;
+        this.feedService = feedService;
         this.validityInMinutes = validityInMinutes;
     }
 
@@ -116,8 +116,8 @@ public class CartService
         cart.doOnSuccess(savedCart -> {
             if (savedCart != null)
             {
-                CreateFeedEvent feedEvent = new CreateFeedEvent(savedCart.getIdObj());
-                publisher.publishEvent(feedEvent);
+                ObjectId id = savedCart.getIdObj();
+                feedService.save(id);
             }
         });
     }

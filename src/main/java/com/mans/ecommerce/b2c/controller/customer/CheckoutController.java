@@ -1,20 +1,26 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import com.mans.ecommerce.b2c.controller.utills.dto.CheckoutDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
+import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.Financial;
+import com.mans.ecommerce.b2c.domain.exception.PaymentFailedException;
 import com.mans.ecommerce.b2c.domain.exception.UnableToUpdateCartAfterUncompletedCheckout;
 import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
-import com.mans.ecommerce.b2c.service.*;
+import com.mans.ecommerce.b2c.server.eventListener.entity.OrderEvent;
+import com.mans.ecommerce.b2c.service.CartService;
+import com.mans.ecommerce.b2c.service.CheckoutService;
+import com.mans.ecommerce.b2c.service.StripeService;
 import com.mans.ecommerce.b2c.utill.LockError;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
-import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 import org.bson.types.ObjectId;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
@@ -26,36 +32,29 @@ public class CheckoutController
 
     private final String SUCCEEDED = "succeeded";
 
-    private ProductService productService;
-
     private CartService cartService;
-
-    private CustomerService customerService;
 
     private CartLogic cartLogic;
 
     private CheckoutService checkoutService;
 
-    private OrderService orderService;
-
     private StripeService stripeService;
 
+    ApplicationEventPublisher publisher;
+
     CheckoutController(
-            ProductService productService,
             CartService cartService,
             CheckoutService checkoutService,
             CartLogic cartLogic,
             StripeService stripeService,
-            CustomerService customerService,
-            OrderService orderService)
+            ApplicationEventPublisher publisher
+    )
     {
-        this.productService = productService;
         this.cartService = cartService;
         this.checkoutService = checkoutService;
         this.cartLogic = cartLogic;
         this.stripeService = stripeService;
-        this.orderService = orderService;
-        this.customerService = customerService;
+        this.publisher = publisher;
     }
 
     @PostMapping("/")
@@ -84,30 +83,36 @@ public class CheckoutController
     }
 
     @PostMapping("/complete")
-    public Financial complete(
+    public Mono<Financial> complete(
             @PathVariable("cartId") @NotNull ObjectId cartId,
-            @RequestParam @NotBlank String shippingId,
-            @RequestParam @NotBlank String token,
-            @RequestParam String shippingAddressId)
-            throws StripeException
+            @RequestParam @Valid CheckoutDto checkoutDto)
     {
-        Mono<Cart> cart = cartService.findById(cartId);
+        Mono<Cart> cartMono = cartService.findById(cartId);
 
-        //        double totalAmount = calculateTotalAmount(cart, address, shippingId);
-        //        String currency = cart.getMoney().getCurrency().getCurrencyCode();
-        //
-        //        Charge charge = stripeService.chargeNewCard(token, totalAmount, currency);
-        //        boolean succeeded = charge.getStatus().equals(SUCCEEDED);
-        //
-        //        if (!succeeded)
-        //        {
-        //            throw new PaymentFailedException(charge.getFailureMessage());
-        //        }
-        //
-        //        Order order = new Order(cart, address, charge);
-        //        orderService.save(order);
-        //        return order.getFinancial();
-        return null;
+        Mono<Charge> chargeMono = cartMono.flatMap(cart -> {
+            double amount = calculateTotalAmount(cart, checkoutDto);
+            String token = checkoutDto.getToken();
+            String currency = cart.getMoney()
+                                  .getCurrency()
+                                  .getCurrencyCode();
+            return Mono.fromCallable(() -> stripeService.chargeNewCard(token, amount, currency));
+        });
+
+        Mono<Tuple2<Cart, Charge>> completeMono = Mono.zip(cartMono, chargeMono);
+
+        return completeMono.flatMap(tuple2 -> {
+            Cart cart = tuple2.getT1();
+            Charge charge = tuple2.getT2();
+            boolean succeeded = charge.getStatus().equals(SUCCEEDED);
+
+            if (!succeeded)
+            {
+                Mono.error(new PaymentFailedException(charge.getFailureMessage()));
+            }
+            Order order = new Order(cart, checkoutDto.getAddress(), charge);
+            publisher.publishEvent(new OrderEvent(order));
+            return Mono.just(order.getFinancial());
+        });
     }
 
     @PostMapping("/leaving")
@@ -122,11 +127,11 @@ public class CheckoutController
         });
     }
 
-    private double calculateTotalAmount(//TODO
-                                        Cart cart,
-                                        Address address,
-                                        String shippingId)
+    private double calculateTotalAmount(Cart cart, CheckoutDto checkoutDto)
     {
-        return cart.getMoney().getAmount().doubleValue();
+        return cart.getMoney()
+                   .getAmount()
+                   .doubleValue();
     }
+
 }

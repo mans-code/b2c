@@ -2,6 +2,7 @@ package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
 import java.util.Date;
 
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,13 +26,11 @@ public class Reservation
     @CreatedDate
     private Date createdOn;
 
-    public Reservation(String sku, String variationId, ObjectId cartId, int quantity)
+    public Reservation(ProductInfo productInfo, ObjectId cartId, Integer quantity)
     {
-        this.sku = sku;
-        this.variationId = variationId;
+        this.sku = productInfo.getSku();
+        this.variationId = productInfo.getVariationId();
         this.cartId = cartId;
         this.quantity = quantity;
-        createdOn = new Date();
     }
-
 }
