@@ -1,7 +1,6 @@
 package com.mans.ecommerce.b2c.service;
 
 import java.util.List;
-import java.util.Objects;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
@@ -64,26 +63,18 @@ public class CheckoutService
     public void unlock(Cart cart, List<ProductInfo> productInfos)
     {
         cartService.avoidUnlock(cart)
-                   .doOnSuccess(active -> {
-                       if (Objects.isNull(active) || !active)
-                       {
-                            return;
-                       }
+                   .doOnSuccess($ -> {
                        productInfos.forEach(productInfo -> {
                            productRepository.unlock(productInfo, cart.getIdObj());
                        });
                    });
-
     }
 
     public void unlock(Cart cart, ProductInfo cartProduct)
     {
         cartService.avoidUnlock(cart)
                    .doOnSuccess(active -> {
-                       if (Objects.nonNull(active) && active)
-                       {
-                           productRepository.unlock(cartProduct, cart.getIdObj());
-                       }
+                       productRepository.unlock(cartProduct, cart.getIdObj());
                    });
 
     }
@@ -92,10 +83,7 @@ public class CheckoutService
     {
         cartService.avoidUnlock(cart)
                    .doOnSuccess(active -> {
-                       if (Objects.nonNull(active) && active)
-                       {
-                           productRepository.partialUnlock(cartProduct, cart.getIdObj(), toUnlock);
-                       }
+                       productRepository.partialUnlock(cartProduct, cart.getIdObj(), toUnlock);
                    });
     }
 
