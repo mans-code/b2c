@@ -1,13 +1,14 @@
 package com.mans.ecommerce.b2c.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.logic.CartLogic;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.utill.LockError;
 import org.bson.types.ObjectId;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
@@ -22,16 +23,16 @@ public class CheckoutService
 
     private CartService cartService;
 
-    private ApplicationEventPublisher publisher;
+    private CartLogic cartLogic;
 
     CheckoutService(
             ProductRepository productRepository,
             CartService carService,
-            ApplicationEventPublisher publisher)
+            CartLogic cartLogic)
     {
         this.productRepository = productRepository;
         this.cartService = carService;
-        this.publisher = publisher;
+        this.cartLogic = cartLogic;
     }
 
     public Mono<Tuple2<Cart, List<LockError>>> lock(ObjectId cartId)
@@ -50,33 +51,52 @@ public class CheckoutService
     {
         return cartService.avoidUnlock(cart).flatMap(x -> {
             ObjectId cartId = cart.getIdObj();
+            boolean inCart = cartLogic.isInCart(cart, cartProduct);
+            if (inCart)
+            {
+                int toLock = cartProduct.getQuantity();
+                return productRepository.partialLock(cartProduct, cartId, toLock);
+            }
             return productRepository.lock(cartProduct, cartId);
         });
     }
 
-    public Mono<Integer> lock(Cart cart, ProductInfo cartProduct, int toLock)
+    public void unlock(Cart cart, List<ProductInfo> productInfos)
     {
-        return cartService.avoidUnlock(cart).flatMap(x -> {
-            ObjectId cartId = cart.getIdObj();
-            return productRepository.partialLock(cartProduct, cartId, toLock);
-        });
+        cartService.avoidUnlock(cart)
+                   .doOnSuccess(active -> {
+                       if (Objects.isNull(active) || !active)
+                       {
+                            return;
+                       }
+                       productInfos.forEach(productInfo -> {
+                           productRepository.unlock(productInfo, cart.getIdObj());
+                       });
+                   });
+
     }
 
-    public void unlock(ObjectId cartId, List<ProductInfo> productInfos)
+    public void unlock(Cart cart, ProductInfo cartProduct)
     {
-        productInfos.forEach(productInfo -> {
-            productRepository.unlock(productInfo, cartId);
-        });
+        cartService.avoidUnlock(cart)
+                   .doOnSuccess(active -> {
+                       if (Objects.nonNull(active) && active)
+                       {
+                           productRepository.unlock(cartProduct, cart.getIdObj());
+                       }
+                   });
+
     }
 
-    public void unlock(ObjectId cartId, ProductInfo cartProduct)
+    public void partialUnlock(Cart cart, ProductInfo cartProduct, int toUnlock)
     {
-        productRepository.unlock(cartProduct, cartId);
-    }
-
-    public void unlock(ObjectId cartId, ProductInfo cartProduct, int toUnlock)
-    {
-        productRepository.partialUnlock(cartProduct, cartId, toUnlock);
+        cartService.avoidUnlock(cart)
+                   .doOnSuccess(active -> {
+                       if (Objects.nonNull(active) && active)
+                       {
+                           productRepository.partialUnlock(cartProduct, cart.getIdObj(), toUnlock);
+                       }
+                   });
     }
 
     private void getProductsLockErrorInfo(Cart cart, FluxSink<LockError> emitter)

@@ -85,7 +85,7 @@ public class CartController
         return cartMono.flatMap(cart -> {
             if (cart.isActive())
             {
-                checkoutService.unlock(cart.getIdObj(), cart.getProductInfos());
+                checkoutService.unlock(cart, cart.getProductInfos());
             }
             cartLogic.removeAllProducts(cart);
             return cartService.update(cart);
@@ -98,7 +98,7 @@ public class CartController
             ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
             if (cart.isActive())
             {
-                checkoutService.unlock(cart.getIdObj(), cartProduct);
+                checkoutService.unlock(cart, cartProduct);
             }
             cartLogic.removeProduct(cart, dto);
             return cartService.update(cart);
@@ -131,7 +131,7 @@ public class CartController
             return cartService.update(cart);
         }
 
-        Mono<Integer> lockedMono = checkoutService.lock(cart, cartProduct, cartProduct.getQuantity());
+        Mono<Integer> lockedMono = checkoutService.lock(cart, cartProduct);
 
         Mono<Cart> cartMono = addLockedProduct(cart,
                                                cartProduct,
@@ -202,8 +202,7 @@ public class CartController
         savedCart.doOnSuccess(cart -> {
             if (cart != null && cart.isActive())
             {
-                int newReservedQuantity = cartProduct.getQuantity();
-                checkoutService.unlock(cart.getIdObj(), cartProduct, deductedQuantity, newReservedQuantity);
+                checkoutService.partialUnlock(cart, cartProduct, deductedQuantity);
             }
         });
 

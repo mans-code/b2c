@@ -97,6 +97,12 @@ public class CartLogic
         return optional.get();
     }
 
+    public boolean isInCart(Cart cart, ProductInfo productInfo)
+    {
+        Optional<ProductInfo> optional = getProduct(cart, productInfo.getSku(), productInfo.getVariationId());
+        return optional.isPresent();
+    }
+
     private void addQuantityToProduct(ProductInfo cartProduct, int requestedQuantity)
     {
         int prevQuantity = cartProduct.getQuantity();

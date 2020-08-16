@@ -47,8 +47,7 @@ public class CheckoutController
             CheckoutService checkoutService,
             CartLogic cartLogic,
             StripeService stripeService,
-            ApplicationEventPublisher publisher
-    )
+            ApplicationEventPublisher publisher)
     {
         this.cartService = cartService;
         this.checkoutService = checkoutService;
