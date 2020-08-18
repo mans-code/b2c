@@ -11,8 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.convert.WritingConverter;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @Configuration
+@EnableMongoAuditing
 public class CustomConverter
 {
 

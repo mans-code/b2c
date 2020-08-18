@@ -1,8 +1,10 @@
 package com.mans.ecommerce.b2c.repository.customer.custom;
 
-import java.util.Date;
+import java.lang.ref.PhantomReference;
+import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import org.bson.types.ObjectId;
@@ -28,18 +30,19 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
     private ReactiveMongoTemplate mongoTemplate;
 
-    CartRepositoryImpl(ReactiveMongoTemplate mongoTemplate)
+    private ObjectMapper mapper;
+
+    CartRepositoryImpl(ReactiveMongoTemplate mongoTemplate, ObjectMapper mapper)
     {
         this.mongoTemplate = mongoTemplate;
     }
 
-    @Override public Mono<Boolean> extendsExpirationDateAndGetActivationStatus(ObjectId id, Date date)
+    @Override public Mono<Boolean> extendsExpirationDateAndGetActivationStatus(ObjectId id, Instant time)
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));
         query.fields().exclude(ID).include(ACTIVE);
-
-        Update update = Update.update(EXPIRE_DATE, date);
+        Update update = Update.update(EXPIRE_DATE, time.getEpochSecond());
 
         FindAndModifyOptions options = FindAndModifyOptions
                                                .options()
@@ -52,7 +55,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
         return getActivationStatus(cartMono, id);
     }
 
-    @Override public Mono<Cart> findAndLock(ObjectId id, Date date)
+    @Override public Mono<Cart> findAndLock(ObjectId id, Instant time)
     {
         Query query = new Query();
         query.addCriteria(where(ID).is(id));
@@ -60,7 +63,7 @@ public class CartRepositoryImpl implements CartRepositoryCustom
 
         Update update = new Update();
         update.set(ACTIVE, true);
-        update.set(EXPIRE_DATE, date);
+        update.set(EXPIRE_DATE, time.getEpochSecond());
 
         FindAndModifyOptions options = FindAndModifyOptions
                                                .options()

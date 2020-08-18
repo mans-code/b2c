@@ -25,7 +25,7 @@ public class FeedService
                 .subscribe();
     }
 
-    public void addToCart(String id, ProductInfo productInfo)
+    public void addToCart(ObjectId id, ProductInfo productInfo)
     {
     }
 

@@ -1,10 +1,13 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import lombok.*;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,11 +28,13 @@ public class Customer
     @Indexed(unique = true)
     private String username;
 
+    @CreatedDate
+    private LocalDateTime createdOn;
+
     private String password;
 
     private String phoneNumber;
 
-    //Maybe Indexed
     private String email;
 
     private String firstName;

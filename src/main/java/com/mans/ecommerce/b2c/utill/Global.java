@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.utill;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
@@ -18,10 +19,10 @@ public class Global
 
     private static final String CUSTOMER_ID = "customerId";
 
-    public static Date getFuture(int minutes)
+    public static Instant getFuture(int minutes)
     {
-        Date now = new Date();
-        return new Date(now.getTime() + minutes * MILLISECONDS_IN_MINUTE);
+        Instant now = Instant.now();
+        return Instant.ofEpochMilli(now.toEpochMilli() + minutes * MILLISECONDS_IN_MINUTE);
     }
 
     public static String getString(String template, Map<String, Object> valuesMap)

@@ -121,7 +121,7 @@ public class CheckoutController
         return cartMono.doOnSuccess(cart -> {
             if (cart.isActive())
             {
-                checkoutService.unlock(cartId, cart.getProductInfos());
+                checkoutService.unlock(cart, cart.getProductInfos());
             }
         });
     }

@@ -20,7 +20,7 @@ public class ProductInfo
 
     private int quantity;
 
-    private Price price;
+    private Money money;
 
     public ProductInfo(ProductInfo clone)
     {
@@ -29,6 +29,6 @@ public class ProductInfo
         title = clone.title;
         imageUrl = clone.imageUrl;
         quantity = clone.quantity;
-        price = new Price(clone.price);
+        money = new Money(clone.money);
     }
 }

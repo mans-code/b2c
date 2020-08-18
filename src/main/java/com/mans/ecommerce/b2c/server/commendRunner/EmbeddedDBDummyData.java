@@ -2,6 +2,7 @@ package com.mans.ecommerce.b2c.server.commendRunner;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.mans.ecommerce.b2c.repository.customer.PaymentInfoRepository;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
+import com.mans.ecommerce.b2c.utill.Global;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
@@ -76,6 +78,8 @@ public class EmbeddedDBDummyData implements CommandLineRunner
     {
 
         cartRepository.deleteAll().block();
+        List<Cart> carts = loadFile("carts", Cart.class);
+        setExpiration(carts);
         cartRepository.saveAll(loadFile("carts", Cart.class)).subscribe();
 
         paymentInfoRepository.deleteAll().block();
@@ -97,6 +101,18 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         customerRepository.saveAll(customers).subscribe();
 
         cartRepository.findAll().subscribe(System.out::println);
+    }
+
+    private void setExpiration(List<Cart> carts)
+    {
+        carts.forEach(cart ->
+                      {
+                          if (cart.isActive())
+                          {
+                              Instant instant = Global.getFuture(15);
+                              cart.setExpireDate(instant);
+                          }
+                      });
     }
 
     private void encodeAllPassword(List<Customer> customers)

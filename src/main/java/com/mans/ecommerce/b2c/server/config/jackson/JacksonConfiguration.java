@@ -1,20 +1,21 @@
 package com.mans.ecommerce.b2c.server.config.jackson;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.types.ObjectId;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
-/**
- * created by duc-d on 8/5/2018
- */
+@Configuration
 public class JacksonConfiguration
 {
 
@@ -24,16 +25,15 @@ public class JacksonConfiguration
 
         return new Jackson2ObjectMapperBuilder()
                        .serializationInclusion(JsonInclude.Include.NON_EMPTY)
-                       .serializerByType(LocalDateTime.class, new LocalDateTimeSerializer())
-                       .serializerByType(LocalDate.class, new LocalDateSerializer())
-                       .deserializerByType(LocalDate.class, new LocalDateDeserializer())
-                       .deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer())
-                       .featuresToDisable(
-                               JsonInclude.Value.construct(
-                                       JsonInclude.Include.NON_NULL,
-                                       JsonInclude.Include.ALWAYS)
-                       );
-
+                       .serializationInclusion(JsonInclude.Include.NON_NULL)
+                       .serializerByType(LocalDateTime.class, new LocalDateTimeJson.LocalDateTimeSerializer())
+                       .serializerByType(Instant.class, new InstantJson.InstanceSerializer())
+                       .serializerByType(LocalDate.class, new LocalDateJson.LocalDateSerializer())
+                       .serializerByType(ObjectId.class, new ObjectIdJson.ObjectIDSerializer())
+                       .deserializerByType(LocalDate.class, new LocalDateJson.LocalDateDeserializer())
+                       .deserializerByType(Instant.class, new InstantJson.InstanceDeserializer())
+                       .deserializerByType(LocalDateTime.class, new LocalDateTimeJson.LocalDateTimeDeserializer())
+                       .deserializerByType(ObjectId.class, new ObjectIdJson.ObjectIDDeserializer());
     }
 
     @Bean

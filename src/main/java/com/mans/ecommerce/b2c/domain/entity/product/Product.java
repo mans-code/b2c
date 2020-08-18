@@ -21,17 +21,9 @@ public class Product
     @Indexed(unique = true)
     private String sku;
 
-    private String defaultVariationId;
+    private List<VariationLevel> variationsLevels;
 
-    private int notify;
-
-    private BasicInfo basicInfo;
-
-    private Details details;
-
-    private List<VariationLevel> variations;
-
-    private Map<String, Availability> availability; // key=VariationSku if no variation map{this.sku:Availability}
+    private Map<String, Variation> variationsDetails;
 
     private Feedbacks feedback;
 

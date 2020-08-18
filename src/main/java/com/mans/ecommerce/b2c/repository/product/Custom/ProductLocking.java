@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProductRepositoryCustom
+public interface ProductLocking
 {
 
     Mono<Integer> lock(ProductInfo productInfo, ObjectId cartId);

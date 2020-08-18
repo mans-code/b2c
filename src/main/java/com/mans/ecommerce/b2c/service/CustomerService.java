@@ -75,7 +75,6 @@ public class CustomerService
             {
                 throw new UserAlreadyExistException();
             }
-            publisher.publishEvent(new CustomerCreationEvent(customer));
         });
     }
 
@@ -93,7 +92,7 @@ public class CustomerService
             return Mono.just(id);
         }
         Mono<Cart> cartMono = cartService.create(false);
-        return cartMono.flatMap(cart -> Mono.just(cart.getIdObj()));
+        return cartMono.flatMap(cart -> Mono.just(cart.getId()));
     }
 
     private Customer mapSignupDtoToCustomer(ObjectId id, SignupDto signupDto)

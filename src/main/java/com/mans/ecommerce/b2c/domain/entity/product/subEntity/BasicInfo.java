@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.domain.entity.product.subEntity;
 
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Price;
 import lombok.*;
 
@@ -15,7 +16,7 @@ public class BasicInfo
 
     private String by;
 
-    private Price priceGlimpse;
+    private Money money;
 
-    private String mainImageUrl;
+    private String imageUrl;
 }

@@ -1,18 +1,17 @@
 package com.mans.ecommerce.b2c.server.config;
 
 import java.util.Arrays;
+import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
 @Configuration
 public class BeansFactory
 {
-
 
     @Bean
     public MongoCustomConversions mongoCustomConversions()

@@ -1,12 +1,14 @@
 package com.mans.ecommerce.b2c.domain.entity.customer;
 
-import java.time.LocalTime;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.*;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,7 +27,10 @@ public class Cart implements Cloneable
 
     private boolean active;
 
-    private LocalTime expireDate;
+    @CreatedDate
+    private LocalDateTime createdOn;
+
+    private Instant expireDate;
 
     private List<ProductInfo> productInfos;
 
@@ -41,15 +46,5 @@ public class Cart implements Cloneable
     public Cart(boolean anonymous)
     {
         this.anonymous = anonymous;
-    }
-
-    public String getId()
-    {
-        return id.toHexString();
-    }
-
-    public ObjectId getIdObj()
-    {
-        return id;
     }
 }

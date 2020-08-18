@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.service;
 
-import java.time.LocalTime;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -43,7 +44,7 @@ public class CartService
     {
 
         Mono<Cart> cartMono = cartRepository.findById(id);
-        cartMono.doOnSuccess(cart -> throwIfNull(cart));
+        cartMono.doOnSuccess(this::throwIfNull);
         return cartMono;
     }
 
@@ -54,9 +55,9 @@ public class CartService
 
     public Mono<Cart> findAndLock(ObjectId id)
     {
-        Date date = Global.getFuture(validityInMinutes);
-        Mono<Cart> cartMono = cartRepository.findAndLock(id, date);
-        cartMono.doOnSuccess(cart -> throwIfNull(cart));
+        Instant time = Global.getFuture(validityInMinutes);
+        Mono<Cart> cartMono = cartRepository.findAndLock(id, time);
+        cartMono.doOnSuccess(this::throwIfNull);
         return cartMono;
     }
 
@@ -90,8 +91,8 @@ public class CartService
     {
         if (cart.isActive() && expireIn10Mins(cart.getExpireDate()))
         {
-            Mono<Boolean> stillActive = extendsExpirationDateAndGetActivationStatus(cart.getIdObj());
-            return stillActive.doOnSuccess(active -> throwIfNotActive(active));
+            Mono<Boolean> stillActive = extendsExpirationDateAndGetActivationStatus(cart.getId());
+            return stillActive.doOnSuccess(this::throwIfNotActive);
 
         }
         return Mono.just(true);
@@ -107,7 +108,7 @@ public class CartService
 
     public Mono<Boolean> extendsExpirationDateAndGetActivationStatus(ObjectId cartId)
     {
-        Date date = Global.getFuture(validityInMinutes / 2);
+        Instant date = Global.getFuture(validityInMinutes / 2);
         return cartRepository.extendsExpirationDateAndGetActivationStatus(cartId, date);
     }
 
@@ -116,16 +117,17 @@ public class CartService
         cart.doOnSuccess(savedCart -> {
             if (savedCart != null)
             {
-                ObjectId id = savedCart.getIdObj();
+                ObjectId id = savedCart.getId();
                 feedService.save(id);
             }
         });
     }
 
-    private boolean expireIn10Mins(LocalTime time)
+    private boolean expireIn10Mins(Instant time)
     {
+        LocalDateTime.from(time);
         int TEN_MINUTES = 10;
-        long diffMins = MINUTES.between(time, LocalTime.now());
+        long diffMins = MINUTES.between(time, LocalDateTime.now());
         if (diffMins <= TEN_MINUTES)
         {
             return true;

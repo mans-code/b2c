@@ -1,8 +1,6 @@
 package com.mans.ecommerce.b2c.domain.entity.financial;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
@@ -41,12 +39,12 @@ public class Order
 
     private Financial financial;
 
-    //Details
     private OrderDetail detail;
 
     public Order(Cart cart, Address address, Charge charge)
     {
-        this.CustomerId = cart.getIdObj();
+
+        this.CustomerId = cart.getId();
         this.totalAmount = cart.getMoney();
         this.detail = new OrderDetail(cart, address, charge);
 

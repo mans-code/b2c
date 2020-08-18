@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class ProductRepositoryImpl implements ProductRepositoryCustom
+public class ProductLockingImpl implements ProductLocking
 {
 
     private final String RESERVATIONS = "reservations";
@@ -50,7 +50,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
 
     private ApplicationEventPublisher publisher;
 
-    public ProductRepositoryImpl(ReactiveMongoTemplate mongoTemplate, ApplicationEventPublisher publisher)
+    public ProductLockingImpl(ReactiveMongoTemplate mongoTemplate, ApplicationEventPublisher publisher)
     {
         this.mongoTemplate = mongoTemplate;
         this.publisher = publisher;
@@ -158,8 +158,9 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom
     {
         return productMono.flatMap(product -> {
             int oldQuantity = product
-                                      .getAvailability()
+                                      .getVariationsDetails()
                                       .get(variationId)
+                                      .getAvailability()
                                       .getQuantity();
 
             int lockedQuantity = getLockQuantity(oldQuantity, requestedQuantity);

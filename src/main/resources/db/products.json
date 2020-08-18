@@ -1,31 +1,5 @@
 [
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nam nulla.",
-      "by": "Auer LLC",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1547.91,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/173x136.jpg/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Mauris lacinia sapien quis libero.",
-      "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
-      "fromManufacturer": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
-      "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 374,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 61,
       "avgRatingScore": 4.81,
@@ -36,37 +10,39 @@
     },
     "similarItems": null,
     "sku": "mans-1",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df431999c",
+        "quantity": 6,
+        "variationId": "mans-1"
+      }
+    ],
+    "variationsDetails": {
+      "mans-1": {
+        "basicInfo": {
+          "title": "Nam nulla.",
+          "by": "Auer LLC",
+          "money": {
+            "amount": 44,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/173x136.jpg/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Mauris lacinia sapien quis libero.",
+          "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+          "fromManufacturer": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+          "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
+        },
+        "availability": {
+          "quantity": 374,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nullam sit amet turpis elementum ligula vehicula consequat.",
-      "by": "Bashirian Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1754.55,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/233x157.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
-      "productInformation": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
-      "fromManufacturer": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
-      "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 117,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 92,
       "avgRatingScore": 2.07,
@@ -77,43 +53,33 @@
     },
     "similarItems": null,
     "sku": "mans-2",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-2": {
+        "basicInfo": {
+          "title": "Nullam sit amet turpis elementum ligula vehicula consequat.",
+          "by": "Bashirian Inc",
+          "money": {
+            "amount": 24,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/233x157.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+          "productInformation": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+          "fromManufacturer": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+          "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
+        },
+        "availability": {
+          "quantity": 117,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vivamus vestibulum sagittis sapien.",
-      "by": "McKenzie-Torphy",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 770.89,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/104x129.jpg/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Nullam varius. Nulla facilisi.",
-      "productInformation": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
-      "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-      "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 602,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 5,
       "avgRatingScore": 4.34,
@@ -124,37 +90,44 @@
     },
     "similarItems": null,
     "sku": "mans-3",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199a6",
+        "quantity": 5,
+        "variationId": "mans-3"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a9",
+        "quantity": 7,
+        "variationId": "mans-3"
+      }
+    ],
+    "variationsDetails": {
+      "mans-3": {
+        "basicInfo": {
+          "title": "Vivamus vestibulum sagittis sapien.",
+          "by": "McKenzie-Torphy",
+          "money": {
+            "amount": 38,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/104x129.jpg/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Nullam varius. Nulla facilisi.",
+          "productInformation": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
+          "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+          "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
+        },
+        "availability": {
+          "quantity": 602,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Sed ante.",
-      "by": "Ledner Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 765.06,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/199x179.png/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nulla mollis molestie lorem. Quisque ut erat.",
-      "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
-      "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 90,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 13,
       "avgRatingScore": 3.25,
@@ -165,43 +138,44 @@
     },
     "similarItems": null,
     "sku": "mans-4",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199b5",
+        "quantity": 6,
+        "variationId": "mans-4"
+      },
+      {
+        "id": "5eaa32339e58d82df43199c1",
+        "quantity": 6,
+        "variationId": "mans-4"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-4": {
+        "basicInfo": {
+          "title": "Sed ante.",
+          "by": "Ledner Inc",
+          "money": {
+            "amount": 5,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/199x179.png/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nulla mollis molestie lorem. Quisque ut erat.",
+          "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+          "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
+          "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
+        },
+        "availability": {
+          "quantity": 90,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi ut odio.",
-      "by": "Schroeder, Kutch and Ledner",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 892.05,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/218x123.jpg/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nullam molestie nibh in lectus.",
-      "productInformation": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
-      "fromManufacturer": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-      "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 968,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 9,
       "avgRatingScore": 1.25,
@@ -212,37 +186,39 @@
     },
     "similarItems": null,
     "sku": "mans-5",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199be",
+        "quantity": 6,
+        "variationId": "mans-5"
+      }
+    ],
+    "variationsDetails": {
+      "mans-5": {
+        "basicInfo": {
+          "title": "Morbi ut odio.",
+          "by": "Schroeder, Kutch and Ledner",
+          "money": {
+            "amount": 34,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/218x123.jpg/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nullam molestie nibh in lectus.",
+          "productInformation": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
+          "fromManufacturer": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+          "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla."
+        },
+        "availability": {
+          "quantity": 968,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
-      "by": "Beahan and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 141.09,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/179x194.png/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Donec posuere metus vitae ipsum.",
-      "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      "fromManufacturer": "Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
-      "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 683,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 28,
       "avgRatingScore": 3.42,
@@ -253,43 +229,39 @@
     },
     "similarItems": null,
     "sku": "mans-6",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
+        "id": "5eaa32339e58d82df43199b8",
         "quantity": 10,
-        "variationId": "mans"
+        "variationId": "mans-6"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-6": {
+        "basicInfo": {
+          "title": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+          "by": "Beahan and Sons",
+          "money": {
+            "amount": 22,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/179x194.png/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Donec posuere metus vitae ipsum.",
+          "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          "fromManufacturer": "Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+          "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
+        },
+        "availability": {
+          "quantity": 683,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vestibulum rutrum rutrum neque.",
-      "by": "Torp, Schuster and Moore",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1780.53,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/249x220.png/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Praesent blandit lacinia erat.",
-      "productInformation": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
-      "fromManufacturer": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-      "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 919,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 68,
       "avgRatingScore": 2.59,
@@ -300,37 +272,39 @@
     },
     "similarItems": null,
     "sku": "mans-7",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199c1",
+        "quantity": 5,
+        "variationId": "mans-7"
+      }
+    ],
+    "variationsDetails": {
+      "mans-7": {
+        "basicInfo": {
+          "title": "Vestibulum rutrum rutrum neque.",
+          "by": "Torp, Schuster and Moore",
+          "money": {
+            "amount": 33,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/249x220.png/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Praesent blandit lacinia erat.",
+          "productInformation": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+          "fromManufacturer": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+          "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
+        },
+        "availability": {
+          "quantity": 919,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi porttitor lorem id ligula.",
-      "by": "Franecki-Ryan",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1308.29,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/129x206.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      "productInformation": "Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
-      "fromManufacturer": "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-      "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 413,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 25,
       "avgRatingScore": 3.19,
@@ -341,43 +315,39 @@
     },
     "similarItems": null,
     "sku": "mans-8",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199b9",
+        "quantity": 8,
+        "variationId": "mans-8"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-8": {
+        "basicInfo": {
+          "title": "Morbi porttitor lorem id ligula.",
+          "by": "Franecki-Ryan",
+          "money": {
+            "amount": 19,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/129x206.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+          "productInformation": "Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
+          "fromManufacturer": "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
+          "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla."
+        },
+        "availability": {
+          "quantity": 413,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Suspendisse potenti.",
-      "by": "Stroman, Carroll and Mann",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1487.04,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/243x107.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Quisque ut erat.",
-      "productInformation": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
-      "fromManufacturer": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-      "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 621,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 11,
       "avgRatingScore": 3.83,
@@ -388,37 +358,39 @@
     },
     "similarItems": null,
     "sku": "mans-9",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df431999a",
+        "quantity": 9,
+        "variationId": "mans-9"
+      }
+    ],
+    "variationsDetails": {
+      "mans-9": {
+        "basicInfo": {
+          "title": "Suspendisse potenti.",
+          "by": "Stroman, Carroll and Mann",
+          "money": {
+            "amount": 20,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/243x107.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Quisque ut erat.",
+          "productInformation": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+          "fromManufacturer": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
+          "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis."
+        },
+        "availability": {
+          "quantity": 621,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-      "by": "McGlynn-Block",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 103.82,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/131x222.png/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque.",
-      "productInformation": "Proin at turpis a pede posuere nonummy. Integer non velit.",
-      "fromManufacturer": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      "description": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 324,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 38,
       "avgRatingScore": 0.69,
@@ -429,43 +401,44 @@
     },
     "similarItems": null,
     "sku": "mans-10",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199b7",
+        "quantity": 2,
+        "variationId": "mans-10"
+      },
+      {
+        "id": "5eaa32339e58d82df43199be",
+        "quantity": 8,
+        "variationId": "mans-10"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-10": {
+        "basicInfo": {
+          "title": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+          "by": "McGlynn-Block",
+          "money": {
+            "amount": 9,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/131x222.png/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque.",
+          "productInformation": "Proin at turpis a pede posuere nonummy. Integer non velit.",
+          "fromManufacturer": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          "description": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
+        },
+        "availability": {
+          "quantity": 324,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Phasellus sit amet erat.",
-      "by": "Schuppe, Beahan and Bashirian",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 294.75,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/100x104.jpg/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Duis bibendum.",
-      "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      "fromManufacturer": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
-      "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 193,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 89,
       "avgRatingScore": 1.86,
@@ -476,37 +449,39 @@
     },
     "similarItems": null,
     "sku": "mans-11",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199be",
+        "quantity": 3,
+        "variationId": "mans-11"
+      }
+    ],
+    "variationsDetails": {
+      "mans-11": {
+        "basicInfo": {
+          "title": "Phasellus sit amet erat.",
+          "by": "Schuppe, Beahan and Bashirian",
+          "money": {
+            "amount": 11,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/100x104.jpg/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Duis bibendum.",
+          "productInformation": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+          "fromManufacturer": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+          "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui."
+        },
+        "availability": {
+          "quantity": 193,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi porttitor lorem id ligula.",
-      "by": "McGlynn Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 268.15,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/103x177.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Suspendisse potenti. Nullam porttitor lacus at turpis.",
-      "productInformation": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
-      "fromManufacturer": "Integer tincidunt ante vel ipsum.",
-      "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 603,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 6,
       "avgRatingScore": 1.23,
@@ -517,43 +492,49 @@
     },
     "similarItems": null,
     "sku": "mans-12",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
+        "id": "5eaa32339e58d82df431999c",
+        "quantity": 4,
+        "variationId": "mans-12"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a6",
+        "quantity": 8,
+        "variationId": "mans-12"
+      },
+      {
+        "id": "5eaa32339e58d82df43199ab",
         "quantity": 10,
-        "variationId": "mans"
+        "variationId": "mans-12"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-12": {
+        "basicInfo": {
+          "title": "Morbi porttitor lorem id ligula.",
+          "by": "McGlynn Inc",
+          "money": {
+            "amount": 41,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/103x177.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Suspendisse potenti. Nullam porttitor lacus at turpis.",
+          "productInformation": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+          "fromManufacturer": "Integer tincidunt ante vel ipsum.",
+          "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo."
+        },
+        "availability": {
+          "quantity": 603,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Suspendisse potenti.",
-      "by": "Lind LLC",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1992.13,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/133x225.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
-      "productInformation": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-      "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-      "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 88,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 77,
       "avgRatingScore": 0.8,
@@ -564,37 +545,39 @@
     },
     "similarItems": null,
     "sku": "mans-13",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199a9",
+        "quantity": 6,
+        "variationId": "mans-13"
+      }
+    ],
+    "variationsDetails": {
+      "mans-13": {
+        "basicInfo": {
+          "title": "Suspendisse potenti.",
+          "by": "Lind LLC",
+          "money": {
+            "amount": 10,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/133x225.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+          "productInformation": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+          "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+          "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque."
+        },
+        "availability": {
+          "quantity": 88,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-      "by": "Blanda-Barton",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 993.85,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/177x243.bmp/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-      "productInformation": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      "fromManufacturer": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
-      "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 657,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 70,
       "avgRatingScore": 3.46,
@@ -605,43 +588,33 @@
     },
     "similarItems": null,
     "sku": "mans-14",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-14": {
+        "basicInfo": {
+          "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+          "by": "Blanda-Barton",
+          "money": {
+            "amount": 31,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/177x243.bmp/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+          "productInformation": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+          "fromManufacturer": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
+          "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
+        },
+        "availability": {
+          "quantity": 657,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Maecenas tincidunt lacus at velit.",
-      "by": "Emmerich LLC",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 261.8,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/140x130.png/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Suspendisse accumsan tortor quis turpis.",
-      "productInformation": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
-      "fromManufacturer": "Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-      "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 351,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 71,
       "avgRatingScore": 3.78,
@@ -652,37 +625,39 @@
     },
     "similarItems": null,
     "sku": "mans-15",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199af",
+        "quantity": 2,
+        "variationId": "mans-15"
+      }
+    ],
+    "variationsDetails": {
+      "mans-15": {
+        "basicInfo": {
+          "title": "Maecenas tincidunt lacus at velit.",
+          "by": "Emmerich LLC",
+          "money": {
+            "amount": 34,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/140x130.png/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Suspendisse accumsan tortor quis turpis.",
+          "productInformation": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
+          "fromManufacturer": "Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+          "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
+        },
+        "availability": {
+          "quantity": 351,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-      "by": "Russel, Mueller and Murphy",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 940.99,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/233x227.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
-      "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-      "fromManufacturer": "Nam tristique tortor eu pede.",
-      "description": "Donec posuere metus vitae ipsum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 653,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 53,
       "avgRatingScore": 3.48,
@@ -693,43 +668,33 @@
     },
     "similarItems": null,
     "sku": "mans-16",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-16": {
+        "basicInfo": {
+          "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+          "by": "Russel, Mueller and Murphy",
+          "money": {
+            "amount": 6,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/233x227.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
+          "productInformation": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+          "fromManufacturer": "Nam tristique tortor eu pede.",
+          "description": "Donec posuere metus vitae ipsum."
+        },
+        "availability": {
+          "quantity": 653,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Etiam pretium iaculis justo.",
-      "by": "O'Kon, Johnson and Runolfsson",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 632.54,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/205x138.bmp/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
-      "productInformation": "Vivamus tortor.",
-      "fromManufacturer": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
-      "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 260,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 94,
       "avgRatingScore": 3.21,
@@ -740,37 +705,44 @@
     },
     "similarItems": null,
     "sku": "mans-17",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319993",
+        "quantity": 9,
+        "variationId": "mans-17"
+      },
+      {
+        "id": "5eaa32339e58d82df43199b5",
+        "quantity": 6,
+        "variationId": "mans-17"
+      }
+    ],
+    "variationsDetails": {
+      "mans-17": {
+        "basicInfo": {
+          "title": "Etiam pretium iaculis justo.",
+          "by": "O'Kon, Johnson and Runolfsson",
+          "money": {
+            "amount": 21,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/205x138.bmp/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
+          "productInformation": "Vivamus tortor.",
+          "fromManufacturer": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
+          "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        },
+        "availability": {
+          "quantity": 260,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
-      "by": "O'Kon LLC",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 890.24,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/187x198.png/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nulla tempus.",
-      "productInformation": "Pellentesque at nulla.",
-      "fromManufacturer": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
-      "description": "Donec dapibus. Duis at velit eu est congue elementum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 939,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 96,
       "avgRatingScore": 4.29,
@@ -781,43 +753,39 @@
     },
     "similarItems": null,
     "sku": "mans-18",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df431999c",
+        "quantity": 6,
+        "variationId": "mans-18"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-18": {
+        "basicInfo": {
+          "title": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+          "by": "O'Kon LLC",
+          "money": {
+            "amount": 40,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/187x198.png/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nulla tempus.",
+          "productInformation": "Pellentesque at nulla.",
+          "fromManufacturer": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
+          "description": "Donec dapibus. Duis at velit eu est congue elementum."
+        },
+        "availability": {
+          "quantity": 939,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi ut odio.",
-      "by": "O'Connell Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 115.8,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/162x146.jpg/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      "productInformation": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-      "fromManufacturer": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-      "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 295,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 71,
       "avgRatingScore": 3.8,
@@ -828,37 +796,54 @@
     },
     "similarItems": null,
     "sku": "mans-19",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 3,
+        "variationId": "mans-19"
+      },
+      {
+        "id": "5eaa32339e58d82df4319997",
+        "quantity": 9,
+        "variationId": "mans-19"
+      },
+      {
+        "id": "5eaa32339e58d82df4319998",
+        "quantity": 10,
+        "variationId": "mans-19"
+      },
+      {
+        "id": "5eaa32339e58d82df431999a",
+        "quantity": 3,
+        "variationId": "mans-19"
+      }
+    ],
+    "variationsDetails": {
+      "mans-19": {
+        "basicInfo": {
+          "title": "Morbi ut odio.",
+          "by": "O'Connell Inc",
+          "money": {
+            "amount": 4,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/162x146.jpg/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+          "productInformation": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+          "fromManufacturer": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+          "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus."
+        },
+        "availability": {
+          "quantity": 295,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Ut at dolor quis odio consequat varius.",
-      "by": "Rodriguez-Dicki",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1663.17,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/124x163.jpg/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
-      "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-      "description": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 56,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 38,
       "avgRatingScore": 3.76,
@@ -869,43 +854,33 @@
     },
     "similarItems": null,
     "sku": "mans-20",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-20": {
+        "basicInfo": {
+          "title": "Ut at dolor quis odio consequat varius.",
+          "by": "Rodriguez-Dicki",
+          "money": {
+            "amount": 43,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/124x163.jpg/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
+          "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+          "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+          "description": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros."
+        },
+        "availability": {
+          "quantity": 56,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
-      "by": "Kuphal-Raynor",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1110.79,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/198x113.bmp/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.",
-      "productInformation": "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.",
-      "fromManufacturer": "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-      "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 325,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 10,
       "avgRatingScore": 1.01,
@@ -916,37 +891,33 @@
     },
     "similarItems": null,
     "sku": "mans-21",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [],
+    "variationsDetails": {
+      "mans-21": {
+        "basicInfo": {
+          "title": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
+          "by": "Kuphal-Raynor",
+          "money": {
+            "amount": 29,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/198x113.bmp/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.",
+          "productInformation": "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.",
+          "fromManufacturer": "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
+          "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt."
+        },
+        "availability": {
+          "quantity": 325,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Integer tincidunt ante vel ipsum.",
-      "by": "Monahan-Miller",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 493.07,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/202x223.jpg/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Donec dapibus.",
-      "productInformation": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
-      "fromManufacturer": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 299,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 47,
       "avgRatingScore": 1.86,
@@ -957,43 +928,39 @@
     },
     "similarItems": null,
     "sku": "mans-22",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199ab",
+        "quantity": 8,
+        "variationId": "mans-22"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-22": {
+        "basicInfo": {
+          "title": "Integer tincidunt ante vel ipsum.",
+          "by": "Monahan-Miller",
+          "money": {
+            "amount": 26,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/202x223.jpg/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Donec dapibus.",
+          "productInformation": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+          "fromManufacturer": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+          "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
+        },
+        "availability": {
+          "quantity": 299,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Maecenas rhoncus aliquam lacus.",
-      "by": "McCullough Group",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1645.69,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/242x164.jpg/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
-      "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-      "fromManufacturer": "Duis aliquam convallis nunc.",
-      "description": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 655,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 96,
       "avgRatingScore": 3.19,
@@ -1004,37 +971,39 @@
     },
     "similarItems": null,
     "sku": "mans-23",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319997",
+        "quantity": 2,
+        "variationId": "mans-23"
+      }
+    ],
+    "variationsDetails": {
+      "mans-23": {
+        "basicInfo": {
+          "title": "Maecenas rhoncus aliquam lacus.",
+          "by": "McCullough Group",
+          "money": {
+            "amount": 42,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/242x164.jpg/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
+          "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+          "fromManufacturer": "Duis aliquam convallis nunc.",
+          "description": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus."
+        },
+        "availability": {
+          "quantity": 655,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "In hac habitasse platea dictumst.",
-      "by": "Buckridge-Jacobi",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1602.16,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/179x177.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-      "productInformation": "Cras non velit nec nisi vulputate nonummy.",
-      "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-      "description": "Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 627,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 5,
       "avgRatingScore": 4.8,
@@ -1045,43 +1014,39 @@
     },
     "similarItems": null,
     "sku": "mans-24",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199be",
+        "quantity": 1,
+        "variationId": "mans-24"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-24": {
+        "basicInfo": {
+          "title": "In hac habitasse platea dictumst.",
+          "by": "Buckridge-Jacobi",
+          "money": {
+            "amount": 23,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/179x177.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+          "productInformation": "Cras non velit nec nisi vulputate nonummy.",
+          "fromManufacturer": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+          "description": "Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst."
+        },
+        "availability": {
+          "quantity": 627,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Pellentesque eget nunc.",
-      "by": "Monahan, Schinner and McCullough",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 945.73,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/143x121.png/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-      "productInformation": "Mauris lacinia sapien quis libero.",
-      "fromManufacturer": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-      "description": "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 573,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 42,
       "avgRatingScore": 0.42,
@@ -1092,37 +1057,44 @@
     },
     "similarItems": null,
     "sku": "mans-25",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319993",
+        "quantity": 6,
+        "variationId": "mans-25"
+      },
+      {
+        "id": "5eaa32339e58d82df43199bf",
+        "quantity": 5,
+        "variationId": "mans-25"
+      }
+    ],
+    "variationsDetails": {
+      "mans-25": {
+        "basicInfo": {
+          "title": "Pellentesque eget nunc.",
+          "by": "Monahan, Schinner and McCullough",
+          "money": {
+            "amount": 14,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/143x121.png/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+          "productInformation": "Mauris lacinia sapien quis libero.",
+          "fromManufacturer": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+          "description": "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
+        },
+        "availability": {
+          "quantity": 573,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nam tristique tortor eu pede.",
-      "by": "Toy-Christiansen",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 187.49,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/163x216.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
-      "productInformation": "Maecenas rhoncus aliquam lacus.",
-      "fromManufacturer": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
-      "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 378,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 17,
       "avgRatingScore": 1.33,
@@ -1133,43 +1105,39 @@
     },
     "similarItems": null,
     "sku": "mans-26",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199a9",
+        "quantity": 2,
+        "variationId": "mans-26"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-26": {
+        "basicInfo": {
+          "title": "Nam tristique tortor eu pede.",
+          "by": "Toy-Christiansen",
+          "money": {
+            "amount": 36,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/163x216.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
+          "productInformation": "Maecenas rhoncus aliquam lacus.",
+          "fromManufacturer": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
+          "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
+        },
+        "availability": {
+          "quantity": 378,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "In blandit ultrices enim.",
-      "by": "Miller and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1746.76,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/116x131.png/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
-      "productInformation": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
-      "fromManufacturer": "Donec vitae nisi.",
-      "description": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 617,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 100,
       "avgRatingScore": 3.01,
@@ -1180,37 +1148,39 @@
     },
     "similarItems": null,
     "sku": "mans-27",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df431999a",
+        "quantity": 9,
+        "variationId": "mans-27"
+      }
+    ],
+    "variationsDetails": {
+      "mans-27": {
+        "basicInfo": {
+          "title": "In blandit ultrices enim.",
+          "by": "Miller and Sons",
+          "money": {
+            "amount": 47,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/116x131.png/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
+          "productInformation": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+          "fromManufacturer": "Donec vitae nisi.",
+          "description": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
+        },
+        "availability": {
+          "quantity": 617,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nullam porttitor lacus at turpis.",
-      "by": "Ankunding and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 60.21,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/104x196.bmp/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-      "productInformation": "Sed ante. Vivamus tortor.",
-      "fromManufacturer": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 485,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 25,
       "avgRatingScore": 1.13,
@@ -1221,43 +1191,39 @@
     },
     "similarItems": null,
     "sku": "mans-28",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
+        "id": "5eaa32339e58d82df43199a6",
         "quantity": 10,
-        "variationId": "mans"
+        "variationId": "mans-28"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-28": {
+        "basicInfo": {
+          "title": "Nullam porttitor lacus at turpis.",
+          "by": "Ankunding and Sons",
+          "money": {
+            "amount": 35,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/104x196.bmp/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+          "productInformation": "Sed ante. Vivamus tortor.",
+          "fromManufacturer": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+          "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula."
+        },
+        "availability": {
+          "quantity": 485,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Aliquam non mauris.",
-      "by": "Ledner and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1057.68,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/214x153.png/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-      "productInformation": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
-      "fromManufacturer": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      "description": "Duis bibendum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 185,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 15,
       "avgRatingScore": 0.3,
@@ -1268,37 +1234,39 @@
     },
     "similarItems": null,
     "sku": "mans-29",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199a3",
+        "quantity": 5,
+        "variationId": "mans-29"
+      }
+    ],
+    "variationsDetails": {
+      "mans-29": {
+        "basicInfo": {
+          "title": "Aliquam non mauris.",
+          "by": "Ledner and Sons",
+          "money": {
+            "amount": 50,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/214x153.png/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+          "productInformation": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
+          "fromManufacturer": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          "description": "Duis bibendum."
+        },
+        "availability": {
+          "quantity": 185,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vivamus tortor.",
-      "by": "Schiller, Durgan and Hermiston",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 28.52,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/136x240.jpg/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Donec quis orci eget orci vehicula condimentum.",
-      "productInformation": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-      "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-      "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 727,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 11,
       "avgRatingScore": 2.63,
@@ -1309,43 +1277,39 @@
     },
     "similarItems": null,
     "sku": "mans-30",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199a6",
+        "quantity": 7,
+        "variationId": "mans-30"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-30": {
+        "basicInfo": {
+          "title": "Vivamus tortor.",
+          "by": "Schiller, Durgan and Hermiston",
+          "money": {
+            "amount": 7,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/136x240.jpg/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Donec quis orci eget orci vehicula condimentum.",
+          "productInformation": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+          "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+          "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam."
+        },
+        "availability": {
+          "quantity": 727,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",
-      "by": "Howell, Bartell and Bechtelar",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 181.9,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/190x128.png/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Etiam vel augue. Vestibulum rutrum rutrum neque.",
-      "productInformation": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      "fromManufacturer": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
-      "description": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 213,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 1,
       "avgRatingScore": 0.48,
@@ -1356,37 +1320,33 @@
     },
     "similarItems": null,
     "sku": "mans-31",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [],
+    "variationsDetails": {
+      "mans-31": {
+        "basicInfo": {
+          "title": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",
+          "by": "Howell, Bartell and Bechtelar",
+          "money": {
+            "amount": 24,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/190x128.png/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Etiam vel augue. Vestibulum rutrum rutrum neque.",
+          "productInformation": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          "fromManufacturer": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
+          "description": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
+        },
+        "availability": {
+          "quantity": 213,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Pellentesque at nulla.",
-      "by": "Moen Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1089.1,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/230x138.bmp/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Donec ut dolor.",
-      "productInformation": "Donec posuere metus vitae ipsum.",
-      "fromManufacturer": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
-      "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 177,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 44,
       "avgRatingScore": 1.79,
@@ -1397,43 +1357,54 @@
     },
     "similarItems": null,
     "sku": "mans-32",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df4319993",
+        "quantity": 5,
+        "variationId": "mans-32"
+      },
+      {
+        "id": "5eaa32339e58d82df4319997",
+        "quantity": 8,
+        "variationId": "mans-32"
+      },
+      {
+        "id": "5eaa32339e58d82df43199ac",
+        "quantity": 2,
+        "variationId": "mans-32"
+      },
+      {
+        "id": "5eaa32339e58d82df43199b7",
+        "quantity": 2,
+        "variationId": "mans-32"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-32": {
+        "basicInfo": {
+          "title": "Pellentesque at nulla.",
+          "by": "Moen Inc",
+          "money": {
+            "amount": 21,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/230x138.bmp/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Donec ut dolor.",
+          "productInformation": "Donec posuere metus vitae ipsum.",
+          "fromManufacturer": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+          "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo."
+        },
+        "availability": {
+          "quantity": 177,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Duis aliquam convallis nunc.",
-      "by": "Steuber, Reichert and Wilkinson",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1667.07,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/185x124.jpg/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-      "productInformation": "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-      "fromManufacturer": "Phasellus id sapien in sapien iaculis congue.",
-      "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 569,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 62,
       "avgRatingScore": 3.44,
@@ -1444,37 +1415,33 @@
     },
     "similarItems": null,
     "sku": "mans-33",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [],
+    "variationsDetails": {
+      "mans-33": {
+        "basicInfo": {
+          "title": "Duis aliquam convallis nunc.",
+          "by": "Steuber, Reichert and Wilkinson",
+          "money": {
+            "amount": 18,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/185x124.jpg/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+          "productInformation": "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+          "fromManufacturer": "Phasellus id sapien in sapien iaculis congue.",
+          "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit."
+        },
+        "availability": {
+          "quantity": 569,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Phasellus in felis.",
-      "by": "Lind-Stanton",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1948.82,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/212x240.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-      "productInformation": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
-      "fromManufacturer": "Aenean lectus.",
-      "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 141,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 11,
       "avgRatingScore": 3.75,
@@ -1485,43 +1452,54 @@
     },
     "similarItems": null,
     "sku": "mans-34",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df4319993",
+        "quantity": 3,
+        "variationId": "mans-34"
+      },
+      {
+        "id": "5eaa32339e58d82df4319997",
+        "quantity": 1,
+        "variationId": "mans-34"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a3",
+        "quantity": 9,
+        "variationId": "mans-34"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a9",
+        "quantity": 7,
+        "variationId": "mans-34"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-34": {
+        "basicInfo": {
+          "title": "Phasellus in felis.",
+          "by": "Lind-Stanton",
+          "money": {
+            "amount": 14,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/212x240.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+          "productInformation": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
+          "fromManufacturer": "Aenean lectus.",
+          "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo."
+        },
+        "availability": {
+          "quantity": 141,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Aliquam erat volutpat.",
-      "by": "Lemke and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 163.61,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/248x181.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Sed ante.",
-      "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.",
-      "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
-      "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 390,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 91,
       "avgRatingScore": 0.66,
@@ -1532,37 +1510,39 @@
     },
     "similarItems": null,
     "sku": "mans-35",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199a4",
+        "quantity": 6,
+        "variationId": "mans-35"
+      }
+    ],
+    "variationsDetails": {
+      "mans-35": {
+        "basicInfo": {
+          "title": "Aliquam erat volutpat.",
+          "by": "Lemke and Sons",
+          "money": {
+            "amount": 36,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/248x181.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Sed ante.",
+          "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.",
+          "fromManufacturer": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
+          "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam."
+        },
+        "availability": {
+          "quantity": 390,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "In blandit ultrices enim.",
-      "by": "Parker-Kohler",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1421.3,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/109x245.png/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
-      "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.",
-      "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
-      "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 924,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 89,
       "avgRatingScore": 2.15,
@@ -1573,43 +1553,44 @@
     },
     "similarItems": null,
     "sku": "mans-36",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
+        "id": "5eaa32339e58d82df43199ac",
         "quantity": 10,
-        "variationId": "mans"
+        "variationId": "mans-36"
+      },
+      {
+        "id": "5eaa32339e58d82df43199be",
+        "quantity": 8,
+        "variationId": "mans-36"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-36": {
+        "basicInfo": {
+          "title": "In blandit ultrices enim.",
+          "by": "Parker-Kohler",
+          "money": {
+            "amount": 32,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/109x245.png/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+          "productInformation": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.",
+          "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
+          "description": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede."
+        },
+        "availability": {
+          "quantity": 924,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Suspendisse accumsan tortor quis turpis.",
-      "by": "Stehr LLC",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 902.81,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/148x121.png/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
-      "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-      "fromManufacturer": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
-      "description": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 727,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 31,
       "avgRatingScore": 1.74,
@@ -1620,37 +1601,44 @@
     },
     "similarItems": null,
     "sku": "mans-37",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319992",
+        "quantity": 2,
+        "variationId": "mans-37"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a3",
+        "quantity": 1,
+        "variationId": "mans-37"
+      }
+    ],
+    "variationsDetails": {
+      "mans-37": {
+        "basicInfo": {
+          "title": "Suspendisse accumsan tortor quis turpis.",
+          "by": "Stehr LLC",
+          "money": {
+            "amount": 9,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/148x121.png/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
+          "productInformation": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+          "fromManufacturer": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
+          "description": "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+        },
+        "availability": {
+          "quantity": 727,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Duis at velit eu est congue elementum.",
-      "by": "Pouros Inc",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1937.12,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/181x195.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
-      "productInformation": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
-      "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
-      "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 206,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 40,
       "avgRatingScore": 4.88,
@@ -1661,43 +1649,33 @@
     },
     "similarItems": null,
     "sku": "mans-38",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-38": {
+        "basicInfo": {
+          "title": "Duis at velit eu est congue elementum.",
+          "by": "Pouros Inc",
+          "money": {
+            "amount": 2,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/181x195.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+          "productInformation": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
+          "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
+          "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat."
+        },
+        "availability": {
+          "quantity": 206,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Suspendisse ornare consequat lectus.",
-      "by": "Huel-Nienow",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1154.15,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/187x160.bmp/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Maecenas rhoncus aliquam lacus.",
-      "productInformation": "In congue.",
-      "fromManufacturer": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      "description": "Maecenas pulvinar lobortis est."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 237,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 52,
       "avgRatingScore": 0.96,
@@ -1708,37 +1686,39 @@
     },
     "similarItems": null,
     "sku": "mans-39",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df431999a",
+        "quantity": 5,
+        "variationId": "mans-39"
+      }
+    ],
+    "variationsDetails": {
+      "mans-39": {
+        "basicInfo": {
+          "title": "Suspendisse ornare consequat lectus.",
+          "by": "Huel-Nienow",
+          "money": {
+            "amount": 50,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/187x160.bmp/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Maecenas rhoncus aliquam lacus.",
+          "productInformation": "In congue.",
+          "fromManufacturer": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+          "description": "Maecenas pulvinar lobortis est."
+        },
+        "availability": {
+          "quantity": 237,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Quisque porta volutpat erat.",
-      "by": "Klocko-Douglas",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 316.62,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/236x194.bmp/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Aenean lectus.",
-      "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
-      "fromManufacturer": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
-      "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 592,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 77,
       "avgRatingScore": 2.84,
@@ -1749,43 +1729,33 @@
     },
     "similarItems": null,
     "sku": "mans-40",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-40": {
+        "basicInfo": {
+          "title": "Quisque porta volutpat erat.",
+          "by": "Klocko-Douglas",
+          "money": {
+            "amount": 40,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/236x194.bmp/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Aenean lectus.",
+          "productInformation": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
+          "fromManufacturer": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
+          "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum."
+        },
+        "availability": {
+          "quantity": 592,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Cras non velit nec nisi vulputate nonummy.",
-      "by": "Macejkovic, Botsford and Howell",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1449.38,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/195x184.png/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-      "productInformation": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      "fromManufacturer": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-      "description": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 887,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 44,
       "avgRatingScore": 2.25,
@@ -1796,37 +1766,44 @@
     },
     "similarItems": null,
     "sku": "mans-41",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319993",
+        "quantity": 5,
+        "variationId": "mans-41"
+      },
+      {
+        "id": "5eaa32339e58d82df43199aa",
+        "quantity": 7,
+        "variationId": "mans-41"
+      }
+    ],
+    "variationsDetails": {
+      "mans-41": {
+        "basicInfo": {
+          "title": "Cras non velit nec nisi vulputate nonummy.",
+          "by": "Macejkovic, Botsford and Howell",
+          "money": {
+            "amount": 8,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/195x184.png/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+          "productInformation": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+          "fromManufacturer": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
+          "description": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum."
+        },
+        "availability": {
+          "quantity": 887,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Donec dapibus.",
-      "by": "Shields-Pfannerstill",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 29.19,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/150x204.bmp/dddddd/000000"
-    },
-    "details": {
-      "shortDescription": "Etiam faucibus cursus urna. Ut tellus.",
-      "productInformation": "Morbi a ipsum. Integer a nibh. In quis justo.",
-      "fromManufacturer": "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
-      "description": "Suspendisse ornare consequat lectus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 376,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 29,
       "avgRatingScore": 3.83,
@@ -1837,43 +1814,39 @@
     },
     "similarItems": null,
     "sku": "mans-42",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df4319998",
+        "quantity": 5,
+        "variationId": "mans-42"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-42": {
+        "basicInfo": {
+          "title": "Donec dapibus.",
+          "by": "Shields-Pfannerstill",
+          "money": {
+            "amount": 31,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/150x204.bmp/dddddd/000000"
+        },
+        "details": {
+          "shortDescription": "Etiam faucibus cursus urna. Ut tellus.",
+          "productInformation": "Morbi a ipsum. Integer a nibh. In quis justo.",
+          "fromManufacturer": "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
+          "description": "Suspendisse ornare consequat lectus."
+        },
+        "availability": {
+          "quantity": 376,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-      "by": "Corkery and Sons",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 936.51,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/248x161.bmp/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Maecenas pulvinar lobortis est.",
-      "productInformation": "Maecenas pulvinar lobortis est.",
-      "fromManufacturer": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-      "description": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 544,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 61,
       "avgRatingScore": 4.67,
@@ -1884,37 +1857,44 @@
     },
     "similarItems": null,
     "sku": "mans-43",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df43199a4",
+        "quantity": 7,
+        "variationId": "mans-43"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a9",
+        "quantity": 4,
+        "variationId": "mans-43"
+      }
+    ],
+    "variationsDetails": {
+      "mans-43": {
+        "basicInfo": {
+          "title": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+          "by": "Corkery and Sons",
+          "money": {
+            "amount": 29,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/248x161.bmp/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Maecenas pulvinar lobortis est.",
+          "productInformation": "Maecenas pulvinar lobortis est.",
+          "fromManufacturer": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+          "description": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit."
+        },
+        "availability": {
+          "quantity": 544,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-      "by": "Beatty-McGlynn",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 759.81,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/145x176.bmp/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-      "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      "fromManufacturer": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-      "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 357,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 64,
       "avgRatingScore": 4.75,
@@ -1925,43 +1905,49 @@
     },
     "similarItems": null,
     "sku": "mans-44",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
         "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "quantity": 1,
+        "variationId": "mans-44"
+      },
+      {
+        "id": "5eaa32339e58d82df4319997",
+        "quantity": 6,
+        "variationId": "mans-44"
+      },
+      {
+        "id": "5eaa32339e58d82df43199a3",
+        "quantity": 9,
+        "variationId": "mans-44"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-44": {
+        "basicInfo": {
+          "title": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+          "by": "Beatty-McGlynn",
+          "money": {
+            "amount": 23,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/145x176.bmp/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+          "productInformation": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+          "fromManufacturer": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+          "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl."
+        },
+        "availability": {
+          "quantity": 357,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nam tristique tortor eu pede.",
-      "by": "Beer, Grady and Klocko",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 52.51,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/139x168.png/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Proin at turpis a pede posuere nonummy.",
-      "productInformation": "Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
-      "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
-      "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 989,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 100,
       "avgRatingScore": 4.39,
@@ -1972,37 +1958,33 @@
     },
     "similarItems": null,
     "sku": "mans-45",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [],
+    "variationsDetails": {
+      "mans-45": {
+        "basicInfo": {
+          "title": "Nam tristique tortor eu pede.",
+          "by": "Beer, Grady and Klocko",
+          "money": {
+            "amount": 29,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/139x168.png/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Proin at turpis a pede posuere nonummy.",
+          "productInformation": "Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
+          "fromManufacturer": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+          "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus."
+        },
+        "availability": {
+          "quantity": 989,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Duis consequat dui nec nisi volutpat eleifend.",
-      "by": "Miller, Wyman and Rice",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 289.07,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/231x181.png/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-      "productInformation": "Pellentesque ultrices mattis odio.",
-      "fromManufacturer": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.",
-      "description": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 173,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 41,
       "avgRatingScore": 1.2,
@@ -2013,43 +1995,44 @@
     },
     "similarItems": null,
     "sku": "mans-46",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df43199ac",
+        "quantity": 6,
+        "variationId": "mans-46"
+      },
+      {
+        "id": "5eaa32339e58d82df43199b7",
+        "quantity": 4,
+        "variationId": "mans-46"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-46": {
+        "basicInfo": {
+          "title": "Duis consequat dui nec nisi volutpat eleifend.",
+          "by": "Miller, Wyman and Rice",
+          "money": {
+            "amount": 48,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/231x181.png/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
+          "productInformation": "Pellentesque ultrices mattis odio.",
+          "fromManufacturer": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.",
+          "description": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat."
+        },
+        "availability": {
+          "quantity": 173,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nulla tellus.",
-      "by": "Lueilwitz-Macejkovic",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1419.42,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/217x152.bmp/cc0000/ffffff"
-    },
-    "details": {
-      "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      "productInformation": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
-      "fromManufacturer": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-      "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 892,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 50,
       "avgRatingScore": 0.86,
@@ -2060,37 +2043,39 @@
     },
     "similarItems": null,
     "sku": "mans-47",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319998",
+        "quantity": 7,
+        "variationId": "mans-47"
+      }
+    ],
+    "variationsDetails": {
+      "mans-47": {
+        "basicInfo": {
+          "title": "Nulla tellus.",
+          "by": "Lueilwitz-Macejkovic",
+          "money": {
+            "amount": 43,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/217x152.bmp/cc0000/ffffff"
+        },
+        "details": {
+          "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+          "productInformation": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
+          "fromManufacturer": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+          "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum."
+        },
+        "availability": {
+          "quantity": 892,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-      "by": "Swift, Harvey and Feil",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 1564.71,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/212x241.bmp/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Morbi non quam nec dui luctus rutrum.",
-      "productInformation": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
-      "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-      "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 502,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 57,
       "avgRatingScore": 0.62,
@@ -2101,43 +2086,33 @@
     },
     "similarItems": null,
     "sku": "mans-48",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+    "reservations": [],
+    "variationsDetails": {
+      "mans-48": {
+        "basicInfo": {
+          "title": "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
+          "by": "Swift, Harvey and Feil",
+          "money": {
+            "amount": 18,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/212x241.bmp/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Morbi non quam nec dui luctus rutrum.",
+          "productInformation": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
+          "fromManufacturer": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+          "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius."
+        },
+        "availability": {
+          "quantity": 502,
+          "availableOn": null,
+          "shipTo": null
+        }
       }
-    ]
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Nullam sit amet turpis elementum ligula vehicula consequat.",
-      "by": "Cartwright, Goodwin and Wolff",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 257.04,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/240x193.bmp/ff4444/ffffff"
-    },
-    "details": {
-      "shortDescription": "Praesent lectus.",
-      "productInformation": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      "fromManufacturer": "Donec ut mauris eget massa tempor convallis.",
-      "description": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 155,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 97,
       "avgRatingScore": 2.07,
@@ -2148,37 +2123,39 @@
     },
     "similarItems": null,
     "sku": "mans-49",
-    "defaultVariationId": "mans",
-    "variations": null,
-    "reservations": []
+    "reservations": [
+      {
+        "id": "5eaa32339e58d82df4319998",
+        "quantity": 3,
+        "variationId": "mans-49"
+      }
+    ],
+    "variationsDetails": {
+      "mans-49": {
+        "basicInfo": {
+          "title": "Nullam sit amet turpis elementum ligula vehicula consequat.",
+          "by": "Cartwright, Goodwin and Wolff",
+          "money": {
+            "amount": 37,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/240x193.bmp/ff4444/ffffff"
+        },
+        "details": {
+          "shortDescription": "Praesent lectus.",
+          "productInformation": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          "fromManufacturer": "Donec ut mauris eget massa tempor convallis.",
+          "description": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
+        },
+        "availability": {
+          "quantity": 155,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   },
   {
-    "id": null,
-    "basicInfo": {
-      "title": "Cras in purus eu magna vulputate luctus.",
-      "by": "Senger-Cassin",
-      "priceGlimpse": {
-        "pricingStrategy": "STATIC",
-        "money": {
-          "amount": 43.86,
-          "currency": "USD"
-        }
-      },
-      "mainImageUrl": "http://dummyimage.com/138x194.bmp/5fa2dd/ffffff"
-    },
-    "details": {
-      "shortDescription": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
-      "productInformation": "Suspendisse accumsan tortor quis turpis.",
-      "fromManufacturer": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque."
-    },
-    "availability": {
-      "mans": {
-        "quantity": 530,
-        "availableOn": null,
-        "shipTo": null
-      }
-    },
     "feedback": {
       "numReviews": 79,
       "avgRatingScore": 4.17,
@@ -2189,14 +2166,41 @@
     },
     "similarItems": null,
     "sku": "mans-50",
-    "defaultVariationId": "mans",
-    "variations": null,
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319992",
-        "quantity": 10,
-        "variationId": "mans"
+        "id": "5eaa32339e58d82df4319998",
+        "quantity": 7,
+        "variationId": "mans-50"
+      },
+      {
+        "id": "5eaa32339e58d82df43199b7",
+        "quantity": 4,
+        "variationId": "mans-50"
       }
-    ]
+    ],
+    "variationsDetails": {
+      "mans-50": {
+        "basicInfo": {
+          "title": "Cras in purus eu magna vulputate luctus.",
+          "by": "Senger-Cassin",
+          "money": {
+            "amount": 11,
+            "currency": "USD"
+          },
+          "imageUrl": "http://dummyimage.com/138x194.bmp/5fa2dd/ffffff"
+        },
+        "details": {
+          "shortDescription": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+          "productInformation": "Suspendisse accumsan tortor quis turpis.",
+          "fromManufacturer": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque."
+        },
+        "availability": {
+          "quantity": 530,
+          "availableOn": null,
+          "shipTo": null
+        }
+      }
+    }
   }
 ]

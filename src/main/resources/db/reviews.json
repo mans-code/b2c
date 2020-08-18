@@ -1,6 +1,6 @@
 [
   {
-    "productId": "5ea9d936fc13ae2ee4000032",
+    "sku": "5ea9d936fc13ae2ee4000032",
     "customerId": "5eaa32339e58d82df4319992",
     "by": "nkinnen0",
     "title": "volutpat convallis",
@@ -11,15 +11,14 @@
         "by": "jfay1d",
         "replay": "In congue.",
         "reportedAbuses": 5,
-        "helpful": 37,
-        "createdOn": 1588145377840
+        "helpful": 37
       }
     ],
     "helpful": 42,
     "reportedAbuses": 29
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000033",
+    "sku": "5ea9d936fc13ae2ee4000033",
     "customerId": "5eaa32339e58d82df4319993",
     "by": "credmain1",
     "title": "arcu sed augue",
@@ -30,15 +29,14 @@
         "by": "jfay1d",
         "replay": "Nullam varius.",
         "reportedAbuses": 9,
-        "helpful": 94,
-        "createdOn": 1588066586049
+        "helpful": 94
       }
     ],
     "helpful": 78,
     "reportedAbuses": 7
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000034",
+    "sku": "5ea9d936fc13ae2ee4000034",
     "customerId": "5eaa32339e58d82df4319994",
     "by": "mhowsley2",
     "title": "tristique fusce congue diam",
@@ -49,15 +47,14 @@
         "by": "jfay1d",
         "replay": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
         "reportedAbuses": 0,
-        "helpful": 45,
-        "createdOn": 1588275646299
+        "helpful": 45
       }
     ],
     "helpful": 47,
     "reportedAbuses": 24
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000035",
+    "sku": "5ea9d936fc13ae2ee4000035",
     "customerId": "5eaa32339e58d82df4319995",
     "by": "hcordeau3",
     "title": "volutpat dui maecenas tristique",
@@ -68,15 +65,14 @@
         "by": "jfay1d",
         "replay": "Morbi ut odio.",
         "reportedAbuses": 1,
-        "helpful": 91,
-        "createdOn": 1588263151664
+        "helpful": 91
       }
     ],
     "helpful": 79,
     "reportedAbuses": 13
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000036",
+    "sku": "5ea9d936fc13ae2ee4000036",
     "customerId": "5eaa32339e58d82df4319996",
     "by": "jgettins4",
     "title": "aliquam quis turpis eget",
@@ -87,15 +83,14 @@
         "by": "jfay1d",
         "replay": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
         "reportedAbuses": 9,
-        "helpful": 33,
-        "createdOn": 1588115168475
+        "helpful": 33
       }
     ],
     "helpful": 85,
     "reportedAbuses": 100
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000037",
+    "sku": "5ea9d936fc13ae2ee4000037",
     "customerId": "5eaa32339e58d82df4319997",
     "by": "odaveridge5",
     "title": "donec ut",
@@ -106,15 +101,14 @@
         "by": "jfay1d",
         "replay": "Phasellus in felis.",
         "reportedAbuses": 3,
-        "helpful": 15,
-        "createdOn": 1588067987264
+        "helpful": 15
       }
     ],
     "helpful": 82,
     "reportedAbuses": 50
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000038",
+    "sku": "5ea9d936fc13ae2ee4000038",
     "customerId": "5eaa32339e58d82df4319998",
     "by": "pfansy6",
     "title": "eros vestibulum ac",
@@ -125,15 +119,14 @@
         "by": "jfay1d",
         "replay": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
         "reportedAbuses": 4,
-        "helpful": 76,
-        "createdOn": 1588157060540
+        "helpful": 76
       }
     ],
     "helpful": 86,
     "reportedAbuses": 4
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000039",
+    "sku": "5ea9d936fc13ae2ee4000039",
     "customerId": "5eaa32339e58d82df4319999",
     "by": "fjeness7",
     "title": "nisi vulputate nonummy maecenas",
@@ -144,15 +137,14 @@
         "by": "jfay1d",
         "replay": "Nam dui.",
         "reportedAbuses": 3,
-        "helpful": 29,
-        "createdOn": 1588288070460
+        "helpful": 29
       }
     ],
     "helpful": 50,
     "reportedAbuses": 26
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003a",
+    "sku": "5ea9d936fc13ae2ee400003a",
     "customerId": "5eaa32339e58d82df431999a",
     "by": "rcansdale8",
     "title": "mollis molestie lorem quisque",
@@ -163,15 +155,14 @@
         "by": "jfay1d",
         "replay": "Donec ut mauris eget massa tempor convallis.",
         "reportedAbuses": 1,
-        "helpful": 47,
-        "createdOn": 1588160716260
+        "helpful": 47
       }
     ],
     "helpful": 24,
     "reportedAbuses": 14
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003b",
+    "sku": "5ea9d936fc13ae2ee400003b",
     "customerId": "5eaa32339e58d82df431999b",
     "by": "rlamps9",
     "title": "habitasse platea dictumst maecenas",
@@ -182,15 +173,14 @@
         "by": "jfay1d",
         "replay": "Ut at dolor quis odio consequat varius.",
         "reportedAbuses": 7,
-        "helpful": 53,
-        "createdOn": 1588262597858
+        "helpful": 53
       }
     ],
     "helpful": 80,
     "reportedAbuses": 44
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003c",
+    "sku": "5ea9d936fc13ae2ee400003c",
     "customerId": "5eaa32339e58d82df431999c",
     "by": "gastletta",
     "title": "duis aliquam",
@@ -201,15 +191,14 @@
         "by": "jfay1d",
         "replay": "Phasellus in felis.",
         "reportedAbuses": 0,
-        "helpful": 72,
-        "createdOn": 1588087642014
+        "helpful": 72
       }
     ],
     "helpful": 90,
     "reportedAbuses": 6
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003d",
+    "sku": "5ea9d936fc13ae2ee400003d",
     "customerId": "5eaa32339e58d82df431999d",
     "by": "vlindenboimb",
     "title": "dui vel",
@@ -220,15 +209,14 @@
         "by": "jfay1d",
         "replay": "In congue.",
         "reportedAbuses": 2,
-        "helpful": 72,
-        "createdOn": 1588099381372
+        "helpful": 72
       }
     ],
     "helpful": 35,
     "reportedAbuses": 12
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003e",
+    "sku": "5ea9d936fc13ae2ee400003e",
     "customerId": "5eaa32339e58d82df431999e",
     "by": "omcgeochc",
     "title": "lobortis vel dapibus",
@@ -239,15 +227,14 @@
         "by": "jfay1d",
         "replay": "Aenean auctor gravida sem.",
         "reportedAbuses": 7,
-        "helpful": 75,
-        "createdOn": 1588148759381
+        "helpful": 75
       }
     ],
     "helpful": 2,
     "reportedAbuses": 77
   },
   {
-    "productId": "5ea9d936fc13ae2ee400003f",
+    "sku": "5ea9d936fc13ae2ee400003f",
     "customerId": "5eaa32339e58d82df431999f",
     "by": "ncassard",
     "title": "velit donec diam",
@@ -258,15 +245,14 @@
         "by": "jfay1d",
         "replay": "In eleifend quam a odio.",
         "reportedAbuses": 6,
-        "helpful": 36,
-        "createdOn": 1588202419430
+        "helpful": 36
       }
     ],
     "helpful": 69,
     "reportedAbuses": 10
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000040",
+    "sku": "5ea9d936fc13ae2ee4000040",
     "customerId": "5eaa32339e58d82df43199a0",
     "by": "lalsoppe",
     "title": "massa quis augue",
@@ -277,15 +263,14 @@
         "by": "jfay1d",
         "replay": "Donec ut mauris eget massa tempor convallis.",
         "reportedAbuses": 2,
-        "helpful": 90,
-        "createdOn": 1588201234246
+        "helpful": 90
       }
     ],
     "helpful": 60,
     "reportedAbuses": 72
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000041",
+    "sku": "5ea9d936fc13ae2ee4000041",
     "customerId": "5eaa32339e58d82df43199a1",
     "by": "mtruranf",
     "title": "egestas metus",
@@ -296,15 +281,14 @@
         "by": "jfay1d",
         "replay": "Morbi non quam nec dui luctus rutrum.",
         "reportedAbuses": 2,
-        "helpful": 68,
-        "createdOn": 1588201252693
+        "helpful": 68
       }
     ],
     "helpful": 10,
     "reportedAbuses": 80
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000042",
+    "sku": "5ea9d936fc13ae2ee4000042",
     "customerId": "5eaa32339e58d82df43199a2",
     "by": "etosspellg",
     "title": "tempus vivamus in",
@@ -315,15 +299,14 @@
         "by": "jfay1d",
         "replay": "Maecenas pulvinar lobortis est.",
         "reportedAbuses": 2,
-        "helpful": 10,
-        "createdOn": 1588233111898
+        "helpful": 10
       }
     ],
     "helpful": 18,
     "reportedAbuses": 1
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000043",
+    "sku": "5ea9d936fc13ae2ee4000043",
     "customerId": "5eaa32339e58d82df43199a3",
     "by": "shatherleyh",
     "title": "urna pretium",
@@ -334,15 +317,14 @@
         "by": "jfay1d",
         "replay": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
         "reportedAbuses": 3,
-        "helpful": 88,
-        "createdOn": 1588081819022
+        "helpful": 88
       }
     ],
     "helpful": 30,
     "reportedAbuses": 46
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000044",
+    "sku": "5ea9d936fc13ae2ee4000044",
     "customerId": "5eaa32339e58d82df43199a4",
     "by": "tbaldassii",
     "title": "magna vulputate",
@@ -353,15 +335,14 @@
         "by": "jfay1d",
         "replay": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
         "reportedAbuses": 6,
-        "helpful": 30,
-        "createdOn": 1588126251438
+        "helpful": 30
       }
     ],
     "helpful": 91,
     "reportedAbuses": 87
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000045",
+    "sku": "5ea9d936fc13ae2ee4000045",
     "customerId": "5eaa32339e58d82df43199a5",
     "by": "dsteuartj",
     "title": "mauris sit amet eros",
@@ -372,15 +353,14 @@
         "by": "jfay1d",
         "replay": "Suspendisse ornare consequat lectus.",
         "reportedAbuses": 2,
-        "helpful": 27,
-        "createdOn": 1588232291293
+        "helpful": 27
       }
     ],
     "helpful": 34,
     "reportedAbuses": 48
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000046",
+    "sku": "5ea9d936fc13ae2ee4000046",
     "customerId": "5eaa32339e58d82df43199a6",
     "by": "cshipk",
     "title": "blandit mi in",
@@ -391,15 +371,14 @@
         "by": "jfay1d",
         "replay": "Etiam justo.",
         "reportedAbuses": 8,
-        "helpful": 23,
-        "createdOn": 1588133016411
+        "helpful": 23
       }
     ],
     "helpful": 6,
     "reportedAbuses": 23
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000047",
+    "sku": "5ea9d936fc13ae2ee4000047",
     "customerId": "5eaa32339e58d82df43199a7",
     "by": "gdimaggiol",
     "title": "tincidunt eu",
@@ -410,15 +389,14 @@
         "by": "jfay1d",
         "replay": "Pellentesque ultrices mattis odio.",
         "reportedAbuses": 5,
-        "helpful": 36,
-        "createdOn": 1588168363428
+        "helpful": 36
       }
     ],
     "helpful": 2,
     "reportedAbuses": 54
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000048",
+    "sku": "5ea9d936fc13ae2ee4000048",
     "customerId": "5eaa32339e58d82df43199a8",
     "by": "cacumm",
     "title": "lobortis convallis",
@@ -429,15 +407,14 @@
         "by": "jfay1d",
         "replay": "Curabitur gravida nisi at nibh.",
         "reportedAbuses": 5,
-        "helpful": 89,
-        "createdOn": 1588292928171
+        "helpful": 89
       }
     ],
     "helpful": 58,
     "reportedAbuses": 47
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000049",
+    "sku": "5ea9d936fc13ae2ee4000049",
     "customerId": "5eaa32339e58d82df43199a9",
     "by": "rcubbinellin",
     "title": "nunc viverra dapibus nulla",
@@ -448,15 +425,14 @@
         "by": "jfay1d",
         "replay": "Praesent id massa id nisl venenatis lacinia.",
         "reportedAbuses": 1,
-        "helpful": 10,
-        "createdOn": 1588185786472
+        "helpful": 10
       }
     ],
     "helpful": 55,
     "reportedAbuses": 20
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004a",
+    "sku": "5ea9d936fc13ae2ee400004a",
     "customerId": "5eaa32339e58d82df43199aa",
     "by": "lvanniekerko",
     "title": "at lorem integer",
@@ -467,15 +443,14 @@
         "by": "jfay1d",
         "replay": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
         "reportedAbuses": 4,
-        "helpful": 94,
-        "createdOn": 1588094135910
+        "helpful": 94
       }
     ],
     "helpful": 41,
     "reportedAbuses": 45
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004b",
+    "sku": "5ea9d936fc13ae2ee400004b",
     "customerId": "5eaa32339e58d82df43199ab",
     "by": "jelcomep",
     "title": "lobortis sapien",
@@ -486,15 +461,14 @@
         "by": "jfay1d",
         "replay": "Nulla justo.",
         "reportedAbuses": 5,
-        "helpful": 1,
-        "createdOn": 1588297108736
+        "helpful": 1
       }
     ],
     "helpful": 63,
     "reportedAbuses": 42
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004c",
+    "sku": "5ea9d936fc13ae2ee400004c",
     "customerId": "5eaa32339e58d82df43199ac",
     "by": "eguestq",
     "title": "feugiat et",
@@ -505,15 +479,14 @@
         "by": "jfay1d",
         "replay": "Duis mattis egestas metus.",
         "reportedAbuses": 6,
-        "helpful": 74,
-        "createdOn": 1588290461434
+        "helpful": 74
       }
     ],
     "helpful": 16,
     "reportedAbuses": 81
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004d",
+    "sku": "5ea9d936fc13ae2ee400004d",
     "customerId": "5eaa32339e58d82df43199ad",
     "by": "pcornaur",
     "title": "elit sodales scelerisque",
@@ -524,15 +497,14 @@
         "by": "jfay1d",
         "replay": "Fusce posuere felis sed lacus.",
         "reportedAbuses": 3,
-        "helpful": 75,
-        "createdOn": 1588284637074
+        "helpful": 75
       }
     ],
     "helpful": 23,
     "reportedAbuses": 78
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004e",
+    "sku": "5ea9d936fc13ae2ee400004e",
     "customerId": "5eaa32339e58d82df43199ae",
     "by": "sgossans",
     "title": "nisl aenean lectus",
@@ -543,15 +515,14 @@
         "by": "jfay1d",
         "replay": "Aliquam non mauris.",
         "reportedAbuses": 8,
-        "helpful": 77,
-        "createdOn": 1588237571854
+        "helpful": 77
       }
     ],
     "helpful": 60,
     "reportedAbuses": 83
   },
   {
-    "productId": "5ea9d936fc13ae2ee400004f",
+    "sku": "5ea9d936fc13ae2ee400004f",
     "customerId": "5eaa32339e58d82df43199af",
     "by": "manderert",
     "title": "sit amet",
@@ -562,15 +533,14 @@
         "by": "jfay1d",
         "replay": "Nullam porttitor lacus at turpis.",
         "reportedAbuses": 8,
-        "helpful": 90,
-        "createdOn": 1588122607106
+        "helpful": 90
       }
     ],
     "helpful": 55,
     "reportedAbuses": 43
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000050",
+    "sku": "5ea9d936fc13ae2ee4000050",
     "customerId": "5eaa32339e58d82df43199b0",
     "by": "cshakeshaftu",
     "title": "non mattis pulvinar",
@@ -581,15 +551,14 @@
         "by": "jfay1d",
         "replay": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
         "reportedAbuses": 8,
-        "helpful": 42,
-        "createdOn": 1588079824201
+        "helpful": 42
       }
     ],
     "helpful": 72,
     "reportedAbuses": 42
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000051",
+    "sku": "5ea9d936fc13ae2ee4000051",
     "customerId": "5eaa32339e58d82df43199b1",
     "by": "llamburnv",
     "title": "natoque penatibus et",
@@ -600,15 +569,14 @@
         "by": "jfay1d",
         "replay": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
         "reportedAbuses": 5,
-        "helpful": 13,
-        "createdOn": 1588265212586
+        "helpful": 13
       }
     ],
     "helpful": 23,
     "reportedAbuses": 58
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000052",
+    "sku": "5ea9d936fc13ae2ee4000052",
     "customerId": "5eaa32339e58d82df43199b2",
     "by": "dfrostw",
     "title": "felis sed interdum venenatis",
@@ -619,15 +587,14 @@
         "by": "jfay1d",
         "replay": "Morbi ut odio.",
         "reportedAbuses": 6,
-        "helpful": 77,
-        "createdOn": 1588190622841
+        "helpful": 77
       }
     ],
     "helpful": 51,
     "reportedAbuses": 31
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000053",
+    "sku": "5ea9d936fc13ae2ee4000053",
     "customerId": "5eaa32339e58d82df43199b3",
     "by": "bmcgahernx",
     "title": "id sapien in sapien",
@@ -638,15 +605,14 @@
         "by": "jfay1d",
         "replay": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
         "reportedAbuses": 10,
-        "helpful": 31,
-        "createdOn": 1588129806606
+        "helpful": 31
       }
     ],
     "helpful": 22,
     "reportedAbuses": 37
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000054",
+    "sku": "5ea9d936fc13ae2ee4000054",
     "customerId": "5eaa32339e58d82df43199b4",
     "by": "wheky",
     "title": "erat quisque erat eros",
@@ -657,15 +623,14 @@
         "by": "jfay1d",
         "replay": "In hac habitasse platea dictumst.",
         "reportedAbuses": 0,
-        "helpful": 85,
-        "createdOn": 1588128973680
+        "helpful": 85
       }
     ],
     "helpful": 2,
     "reportedAbuses": 88
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000055",
+    "sku": "5ea9d936fc13ae2ee4000055",
     "customerId": "5eaa32339e58d82df43199b5",
     "by": "dlawsz",
     "title": "purus aliquet at",
@@ -676,15 +641,14 @@
         "by": "jfay1d",
         "replay": "Suspendisse ornare consequat lectus.",
         "reportedAbuses": 1,
-        "helpful": 52,
-        "createdOn": 1588127432632
+        "helpful": 52
       }
     ],
     "helpful": 88,
     "reportedAbuses": 35
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000056",
+    "sku": "5ea9d936fc13ae2ee4000056",
     "customerId": "5eaa32339e58d82df43199b6",
     "by": "couterbridge10",
     "title": "aliquam convallis",
@@ -695,15 +659,14 @@
         "by": "jfay1d",
         "replay": "In quis justo.",
         "reportedAbuses": 7,
-        "helpful": 78,
-        "createdOn": 1588241471102
+        "helpful": 78
       }
     ],
     "helpful": 54,
     "reportedAbuses": 96
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000057",
+    "sku": "5ea9d936fc13ae2ee4000057",
     "customerId": "5eaa32339e58d82df43199b7",
     "by": "ebottrell11",
     "title": "lorem vitae",
@@ -714,15 +677,14 @@
         "by": "jfay1d",
         "replay": "Aliquam non mauris.",
         "reportedAbuses": 1,
-        "helpful": 43,
-        "createdOn": 1588065866647
+        "helpful": 43
       }
     ],
     "helpful": 6,
     "reportedAbuses": 12
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000058",
+    "sku": "5ea9d936fc13ae2ee4000058",
     "customerId": "5eaa32339e58d82df43199b8",
     "by": "sperkinson12",
     "title": "nam congue",
@@ -733,15 +695,14 @@
         "by": "jfay1d",
         "replay": "Duis bibendum.",
         "reportedAbuses": 8,
-        "helpful": 43,
-        "createdOn": 1588050279115
+        "helpful": 43
       }
     ],
     "helpful": 45,
     "reportedAbuses": 82
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000059",
+    "sku": "5ea9d936fc13ae2ee4000059",
     "customerId": "5eaa32339e58d82df43199b9",
     "by": "fmilby13",
     "title": "amet lobortis sapien",
@@ -752,15 +713,14 @@
         "by": "jfay1d",
         "replay": "Nunc rhoncus dui vel sem.",
         "reportedAbuses": 4,
-        "helpful": 53,
-        "createdOn": 1588092878582
+        "helpful": 53
       }
     ],
     "helpful": 75,
     "reportedAbuses": 16
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005a",
+    "sku": "5ea9d936fc13ae2ee400005a",
     "customerId": "5eaa32339e58d82df43199ba",
     "by": "bfairnie14",
     "title": "turpis nec euismod",
@@ -771,15 +731,14 @@
         "by": "jfay1d",
         "replay": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
         "reportedAbuses": 3,
-        "helpful": 78,
-        "createdOn": 1588075846709
+        "helpful": 78
       }
     ],
     "helpful": 61,
     "reportedAbuses": 39
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005b",
+    "sku": "5ea9d936fc13ae2ee400005b",
     "customerId": "5eaa32339e58d82df43199bb",
     "by": "kgunthorpe15",
     "title": "amet diam in",
@@ -790,15 +749,14 @@
         "by": "jfay1d",
         "replay": "Quisque ut erat.",
         "reportedAbuses": 7,
-        "helpful": 90,
-        "createdOn": 1588067230200
+        "helpful": 90
       }
     ],
     "helpful": 96,
     "reportedAbuses": 7
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005c",
+    "sku": "5ea9d936fc13ae2ee400005c",
     "customerId": "5eaa32339e58d82df43199bc",
     "by": "ptooke16",
     "title": "nibh in quis justo",
@@ -809,15 +767,14 @@
         "by": "jfay1d",
         "replay": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
         "reportedAbuses": 7,
-        "helpful": 45,
-        "createdOn": 1588132792618
+        "helpful": 45
       }
     ],
     "helpful": 63,
     "reportedAbuses": 36
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005d",
+    "sku": "5ea9d936fc13ae2ee400005d",
     "customerId": "5eaa32339e58d82df43199bd",
     "by": "mcholdcroft17",
     "title": "lectus pellentesque at",
@@ -828,15 +785,14 @@
         "by": "jfay1d",
         "replay": "Aenean auctor gravida sem.",
         "reportedAbuses": 6,
-        "helpful": 62,
-        "createdOn": 1588051208599
+        "helpful": 62
       }
     ],
     "helpful": 86,
     "reportedAbuses": 88
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005e",
+    "sku": "5ea9d936fc13ae2ee400005e",
     "customerId": "5eaa32339e58d82df43199be",
     "by": "kviggars18",
     "title": "nulla quisque arcu",
@@ -847,15 +803,14 @@
         "by": "jfay1d",
         "replay": "Nulla tellus.",
         "reportedAbuses": 10,
-        "helpful": 88,
-        "createdOn": 1588158615182
+        "helpful": 88
       }
     ],
     "helpful": 14,
     "reportedAbuses": 86
   },
   {
-    "productId": "5ea9d936fc13ae2ee400005f",
+    "sku": "5ea9d936fc13ae2ee400005f",
     "customerId": "5eaa32339e58d82df43199bf",
     "by": "mnewing19",
     "title": "ultricies eu nibh quisque",
@@ -866,15 +821,14 @@
         "by": "jfay1d",
         "replay": "Maecenas pulvinar lobortis est.",
         "reportedAbuses": 6,
-        "helpful": 54,
-        "createdOn": 1588222204540
+        "helpful": 54
       }
     ],
     "helpful": 74,
     "reportedAbuses": 27
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000060",
+    "sku": "5ea9d936fc13ae2ee4000060",
     "customerId": "5eaa32339e58d82df43199c0",
     "by": "dverissimo1a",
     "title": "in eleifend",
@@ -885,15 +839,14 @@
         "by": "jfay1d",
         "replay": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
         "reportedAbuses": 10,
-        "helpful": 86,
-        "createdOn": 1588277079430
+        "helpful": 86
       }
     ],
     "helpful": 28,
     "reportedAbuses": 25
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000061",
+    "sku": "5ea9d936fc13ae2ee4000061",
     "customerId": "5eaa32339e58d82df43199c1",
     "by": "lmorffew1b",
     "title": "sed augue aliquam erat",
@@ -904,15 +857,14 @@
         "by": "jfay1d",
         "replay": "Etiam justo.",
         "reportedAbuses": 5,
-        "helpful": 66,
-        "createdOn": 1588269731605
+        "helpful": 66
       }
     ],
     "helpful": 10,
     "reportedAbuses": 18
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000062",
+    "sku": "5ea9d936fc13ae2ee4000062",
     "customerId": "5eaa32339e58d82df43199c2",
     "by": "etregona1c",
     "title": "pulvinar sed nisl nunc",
@@ -923,15 +875,14 @@
         "by": "jfay1d",
         "replay": "Donec semper sapien a libero.",
         "reportedAbuses": 1,
-        "helpful": 17,
-        "createdOn": 1588165384246
+        "helpful": 17
       }
     ],
     "helpful": 95,
     "reportedAbuses": 59
   },
   {
-    "productId": "5ea9d936fc13ae2ee4000063",
+    "sku": "5ea9d936fc13ae2ee4000063",
     "customerId": "5eaa32339e58d82df43199c3",
     "by": "jfay1d",
     "title": "suspendisse potenti",
@@ -942,8 +893,7 @@
         "by": "jfay1d",
         "replay": "Donec ut mauris eget massa tempor convallis.",
         "reportedAbuses": 4,
-        "helpful": 60,
-        "createdOn": 1588232368173
+        "helpful": 60
       }
     ],
     "helpful": 57,

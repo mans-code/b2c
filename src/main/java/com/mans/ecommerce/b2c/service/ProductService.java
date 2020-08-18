@@ -1,8 +1,6 @@
 package com.mans.ecommerce.b2c.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
@@ -10,7 +8,7 @@ import com.mans.ecommerce.b2c.domain.entity.product.QAndA;
 import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Availability;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.BasicInfo;
-import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
+import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Variation;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
@@ -18,7 +16,6 @@ import com.mans.ecommerce.b2c.repository.product.QAndARepository;
 import com.mans.ecommerce.b2c.repository.product.ReviewRepository;
 import com.mans.ecommerce.b2c.utill.response.Page;
 import lombok.Getter;
-import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -62,7 +59,7 @@ public class ProductService
     public Mono<Product> getProductDetails(String sku, ServerHttpRequest req)
     {
         Mono<Product> productMono = productRepository.getBySku(sku);
-        productMono.doOnSuccess(product -> throwIfNull(product));
+        productMono.doOnSuccess(product -> throwIfNull(product, sku));
         productMono.doOnSuccess(product -> feedService.addToClicked(sku, req));
         return productMono.flatMap(product -> hideQuantity(product));
     }
@@ -70,9 +67,10 @@ public class ProductService
     public Mono<ProductInfo> getProductInfo(ProductDto dto)
     {
         String sku = dto.getSku();
-        Mono<Product> productMono = productRepository.getProductToAddToCart(sku);
-        productMono.doOnSuccess(product -> throwIfNull(product));
-        return productMono.flatMap(product -> mapProductToProductInfo(product, dto));
+        String variationId = getVariationId(dto);
+        Mono<Variation> variationMono = productRepository.getVariation(sku, variationId);
+        variationMono.doOnSuccess(variation -> throwIfNull(variation, sku));
+        return variationMono.flatMap(variation -> mapProductToProductInfo(variation, dto));
     }
 
     public Mono<Page> getQ8A(String sku, int page, String sortBy)
@@ -113,12 +111,13 @@ public class ProductService
     private Mono<Product> hideQuantity(Product product)
     {
         product
-                .getAvailability()
+                .getVariationsDetails()
                 .values()
                 .forEach(variation -> {
-                    if (variation.getQuantity() > 0)
+                    Availability availability = variation.getAvailability();
+                    if (availability.getQuantity() > 0)
                     {
-                        variation.setQuantity(1);
+                        availability.setQuantity(1);
                     }
                 });
 
@@ -131,39 +130,39 @@ public class ProductService
         return PageRequest.of(page, PAGE_SIZE, sort);
     }
 
-    private Mono<ProductInfo> mapProductToProductInfo(Product product, ProductDto dto)
+    private Mono<ProductInfo> mapProductToProductInfo(Variation variation, ProductDto dto)
     {
-        BasicInfo productBasicInfo = product.getBasicInfo();
-        int quantity = getQuantity(product, dto);
-        String variationId = getVariationId(product, dto);
+        BasicInfo basicInfo = variation.getBasicInfo();
+        int quantity = getQuantity(variation, dto);
+        String variationId = getVariationId(dto);
 
         ProductInfo productInfo = ProductInfo
                                           .builder()
                                           .sku(dto.getSku())
                                           .variationId(variationId)
-                                          .title(productBasicInfo.getTitle())
-                                          .imageUrl(productBasicInfo.getMainImageUrl())
-                                          .price(productBasicInfo.getPriceGlimpse())
+                                          .title(basicInfo.getTitle())
+                                          .imageUrl(basicInfo.getImageUrl())
+                                          .money(basicInfo.getMoney())
                                           .quantity(quantity)
                                           .build();
 
         return Mono.just(productInfo);
     }
 
-    private void throwIfNull(Product product)
+    private void throwIfNull(Object object, String sku)
     {
-        if (product == null)
+        if (object == null)
         {
-            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, product.getSku()));
+            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, sku));
         }
     }
 
-    private int getQuantity(Product product, ProductDto dto)
+    private int getQuantity(Variation variation, ProductDto dto)
     {
-        Map<String, Availability> availability = product.getAvailability();
-        String variationId = getVariationId(product, dto);
+
         int requestedQuantity = dto.getQuantity();
-        int availableQuantity = availability.get(variationId).getQuantity();
+        int availableQuantity = variation.getAvailability()
+                                         .getQuantity();
 
         if (requestedQuantity > availableQuantity)
         {
@@ -172,11 +171,8 @@ public class ProductService
         return requestedQuantity;
     }
 
-    private String getVariationId(Product product, ProductDto dto)
+    private String getVariationId(ProductDto dto)
     {
-        String dtoVariationId = dto.getVariationId();
-        return Objects.isNull(dtoVariationId) ?
-                       product.getDefaultVariationId() : dtoVariationId;
+        return dto.getVariationId() == null ? dto.getSku() : dto.getVariationId();
     }
-
 }

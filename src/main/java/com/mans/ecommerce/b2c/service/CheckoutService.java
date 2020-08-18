@@ -48,8 +48,8 @@ public class CheckoutService
 
     public Mono<Integer> lock(Cart cart, ProductInfo cartProduct)
     {
-        return cartService.avoidUnlock(cart).flatMap(x -> {
-            ObjectId cartId = cart.getIdObj();
+        return cartService.avoidUnlock(cart).flatMap($ -> {
+            ObjectId cartId = cart.getId();
             boolean inCart = cartLogic.isInCart(cart, cartProduct);
             if (inCart)
             {
@@ -65,7 +65,7 @@ public class CheckoutService
         cartService.avoidUnlock(cart)
                    .doOnSuccess($ -> {
                        productInfos.forEach(productInfo -> {
-                           productRepository.unlock(productInfo, cart.getIdObj());
+                           productRepository.unlock(productInfo, cart.getId());
                        });
                    });
     }
@@ -73,8 +73,8 @@ public class CheckoutService
     public void unlock(Cart cart, ProductInfo cartProduct)
     {
         cartService.avoidUnlock(cart)
-                   .doOnSuccess(active -> {
-                       productRepository.unlock(cartProduct, cart.getIdObj());
+                   .doOnSuccess($ -> {
+                       productRepository.unlock(cartProduct, cart.getId());
                    });
 
     }
@@ -83,7 +83,7 @@ public class CheckoutService
     {
         cartService.avoidUnlock(cart)
                    .doOnSuccess(active -> {
-                       productRepository.partialUnlock(cartProduct, cart.getIdObj(), toUnlock);
+                       productRepository.partialUnlock(cartProduct, cart.getId(), toUnlock);
                    });
     }
 

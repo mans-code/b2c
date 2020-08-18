@@ -193,7 +193,7 @@ public class CartLogic
 
     private Money getMoney(ProductInfo productInfo, int quantity)
     {
-        Money productMoney = productInfo.getPrice().getMoney();
+        Money productMoney = productInfo.getMoney();
         BigDecimal productAmount = productMoney.getAmount();
         BigDecimal quantityBD = BigDecimal.valueOf(quantity);
         BigDecimal totalCost = productAmount.multiply(quantityBD);
