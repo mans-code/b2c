@@ -2,10 +2,8 @@ package com.mans.ecommerce.b2c.service;
 
 import java.util.List;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
-import com.mans.ecommerce.b2c.domain.entity.product.QAndA;
-import com.mans.ecommerce.b2c.domain.entity.product.Review;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Availability;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.BasicInfo;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Variation;
@@ -21,7 +19,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -31,7 +28,7 @@ public class ProductService
     private final int PAGE_SIZE = 7;
 
     @Getter
-    private final String NOT_FOUNT_TEMPLATE = "Couldn't find product with sku = %s";
+    private final String NOT_FOUNT_TEMPLATE = "couldn't find product with sku = %s \n variationId=%s";
 
     @Getter
     private final String REVIEW_LINK_TEMPLATE = "/products/%s?page=%d&sortby=%s";
@@ -58,37 +55,38 @@ public class ProductService
 
     public Mono<Product> getProductDetails(String sku, ServerHttpRequest req)
     {
-        Mono<Product> productMono = productRepository.getBySku(sku);
-        productMono.doOnSuccess(product -> throwIfNull(product, sku));
-        productMono.doOnSuccess(product -> feedService.addToClicked(sku, req));
-        return productMono.flatMap(product -> hideQuantity(product));
+        return productRepository.getBySku(sku)
+                                .switchIfEmpty(Mono.defer(this::raiseResourceNotFound))
+                                .doOnSuccess(product -> feedService.addToClicked(sku, req))
+                                .flatMap(product -> hideQuantity(product));
     }
 
     public Mono<ProductInfo> getProductInfo(ProductDto dto)
     {
         String sku = dto.getSku();
         String variationId = getVariationId(dto);
-        Mono<Variation> variationMono = productRepository.getVariation(sku, variationId);
-        variationMono.doOnSuccess(variation -> throwIfNull(variation, sku));
-        return variationMono.flatMap(variation -> mapProductToProductInfo(variation, dto));
+
+        return productRepository.getVariation(sku, variationId)
+                                .switchIfEmpty(Mono.defer(this::raiseResourceNotFound))
+                                .flatMap(variation -> mapProductToProductInfo(variation, dto));
     }
 
     public Mono<Page> getQ8A(String sku, int page, String sortBy)
     {
         Pageable pageable = getPageable(page, sortBy);
-        Flux<QAndA> qAndAFlux = qAndARepository.findBySku(sku, pageable);
-        Mono<List<QAndA>> qAndAMono = qAndAFlux.collectList();
-        Mono<Page> qAndAPageMono = qAndAMono.flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
-        return qAndAPageMono;
+
+        return qAndARepository.findBySku(sku, pageable)
+                              .collectList()
+                              .flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
     }
 
     public Mono<Page> getReview(String sku, int page, String sortBy)
     {
         Pageable pageable = getPageable(page, sortBy);
-        Flux<Review> reviewFlux = reviewRepository.findBySku(sku, pageable);
-        Mono<List<Review>> reviewsMono = reviewFlux.collectList();
-        Mono<Page> reviewsPageMono = reviewsMono.flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
-        return reviewsPageMono;
+
+        return reviewRepository.findBySku(sku, pageable)
+                               .collectList()
+                               .flatMap(q8AS -> getPage(q8AS, sku, page, sortBy));
     }
 
     private <T> Mono<Page> getPage(List<T> q8AS, String sku, int pageNum, String sortBy)
@@ -149,14 +147,6 @@ public class ProductService
         return Mono.just(productInfo);
     }
 
-    private void throwIfNull(Object object, String sku)
-    {
-        if (object == null)
-        {
-            throw new ResourceNotFoundException(String.format(NOT_FOUNT_TEMPLATE, sku));
-        }
-    }
-
     private int getQuantity(Variation variation, ProductDto dto)
     {
 
@@ -169,6 +159,11 @@ public class ProductService
             return availableQuantity;
         }
         return requestedQuantity;
+    }
+
+    private <T> Mono<T> raiseResourceNotFound()
+    {
+        return Mono.error(new ResourceNotFoundException("could not find the product"));
     }
 
     private String getVariationId(ProductDto dto)

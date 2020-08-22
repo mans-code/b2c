@@ -1,12 +1,9 @@
 package com.mans.ecommerce.b2c.repository.customer.custom;
 
-import java.lang.ref.PhantomReference;
 import java.time.Instant;
-import java.util.Objects;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.exception.SystemConstraintViolation;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -50,9 +47,8 @@ public class CartRepositoryImpl implements CartRepositoryCustom
                                                .upsert(false)
                                                .remove(false);
 
-        Mono<Cart> cartMono = mongoTemplate.findAndModify(query, update, options, Cart.class);
-
-        return getActivationStatus(cartMono, id);
+        return mongoTemplate.findAndModify(query, update, options, Cart.class)
+                            .flatMap(cart -> Mono.just(cart.isActive()));
     }
 
     @Override public Mono<Cart> findAndLock(ObjectId id, Instant time)
@@ -74,19 +70,4 @@ public class CartRepositoryImpl implements CartRepositoryCustom
         return mongoTemplate.findAndModify(query, update, options, Cart.class);
     }
 
-    private Mono<Boolean> getActivationStatus(Mono<Cart> cartMono, ObjectId id)
-    {
-        throwIfNull(cartMono);
-        return cartMono.flatMap(cart -> Mono.just(cart.isActive()));
-    }
-
-    private void throwIfNull(Mono<Cart> cartMono)
-    {
-        cartMono.doOnSuccess(cart -> {
-            if (Objects.isNull(cart))
-            {
-                throw new SystemConstraintViolation(String.format(ERROR, cart.getId()));
-            }
-        });
-    }
 }

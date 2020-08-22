@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills.validator;
+package com.mans.ecommerce.b2c.controller.utill.validator;
 
 import java.util.ArrayList;
 import java.util.List;

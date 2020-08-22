@@ -25,7 +25,6 @@ public class Customer
     @Id
     private ObjectId id;
 
-    @Indexed(unique = true)
     private String username;
 
     @CreatedDate
@@ -48,11 +47,6 @@ public class Customer
     private boolean enabled;
 
     private List<Address> shippingAddresses;
-
-    public ObjectId getObjId()
-    {
-        return id;
-    }
 
     public String getId()
     {

@@ -1,7 +1,6 @@
 package com.mans.ecommerce.b2c.utill;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,21 +30,21 @@ public class Global
         return sub.replace(template);
     }
 
-    public static Optional<String> getId(ServerHttpRequest request)
+    public static Optional<String> getIdHeader(ServerHttpRequest request)
     {
         HttpCookie id = request.getCookies()
                                .getFirst(CUSTOMER_ID);
-        return getId(id);
+        return getIdHeader(id);
     }
 
-    public static Optional<String> getId(ServerRequest request)
+    public static Optional<String> getIdHeader(ServerRequest request)
     {
         HttpCookie id = request.cookies()
                                .getFirst(CUSTOMER_ID);
-        return getId(id);
+        return getIdHeader(id);
     }
 
-    private static Optional<String> getId(HttpCookie id)
+    private static Optional<String> getIdHeader(HttpCookie id)
     {
         if (id == null)
         {
@@ -55,7 +54,7 @@ public class Global
         return Optional.of(id.getValue());
     }
 
-    public static void setId(ServerHttpResponse res, String id)
+    public static void setIdHeader(ServerHttpResponse res, String id)
     {
         ResponseCookie cookie = ResponseCookie.from(CUSTOMER_ID, id).build();
         res.addCookie(cookie);

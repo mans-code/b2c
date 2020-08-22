@@ -1,14 +1,11 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.*;
-import java.util.Objects;
 import java.util.Set;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
-import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.LoginDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
-import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.security.jwt.JWTReactiveAuthenticationManager;
 import com.mans.ecommerce.b2c.security.jwt.JWTToken;
 import com.mans.ecommerce.b2c.security.jwt.TokenProvider;
@@ -37,10 +34,11 @@ public class AuthController
 
     private CustomerService customerService;
 
-    public AuthController(CustomerService customerService,
-                          TokenProvider tokenProvider,
-                          JWTReactiveAuthenticationManager authenticationManager,
-                          Validator validation)
+    public AuthController(
+            CustomerService customerService,
+            TokenProvider tokenProvider,
+            JWTReactiveAuthenticationManager authenticationManager,
+            Validator validation)
     {
         this.customerService = customerService;
         this.tokenProvider = tokenProvider;
@@ -53,16 +51,13 @@ public class AuthController
     {
         if (!isValid(loginDto))
         {
-            return Mono.error(new LoginException());
+            return Mono.error(new BadCredentialsException("Bad credentials"));
         }
 
         Authentication authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
         Mono<Authentication> authentication = this.authenticationManager.authenticate(authenticationToken);
-        authentication.doOnError(throwable -> {
-            throw new BadCredentialsException("Bad crendentials");
-        });
 
         ReactiveSecurityContextHolder.withAuthentication(authenticationToken);
 
@@ -80,16 +75,8 @@ public class AuthController
             ServerHttpResponse res)
     {
 
-        Mono<Customer> customerMono = customerService.signup(signupDto, req);
-        customerMono.doOnSuccess(customer -> {
-            if (!Objects.isNull(customer))
-            {
-                String id = customer.getId();
-                Global.setId(res, id);
-            }
-        });
-
-        return customerMono;
+        return customerService.signup(signupDto, req)
+                              .doOnSuccess(cust -> Global.setIdHeader(res, cust.getId()));
     }
 
     private boolean isValid(LoginDto loginDto)
@@ -97,7 +84,6 @@ public class AuthController
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Object>> violations = validator.validate(loginDto);
-
         return violations.size() == 0;
     }
 

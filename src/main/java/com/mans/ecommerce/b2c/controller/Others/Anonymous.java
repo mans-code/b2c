@@ -25,7 +25,7 @@ public class Anonymous
     @GetMapping("/anonymous")
     public Mono<Cart> getId(ServerHttpRequest req, ServerHttpResponse res)
     {
-        Optional<String> idOpt = Global.getId(req);
+        Optional<String> idOpt = Global.getIdHeader(req);
         Mono<Cart> cartMono = idOpt.isPresent() ?
                                       cartService.findById(idOpt.get())
                                                  .switchIfEmpty(cartService.create(true))

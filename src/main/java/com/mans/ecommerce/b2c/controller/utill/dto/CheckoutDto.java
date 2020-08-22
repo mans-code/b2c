@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills.dto;
+package com.mans.ecommerce.b2c.controller.utill.dto;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import lombok.Getter;

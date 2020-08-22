@@ -1,11 +1,11 @@
-package com.mans.ecommerce.b2c.controller.utills.validator;
+package com.mans.ecommerce.b2c.controller.utill.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.List;
 
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValidPassword;
 import org.passay.*;
 
 public class PasswordConstraintValidator extends Validator implements ConstraintValidator<ValidPassword, String>

@@ -26,7 +26,6 @@ public class OrderService
     public Mono<Order> save(Order order)
     {
         publisher.publishEvent(new OrderEvent(order));
-        orderRepository.save(order);
         return orderRepository.save(order);
     }
 

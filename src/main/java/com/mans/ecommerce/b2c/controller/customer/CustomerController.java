@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotNull;
+import java.awt.*;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/customer/{id}")
+@RequestMapping(value = "/customers/{id}")
 public class CustomerController
 {
 

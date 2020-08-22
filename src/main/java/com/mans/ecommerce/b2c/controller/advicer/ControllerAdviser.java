@@ -8,9 +8,9 @@ import com.mans.ecommerce.b2c.domain.exception.*;
 import com.mans.ecommerce.b2c.server.eventListener.entity.ServerErrorEvent;
 import com.stripe.exception.StripeException;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -33,7 +33,7 @@ public class ControllerAdviser
         return getResponseMessage(HttpStatus.CONFLICT, ex.getMessage());
     }
 
-    @ExceptionHandler({ LoginException.class, UnauthorizedException.class })
+    @ExceptionHandler({ UnauthorizedException.class, BadCredentialsException.class })
     @ResponseBody
     public ResponseEntity<Object> handleUnauthorized(Exception ex)
     {
@@ -75,7 +75,6 @@ public class ControllerAdviser
     @ResponseBody
     public ResponseEntity<Object> outOfStockException(OutOfStockException ex)
     {
-        System.err.println(ex);
         return getResponseMessage(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
@@ -104,7 +103,6 @@ public class ControllerAdviser
     @ResponseBody
     public ResponseEntity<Object> handleSystemConstraint(Exception ex)
     {
-        ex.printStackTrace();
         publisher.publishEvent(new ServerErrorEvent(ex));
         return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }

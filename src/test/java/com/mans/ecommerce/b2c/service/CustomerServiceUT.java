@@ -1,26 +1,11 @@
 package com.mans.ecommerce.b2c.service;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
-import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
-import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
-import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
-import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
-import com.mans.ecommerce.b2c.utill.response.Token;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceUT

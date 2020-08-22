@@ -1,25 +1,11 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
-import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
-import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
-import com.mans.ecommerce.b2c.domain.exception.LoginException;
-import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
-import com.mans.ecommerce.b2c.service.CustomerService;
-import com.mans.ecommerce.b2c.utill.response.NewCustomerResponse;
-import com.mans.ecommerce.b2c.utill.response.Token;
-import org.bson.types.ObjectId;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthControllerUT

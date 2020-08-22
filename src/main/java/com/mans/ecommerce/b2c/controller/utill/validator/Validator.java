@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills.validator;
+package com.mans.ecommerce.b2c.controller.utill.validator;
 
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;

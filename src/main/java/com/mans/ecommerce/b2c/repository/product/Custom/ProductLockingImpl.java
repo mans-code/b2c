@@ -2,7 +2,6 @@ package com.mans.ecommerce.b2c.repository.product.Custom;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.product.Product;
@@ -59,9 +58,8 @@ public class ProductLockingImpl implements ProductLocking
     @Override
     public Mono<Integer> lock(ProductInfo productInfo, ObjectId cartId)
     {
-        Mono<Integer> lockedQuantity = lock(productInfo, cartId, productInfo.getQuantity(), false);
-        addReservation(productInfo, cartId, lockedQuantity);
-        return lockedQuantity;
+        return lock(productInfo, cartId, productInfo.getQuantity(), false)
+                       .doOnSuccess(qty -> addReservation(productInfo, cartId, qty));
     }
 
     @Override public Mono<Integer> partialLock(
@@ -69,9 +67,9 @@ public class ProductLockingImpl implements ProductLocking
             ObjectId cartId,
             int requestedQuantity)
     {
-        Mono<Integer> lockedQuantity = lock(productInfo, cartId, requestedQuantity, true);
-        updateReservation(productInfo, cartId, lockedQuantity);
-        return lockedQuantity;
+        return lock(productInfo, cartId, requestedQuantity, true)
+                       .doOnSuccess(qty -> updateReservation(productInfo, cartId, qty));
+
     }
 
     @Override
@@ -89,39 +87,37 @@ public class ProductLockingImpl implements ProductLocking
         unlock(productInfo, cartId, quantity, true);
     }
 
-    private void addReservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity)
+    private void addReservation(ProductInfo productInfo, ObjectId cartId, Integer lockedQuantity)
     {
         reservation(productInfo, cartId, lockedQuantity, true);
     }
 
-    private void updateReservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity)
+    private void updateReservation(ProductInfo productInfo, ObjectId cartId, Integer lockedQuantity)
     {
         reservation(productInfo, cartId, lockedQuantity, false);
     }
 
-    void reservation(ProductInfo productInfo, ObjectId cartId, Mono<Integer> lockedQuantity, boolean add)
+    void reservation(ProductInfo productInfo, ObjectId cartId, Integer locked, boolean add)
     {
-        lockedQuantity.doOnSuccess(quantity -> {
-            if (Objects.isNull(quantity) || quantity == 0)
-            {
-                return;
-            }
-            Reservation reservation = new Reservation(productInfo, cartId, quantity);
-            Query query = getProductQuery(reservation, true);
-            Update update = new Update();
 
-            if (add)
-            {
-                update.push(RESERVATIONS, reservation);
-            }
-            else
-            {
-                update.set(RESERVATION_QUANTITY_POSITION, lockedQuantity);
-            }
+        if (locked == 0)
+        {
+            return;
+        }
+        Reservation reservation = new Reservation(productInfo, cartId, locked);
+        Query query = getProductQuery(reservation, true);
+        Update update = new Update();
 
-            executeUpdate(query, update);
-        });
+        if (add)
+        {
+            update.push(RESERVATIONS, reservation);
+        }
+        else
+        {
+            update.set(RESERVATION_QUANTITY_POSITION, locked);
+        }
 
+        executeUpdate(query, update);
     }
 
     private Mono<Integer> lock(

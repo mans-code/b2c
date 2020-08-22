@@ -4,7 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.CheckoutDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.CheckoutDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.financial.Order;
 import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.Financial;
@@ -94,7 +94,7 @@ public class CheckoutController
             String currency = cart.getMoney()
                                   .getCurrency()
                                   .getCurrencyCode();
-            return Mono.fromCallable(() -> stripeService.chargeNewCard(token, amount, currency));
+            return Mono.fromCallable(() -> stripeService.charge(token, amount, currency));
         });
 
         Mono<Tuple2<Cart, Charge>> completeMono = Mono.zip(cartMono, chargeMono);

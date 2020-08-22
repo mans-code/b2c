@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills.annotation;
+package com.mans.ecommerce.b2c.controller.utill.annotation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -6,7 +6,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.mans.ecommerce.b2c.controller.utills.validator.ValueOfEnumValidator;
+import com.mans.ecommerce.b2c.controller.utill.validator.ValueOfEnumValidator;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

@@ -1,10 +1,10 @@
-package com.mans.ecommerce.b2c.controller.utills.dto;
+package com.mans.ecommerce.b2c.controller.utill.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValueOfEnum;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValueOfEnum;
 import com.mans.ecommerce.b2c.domain.enums.CartAction;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

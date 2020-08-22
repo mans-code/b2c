@@ -1,7 +1,7 @@
-package com.mans.ecommerce.b2c.controller.utills.dto;
+package com.mans.ecommerce.b2c.controller.utill.dto;
 
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValidUsername;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValidUsername;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

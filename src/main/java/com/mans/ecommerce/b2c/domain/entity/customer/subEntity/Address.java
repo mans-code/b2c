@@ -9,10 +9,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(exclude = {})
+@Builder
 public class Address
 {
 
-    private int id;
+    private String id;
 
     @NotBlank
     private String name;

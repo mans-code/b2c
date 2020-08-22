@@ -8,7 +8,27 @@
     "firstName": "Nessy",
     "lastName": "Kinnen",
     "numOfItemsInCart": 16,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "30fe11e4-f66a-4cd6-af7f-cd9ec52bcf93",
+        "name": "Padget Sandlin",
+        "address": "5391 Magdeline Street",
+        "city": "San Angelo",
+        "state": "TX",
+        "zip": "76905",
+        "def": true
+      },
+      {
+        "id": "38dfc048-9dbb-4892-978e-0666f93797c4",
+        "name": "Mitzi MacKaig",
+        "address": "50 Crowley Trail",
+        "city": "Lansing",
+        "state": "MI",
+        "zip": "48930",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319993",
@@ -19,7 +39,27 @@
     "firstName": "Cecilius",
     "lastName": "Redmain",
     "numOfItemsInCart": 3,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "2414d0f6-bb4e-4870-9d73-f6ca9c2d8a6e",
+        "name": "Reinaldo McVittie",
+        "address": "1 Moose Plaza",
+        "city": "Memphis",
+        "state": "TN",
+        "zip": "38161",
+        "def": false
+      },
+      {
+        "id": "30fe11e4-f66a-4cd6-af7f-cd9ec52bcf93",
+        "name": "Padget Sandlin",
+        "address": "5391 Magdeline Street",
+        "city": "San Angelo",
+        "state": "TX",
+        "zip": "76905",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319994",
@@ -30,7 +70,27 @@
     "firstName": "Masha",
     "lastName": "Howsley",
     "numOfItemsInCart": 18,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "b092ae56-d3e6-46e8-a372-2a4fce978f3e",
+        "name": "Lucian Bilbey",
+        "address": "92560 Barnett Pass",
+        "city": "Corona",
+        "state": "CA",
+        "zip": "92878",
+        "def": false
+      },
+      {
+        "id": "a8f33e25-654d-44ab-af35-8b87de2b4f8c",
+        "name": "Dane Teece",
+        "address": "0 New Castle Alley",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85067",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319995",
@@ -41,7 +101,27 @@
     "firstName": "Harmon",
     "lastName": "Cordeau",
     "numOfItemsInCart": 0,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "2adaf075-b6ce-4c06-8874-4c930344f40e",
+        "name": "Colin Bulward",
+        "address": "96768 Forest Run Street",
+        "city": "Topeka",
+        "state": "KS",
+        "zip": "66642",
+        "def": false
+      },
+      {
+        "id": "8bbf1537-c63e-47b3-b937-d60ee3e35683",
+        "name": "Sena Cowins",
+        "address": "14785 Portage Court",
+        "city": "Salt Lake City",
+        "state": "UT",
+        "zip": "84135",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319996",
@@ -52,7 +132,27 @@
     "firstName": "Jillana",
     "lastName": "Gettins",
     "numOfItemsInCart": 12,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "8ca94f26-cbf3-4c62-951b-9ce0dc0cf244",
+        "name": "Ryan Cussons",
+        "address": "79632 Meadow Valley Point",
+        "city": "Boise",
+        "state": "ID",
+        "zip": "83757",
+        "def": false
+      },
+      {
+        "id": "04e5d395-0da4-4271-91e5-33081db68ab5",
+        "name": "Riva Dillon",
+        "address": "361 Bartillon Drive",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90005",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319997",
@@ -63,7 +163,27 @@
     "firstName": "Ophelie",
     "lastName": "Daveridge",
     "numOfItemsInCart": 3,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "e2af79b4-3e98-4155-8bb7-f906e2815d93",
+        "name": "Janot Humble",
+        "address": "30 Esch Terrace",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76105",
+        "def": false
+      },
+      {
+        "id": "b7626e8f-4a55-4754-95bf-22c3fdb5727e",
+        "name": "Mufi Amesbury",
+        "address": "7707 Park Meadow Hill",
+        "city": "Cincinnati",
+        "state": "OH",
+        "zip": "45213",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319998",
@@ -74,7 +194,27 @@
     "firstName": "Pierce",
     "lastName": "Fansy",
     "numOfItemsInCart": 13,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "6ec79801-fd4e-440c-bef1-6884db333b3c",
+        "name": "Bennett Hawtry",
+        "address": "0034 Fairview Lane",
+        "city": "Saint Petersburg",
+        "state": "FL",
+        "zip": "33710",
+        "def": false
+      },
+      {
+        "id": "2ca6e996-c829-4931-9c1d-58bc86dd9be4",
+        "name": "Tobit Witheford",
+        "address": "40 Merrick Trail",
+        "city": "Springfield",
+        "state": "VA",
+        "zip": "22156",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df4319999",
@@ -85,7 +225,27 @@
     "firstName": "Farrah",
     "lastName": "Jeness",
     "numOfItemsInCart": 3,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "03bb6533-5ce2-43e9-9dea-37a7bbc22914",
+        "name": "Marissa Colmore",
+        "address": "1368 Annamark Street",
+        "city": "San Diego",
+        "state": "CA",
+        "zip": "92160",
+        "def": false
+      },
+      {
+        "id": "a45abbfe-de14-4a37-9ce7-8fd0fe359e08",
+        "name": "Jorey Reeman",
+        "address": "5 Portage Street",
+        "city": "El Paso",
+        "state": "TX",
+        "zip": "88574",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999a",
@@ -96,7 +256,27 @@
     "firstName": "Rozamond",
     "lastName": "Cansdale",
     "numOfItemsInCart": 8,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "a8594651-7057-4f13-9464-1a5defc96889",
+        "name": "Aubrey Caps",
+        "address": "531 Westridge Lane",
+        "city": "Lincoln",
+        "state": "NE",
+        "zip": "68531",
+        "def": false
+      },
+      {
+        "id": "84aa0f68-113d-46cd-a62c-376731d66601",
+        "name": "Jada McKeney",
+        "address": "1 School Place",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60657",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999b",
@@ -107,7 +287,27 @@
     "firstName": "Rafael",
     "lastName": "Lamps",
     "numOfItemsInCart": 19,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "d47c87e4-25ca-42d1-b715-bcd1cd47d315",
+        "name": "Beverly Burkart",
+        "address": "438 Mallory Terrace",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20508",
+        "def": false
+      },
+      {
+        "id": "de3b0417-0447-4331-84a1-cb1966a32098",
+        "name": "Jessalyn Itzkovici",
+        "address": "7692 Comanche Terrace",
+        "city": "Springfield",
+        "state": "MA",
+        "zip": "01129",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999c",
@@ -118,7 +318,27 @@
     "firstName": "Gillan",
     "lastName": "Astlett",
     "numOfItemsInCart": 20,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "9c9ddce4-a7cb-4927-a38b-779bac151ae3",
+        "name": "Billye Vallentin",
+        "address": "87145 Katie Parkway",
+        "city": "Albuquerque",
+        "state": "NM",
+        "zip": "87115",
+        "def": false
+      },
+      {
+        "id": "b2f502f4-34ad-4b6a-8ec1-ee07f3488c10",
+        "name": "Marylou Adan",
+        "address": "85 Thackeray Way",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76147",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999d",
@@ -129,7 +349,27 @@
     "firstName": "Virgil",
     "lastName": "Lindenboim",
     "numOfItemsInCart": 0,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "a679d889-e7bf-406e-b59a-79dd77def89e",
+        "name": "Jesus Lazell",
+        "address": "4804 Swallow Way",
+        "city": "Louisville",
+        "state": "KY",
+        "zip": "40210",
+        "def": false
+      },
+      {
+        "id": "cfe2e49e-679d-49eb-944c-d45dee889348",
+        "name": "Blithe Fernandes",
+        "address": "786 Northport Court",
+        "city": "Maple Plain",
+        "state": "MN",
+        "zip": "55579",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999e",
@@ -140,7 +380,27 @@
     "firstName": "Ophelie",
     "lastName": "McGeoch",
     "numOfItemsInCart": 1,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "65675f16-cd8a-482e-9d3d-97fa984aab9f",
+        "name": "Regan Tosspell",
+        "address": "95890 Cardinal Drive",
+        "city": "West Palm Beach",
+        "state": "FL",
+        "zip": "33421",
+        "def": false
+      },
+      {
+        "id": "70409412-afa8-4edd-916c-baf99ceeb1a3",
+        "name": "Rani Lerohan",
+        "address": "599 Bayside Junction",
+        "city": "Minneapolis",
+        "state": "MN",
+        "zip": "55436",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df431999f",
@@ -151,7 +411,27 @@
     "firstName": "Normie",
     "lastName": "Cassar",
     "numOfItemsInCart": 13,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "ea823677-fc32-441b-bc45-261bed4e2c49",
+        "name": "Jessey O'Collopy",
+        "address": "645 Armistice Terrace",
+        "city": "New York City",
+        "state": "NY",
+        "zip": "10280",
+        "def": false
+      },
+      {
+        "id": "e7348e40-0e75-4b61-9129-187b9129e39a",
+        "name": "Dora Hugueville",
+        "address": "655 Summerview Street",
+        "city": "Sarasota",
+        "state": "FL",
+        "zip": "34276",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a0",
@@ -162,7 +442,27 @@
     "firstName": "Lydon",
     "lastName": "Alsopp",
     "numOfItemsInCart": 16,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "684860e7-32e0-4b0c-94ec-420b3fa8a741",
+        "name": "Kippy Joontjes",
+        "address": "45529 Russell Point",
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75241",
+        "def": false
+      },
+      {
+        "id": "937b90a1-b754-4f94-9dec-1427ba42d9d7",
+        "name": "Brandy Braunton",
+        "address": "47539 International Alley",
+        "city": "Santa Ana",
+        "state": "CA",
+        "zip": "92705",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a1",
@@ -173,7 +473,27 @@
     "firstName": "Marcile",
     "lastName": "Truran",
     "numOfItemsInCart": 17,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "da1c0a4c-e813-4354-9a3b-8b150bda51db",
+        "name": "Lissy Bradnick",
+        "address": "500 Thierer Street",
+        "city": "Kansas City",
+        "state": "MO",
+        "zip": "64144",
+        "def": false
+      },
+      {
+        "id": "525b3967-80f1-4554-9f8e-52e7a326d22f",
+        "name": "Nerissa Crook",
+        "address": "848 Oak Valley Park",
+        "city": "Tampa",
+        "state": "FL",
+        "zip": "33605",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a2",
@@ -184,7 +504,27 @@
     "firstName": "Evaleen",
     "lastName": "Tosspell",
     "numOfItemsInCart": 8,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "30e86c78-7da0-4e07-a361-e726f18ec373",
+        "name": "Thorpe Elvish",
+        "address": "38902 New Castle Terrace",
+        "city": "Lansing",
+        "state": "MI",
+        "zip": "48930",
+        "def": false
+      },
+      {
+        "id": "4f75edec-c6ed-48a7-8b25-27d3ec9f0dde",
+        "name": "Lincoln Treneer",
+        "address": "56120 Lien Center",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20436",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a3",
@@ -195,7 +535,27 @@
     "firstName": "Sax",
     "lastName": "Hatherley",
     "numOfItemsInCart": 16,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "68f7efa5-d8e0-4e13-a1fd-848604e58d54",
+        "name": "Kristopher Sheppey",
+        "address": "3 Sloan Pass",
+        "city": "Burbank",
+        "state": "CA",
+        "zip": "91505",
+        "def": false
+      },
+      {
+        "id": "852668fc-cfdb-4820-ba4f-98e30af45aaf",
+        "name": "Sandy Legrand",
+        "address": "8796 Dixon Pass",
+        "city": "San Antonio",
+        "state": "TX",
+        "zip": "78220",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a4",
@@ -206,7 +566,27 @@
     "firstName": "Torrance",
     "lastName": "Baldassi",
     "numOfItemsInCart": 15,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "84be3cd4-5d7f-4c45-abb8-220f7853ed1a",
+        "name": "Philippe Law",
+        "address": "2 Jana Pass",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77240",
+        "def": false
+      },
+      {
+        "id": "568ae912-0c76-4404-82fd-94fb4ac8a5ba",
+        "name": "Konstanze Finlaison",
+        "address": "0 Butterfield Place",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32236",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a5",
@@ -217,7 +597,27 @@
     "firstName": "Deny",
     "lastName": "Steuart",
     "numOfItemsInCart": 15,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "e18f5c22-1b17-4527-b810-a6f966f81d74",
+        "name": "Taryn Degoey",
+        "address": "7653 Heath Avenue",
+        "city": "Indianapolis",
+        "state": "IN",
+        "zip": "46202",
+        "def": false
+      },
+      {
+        "id": "74d853d5-dadf-4a09-b815-c55714269e1a",
+        "name": "Felicle Harland",
+        "address": "7969 Sunfield Park",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32215",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a6",
@@ -228,7 +628,27 @@
     "firstName": "Chiquia",
     "lastName": "Ship",
     "numOfItemsInCart": 15,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "c8b2f0cc-c114-43cc-a9b0-830165de09d8",
+        "name": "Bartie Durand",
+        "address": "11587 Eastlawn Hill",
+        "city": "Erie",
+        "state": "PA",
+        "zip": "16565",
+        "def": false
+      },
+      {
+        "id": "06971ee5-646f-4e8f-91bd-18d7f49e7bf9",
+        "name": "Chantal Gouldsmith",
+        "address": "033 Mosinee Point",
+        "city": "Columbia",
+        "state": "SC",
+        "zip": "29225",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a7",
@@ -239,7 +659,27 @@
     "firstName": "Greta",
     "lastName": "Di Maggio",
     "numOfItemsInCart": 2,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "d0c34fee-4f6f-4e1a-a77f-fb8af08d353b",
+        "name": "Ahmed Ruberti",
+        "address": "1 Artisan Alley",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19172",
+        "def": false
+      },
+      {
+        "id": "26ef9877-6a07-4ef8-a79e-0039354cd268",
+        "name": "Wilfrid Fawdrey",
+        "address": "17833 Oakridge Center",
+        "city": "Fort Pierce",
+        "state": "FL",
+        "zip": "34981",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a8",
@@ -250,7 +690,27 @@
     "firstName": "Chanda",
     "lastName": "Acum",
     "numOfItemsInCart": 3,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "8c01d684-809a-4fe6-8be6-5578051544ba",
+        "name": "Mark Thurner",
+        "address": "58265 Laurel Lane",
+        "city": "New York City",
+        "state": "NY",
+        "zip": "10110",
+        "def": false
+      },
+      {
+        "id": "bf2aa076-a798-4295-8ce3-4ce27227c7f6",
+        "name": "Nikki Aristide",
+        "address": "3029 Hayes Crossing",
+        "city": "Providence",
+        "state": "RI",
+        "zip": "02912",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199a9",
@@ -261,7 +721,27 @@
     "firstName": "Raynell",
     "lastName": "Cubbinelli",
     "numOfItemsInCart": 6,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "7caac416-3e81-4e97-9042-f4654890cc8c",
+        "name": "Doretta Scrowson",
+        "address": "61939 Carpenter Parkway",
+        "city": "Colorado Springs",
+        "state": "CO",
+        "zip": "80945",
+        "def": false
+      },
+      {
+        "id": "6386b8da-2534-46f8-8179-2db42bf85dd9",
+        "name": "Kurt Bocking",
+        "address": "567 Hoepker Hill",
+        "city": "Lexington",
+        "state": "KY",
+        "zip": "40591",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199aa",
@@ -272,7 +752,27 @@
     "firstName": "Leena",
     "lastName": "Van Niekerk",
     "numOfItemsInCart": 9,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "11c3b1e8-6352-4984-b8e0-752710f520d9",
+        "name": "Marquita Eales",
+        "address": "37 Jana Avenue",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77040",
+        "def": false
+      },
+      {
+        "id": "79961782-7940-44b8-b5d5-a871199f9f71",
+        "name": "Inglis Pree",
+        "address": "11940 Lunder Hill",
+        "city": "Birmingham",
+        "state": "AL",
+        "zip": "35279",
+        "def": true
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199ab",
@@ -283,7 +783,27 @@
     "firstName": "Jacinda",
     "lastName": "Elcome",
     "numOfItemsInCart": 3,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "200a7778-66a7-48cc-8156-9a7a236e2df0",
+        "name": "Stephan Mapledorum",
+        "address": "8 Loeprich Road",
+        "city": "Charlotte",
+        "state": "NC",
+        "zip": "28289",
+        "def": false
+      },
+      {
+        "id": "200a7778-66a7-48cc-8156-9a7a236e2df0",
+        "name": "Stephan Mapledorum",
+        "address": "8 Loeprich Road",
+        "city": "Charlotte",
+        "state": "NC",
+        "zip": "28289",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199ac",
@@ -294,7 +814,27 @@
     "firstName": "Ema",
     "lastName": "Guest",
     "numOfItemsInCart": 9,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "79961782-7940-44b8-b5d5-a871199f9f71",
+        "name": "Inglis Pree",
+        "address": "11940 Lunder Hill",
+        "city": "Birmingham",
+        "state": "AL",
+        "zip": "35279",
+        "def": true
+      },
+      {
+        "id": "11c3b1e8-6352-4984-b8e0-752710f520d9",
+        "name": "Marquita Eales",
+        "address": "37 Jana Avenue",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77040",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199ad",
@@ -305,7 +845,27 @@
     "firstName": "Pammy",
     "lastName": "Cornau",
     "numOfItemsInCart": 13,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "6386b8da-2534-46f8-8179-2db42bf85dd9",
+        "name": "Kurt Bocking",
+        "address": "567 Hoepker Hill",
+        "city": "Lexington",
+        "state": "KY",
+        "zip": "40591",
+        "def": true
+      },
+      {
+        "id": "7caac416-3e81-4e97-9042-f4654890cc8c",
+        "name": "Doretta Scrowson",
+        "address": "61939 Carpenter Parkway",
+        "city": "Colorado Springs",
+        "state": "CO",
+        "zip": "80945",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199ae",
@@ -316,7 +876,27 @@
     "firstName": "Shelton",
     "lastName": "Gossan",
     "numOfItemsInCart": 7,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "bf2aa076-a798-4295-8ce3-4ce27227c7f6",
+        "name": "Nikki Aristide",
+        "address": "3029 Hayes Crossing",
+        "city": "Providence",
+        "state": "RI",
+        "zip": "02912",
+        "def": true
+      },
+      {
+        "id": "8c01d684-809a-4fe6-8be6-5578051544ba",
+        "name": "Mark Thurner",
+        "address": "58265 Laurel Lane",
+        "city": "New York City",
+        "state": "NY",
+        "zip": "10110",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199af",
@@ -327,7 +907,27 @@
     "firstName": "Monti",
     "lastName": "Anderer",
     "numOfItemsInCart": 4,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "26ef9877-6a07-4ef8-a79e-0039354cd268",
+        "name": "Wilfrid Fawdrey",
+        "address": "17833 Oakridge Center",
+        "city": "Fort Pierce",
+        "state": "FL",
+        "zip": "34981",
+        "def": true
+      },
+      {
+        "id": "d0c34fee-4f6f-4e1a-a77f-fb8af08d353b",
+        "name": "Ahmed Ruberti",
+        "address": "1 Artisan Alley",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19172",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b0",
@@ -338,7 +938,27 @@
     "firstName": "Catherine",
     "lastName": "Shakeshaft",
     "numOfItemsInCart": 13,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "06971ee5-646f-4e8f-91bd-18d7f49e7bf9",
+        "name": "Chantal Gouldsmith",
+        "address": "033 Mosinee Point",
+        "city": "Columbia",
+        "state": "SC",
+        "zip": "29225",
+        "def": true
+      },
+      {
+        "id": "c8b2f0cc-c114-43cc-a9b0-830165de09d8",
+        "name": "Bartie Durand",
+        "address": "11587 Eastlawn Hill",
+        "city": "Erie",
+        "state": "PA",
+        "zip": "16565",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b1",
@@ -349,7 +969,27 @@
     "firstName": "Lucine",
     "lastName": "Lamburn",
     "numOfItemsInCart": 15,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "74d853d5-dadf-4a09-b815-c55714269e1a",
+        "name": "Felicle Harland",
+        "address": "7969 Sunfield Park",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32215",
+        "def": true
+      },
+      {
+        "id": "e18f5c22-1b17-4527-b810-a6f966f81d74",
+        "name": "Taryn Degoey",
+        "address": "7653 Heath Avenue",
+        "city": "Indianapolis",
+        "state": "IN",
+        "zip": "46202",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b2",
@@ -360,7 +1000,27 @@
     "firstName": "Dora",
     "lastName": "Frost",
     "numOfItemsInCart": 10,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "568ae912-0c76-4404-82fd-94fb4ac8a5ba",
+        "name": "Konstanze Finlaison",
+        "address": "0 Butterfield Place",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32236",
+        "def": true
+      },
+      {
+        "id": "84be3cd4-5d7f-4c45-abb8-220f7853ed1a",
+        "name": "Philippe Law",
+        "address": "2 Jana Pass",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77240",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b3",
@@ -371,7 +1031,27 @@
     "firstName": "Bess",
     "lastName": "McGahern",
     "numOfItemsInCart": 20,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "852668fc-cfdb-4820-ba4f-98e30af45aaf",
+        "name": "Sandy Legrand",
+        "address": "8796 Dixon Pass",
+        "city": "San Antonio",
+        "state": "TX",
+        "zip": "78220",
+        "def": true
+      },
+      {
+        "id": "68f7efa5-d8e0-4e13-a1fd-848604e58d54",
+        "name": "Kristopher Sheppey",
+        "address": "3 Sloan Pass",
+        "city": "Burbank",
+        "state": "CA",
+        "zip": "91505",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b4",
@@ -382,7 +1062,27 @@
     "firstName": "Winnie",
     "lastName": "Hek",
     "numOfItemsInCart": 0,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "4f75edec-c6ed-48a7-8b25-27d3ec9f0dde",
+        "name": "Lincoln Treneer",
+        "address": "56120 Lien Center",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20436",
+        "def": true
+      },
+      {
+        "id": "30e86c78-7da0-4e07-a361-e726f18ec373",
+        "name": "Thorpe Elvish",
+        "address": "38902 New Castle Terrace",
+        "city": "Lansing",
+        "state": "MI",
+        "zip": "48930",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b5",
@@ -393,7 +1093,27 @@
     "firstName": "Dolores",
     "lastName": "Laws",
     "numOfItemsInCart": 4,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "525b3967-80f1-4554-9f8e-52e7a326d22f",
+        "name": "Nerissa Crook",
+        "address": "848 Oak Valley Park",
+        "city": "Tampa",
+        "state": "FL",
+        "zip": "33605",
+        "def": true
+      },
+      {
+        "id": "da1c0a4c-e813-4354-9a3b-8b150bda51db",
+        "name": "Lissy Bradnick",
+        "address": "500 Thierer Street",
+        "city": "Kansas City",
+        "state": "MO",
+        "zip": "64144",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b6",
@@ -404,7 +1124,27 @@
     "firstName": "Cathe",
     "lastName": "Outerbridge",
     "numOfItemsInCart": 7,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "937b90a1-b754-4f94-9dec-1427ba42d9d7",
+        "name": "Brandy Braunton",
+        "address": "47539 International Alley",
+        "city": "Santa Ana",
+        "state": "CA",
+        "zip": "92705",
+        "def": true
+      },
+      {
+        "id": "684860e7-32e0-4b0c-94ec-420b3fa8a741",
+        "name": "Kippy Joontjes",
+        "address": "45529 Russell Point",
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75241",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b7",
@@ -415,7 +1155,27 @@
     "firstName": "Evangelina",
     "lastName": "Bottrell",
     "numOfItemsInCart": 8,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "e7348e40-0e75-4b61-9129-187b9129e39a",
+        "name": "Dora Hugueville",
+        "address": "655 Summerview Street",
+        "city": "Sarasota",
+        "state": "FL",
+        "zip": "34276",
+        "def": true
+      },
+      {
+        "id": "ea823677-fc32-441b-bc45-261bed4e2c49",
+        "name": "Jessey O'Collopy",
+        "address": "645 Armistice Terrace",
+        "city": "New York City",
+        "state": "NY",
+        "zip": "10280",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b8",
@@ -426,7 +1186,27 @@
     "firstName": "Susy",
     "lastName": "Perkinson",
     "numOfItemsInCart": 14,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "70409412-afa8-4edd-916c-baf99ceeb1a3",
+        "name": "Rani Lerohan",
+        "address": "599 Bayside Junction",
+        "city": "Minneapolis",
+        "state": "MN",
+        "zip": "55436",
+        "def": true
+      },
+      {
+        "id": "65675f16-cd8a-482e-9d3d-97fa984aab9f",
+        "name": "Regan Tosspell",
+        "address": "95890 Cardinal Drive",
+        "city": "West Palm Beach",
+        "state": "FL",
+        "zip": "33421",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199b9",
@@ -437,7 +1217,27 @@
     "firstName": "Fawn",
     "lastName": "Milby",
     "numOfItemsInCart": 15,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "cfe2e49e-679d-49eb-944c-d45dee889348",
+        "name": "Blithe Fernandes",
+        "address": "786 Northport Court",
+        "city": "Maple Plain",
+        "state": "MN",
+        "zip": "55579",
+        "def": true
+      },
+      {
+        "id": "a679d889-e7bf-406e-b59a-79dd77def89e",
+        "name": "Jesus Lazell",
+        "address": "4804 Swallow Way",
+        "city": "Louisville",
+        "state": "KY",
+        "zip": "40210",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199ba",
@@ -448,7 +1248,27 @@
     "firstName": "Bradly",
     "lastName": "Fairnie",
     "numOfItemsInCart": 17,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "b2f502f4-34ad-4b6a-8ec1-ee07f3488c10",
+        "name": "Marylou Adan",
+        "address": "85 Thackeray Way",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76147",
+        "def": true
+      },
+      {
+        "id": "9c9ddce4-a7cb-4927-a38b-779bac151ae3",
+        "name": "Billye Vallentin",
+        "address": "87145 Katie Parkway",
+        "city": "Albuquerque",
+        "state": "NM",
+        "zip": "87115",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199bb",
@@ -459,7 +1279,27 @@
     "firstName": "Kelila",
     "lastName": "Gunthorpe",
     "numOfItemsInCart": 10,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "de3b0417-0447-4331-84a1-cb1966a32098",
+        "name": "Jessalyn Itzkovici",
+        "address": "7692 Comanche Terrace",
+        "city": "Springfield",
+        "state": "MA",
+        "zip": "01129",
+        "def": true
+      },
+      {
+        "id": "d47c87e4-25ca-42d1-b715-bcd1cd47d315",
+        "name": "Beverly Burkart",
+        "address": "438 Mallory Terrace",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20508",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199bc",
@@ -470,7 +1310,27 @@
     "firstName": "Philipa",
     "lastName": "Tooke",
     "numOfItemsInCart": 10,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "84aa0f68-113d-46cd-a62c-376731d66601",
+        "name": "Jada McKeney",
+        "address": "1 School Place",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60657",
+        "def": true
+      },
+      {
+        "id": "a8594651-7057-4f13-9464-1a5defc96889",
+        "name": "Aubrey Caps",
+        "address": "531 Westridge Lane",
+        "city": "Lincoln",
+        "state": "NE",
+        "zip": "68531",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199bd",
@@ -481,7 +1341,27 @@
     "firstName": "Mareah",
     "lastName": "Choldcroft",
     "numOfItemsInCart": 12,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "a45abbfe-de14-4a37-9ce7-8fd0fe359e08",
+        "name": "Jorey Reeman",
+        "address": "5 Portage Street",
+        "city": "El Paso",
+        "state": "TX",
+        "zip": "88574",
+        "def": true
+      },
+      {
+        "id": "03bb6533-5ce2-43e9-9dea-37a7bbc22914",
+        "name": "Marissa Colmore",
+        "address": "1368 Annamark Street",
+        "city": "San Diego",
+        "state": "CA",
+        "zip": "92160",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199be",
@@ -492,7 +1372,27 @@
     "firstName": "Kathe",
     "lastName": "Viggars",
     "numOfItemsInCart": 0,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "2ca6e996-c829-4931-9c1d-58bc86dd9be4",
+        "name": "Tobit Witheford",
+        "address": "40 Merrick Trail",
+        "city": "Springfield",
+        "state": "VA",
+        "zip": "22156",
+        "def": true
+      },
+      {
+        "id": "6ec79801-fd4e-440c-bef1-6884db333b3c",
+        "name": "Bennett Hawtry",
+        "address": "0034 Fairview Lane",
+        "city": "Saint Petersburg",
+        "state": "FL",
+        "zip": "33710",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199bf",
@@ -503,7 +1403,27 @@
     "firstName": "Malinda",
     "lastName": "Newing",
     "numOfItemsInCart": 7,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "b7626e8f-4a55-4754-95bf-22c3fdb5727e",
+        "name": "Mufi Amesbury",
+        "address": "7707 Park Meadow Hill",
+        "city": "Cincinnati",
+        "state": "OH",
+        "zip": "45213",
+        "def": true
+      },
+      {
+        "id": "e2af79b4-3e98-4155-8bb7-f906e2815d93",
+        "name": "Janot Humble",
+        "address": "30 Esch Terrace",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76105",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199c0",
@@ -514,7 +1434,27 @@
     "firstName": "Deck",
     "lastName": "Verissimo",
     "numOfItemsInCart": 10,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "04e5d395-0da4-4271-91e5-33081db68ab5",
+        "name": "Riva Dillon",
+        "address": "361 Bartillon Drive",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90005",
+        "def": true
+      },
+      {
+        "id": "8ca94f26-cbf3-4c62-951b-9ce0dc0cf244",
+        "name": "Ryan Cussons",
+        "address": "79632 Meadow Valley Point",
+        "city": "Boise",
+        "state": "ID",
+        "zip": "83757",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199c1",
@@ -525,7 +1465,27 @@
     "firstName": "Link",
     "lastName": "Morffew",
     "numOfItemsInCart": 0,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "8bbf1537-c63e-47b3-b937-d60ee3e35683",
+        "name": "Sena Cowins",
+        "address": "14785 Portage Court",
+        "city": "Salt Lake City",
+        "state": "UT",
+        "zip": "84135",
+        "def": true
+      },
+      {
+        "id": "2adaf075-b6ce-4c06-8874-4c930344f40e",
+        "name": "Colin Bulward",
+        "address": "96768 Forest Run Street",
+        "city": "Topeka",
+        "state": "KS",
+        "zip": "66642",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199c2",
@@ -536,7 +1496,27 @@
     "firstName": "Ernaline",
     "lastName": "Tregona",
     "numOfItemsInCart": 6,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "a8f33e25-654d-44ab-af35-8b87de2b4f8c",
+        "name": "Dane Teece",
+        "address": "0 New Castle Alley",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85067",
+        "def": true
+      },
+      {
+        "id": "b092ae56-d3e6-46e8-a372-2a4fce978f3e",
+        "name": "Lucian Bilbey",
+        "address": "92560 Barnett Pass",
+        "city": "Corona",
+        "state": "CA",
+        "zip": "92878",
+        "def": false
+      }
+    ]
   },
   {
     "id": "5eaa32339e58d82df43199c3",
@@ -547,6 +1527,26 @@
     "firstName": "Jackqueline",
     "lastName": "Fay",
     "numOfItemsInCart": 9,
-    "recommendations": []
+    "recommendations": [],
+    "shippingAddresses": [
+      {
+        "id": "30fe11e4-f66a-4cd6-af7f-cd9ec52bcf93",
+        "name": "Padget Sandlin",
+        "address": "5391 Magdeline Street",
+        "city": "San Angelo",
+        "state": "TX",
+        "zip": "76905",
+        "def": true
+      },
+      {
+        "id": "2414d0f6-bb4e-4870-9d73-f6ca9c2d8a6e",
+        "name": "Reinaldo McVittie",
+        "address": "1 Moose Plaza",
+        "city": "Memphis",
+        "state": "TN",
+        "zip": "38161",
+        "def": false
+      }
+    ]
   }
 ]

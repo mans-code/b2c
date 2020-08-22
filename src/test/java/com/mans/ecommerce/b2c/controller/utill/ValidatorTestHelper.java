@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills;
+package com.mans.ecommerce.b2c.controller.utill;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

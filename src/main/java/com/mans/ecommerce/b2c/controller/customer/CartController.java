@@ -3,7 +3,7 @@ package com.mans.ecommerce.b2c.controller.customer;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.ProductDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.enums.CartAction;
@@ -131,34 +131,26 @@ public class CartController
             return cartService.update(cart);
         }
 
-        Mono<Integer> lockedMono = checkoutService.lock(cart, cartProduct);
-
-        Mono<Cart> cartMono = addLockedProduct(cart,
-                                               cartProduct,
-                                               lockedMono);
-
-        return cartMono;
+        return checkoutService.lock(cart, cartProduct)
+                              .flatMap(locked -> addLockedProduct(cart, cartProduct, locked));
     }
 
     private Mono<Cart> addLockedProduct(
             Cart cart,
             ProductInfo cartProduct,
-            Mono<Integer> lockedMono)
+            Integer locked)
     {
-        return lockedMono.flatMap(locked -> {
 
-            cartProduct.setQuantity(locked);
-            cartLogic.addProduct(cart, cartProduct);
-            Mono<Cart> cartUpdateMono = cartService.update(cart);
+        cartProduct.setQuantity(locked);
+        cartLogic.addProduct(cart, cartProduct);
+        Mono<Cart> cartUpdateMono = cartService.update(cart);
 
-            if (locked < cartProduct.getQuantity())
-            {
+        if (locked < cartProduct.getQuantity())
+        {
+            return cartUpdateMono.flatMap(updated -> Mono.error(new PartialOutOfStockException(updated, locked)));
+        }
 
-                return cartUpdateMono.flatMap(updated -> Mono.error(new PartialOutOfStockException(updated, locked)));
-            }
-
-            return cartUpdateMono;
-        });
+        return cartUpdateMono;
     }
 
     private Mono<Cart> updateProductInCart(Mono<Cart> cartMono, ProductDto dto)
@@ -194,19 +186,15 @@ public class CartController
     private Mono<Cart> reduceQuantity(Mono<Cart> cartMono, ProductInfo cartProduct, int deductedQuantity)
     {
 
-        Mono<Cart> savedCart = cartMono.flatMap(cart -> {
+        return cartMono.flatMap(cart -> {
             cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
             return cartService.update(cart);
-        });
-
-        savedCart.doOnSuccess(cart -> {
+        }).doOnSuccess(cart -> {
             if (cart != null && cart.isActive())
             {
                 checkoutService.partialUnlock(cart, cartProduct, deductedQuantity);
             }
         });
-
-        return savedCart;
     }
 
     private int getQuantityDifference(ProductDto dto, ProductInfo cartProduct)

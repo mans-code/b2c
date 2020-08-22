@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills;
+package com.mans.ecommerce.b2c.controller.utill;
 
 public class ProductDtoUT
 {

@@ -3,8 +3,7 @@ package com.mans.ecommerce.b2c.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.SignupDto;
-import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
+import com.mans.ecommerce.b2c.controller.utill.dto.SignupDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
@@ -15,8 +14,8 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -27,8 +26,6 @@ public class CustomerService
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
     private CustomerRepository customerRepository;
-
-    private AuthenticationManager authenticationManager;
 
     private PasswordEncoder passwordEncoder;
 
@@ -50,49 +47,30 @@ public class CustomerService
 
     public Mono<List<Address>> getShippingAddresses(ObjectId customerId)
     {
-        Mono<Customer> customerMono = customerRepository.getShippingAddresses(customerId);
-
-        customerMono.doOnSuccess(customer -> {
-            if (customer == null)
-            {
-                throw new ResourceNotFoundException("customer not found");
-            }
-        });
-
-        return customerMono.flatMap(customer -> Mono.just(customer.getShippingAddresses()));
+        return customerRepository.getShippingAddresses(customerId)
+                                 .switchIfEmpty(Mono.defer(this::raiseCustomerNotFound))
+                                 .map(Customer::getShippingAddresses);
     }
 
     public Mono<Customer> signup(SignupDto signupDto, ServerHttpRequest req)
     {
-        Mono<ObjectId> idMono = getCustomerId(req);
-        Mono<Customer> customerMono = idMono.flatMap(id -> {
+        return getCustomerId(req).flatMap(id -> {
             Customer newCustomer = mapSignupDtoToCustomer(id, signupDto);
             return customerRepository.save(newCustomer);
-        });
-
-        return customerMono.doOnSuccess(customer -> { //TODO error or Success test
-            if (customer == null)
-            {
-                throw new UserAlreadyExistException();
-            }
-        });
-    }
-
-    public Mono<Customer> findToLogin(String username)
-    {
-        return customerRepository.findToLogin(username);
+        }).onErrorMap(this::handleDuplicateKey);
     }
 
     private Mono<ObjectId> getCustomerId(ServerHttpRequest req)
     {
-        Optional<String> idOptional = Global.getId(req);
+        Optional<String> idOptional = Global.getIdHeader(req);
         if (idOptional.isPresent())
         {
             ObjectId id = new ObjectId(idOptional.get());
             return Mono.just(id);
         }
-        Mono<Cart> cartMono = cartService.create(false);
-        return cartMono.flatMap(cart -> Mono.just(cart.getId()));
+
+        return cartService.create(false)
+                          .flatMap(cart -> Mono.just(cart.getId()));
     }
 
     private Customer mapSignupDtoToCustomer(ObjectId id, SignupDto signupDto)
@@ -107,6 +85,21 @@ public class CustomerService
                        .firstName(signupDto.getFirstName())
                        .lastName(signupDto.getLastName())
                        .build();
+    }
+
+    private Throwable handleDuplicateKey(Throwable throwable)
+    {
+        if (throwable instanceof DuplicateKeyException)
+
+        {
+            return new UserAlreadyExistException();
+        }
+        return throwable;
+    }
+
+    private <T> Mono<T> raiseCustomerNotFound()
+    {
+        return Mono.error(new ResourceNotFoundException("Customer not found"));
     }
 }
 

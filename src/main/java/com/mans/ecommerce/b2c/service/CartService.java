@@ -2,11 +2,9 @@ package com.mans.ecommerce.b2c.service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
-import com.mans.ecommerce.b2c.domain.exception.DBException;
 import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.repository.customer.CartRepository;
 import com.mans.ecommerce.b2c.utill.Global;
@@ -42,10 +40,9 @@ public class CartService
 
     public Mono<Cart> findById(ObjectId id)
     {
+        return cartRepository.findById(id)
+                             .switchIfEmpty(Mono.defer(this::raiseCartNotFound));
 
-        Mono<Cart> cartMono = cartRepository.findById(id);
-        cartMono.doOnSuccess(this::throwIfNull);
-        return cartMono;
     }
 
     public Mono<Cart> findById(String id)
@@ -56,35 +53,23 @@ public class CartService
     public Mono<Cart> findAndLock(ObjectId id)
     {
         Instant time = Global.getFuture(validityInMinutes);
-        Mono<Cart> cartMono = cartRepository.findAndLock(id, time);
-        cartMono.doOnSuccess(this::throwIfNull);
-        return cartMono;
-    }
-
-    private Mono<Object> throwIfNull(Cart cart)
-    {
-        if (cart == null)
-        {
-            return Mono.error(new ResourceNotFoundException(String.format(NOT_FOUND_TEMPLATE, cart.getId())));
-        }
-        return null;
+        return cartRepository.findAndLock(id, time)
+                             .switchIfEmpty(Mono.defer(this::raiseCartNotFound));
     }
 
     public Mono<Cart> update(Cart cart)
     {
-        Mono<Cart> cartMono = cartRepository.save(cart);
-        cartMono.doOnError(ex -> {
-            Mono.error(new DBException(String.format("can't save cart id=%s", cart.getId())));
-        });
-        return cartMono;
+        return cartRepository.save(cart);
     }
 
     public Mono<Cart> create(boolean anonymous)
     {
         Cart cart = new Cart(anonymous);
-        Mono<Cart> saved = cartRepository.save(cart);
-        createFeedEvent(saved);
-        return saved;
+        return cartRepository.save(cart)
+                             .switchIfEmpty(Mono.defer(this::raiseDBException))
+                             .doOnSuccess(saved -> {
+                                 createFeedEvent(saved);
+                             });
     }
 
     public Mono<Boolean> avoidUnlock(Cart cart)
@@ -112,15 +97,10 @@ public class CartService
         return cartRepository.extendsExpirationDateAndGetActivationStatus(cartId, date);
     }
 
-    private void createFeedEvent(Mono<Cart> cart)
+    private void createFeedEvent(Cart cart)
     {
-        cart.doOnSuccess(savedCart -> {
-            if (savedCart != null)
-            {
-                ObjectId id = savedCart.getId();
-                feedService.save(id);
-            }
-        });
+        ObjectId id = cart.getId();
+        feedService.save(id);
     }
 
     private boolean expireIn10Mins(Instant time)
@@ -133,5 +113,20 @@ public class CartService
             return true;
         }
         return false;
+    }
+
+    private Mono<? extends Cart> throwResourceNotFound(ObjectId id)
+    {
+        return Mono.error(new ResourceNotFoundException(String.format(NOT_FOUND_TEMPLATE, id)));
+    }
+
+    private <T> Mono<T> raiseDBException()
+    {
+        return Mono.error(new ResourceNotFoundException("could Not save cart"));
+    }
+
+    private <T> Mono<T> raiseCartNotFound()
+    {
+        return Mono.error(new ResourceNotFoundException("Cart Not Found"));
     }
 }

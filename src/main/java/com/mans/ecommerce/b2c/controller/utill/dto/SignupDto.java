@@ -1,12 +1,12 @@
-package com.mans.ecommerce.b2c.controller.utills.dto;
+package com.mans.ecommerce.b2c.controller.utill.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValidPassword;
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValidUsername;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValidPassword;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValidUsername;
 import lombok.*;
 
 @NoArgsConstructor

@@ -1,4 +1,4 @@
-package com.mans.ecommerce.b2c.controller.utills.validator;
+package com.mans.ecommerce.b2c.controller.utill.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.mans.ecommerce.b2c.controller.utills.annotation.ValueOfEnum;
+import com.mans.ecommerce.b2c.controller.utill.annotation.ValueOfEnum;
 
 public class ValueOfEnumValidator extends Validator implements ConstraintValidator<ValueOfEnum, CharSequence>
 {

@@ -100,7 +100,6 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         customerRepository.deleteAll().block();
         customerRepository.saveAll(customers).subscribe();
 
-        cartRepository.findAll().subscribe(System.out::println);
     }
 
     private void setExpiration(List<Cart> carts)

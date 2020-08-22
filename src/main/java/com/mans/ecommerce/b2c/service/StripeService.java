@@ -23,11 +23,11 @@ public class StripeService
         Stripe.apiKey = secretKey;
     }
 
-    public Charge chargeNewCard(String token, double amount, String currency)
+    public Charge charge(String token, double amount, String currency)
             throws StripeException
     {
         Map<String, Object> chargeParams = new HashMap<String, Object>();
-        chargeParams.put("amount", (int)(amount * 100));
+        chargeParams.put("amount", (int) (amount * 100));
         chargeParams.put("currency", currency);
         chargeParams.put("source", token);
         Charge charge = Charge.create(chargeParams);

@@ -1,6 +1,6 @@
-package com.mans.ecommerce.b2c.controller.utills;
+package com.mans.ecommerce.b2c.controller.utill;
 
-import com.mans.ecommerce.b2c.controller.utills.dto.LoginDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.LoginDto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
