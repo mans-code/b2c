@@ -2,18 +2,14 @@ package com.mans.ecommerce.b2c.controller.utill.annotation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 import com.mans.ecommerce.b2c.controller.utill.validator.ValueOfEnumValidator;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
-@Retention(RUNTIME)
 @Documented
 @Constraint(validatedBy = ValueOfEnumValidator.class)
+@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ValueOfEnum
 {
     Class<? extends Enum<?>> enumClass();

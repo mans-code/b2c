@@ -29,7 +29,7 @@ public class AuthControllerIT
 
     private final String VALID_DB_USERNAME = "valid";
 
-    private final String VALID_PASSWORD = "Password1@";
+    private final String VALID_DB_PASSWORD = "Password1@";
 
     private final String INVALID_USERNAME = "invalid";
 
@@ -47,7 +47,7 @@ public class AuthControllerIT
     @Test
     public void signin_pass()
     {
-        LoginDto login = new LoginDto(VALID_DB_USERNAME, VALID_PASSWORD);
+        LoginDto login = new LoginDto(VALID_DB_USERNAME, VALID_DB_PASSWORD);
         webTestClient.post()
                      .uri(BASE_URL + SIGNIN_PATH)
                      .body(Mono.just(login), LoginDto.class)
@@ -64,7 +64,7 @@ public class AuthControllerIT
     @Test
     public void signin_fail_UsernameNotFound()
     {
-        LoginDto login = new LoginDto(INVALID_USERNAME, VALID_PASSWORD);
+        LoginDto login = new LoginDto(INVALID_USERNAME, VALID_DB_PASSWORD);
         badCredentialsSignin(login);
     }
 
@@ -134,7 +134,7 @@ public class AuthControllerIT
         return SignupDto
                        .builder()
                        .username("mans_code")
-                       .password(VALID_PASSWORD)
+                       .password(VALID_DB_PASSWORD)
                        .email("mans@mans.com")
                        .firstName("mans")
                        .lastName("alzahrani")

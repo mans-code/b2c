@@ -43,7 +43,7 @@ public class UsernameValidator
         if (!username.matches(REGEX))
         {
             valid = false;
-            addMessage("must only contain a-z, 0-9, period,underscore, or hyphen");
+            addMessage("must Not start with alphabet and only contain a-z, 0-9, period,underscore, or hyphen");
         }
 
     }

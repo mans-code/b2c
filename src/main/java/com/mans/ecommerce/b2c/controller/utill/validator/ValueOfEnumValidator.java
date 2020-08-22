@@ -31,15 +31,10 @@ public class ValueOfEnumValidator extends Validator implements ConstraintValidat
     @Override
     public boolean isValid(CharSequence value, ConstraintValidatorContext context)
     {
-        if (value == null)
-        {
-            return true;
-        }
-
-        boolean found = acceptedValues.contains(value.toString());
-        if (!found)
+        if (value == null || !acceptedValues.contains(value.toString().toUpperCase()))
         {
             buildConstraintValidatorContext(context, NOT_FOUND);
+            return false;
         }
 
         return true;

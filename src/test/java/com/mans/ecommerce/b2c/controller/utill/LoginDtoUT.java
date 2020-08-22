@@ -1,12 +1,11 @@
 package com.mans.ecommerce.b2c.controller.utill;
 
 import com.mans.ecommerce.b2c.controller.utill.dto.LoginDto;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class LoginDtoUT
 {
-    // TODO USEeNAME test
     private final String USERNAME_FIELD = "username";
 
     private final String PASSWORD_FIELD = "password";
@@ -17,7 +16,7 @@ public class LoginDtoUT
 
     private static ValidatorTestHelper validatorTestHelper;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeClass()
     {
         validatorTestHelper = new ValidatorTestHelper();
@@ -36,6 +35,7 @@ public class LoginDtoUT
     public void validation_fail_invalidUsername_TooShort()
     {
         int minCharacterSize = 4;
+        System.err.println(validatorTestHelper);
         String shortUsername = validatorTestHelper.getStringOfLength(minCharacterSize - 1);
         LoginDto loginDto = new LoginDto(shortUsername, validPassword);
 
@@ -63,10 +63,9 @@ public class LoginDtoUT
     @Test
     public void validation_fail_invalidUsername_startWithDigits()
     {
-        //TODOfail();
-        //String startWithDigitsUsername = validatorTestHelper.getStartWithDigits();
-        //        LoginDto loginDto = new LoginDto(startWithDigitsUsername, validPassword);
-        //        validatorTestHelper.validation_fail_Null(loginDto, USERNAME_FIELD);
+        String startWithDigitsUsername = validatorTestHelper.getStartWithDigits();
+        LoginDto loginDto = new LoginDto(startWithDigitsUsername, validPassword);
+        validatorTestHelper.validation_fail_StartWithAlphabet(loginDto, USERNAME_FIELD);
     }
 
     @Test

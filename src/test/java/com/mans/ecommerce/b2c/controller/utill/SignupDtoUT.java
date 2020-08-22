@@ -1,8 +1,8 @@
 package com.mans.ecommerce.b2c.controller.utill;
 
 import com.mans.ecommerce.b2c.controller.utill.dto.SignupDto;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class SignupDtoUT
 {
@@ -18,7 +18,7 @@ public class SignupDtoUT
 
     private static ValidatorTestHelper validatorTestHelper;
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeClass()
     {
         validatorTestHelper = new ValidatorTestHelper();

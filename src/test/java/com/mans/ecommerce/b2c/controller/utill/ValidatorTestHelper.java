@@ -7,6 +7,8 @@ import javax.validation.ValidatorFactory;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import com.mans.ecommerce.b2c.controller.utill.dto.LoginDto;
+import com.mans.ecommerce.b2c.controller.utill.dto.ProductDto;
 import lombok.Getter;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -42,6 +44,8 @@ public class ValidatorTestHelper
 
     private final String withSpecialsLettersString;
 
+    private final String startWithDigits;
+
     public ValidatorTestHelper()
     {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -59,6 +63,7 @@ public class ValidatorTestHelper
         noSpecialLettersString = "noSymbols1";
         withWhiteSpacesString = "with White Spaces";
         noDigitsString = "noDigits";
+        startWithDigits = "1StartWithDigits#";
     }
 
     public String getStringOfLength(int num)
@@ -145,6 +150,18 @@ public class ValidatorTestHelper
         assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
     }
 
+    public void validation_fail_StartWithAlphabet(Object object, String fieldToValidate)
+    {
+        String expectedErrorMessage = "must Not start with alphabet";
+        assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
+    }
+
+    public void validation_NotEnumValue(Object object, String fieldToValidate)
+    {
+        String expectedErrorMessage = "the value must be in";
+        assertErrorMessageContainGiven(expectedErrorMessage, fieldToValidate, object);
+    }
+
     private void assertErrorMessageContainGiven(String expectedErrorMessage, String fieldToValidate, Object object)
     {
         Set<ConstraintViolation<Object>> constraintViolations = validator.validateProperty(object, fieldToValidate);
@@ -162,4 +179,5 @@ public class ValidatorTestHelper
 
         assertThat(failMessage, acutalErrorMessage, containsString(expectedErrorMessage));
     }
+
 }
