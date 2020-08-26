@@ -20,6 +20,7 @@ import com.mans.ecommerce.b2c.utill.LockError;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.model.Charge;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -40,44 +41,41 @@ public class CheckoutController
 
     private StripeService stripeService;
 
-    ApplicationEventPublisher publisher;
+    private String stripePublicKey;
+
+    private ApplicationEventPublisher publisher;
 
     CheckoutController(
             CartService cartService,
             CheckoutService checkoutService,
             CartLogic cartLogic,
             StripeService stripeService,
-            ApplicationEventPublisher publisher)
+            ApplicationEventPublisher publisher,
+            @Value("${app.stripe.public.key}") String stripePublicKey)
     {
         this.cartService = cartService;
         this.checkoutService = checkoutService;
         this.cartLogic = cartLogic;
         this.stripeService = stripeService;
+        this.stripePublicKey = stripePublicKey;
         this.publisher = publisher;
     }
 
     @PostMapping("/")
     public Mono<CheckoutResponse> lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-
-        Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId);
+        Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId).log("WHAT");
 
         return tuple2Mono.flatMap(tuple2 -> {
-            List<LockError> lockErrors = tuple2.getT2();
             Cart cart = tuple2.getT1();
-            CheckoutResponse res = new CheckoutResponse(cart);
+            List<LockError> lockErrors = tuple2.getT2();
+            CheckoutResponse res = new CheckoutResponse(stripePublicKey, cart);
 
-            if (!lockErrors.isEmpty())
+            if (lockErrors.isEmpty())
             {
                 return Mono.just(res);
             }
-
-            cartLogic.update(cart, lockErrors);
-            return cartService.update(cart)
-                              .doOnError(err -> Mono.error(
-                                      new UnableToUpdateCartAfterUncompletedCheckout(cart, lockErrors)))
-                              .flatMap(updatedCart -> Mono.error(
-                                      new UncompletedCheckoutException(updatedCart, lockErrors)));
+            return updateAfterUncompletedCheckout(cart, res, lockErrors);
         });
     }
 
@@ -88,7 +86,43 @@ public class CheckoutController
     {
         Mono<Cart> cartMono = cartService.findById(cartId);
 
-        Mono<Charge> chargeMono = cartMono.flatMap(cart -> {
+        Mono<Charge> chargeMono = getChargeMono(checkoutDto, cartMono);
+
+        Mono<Tuple2<Cart, Charge>> completeMono = Mono.zip(cartMono, chargeMono);
+
+        return completeOrder(checkoutDto, completeMono);
+    }
+
+    @PostMapping("/leaving")
+    public Mono<Cart> unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
+    {
+        Mono<Cart> cartMono = cartService.findById(cartId);
+        return cartMono.doOnSuccess(cart -> {
+            if (cart.isActive())
+            {
+                checkoutService.unlock(cart, cart.getProductInfos());
+            }
+        });
+    }
+
+    private Mono<? extends CheckoutResponse> updateAfterUncompletedCheckout(
+            Cart cart,
+            CheckoutResponse res,
+            List<LockError> lockErrors)
+    {
+        cartLogic.update(cart, lockErrors);
+        return cartService.update(cart)
+                          .doOnError(err -> Mono.error(
+                                  new UnableToUpdateCartAfterUncompletedCheckout(cart, lockErrors)))
+                          .flatMap(updatedCart -> Mono.error(
+                                  new UncompletedCheckoutException(res, lockErrors)));
+    }
+
+    private Mono<Charge> getChargeMono(
+            @RequestParam @Valid CheckoutDto checkoutDto,
+            Mono<Cart> cartMono)
+    {
+        return cartMono.flatMap(cart -> {
             double amount = calculateTotalAmount(cart, checkoutDto);
             String token = checkoutDto.getToken();
             String currency = cart.getMoney()
@@ -96,9 +130,12 @@ public class CheckoutController
                                   .getCurrencyCode();
             return Mono.fromCallable(() -> stripeService.charge(token, amount, currency));
         });
+    }
 
-        Mono<Tuple2<Cart, Charge>> completeMono = Mono.zip(cartMono, chargeMono);
-
+    private Mono<Financial> completeOrder(
+            @RequestParam @Valid CheckoutDto checkoutDto,
+            Mono<Tuple2<Cart, Charge>> completeMono)
+    {
         return completeMono.flatMap(tuple2 -> {
             Cart cart = tuple2.getT1();
             Charge charge = tuple2.getT2();
@@ -114,23 +151,10 @@ public class CheckoutController
         });
     }
 
-    @PostMapping("/leaving")
-    public Mono<Cart> unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
-    {
-        Mono<Cart> cartMono = cartService.findById(cartId);
-        return cartMono.doOnSuccess(cart -> {
-            if (cart.isActive())
-            {
-                checkoutService.unlock(cart, cart.getProductInfos());
-            }
-        });
-    }
-
     private double calculateTotalAmount(Cart cart, CheckoutDto checkoutDto)
     {
         return cart.getMoney()
                    .getAmount()
                    .doubleValue();
     }
-
 }

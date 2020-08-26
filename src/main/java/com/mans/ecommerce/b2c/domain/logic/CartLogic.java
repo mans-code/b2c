@@ -202,13 +202,12 @@ public class CartLogic
 
     private Optional<ProductInfo> getProduct(Cart cart, String sku, String variationId)
     {
-        return cart
-                       .getProductInfos()
-                       .stream()
-                       .filter(product ->
-                                       product.getSku().equals(sku) &&
-                                               product.getVariationId().equals(variationId))
-                       .findFirst();
+        return cart.getProductInfos()
+                   .stream()
+                   .filter(product ->
+                                   product.getSku().equals(sku) &&
+                                           product.getVariationId().equals(variationId))
+                   .findFirst();
     }
 
     private ProductInfo removeProduct(Cart cart, ProductInfo productInfo)
@@ -224,7 +223,6 @@ public class CartLogic
         lockErrors.forEach(lockError -> {
             int lockedQyt = lockError.getLockedQuantity();
             ProductInfo cartProduct = getProduct(cart, lockError.getSku(), lockError.getVariationId()).get();
-
             if (lockedQyt == 0)
             {
                 removeProduct(cart, cartProduct);

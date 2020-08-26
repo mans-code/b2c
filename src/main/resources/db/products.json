@@ -186,13 +186,7 @@
     },
     "similarItems": null,
     "sku": "mans-5",
-    "reservations": [
-      {
-        "id": "5eaa32339e58d82df43199be",
-        "quantity": 6,
-        "variationId": "mans-5"
-      }
-    ],
+    "reservations": [],
     "variationsDetails": {
       "mans-5": {
         "basicInfo": {
@@ -735,7 +729,7 @@
           "description": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
         },
         "availability": {
-          "quantity": 260,
+          "quantity": 10,
           "availableOn": null,
           "shipTo": null
         }

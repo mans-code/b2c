@@ -35,7 +35,6 @@ public class LoginDtoUT
     public void validation_fail_invalidUsername_TooShort()
     {
         int minCharacterSize = 4;
-        System.err.println(validatorTestHelper);
         String shortUsername = validatorTestHelper.getStringOfLength(minCharacterSize - 1);
         LoginDto loginDto = new LoginDto(shortUsername, validPassword);
 

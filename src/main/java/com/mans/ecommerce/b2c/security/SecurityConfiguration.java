@@ -30,6 +30,7 @@ public class SecurityConfiguration
             "/products/**",
             "/anonymous/**",
             "/customers/**",
+            "/checkout/**",
             "/test/**",
             "/carts/**",
             "/auths/**",

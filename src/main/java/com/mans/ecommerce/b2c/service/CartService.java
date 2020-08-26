@@ -1,7 +1,7 @@
 package com.mans.ecommerce.b2c.service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.exception.ConflictException;
@@ -13,7 +13,6 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import static java.time.temporal.ChronoUnit.MINUTES;
 
 @Service
 public class CartService
@@ -27,6 +26,8 @@ public class CartService
     private CartRepository cartRepository;
 
     private FeedService feedService;
+
+    private int count = 0;
 
     CartService(
             CartRepository cartRepository,
@@ -54,7 +55,7 @@ public class CartService
     {
         Instant time = Global.getFuture(validityInMinutes);
         return cartRepository.findAndLock(id, time)
-                             .switchIfEmpty(Mono.defer(this::raiseCartNotFound));
+                             .switchIfEmpty(Mono.defer(this::raiseCartNotFoundOrActive));
     }
 
     public Mono<Cart> update(Cart cart)
@@ -105,19 +106,20 @@ public class CartService
 
     private boolean expireIn10Mins(Instant time)
     {
-        LocalDateTime.from(time);
         int TEN_MINUTES = 10;
-        long diffMins = MINUTES.between(time, LocalDateTime.now());
-        if (diffMins <= TEN_MINUTES)
+        long diff = time.toEpochMilli() - Instant.now().toEpochMilli();
+        long diffMinutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+
+        if (diffMinutes < TEN_MINUTES)
         {
             return true;
         }
         return false;
     }
 
-    private Mono<? extends Cart> throwResourceNotFound(ObjectId id)
+    private <T> Mono<T> raiseCartNotFoundOrActive()
     {
-        return Mono.error(new ResourceNotFoundException(String.format(NOT_FOUND_TEMPLATE, id)));
+        return Mono.error(new ResourceNotFoundException("could Not find cart or cart is active"));
     }
 
     private <T> Mono<T> raiseDBException()

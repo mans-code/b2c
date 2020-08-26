@@ -49,7 +49,7 @@ public class CartController
     @GetMapping
     public Mono<Cart> getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        return cartService.findById(cartId);
+        return cartService.findById(cartId).log("test");
     }
 
     @PatchMapping

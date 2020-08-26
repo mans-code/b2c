@@ -26,8 +26,6 @@ import static org.hamcrest.Matchers.samePropertyValuesAs;
 @AutoConfigureWebTestClient
 public class CustomerControllerIT
 {
-    @Autowired
-    private WebTestClient webTestClient;
 
     private final String VALID_CUSTOMER_ID = "5eaa32339e58d82df4319992";
 
@@ -36,6 +34,9 @@ public class CustomerControllerIT
     private final String BASE_URL = "/customers/{id}";
 
     private final String SHIPPING_PATH = "/shipping";
+
+    @Autowired
+    private WebTestClient webTestClient;
 
     @Test
     public void getShippingAddresses_successes()

@@ -1,16 +1,15 @@
 package com.mans.ecommerce.b2c.controller.customer;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.entity.customer.Customer;
+import com.mans.ecommerce.b2c.domain.entity.product.Product;
+import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
-import com.mans.ecommerce.b2c.domain.exception.UserAlreadyExistException;
 import com.mans.ecommerce.b2c.repository.customer.CustomerRepository;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.service.CartService;
 import com.mans.ecommerce.b2c.utill.Global;
-import com.mongodb.MongoWriteException;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,11 +27,13 @@ public class TestController
     @Autowired CartService cartService;
 
     @GetMapping("/customer")
-    public Mono<String> custome()
+    public Mono<Product> custome()
     {
-        Mono<String> one = Mono.just("one");
-        Mono<String> two = Mono.just("two");
-        return Mono.zip(one, two).flatMap(tuple -> Mono.just("dddddd"));
+        ProductInfo info = ProductInfo.builder().sku("mans-27").variationId("mans-27").quantity(40).build();
+        Mono<Integer> lock = productRepository.lock(info, new ObjectId("5eaa32339e58d82df43199c2"));
+        return lock.flatMap(num -> {
+            return productRepository.getBySku("mans-27");
+        });
     }
 
     @GetMapping("/cart")

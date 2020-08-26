@@ -10,7 +10,6 @@ import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -39,9 +38,6 @@ public class Cart implements Cloneable
     private int totalQuantity;
 
     private boolean anonymous;
-
-    @Version
-    private long version;
 
     public Cart(boolean anonymous)
     {

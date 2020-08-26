@@ -80,6 +80,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         cartRepository.deleteAll().block();
         List<Cart> carts = loadFile("carts", Cart.class);
         setExpiration(carts);
+
         cartRepository.saveAll(loadFile("carts", Cart.class)).subscribe();
 
         paymentInfoRepository.deleteAll().block();

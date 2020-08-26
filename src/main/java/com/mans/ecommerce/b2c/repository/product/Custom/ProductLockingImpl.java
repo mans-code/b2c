@@ -37,7 +37,7 @@ public class ProductLockingImpl implements ProductLocking
 
     private final String REF = "$";
 
-    private final String QUANTITY_FIELD_TEMPLATE = "\"availability.${variationId}.quantity\"";
+    private final String QUANTITY_FIELD_TEMPLATE = "variationsDetails.${variationId}.availability.quantity";
 
     private final String RESERVATION_QUANTITY_POSITION = "reservations.$.quantity";
 
@@ -49,17 +49,18 @@ public class ProductLockingImpl implements ProductLocking
 
     private ApplicationEventPublisher publisher;
 
-    public ProductLockingImpl(ReactiveMongoTemplate mongoTemplate, ApplicationEventPublisher publisher)
+    public ProductLockingImpl(ReactiveMongoTemplate mongolTemplate, ApplicationEventPublisher publisher)
     {
-        this.mongoTemplate = mongoTemplate;
+        this.mongoTemplate = mongolTemplate;
         this.publisher = publisher;
     }
 
     @Override
     public Mono<Integer> lock(ProductInfo productInfo, ObjectId cartId)
     {
-        return lock(productInfo, cartId, productInfo.getQuantity(), false)
-                       .doOnSuccess(qty -> addReservation(productInfo, cartId, qty));
+        String resId = cartId.toHexString();
+        return lock(productInfo, resId, productInfo.getQuantity(), false)
+                       .doOnSuccess(qty -> addReservation(productInfo, resId, qty));
     }
 
     @Override public Mono<Integer> partialLock(
@@ -67,15 +68,17 @@ public class ProductLockingImpl implements ProductLocking
             ObjectId cartId,
             int requestedQuantity)
     {
-        return lock(productInfo, cartId, requestedQuantity, true)
-                       .doOnSuccess(qty -> updateReservation(productInfo, cartId, qty));
+        String resId = cartId.toHexString();
+        return lock(productInfo, resId, requestedQuantity, true)
+                       .doOnSuccess(qty -> updateReservation(productInfo, resId, qty));
 
     }
 
     @Override
     public void unlock(ProductInfo productInfo, ObjectId cartId)
     {
-        unlock(productInfo, cartId, productInfo.getQuantity(), false);
+        String resId = cartId.toHexString();
+        unlock(productInfo, resId, productInfo.getQuantity(), false);
     }
 
     @Override public void partialUnlock(
@@ -83,29 +86,30 @@ public class ProductLockingImpl implements ProductLocking
             ObjectId cartId,
             int quantity)
     {
-
-        unlock(productInfo, cartId, quantity, true);
+        String resId = cartId.toHexString();
+        unlock(productInfo, resId, quantity, true);
     }
 
-    private void addReservation(ProductInfo productInfo, ObjectId cartId, Integer lockedQuantity)
+    private void addReservation(ProductInfo productInfo, String cartId, Integer lockedQuantity)
     {
         reservation(productInfo, cartId, lockedQuantity, true);
     }
 
-    private void updateReservation(ProductInfo productInfo, ObjectId cartId, Integer lockedQuantity)
+    private void updateReservation(ProductInfo productInfo, String cartId, Integer lockedQuantity)
     {
         reservation(productInfo, cartId, lockedQuantity, false);
     }
 
-    void reservation(ProductInfo productInfo, ObjectId cartId, Integer locked, boolean add)
+    void reservation(ProductInfo productInfo, String cartId, Integer locked, boolean add)
     {
 
         if (locked == 0)
         {
             return;
         }
+
         Reservation reservation = new Reservation(productInfo, cartId, locked);
-        Query query = getProductQuery(reservation, true);
+        Query query = getProductQuery(reservation, !add);
         Update update = new Update();
 
         if (add)
@@ -117,12 +121,12 @@ public class ProductLockingImpl implements ProductLocking
             update.set(RESERVATION_QUANTITY_POSITION, locked);
         }
 
-        executeUpdate(query, update);
+        executeUpdate(query, update).subscribe(); //TODO handle error
     }
 
     private Mono<Integer> lock(
             ProductInfo productInfo,
-            ObjectId cartId,
+            String cartId,
             int requestedQuantity,
             boolean withReservation)
     {
@@ -132,7 +136,7 @@ public class ProductLockingImpl implements ProductLocking
                                                 ImmutableMap.of(VARIATION_ID, variationId));
 
         Query query = getProductQuery(sku, variationId, cartId, withReservation);
-        query.fields().include(quantityField).exclude(ID);
+        query.fields().include(quantityField);
 
         AggregationUpdate update = getLockUpdate(quantityField, requestedQuantity);
 
@@ -165,7 +169,7 @@ public class ProductLockingImpl implements ProductLocking
         }).defaultIfEmpty(ZERO);
     }
 
-    private Mono<Boolean> unlock(ProductInfo productInfo, ObjectId cartId, int quantity, boolean updateReservation)
+    private Mono<Boolean> unlock(ProductInfo productInfo, String cartId, int quantity, boolean updateReservation)
     {
         String sku = productInfo.getSku();
         String variationId = productInfo.getVariationId();
@@ -194,31 +198,31 @@ public class ProductLockingImpl implements ProductLocking
     {
         String sku = reservation.getSku();
         String variationId = reservation.getVariationId();
-        ObjectId cartId = reservation.getCartId();
-        return getProductQuery(sku, variationId, cartId, withReservation);
+        String resId = reservation.getId();
+        return getProductQuery(sku, variationId, resId, withReservation);
     }
 
-    private Query getProductQuery(String sku, String variationId, ObjectId cartId, boolean withReservation)
+    private Query getProductQuery(String sku, String variationId, String cartId, boolean withReservation)
     {
-        BasicDBObject reservation = getReservation(variationId, cartId);
         Query query = new Query();
-
         query.addCriteria(Criteria.where(SKU).is(sku));
 
         if (withReservation)
         {
             query.addCriteria(Criteria.where(RESERVATIONS)
-                                      .elemMatch(Criteria.where(ID).is(cartId).and(VARIATION_ID).is(variationId)));
+                                      .elemMatch(Criteria.where(ID).is(cartId)
+                                                         .and(VARIATION_ID).is(variationId)));
         }
         else
         {
+            BasicDBObject reservation = getReservation(variationId, cartId);
             query.addCriteria(Criteria.where(RESERVATIONS).nin(reservation));
         }
 
         return query;
     }
 
-    private BasicDBObject getReservation(String variationId, ObjectId cartId)
+    private BasicDBObject getReservation(String variationId, String cartId)
     {
         Map map = new HashMap();
         map.put(ID, cartId);
@@ -263,13 +267,9 @@ public class ProductLockingImpl implements ProductLocking
         {
             return ZERO;
         }
-        else if (productPreQuantity < requestedQuantity)
-        {
-            return productPreQuantity;
-        }
         else
         {
-            return requestedQuantity;
+            return Math.min(productPreQuantity, requestedQuantity);
         }
     }
 }

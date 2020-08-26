@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
 import lombok.*;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 
 @NoArgsConstructor
@@ -19,18 +18,18 @@ public class Reservation
 
     private String variationId;
 
-    private ObjectId cartId;
+    private String id;
 
     private int quantity;
 
     @CreatedDate
     private Date createdOn;
 
-    public Reservation(ProductInfo productInfo, ObjectId cartId, Integer quantity)
+    public Reservation(ProductInfo productInfo, String cartId, Integer quantity)
     {
         this.sku = productInfo.getSku();
         this.variationId = productInfo.getVariationId();
-        this.cartId = cartId;
+        this.id = cartId;
         this.quantity = quantity;
     }
 }
