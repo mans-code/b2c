@@ -898,7 +898,7 @@
         "quantity": 2,
         "money": {
           "currency": "USD",
-          "amount": 42
+          "amount": 21
         }
       },
       {
@@ -1278,7 +1278,7 @@
         "quantity": 2,
         "money": {
           "currency": "USD",
-          "amount": 42
+          "amount": 21
         }
       }
     ],
@@ -1352,7 +1352,7 @@
     "id": "5eaa32339e58d82df43199bb"
   },
   {
-    "active": false,
+    "active": true,
     "productInfos": [
       {
         "sku": "mans-49",
@@ -1361,7 +1361,7 @@
         "quantity": 7,
         "money": {
           "currency": "USD",
-          "amount": 259
+          "amount": 37
         }
       }
     ],
@@ -1500,7 +1500,7 @@
     ],
     "money": {
       "currency": "USD",
-      "amount": 70
+      "amount": 350
     },
     "totalQuantity": 5,
     "id": "5eaa32339e58d82df43199bf"
@@ -1598,7 +1598,7 @@
     "id": "5eaa32339e58d82df43199c2"
   },
   {
-    "active": false,
+    "active": true,
     "productInfos": [
       {
         "sku": "mans-26",

@@ -1428,7 +1428,7 @@
           "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit."
         },
         "availability": {
-          "quantity": 569,
+          "quantity": 5,
           "availableOn": null,
           "shipTo": null
         }
@@ -1486,7 +1486,7 @@
           "description": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo."
         },
         "availability": {
-          "quantity": 141,
+          "quantity": 5,
           "availableOn": null,
           "shipTo": null
         }
@@ -1790,7 +1790,7 @@
           "description": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum."
         },
         "availability": {
-          "quantity": 887,
+          "quantity": 100,
           "availableOn": null,
           "shipTo": null
         }
@@ -2119,8 +2119,8 @@
     "sku": "mans-49",
     "reservations": [
       {
-        "id": "5eaa32339e58d82df4319998",
-        "quantity": 3,
+        "id": "5eaa32339e58d82df43199bc",
+        "quantity": 7,
         "variationId": "mans-49"
       }
     ],

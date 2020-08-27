@@ -3,7 +3,6 @@ package com.mans.ecommerce.b2c.repository.customer.custom;
 import java.time.Instant;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-
 import org.bson.types.ObjectId;
 import reactor.core.publisher.Mono;
 
@@ -13,4 +12,5 @@ public interface CartRepositoryCustom
 
     Mono<Cart> findAndLock(ObjectId id, Instant date);
 
+    Mono<Cart> findAndUnlock(ObjectId id);
 }

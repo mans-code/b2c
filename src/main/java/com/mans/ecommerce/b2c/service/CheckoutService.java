@@ -59,14 +59,21 @@ public class CheckoutService
         });
     }
 
-    public void unlock(Cart cart, List<ProductInfo> productInfos)
+    public Mono<Integer> partialLock(Cart cart, ProductInfo cartProduct, int toLock)
     {
-        cartService.avoidUnlock(cart)
-                   .doOnSuccess($ -> {
-                       productInfos.forEach(productInfo -> {
-                           productRepository.unlock(productInfo, cart.getId());
-                       });
-                   });
+        return cartService.avoidUnlock(cart).flatMap($ -> {
+            ObjectId cartId = cart.getId();
+            return productRepository.partialLock(cartProduct, cartId, toLock);
+        });
+    }
+
+    public Mono<Boolean> unlock(Cart cart, List<ProductInfo> productInfos)
+    {
+        return cartService.avoidUnlock(cart).doOnSuccess($ -> {
+            productInfos.forEach(productInfo -> {
+                productRepository.unlock(productInfo, cart.getId());
+            });
+        });
     }
 
     public void unlock(Cart cart, ProductInfo cartProduct)
@@ -74,7 +81,7 @@ public class CheckoutService
         cartService.avoidUnlock(cart)
                    .doOnSuccess($ -> {
                        productRepository.unlock(cartProduct, cart.getId());
-                   });
+                   }).subscribe();
     }
 
     public void partialUnlock(Cart cart, ProductInfo cartProduct, int toUnlock)

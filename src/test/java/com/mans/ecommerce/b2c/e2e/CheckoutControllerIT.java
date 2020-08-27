@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
-import com.mans.ecommerce.b2c.domain.entity.product.Product;
-import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
+import com.mans.ecommerce.b2c.domain.exception.ResourceNotFoundException;
 import com.mans.ecommerce.b2c.domain.exception.UncompletedCheckoutException;
+import com.mans.ecommerce.b2c.e2e.utill.ProductLockingValidator;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import com.mans.ecommerce.b2c.utill.LockError;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
@@ -22,22 +22,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.test.StepVerifier;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureWebTestClient(timeout = "200000")
+@AutoConfigureWebTestClient
 public class CheckoutControllerIT
 {
 
     private final String BASE_URL = "/checkout/{cartId}";
-
-    @Autowired
-    private ProductRepository productRepository;
 
     @Autowired
     private WebTestClient webTestClient;
@@ -45,8 +41,10 @@ public class CheckoutControllerIT
     @Value("${app.stripe.public.key}")
     private String stripePublicKey;
 
+    private ProductLockingValidator lockingValidator;
+
     @Test
-    public void checkout_pass()
+    public void startCheckout_pass()
     {
         String cartId = "5eaa32339e58d82df4319999";
         Map<String, Integer> productExpectation = passCheckoutProductExpectation();
@@ -67,12 +65,15 @@ public class CheckoutControllerIT
 
                          assertTrue(expectedCart.isActive());
 
-                         productLockedAndHasReservation(productExpectation, resExpectation, cartId);
+                         lockingValidator.productQuantityAndHasReservation(productExpectation,
+                                                                           resExpectation,
+                                                                           cartId,
+                                                                           true);
                      });
     }
 
     @Test
-    public void checkout_pass_UncompletedCheckout()
+    public void startCheckout_pass_UncompletedCheckout()
     {
         String cartId = "5eaa32339e58d82df4319995";
         String sku = "mans-17";
@@ -99,49 +100,86 @@ public class CheckoutControllerIT
 
                          assertTrue(expectedCart.isActive());
 
-                         productLockedAndHasReservation(productExpectation, resExpectation, cartId);
+                         verifyLockErrors(lockErrors, resExpectation);
+                         lockingValidator.productQuantityAndHasReservation(productExpectation,
+                                                                           resExpectation,
+                                                                           cartId,
+                                                                           true);
                      });
     }
 
-    private void productLockedAndHasReservation(
-            Map<String, Integer> productExpectation,
-            Map<String, Integer> resExpectation,
-            String resId)
+    @Test
+    public void startCheckout_fail_activeCart()
     {
-        productExpectation.forEach((sku, qty) -> {
-            StepVerifier.create(productRepository.getBySku(sku))
-                        .consumeNextWith(product -> {
-                            int actualProductQuantity = getQuantity(product, sku);
-                            int expectedResQuantity = resExpectation.get(sku);
+        String cartId = "5eaa32339e58d82df43199a9";
 
-                            assertEquals("Not the expected locked quantity", actualProductQuantity, qty.intValue());
-                            verifyReservation(product.getReservations(), resId, sku, expectedResQuantity);
+        webTestClient.post()
+                     .uri(BASE_URL + "/", cartId)
+                     .accept(Global.JSON)
+                     .exchange()
+                     .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST)
+                     .expectBody(ResourceNotFoundException.class)
+                     .consumeWith(res -> {
+                         ResourceNotFoundException ex = res.getResponseBody();
 
-                        }).verifyComplete();
+                         assertThat(ex.getMessage(), equalToIgnoringCase("could Not find cart or cart is active"));
+                     });
+    }
+
+    @Test
+    public void leavingCheckout_pass()
+    {
+        String cartId = "5eaa32339e58d82df43199aa";
+        String sku = "mans-41";
+        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 107).build();
+        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, 7).build();
+
+        webTestClient.post()
+                     .uri(BASE_URL + "/leaving", cartId)
+                     .accept(Global.JSON)
+                     .exchange()
+                     .expectStatus().is2xxSuccessful()
+                     .expectBody(Cart.class)
+                     .consumeWith(res -> {
+                         Cart cart = res.getResponseBody();
+
+                         assertFalse(cart.isActive());
+                         lockingValidator.productQuantityAndHasReservation(productExpectation,
+                                                                           resExpectation,
+                                                                           cartId,
+                                                                           false);
+                     });
+    }
+
+    @Test
+    public void leavingCheckout_fail_CartIsNotActive()
+    {
+        String cartId = "5eaa32339e58d82df43199ae";
+
+        webTestClient.post()
+                     .uri(BASE_URL + "/leaving", cartId)
+                     .accept(Global.JSON)
+                     .exchange()
+                     .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST)
+                     .expectBody(ResourceNotFoundException.class)
+                     .consumeWith(res -> {
+                         ResourceNotFoundException ex = res.getResponseBody();
+
+                         assertThat(ex.getMessage(), equalToIgnoringCase("could Not find cart or cart is not active"));
+                     });
+    }
+
+    private void verifyLockErrors(List<LockError> lockErrors, Map<String, Integer> lockExpectation)
+    {
+        lockExpectation.forEach((k, v) -> {
+
+            Optional<LockError> opt = lockErrors.stream().filter(lockError -> lockError.getSku().equalsIgnoreCase(k)
+                                                                                      && lockError.getVariationId()
+                                                                                                  .equalsIgnoreCase(k)
+                                                                                      && lockError.getLockedQuantity()
+                                                                                                 == v).findFirst();
+            assertTrue(opt.isPresent());
         });
-    }
-
-    private void verifyReservation(
-            List<Reservation> reservations,
-            String resId,
-            String vacationId,
-            int expectedQuantity)
-    {
-        Optional<Reservation> opt = reservations.stream()
-                                                .filter(res -> res.getId().equalsIgnoreCase(resId)
-                                                                       && res.getVariationId()
-                                                                             .equalsIgnoreCase(vacationId)
-                                                                       && res.getQuantity() == expectedQuantity)
-                                                .findFirst();
-        assertTrue("reservation does not exist", opt.isPresent());
-    }
-
-    private int getQuantity(Product product, String variationId)
-    {
-        return product.getVariationsDetails()
-                      .get(variationId)
-                      .getAvailability()
-                      .getQuantity();
     }
 
     private Map<String, Integer> passCheckoutProductExpectation()
@@ -172,4 +210,9 @@ public class CheckoutControllerIT
                        .build();
     }
 
+    @Autowired
+    public void lockingValidatorInstance(ProductRepository productRepository)
+    {
+        lockingValidator = new ProductLockingValidator(productRepository);
+    }
 }

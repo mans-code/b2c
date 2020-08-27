@@ -78,7 +78,7 @@ public class ProductLockingImpl implements ProductLocking
     public void unlock(ProductInfo productInfo, ObjectId cartId)
     {
         String resId = cartId.toHexString();
-        unlock(productInfo, resId, productInfo.getQuantity(), false);
+        unlock(productInfo, resId, productInfo.getQuantity(), false).subscribe();
     }
 
     @Override public void partialUnlock(
@@ -87,7 +87,7 @@ public class ProductLockingImpl implements ProductLocking
             int quantity)
     {
         String resId = cartId.toHexString();
-        unlock(productInfo, resId, quantity, true);
+        unlock(productInfo, resId, quantity, true).subscribe();
     }
 
     private void addReservation(ProductInfo productInfo, String cartId, Integer lockedQuantity)
@@ -118,7 +118,7 @@ public class ProductLockingImpl implements ProductLocking
         }
         else
         {
-            update.set(RESERVATION_QUANTITY_POSITION, locked);
+            update.inc(RESERVATION_QUANTITY_POSITION, locked);
         }
 
         executeUpdate(query, update).subscribe(); //TODO handle error

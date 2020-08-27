@@ -1,6 +1,7 @@
 package com.mans.ecommerce.b2c.service;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -58,6 +59,12 @@ public class CartService
                              .switchIfEmpty(Mono.defer(this::raiseCartNotFoundOrActive));
     }
 
+    public Mono<Cart> findAndUnlock(ObjectId cartId)
+    {
+        return cartRepository.findAndUnlock(cartId)
+                             .switchIfEmpty(Mono.defer(this::raiseCartNotFoundOrNotActive));
+    }
+
     public Mono<Cart> update(Cart cart)
     {
         return cartRepository.save(cart);
@@ -75,21 +82,13 @@ public class CartService
 
     public Mono<Boolean> avoidUnlock(Cart cart)
     {
-        if (cart.isActive() && expireIn10Mins(cart.getExpireDate()))
+        if (cart.isActive() && expireIn2Mins(cart.getExpireDate()))
         {
             Mono<Boolean> stillActive = extendsExpirationDateAndGetActivationStatus(cart.getId());
             return stillActive.doOnSuccess(this::throwIfNotActive);
 
         }
         return Mono.just(true);
-    }
-
-    private void throwIfNotActive(boolean stillActive)
-    {
-        if (!stillActive)
-        {
-            throw new ConflictException("please start checkout procedure again");
-        }
     }
 
     public Mono<Boolean> extendsExpirationDateAndGetActivationStatus(ObjectId cartId)
@@ -104,17 +103,35 @@ public class CartService
         feedService.save(id);
     }
 
-    private boolean expireIn10Mins(Instant time)
+    private boolean expireIn2Mins(Instant time)
     {
-        int TEN_MINUTES = 10;
+        if (Objects.isNull(time))
+        {
+            return true;
+        }
+
+        int TWO_MINUTES = 2;
         long diff = time.toEpochMilli() - Instant.now().toEpochMilli();
         long diffMinutes = TimeUnit.MILLISECONDS.toMinutes(diff);
 
-        if (diffMinutes < TEN_MINUTES)
+        if (diffMinutes < TWO_MINUTES)
         {
             return true;
         }
         return false;
+    }
+
+    private void throwIfNotActive(boolean stillActive)
+    {
+        if (!stillActive)
+        {
+            throw new ConflictException("please start checkout procedure again");
+        }
+    }
+
+    private <T> Mono<T> raiseCartNotFoundOrNotActive()
+    {
+        return Mono.error(new ResourceNotFoundException("could Not find cart or cart is not active"));
     }
 
     private <T> Mono<T> raiseCartNotFoundOrActive()

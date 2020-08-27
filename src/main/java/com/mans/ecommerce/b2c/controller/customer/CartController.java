@@ -2,6 +2,7 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 import com.mans.ecommerce.b2c.controller.utill.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -49,7 +50,7 @@ public class CartController
     @GetMapping
     public Mono<Cart> getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        return cartService.findById(cartId).log("test");
+        return cartService.findById(cartId);
     }
 
     @PatchMapping
@@ -57,12 +58,10 @@ public class CartController
     {
         CartAction action = dto.getCartAction();
 
-        if (action == CartAction.DELETE || action == CartAction.UPDATE)
+        if ((action == CartAction.DELETE || action == CartAction.UPDATE)
+                    && Objects.isNull(dto.getVariationId()))
         {
-            if (dto.getVariationId() == null)
-            {
-                return Mono.error(new MissingVariationIdException());
-            }
+            return Mono.error(new MissingVariationIdException());
         }
 
         Mono<Cart> cart = cartService.findById(cartId);
@@ -95,12 +94,11 @@ public class CartController
     private Mono<Cart> removerProductFromCart(Mono<Cart> cartMono, ProductDto dto)
     {
         return cartMono.flatMap(cart -> {
-            ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
+            ProductInfo cartProduct = cartLogic.removeProduct(cart, dto);
             if (cart.isActive())
             {
                 checkoutService.unlock(cart, cartProduct);
             }
-            cartLogic.removeProduct(cart, dto);
             return cartService.update(cart);
         });
     }
@@ -117,35 +115,58 @@ public class CartController
             {
                 return Mono.error(new OutOfStockException());
             }
-            return addProductToCart(cart, productInfo);
+            return addProductToCart(cart, productInfo, dto.getQuantity());
         });
-
         return savedCartMon;
     }
 
-    private Mono<Cart> addProductToCart(Cart cart, ProductInfo cartProduct)
+    private Mono<Cart> addProductToCart(Cart cart, ProductInfo cartProduct, int requestedQty)
     {
+
         if (!cart.isActive())
         {
             cartLogic.addProduct(cart, cartProduct);
-            return cartService.update(cart);
+            Mono<Cart> updateCart = cartService.update(cart);
+            int availableQty = cartProduct.getQuantity();
+
+            if (availableQty < requestedQty)
+            {
+                return updateCart.flatMap(updated -> Mono.error(new PartialOutOfStockException(updated, availableQty)));
+            }
+            return updateCart;
         }
 
-        return checkoutService.lock(cart, cartProduct)
-                              .flatMap(locked -> addLockedProduct(cart, cartProduct, locked));
+        boolean existsInCart = cartLogic.isInCart(cart, cartProduct);
+        Mono<Integer> lockMon;
+
+        if (existsInCart)
+        {
+            lockMon = checkoutService.partialLock(cart, cartProduct, cartProduct.getQuantity());
+        }
+        else
+        {
+            lockMon = checkoutService.lock(cart, cartProduct);
+        }
+
+        return lockMon.flatMap(locked -> addLockedProduct(cart, cartProduct, locked, requestedQty));
     }
 
     private Mono<Cart> addLockedProduct(
             Cart cart,
             ProductInfo cartProduct,
-            Integer locked)
+            Integer locked,
+            int requestedQty)
     {
+        if (locked == 0)
+        {
+            return Mono.error(new OutOfStockException());
+        }
 
         cartProduct.setQuantity(locked);
         cartLogic.addProduct(cart, cartProduct);
         Mono<Cart> cartUpdateMono = cartService.update(cart);
 
-        if (locked < cartProduct.getQuantity())
+        if (locked < requestedQty)
         {
             return cartUpdateMono.flatMap(updated -> Mono.error(new PartialOutOfStockException(updated, locked)));
         }
@@ -172,12 +193,12 @@ public class CartController
             }
             else if (difference < ZERO)
             {
-                return reduceQuantity(cartMono, cartProduct, absDifference);
+                return addProductToCart(cartMono, dto);
+
             }
             else
             {
-                dto.setQuantity(absDifference);
-                return addProductToCart(cartMono, dto);
+                return reduceQuantity(cartMono, cartProduct, absDifference);
             }
         });
 

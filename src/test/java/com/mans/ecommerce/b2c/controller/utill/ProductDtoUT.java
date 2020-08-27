@@ -40,7 +40,7 @@ public class ProductDtoUT
     @Test
     public void validation_fail_invalidProductSku_TooShort()
     {
-        int minCharacterSize = 8;
+        int minCharacterSize = 6;
         String shortId = validatorTestHelper.getStringOfLength(minCharacterSize - 1);
         ProductDto productInfoDto = new ProductDto(shortId, VALID_CART_ACTION);
         validatorTestHelper.validation_fail_TooShort(productInfoDto, SKU_FIELD, minCharacterSize);

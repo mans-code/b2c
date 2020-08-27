@@ -64,7 +64,7 @@ public class CheckoutController
     @PostMapping("/")
     public Mono<CheckoutResponse> lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId).log("WHAT");
+        Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId);
 
         return tuple2Mono.flatMap(tuple2 -> {
             Cart cart = tuple2.getT1();
@@ -96,13 +96,10 @@ public class CheckoutController
     @PostMapping("/leaving")
     public Mono<Cart> unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
-        Mono<Cart> cartMono = cartService.findById(cartId);
+        Mono<Cart> cartMono = cartService.findAndUnlock(cartId);
         return cartMono.doOnSuccess(cart -> {
-            if (cart.isActive())
-            {
-                checkoutService.unlock(cart, cart.getProductInfos());
-            }
-        });
+                checkoutService.unlock(cart, cart.getProductInfos()).subscribe();
+            });
     }
 
     private Mono<? extends CheckoutResponse> updateAfterUncompletedCheckout(

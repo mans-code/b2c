@@ -65,4 +65,23 @@ public class CartRepositoryImpl implements CartRepositoryCustom
         return mongoTemplate.findAndModify(query, update, options, Cart.class)
                             .cache();
     }
+
+    @Override public Mono<Cart> findAndUnlock(ObjectId id)
+    {
+        Query query = new Query();
+        query.addCriteria(where(ID).is(id));
+        query.addCriteria(where(ACTIVE).is(true));
+
+        Update update = new Update();
+        update.set(ACTIVE, false);
+
+        FindAndModifyOptions options = FindAndModifyOptions
+                                               .options()
+                                               .returnNew(true)
+                                               .upsert(false)
+                                               .remove(false);
+
+        return mongoTemplate.findAndModify(query, update, options, Cart.class)
+                            .cache();
+    }
 }

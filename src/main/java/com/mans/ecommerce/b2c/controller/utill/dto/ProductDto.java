@@ -7,16 +7,20 @@ import javax.validation.constraints.Size;
 
 import com.mans.ecommerce.b2c.controller.utill.annotation.ValueOfEnum;
 import com.mans.ecommerce.b2c.domain.enums.CartAction;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 public class ProductDto
 {
 
     @NotBlank(message = "must not be empty")
-    @Size(min = 8, message = "must be 8 or more characters in length")
+    @Size(min = 6, message = "must be 6 or more characters in length")
     private String sku;
 
     private String variationId;
@@ -44,7 +48,7 @@ public class ProductDto
 
     public CartAction getCartAction()
     {
-        return CartAction.valueOf(cartAction);
+        return CartAction.valueOf(cartAction.toUpperCase());
     }
 
     public void setQuantity(int quantity)
