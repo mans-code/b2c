@@ -86,7 +86,6 @@ public class CheckoutService
 
     public void partialUnlock(Cart cart, ProductInfo cartProduct, int toUnlock)
     {
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         cartService.avoidUnlock(cart)
                    .doOnSuccess(active -> {
                        productRepository.partialUnlock(cartProduct, cart.getId(), toUnlock);

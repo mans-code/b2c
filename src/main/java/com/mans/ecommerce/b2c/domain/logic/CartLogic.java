@@ -58,7 +58,6 @@ public class CartLogic
             List<ProductInfo> productInfos = cart.getProductInfos();
             productInfos.add(productInfo);
         }
-
         addMoneyAndQuantity(cart, productInfo, requestedQuantity);
         feedService.addToCart(cart.getId(), productInfo);
         return cartProduct;

@@ -621,8 +621,8 @@
     "sku": "mans-15",
     "reservations": [
       {
-        "id": "5eaa32339e58d82df43199af",
-        "quantity": 2,
+        "id": "5eaa32339e58d82df43199bd",
+        "quantity": 4,
         "variationId": "mans-15"
       }
     ],
@@ -632,7 +632,7 @@
           "title": "Maecenas tincidunt lacus at velit.",
           "by": "Emmerich LLC",
           "money": {
-            "amount": 34,
+            "amount": 45,
             "currency": "USD"
           },
           "imageUrl": "http://dummyimage.com/140x130.png/dddddd/000000"
@@ -644,7 +644,7 @@
           "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
         },
         "availability": {
-          "quantity": 351,
+          "quantity": 5,
           "availableOn": null,
           "shipTo": null
         }

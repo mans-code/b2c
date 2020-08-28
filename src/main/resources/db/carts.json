@@ -156,16 +156,6 @@
         }
       },
       {
-        "sku": "mans-15",
-        "variationId": "mans-15",
-        "imageUrl": "http://dummyimage.com/140x130.png/dddddd/000000",
-        "quantity": 6,
-        "money": {
-          "currency": "USD",
-          "amount": 204
-        }
-      },
-      {
         "sku": "mans-45",
         "variationId": "mans-45",
         "imageUrl": "http://dummyimage.com/139x168.png/cc0000/ffffff",
@@ -489,7 +479,7 @@
         "quantity": 3,
         "money": {
           "currency": "USD",
-          "amount": 144
+          "amount": 40
         }
       },
       {
@@ -505,10 +495,10 @@
     ],
     "money": {
       "currency": "USD",
-      "amount": 201
+      "amount": 603
     },
     "totalQuantity": 6,
-    "id": "5eaa32339e58d82df431999f"
+    "id": "5ea9d936fc13ae2ee4000039"
   },
   {
     "active": false,
@@ -530,7 +520,7 @@
         "quantity": 3,
         "money": {
           "currency": "USD",
-          "amount": 120
+          "amount": 40
         }
       },
       {
@@ -549,10 +539,10 @@
       "amount": 850
     },
     "totalQuantity": 23,
-    "id": "5eaa32339e58d82df43199a1"
+    "id": "5eaa32339e58d82df431999f"
   },
   {
-    "active": true,
+    "active": false,
     "productInfos": [],
     "money": {
       "currency": "USD",
@@ -645,10 +635,21 @@
   },
   {
     "active": false,
-    "productInfos": [],
+    "productInfos": [
+      {
+        "sku": "mans-43",
+        "variationId": "mans-43",
+        "imageUrl": "http://dummyimage.com/248x161.bmp/ff4444/ffffff",
+        "quantity": 7,
+        "money": {
+          "currency": "USD",
+          "amount": 40
+        }
+      }
+    ],
     "money": {
       "currency": "USD",
-      "amount": 0
+      "amount": 280
     },
     "totalQuantity": 0,
     "id": "5eaa32339e58d82df43199a5"
@@ -734,14 +735,14 @@
         "quantity": 2,
         "money": {
           "currency": "USD",
-          "amount": 84
+          "amount": 24
         }
       },
       {
         "sku": "mans-2",
         "variationId": "mans-2",
         "imageUrl": "http://dummyimage.com/233x157.png/ff4444/ffffff",
-        "quantity": 1,
+        "quantity": 2,
         "money": {
           "currency": "USD",
           "amount": 24
@@ -1333,10 +1334,21 @@
   },
   {
     "active": false,
-    "productInfos": [],
+    "productInfos": [
+      {
+        "sku": "mans-46",
+        "variationId": "mans-46",
+        "imageUrl": "http://dummyimage.com/129x206.png/ff4444/ffffff",
+        "quantity": 8,
+        "money": {
+          "currency": "USD",
+          "amount": 48
+        }
+      }
+    ],
     "money": {
       "currency": "USD",
-      "amount": 0
+      "amount": 48
     },
     "totalQuantity": 0,
     "id": "5eaa32339e58d82df43199ba"
@@ -1376,13 +1388,13 @@
     "active": false,
     "productInfos": [
       {
-        "sku": "mans-29",
-        "variationId": "mans-29",
+        "sku": "mans-15",
+        "variationId": "mans-15",
         "imageUrl": "http://dummyimage.com/214x153.png/5fa2dd/ffffff",
         "quantity": 4,
         "money": {
           "currency": "USD",
-          "amount": 200
+          "amount": 45
         }
       },
       {
@@ -1576,7 +1588,7 @@
         "quantity": 10,
         "money": {
           "currency": "USD",
-          "amount": 310
+          "amount": 50
         }
       },
       {
