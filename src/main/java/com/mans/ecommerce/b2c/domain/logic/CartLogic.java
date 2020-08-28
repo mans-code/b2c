@@ -83,7 +83,8 @@ public class CartLogic
         Money moneyToDeduct = getMoney(productInfo, quantity);
         deductMoney(cart, moneyToDeduct);
         deductQuantity(cart, quantity);
-        productInfo.setQuantity(quantity);
+        int oldQty = productInfo.getQuantity();
+        productInfo.setQuantity(oldQty - quantity);
     }
 
     public ProductInfo getProduct(Cart cart, ProductDto dto)
@@ -215,6 +216,7 @@ public class CartLogic
         int quantity = productInfo.getQuantity();
         deductMoneyAndQuantity(cart, productInfo, quantity);
         cart.getProductInfos().remove(productInfo);
+        productInfo.setQuantity(quantity);
         return productInfo;
     }
 

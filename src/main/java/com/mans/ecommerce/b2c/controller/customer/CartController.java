@@ -93,6 +93,7 @@ public class CartController
 
     private Mono<Cart> removerProductFromCart(Mono<Cart> cartMono, ProductDto dto)
     {
+
         return cartMono.flatMap(cart -> {
             ProductInfo cartProduct = cartLogic.removeProduct(cart, dto);
             if (cart.isActive())
@@ -186,36 +187,35 @@ public class CartController
             ProductInfo cartProduct = cartLogic.getProduct(cart, dto);
             int difference = getQuantityDifference(dto, cartProduct);
             int absDifference = Math.abs(difference);
-
             if (difference == ZERO)
             {
                 return cartMono;
             }
             else if (difference < ZERO)
             {
+                dto.setQuantity(absDifference);
                 return addProductToCart(cartMono, dto);
-
             }
             else
             {
-                return reduceQuantity(cartMono, cartProduct, absDifference);
+                return reduceQuantity(cart, cartProduct, difference);
             }
         });
 
     }
 
-    private Mono<Cart> reduceQuantity(Mono<Cart> cartMono, ProductInfo cartProduct, int deductedQuantity)
+    private Mono<Cart> reduceQuantity(Cart cart, ProductInfo cartProduct, int deductedQuantity)
     {
+        cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
+        return cartService.update(cart).doOnSuccess(updated -> partialUnlock(updated, cartProduct, deductedQuantity));
+    }
 
-        return cartMono.flatMap(cart -> {
-            cartLogic.deductMoneyAndQuantity(cart, cartProduct, deductedQuantity);
-            return cartService.update(cart);
-        }).doOnSuccess(cart -> {
-            if (cart != null && cart.isActive())
-            {
-                checkoutService.partialUnlock(cart, cartProduct, deductedQuantity);
-            }
-        });
+    private void partialUnlock(Cart updated, ProductInfo cartProduct, int deductedQuantity)
+    {
+        if (updated != null && updated.isActive())
+        {
+            checkoutService.partialUnlock(updated, cartProduct, deductedQuantity);
+        }
     }
 
     private int getQuantityDifference(ProductDto dto, ProductInfo cartProduct)

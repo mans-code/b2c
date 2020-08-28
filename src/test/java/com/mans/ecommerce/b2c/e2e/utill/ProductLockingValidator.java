@@ -8,12 +8,14 @@ import com.mans.ecommerce.b2c.domain.entity.product.Product;
 import com.mans.ecommerce.b2c.domain.entity.product.subEntity.Reservation;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
 import reactor.test.StepVerifier;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.awaitility.Awaitility.with;
 import static org.junit.Assert.*;
 
 public class ProductLockingValidator
 {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ProductLockingValidator(ProductRepository productRepository)
     {
@@ -26,13 +28,14 @@ public class ProductLockingValidator
             String resId,
             boolean res)
     {
+        with().pollDelay(250, MILLISECONDS).await().until(() -> true);
         productExpectation.forEach((sku, qty) -> {
             StepVerifier.create(productRepository.getBySku(sku))
                         .consumeNextWith(product -> {
                             int actualProductQuantity = getQuantity(product, sku);
                             int expectedResQuantity = resExpectation.get(sku);
 
-                            assertEquals("Not the expected locked quantity", qty.intValue(), actualProductQuantity);
+                            assertEquals("Not the expected product quantity", qty.intValue(), actualProductQuantity);
                             verifyReservation(product.getReservations(), resId, sku, expectedResQuantity, res);
 
                         }).verifyComplete();

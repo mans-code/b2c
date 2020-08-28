@@ -8,15 +8,18 @@ import com.google.common.collect.ImmutableMap;
 import com.mans.ecommerce.b2c.controller.utill.dto.ProductDto;
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.ProductInfo;
+import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.e2e.utill.ProductLockingValidator;
 import com.mans.ecommerce.b2c.repository.product.ProductRepository;
+import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.utills.Global;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -25,17 +28,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 public class ActiveCartControllerIT
 {
-    private final String errorMessageTemplate = "%s product info with sku=%s \n variationId=%s \n amount=%s";
+    private final String errorMessageTemplate = "%s product info with sku=%s \n variationId=%s \n qty=%s \n amount=%s";
 
     private ProductLockingValidator lockingValidator;
 
     private final String BASE_URL = "/carts/{cartId}";
+
+    @SpyBean
+    private CheckoutService checkoutService;
 
     @Autowired
     private WebTestClient webTestClient;
@@ -63,43 +73,48 @@ public class ActiveCartControllerIT
     }
 
     @Test
-    public void update_pass()
+    public void updateAdd_pass()
     {
         String cartId = "5eaa32339e58d82df43199b7";
         String sku = "mans-32";
         String cartAction = "update";
+        int oldLock = 2;
         int lock = 10;
         BigDecimal productAmount = new BigDecimal("21");
         BigDecimal cartPervAmount = new BigDecimal("296");
         BigDecimal cartExpectedAmount = productAmount
-                                                .multiply(BigDecimal.valueOf(lock))
+                                                .multiply(BigDecimal.valueOf(lock - oldLock))
                                                 .add(cartPervAmount);
 
         ProductDto dto = getProductDto(sku, cartAction, lock);
 
-        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 167).build();
-        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, lock + 2).build();
+        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 169).build();
+        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, lock).build();
 
         callApiAndVerifyPassing(cartId, productAmount, cartExpectedAmount, dto, productExpectation, resExpectation,
                                 true, true);
     }
 
     @Test
-    public void remove_pass()
+    public void updateReduce_pass()
     {
-        String cartId = "5eaa32339e58d82df43199bc";
-        String sku = "mans-49";
-        String cartAction = "delete";
+        String cartId = "5eaa32339e58d82df43199c1";
+        String sku = "mans-7";
+        String cartAction = "update";
+        int oldLockQty = 5;
+        int lock = 2;
+        BigDecimal productAmount = new BigDecimal("33");
+        BigDecimal cartPervAmount = new BigDecimal("195");
+        BigDecimal cartExpectedAmount = cartPervAmount.subtract(
+                productAmount.multiply(BigDecimal.valueOf(oldLockQty - lock)));
 
-        BigDecimal cartExpectedAmount = new BigDecimal(0);
-        BigDecimal productAmount = new BigDecimal("37");
-        ProductDto dto = getProductDto(sku, cartAction, 0);
+        ProductDto dto = getProductDto(sku, cartAction, lock);
 
-        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 162).build();
-        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, 2).build();
+        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 922).build();
+        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, lock).build();
 
         callApiAndVerifyPassing(cartId, productAmount, cartExpectedAmount, dto, productExpectation, resExpectation,
-                                false, false);
+                                true, true);
     }
 
     @Test
@@ -115,6 +130,24 @@ public class ActiveCartControllerIT
 
         Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 578).build();
         Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, 5).build();
+
+        callApiAndVerifyPassing(cartId, productAmount, cartExpectedAmount, dto, productExpectation, resExpectation,
+                                false, false);
+    }
+
+    @Test
+    public void remove_pass()
+    {
+        String cartId = "5eaa32339e58d82df43199bc";
+        String sku = "mans-49";
+        String cartAction = "delete";
+
+        BigDecimal cartExpectedAmount = new BigDecimal(0);
+        BigDecimal productAmount = new BigDecimal("37");
+        ProductDto dto = getProductDto(sku, cartAction, 0);
+
+        Map<String, Integer> productExpectation = ImmutableMap.<String, Integer>builder().put(sku, 162).build();
+        Map<String, Integer> resExpectation = ImmutableMap.<String, Integer>builder().put(sku, 2).build();
 
         callApiAndVerifyPassing(cartId, productAmount, cartExpectedAmount, dto, productExpectation, resExpectation,
                                 false, false);
@@ -157,15 +190,45 @@ public class ActiveCartControllerIT
     }
 
     @Test
-    public void add_pass_outOfStock()
+    public void add_fail_outOfStock()
     {
-
+        String cartId = "5eaa32339e58d82df431999a";
+        outOfStock(cartId, "add");
+        verify(checkoutService, times(0)).lock(any(Cart.class), any(ProductInfo.class));
     }
 
     @Test
-    public void update_pass_outOfStock()
+    public void update_fail_outOfStock()
     {
+        String cartId = "5eaa32339e58d82df43199b7";
+        outOfStock(cartId, "update");
+        verify(checkoutService, times(0)).partialLock(any(Cart.class), any(ProductInfo.class), anyInt());
+    }
 
+    private void outOfStock(String cartId, String cartAction)
+    {
+        String sku = "mans-46";
+        ProductDto dto = getProductDto(sku, cartAction, 10);
+
+        callApiAndVerifyOutOfStock(cartId, dto);
+    }
+
+    private void callApiAndVerifyOutOfStock(
+            String cartId,
+            ProductDto dto)
+    {
+        webTestClient.patch()
+                     .uri(BASE_URL, cartId)
+                     .body(Mono.just(dto), ProductDto.class)
+                     .accept(Global.JSON)
+                     .exchange()
+                     .expectStatus().isEqualTo(HttpStatus.NOT_FOUND)
+                     .expectBody(OutOfStockException.class)
+                     .consumeWith(response -> {
+                         OutOfStockException out = response.getResponseBody();
+
+                         assertThat(out.getMessage(), equalToIgnoringCase("product is Out Of Stock"));
+                     });
     }
 
     private void callApiAndVerifyPartialOutOfStock(
@@ -241,6 +304,7 @@ public class ActiveCartControllerIT
             boolean addOrUpdate)
     {
         expectation.forEach((k, v) -> {
+            System.out.println(v);
             Optional<ProductInfo> opt = cart.getProductInfos()
                                             .stream()
                                             .filter(info ->
@@ -252,12 +316,12 @@ public class ActiveCartControllerIT
                                             ).findFirst();
             if (addOrUpdate)
             {
-                assertTrue(String.format(errorMessageTemplate, "no", k, k, productAmount),
+                assertTrue(String.format(errorMessageTemplate, "no", k, k, v, productAmount),
                            opt.isPresent());
             }
             else
             {
-                assertFalse(String.format(errorMessageTemplate, "", k, k, productAmount),
+                assertFalse(String.format(errorMessageTemplate, "", k, k, v, productAmount),
                             opt.isPresent());
             }
 
