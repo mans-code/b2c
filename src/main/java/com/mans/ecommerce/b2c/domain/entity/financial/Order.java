@@ -1,5 +1,6 @@
 package com.mans.ecommerce.b2c.domain.entity.financial;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.Cart;
@@ -7,6 +8,7 @@ import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
 import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.Financial;
 import com.mans.ecommerce.b2c.domain.entity.financial.subEntity.OrderDetail;
 import com.mans.ecommerce.b2c.domain.entity.sharedSubEntity.Money;
+import com.mans.ecommerce.b2c.domain.enums.Currency;
 import com.stripe.model.Charge;
 import lombok.*;
 import org.bson.types.ObjectId;
@@ -47,6 +49,6 @@ public class Order
         this.CustomerId = cart.getId();
         this.totalAmount = cart.getMoney();
         this.detail = new OrderDetail(cart, address, charge);
-
+        this.financial = new Financial(new Money(new BigDecimal("0"), Currency.USD));
     }
 }

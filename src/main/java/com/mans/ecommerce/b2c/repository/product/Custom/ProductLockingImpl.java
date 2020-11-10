@@ -239,15 +239,20 @@ public class ProductLockingImpl implements ProductLocking
                                ConditionalOperators
                                        .Cond
                                        .when(Criteria.where(quantityField).gte(requestedQty))
-                                       .thenValueOf(context -> {
-                                           Document sumExpression = new Document();
-                                           BasicDBList list = new BasicDBList();
-                                           list.add(REF + quantityField);
-                                           list.add(requestedQty * -1);
-                                           sumExpression.put(SUM, list);
-                                           return new Document().append(SUM, list);
-                                       })
+                                       .thenValueOf($ -> reduceQuantity(quantityField, requestedQty))
                                        .otherwise(ZERO));
+    }
+
+    private Document reduceQuantity(String quantityField, int requestedQty)
+    {
+        BasicDBList list = new BasicDBList();
+        list.add(REF + quantityField);
+        list.add(requestedQty * -1);
+
+        Document sumExpression = new Document();
+        sumExpression.put(SUM, list);
+
+        return new Document().append(SUM, list);
     }
 
     private Mono<Boolean> executeUpdate(Query query, Update update)

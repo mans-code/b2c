@@ -33,17 +33,17 @@ public class CheckoutController
 
     private final String SUCCEEDED = "succeeded";
 
-    private CartService cartService;
+    private final CartService cartService;
 
-    private CartLogic cartLogic;
+    private final CartLogic cartLogic;
 
-    private CheckoutService checkoutService;
+    private final CheckoutService checkoutService;
 
-    private StripeService stripeService;
+    private final StripeService stripeService;
 
-    private String stripePublicKey;
+    private final String stripePublicKey;
 
-    private ApplicationEventPublisher publisher;
+    private final ApplicationEventPublisher publisher;
 
     CheckoutController(
             CartService cartService,
@@ -64,6 +64,7 @@ public class CheckoutController
     @PostMapping("/")
     public Mono<CheckoutResponse> lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
+        System.err.println("checkout Start");
         Mono<Tuple2<Cart, List<LockError>>> tuple2Mono = checkoutService.lock(cartId);
 
         return tuple2Mono.flatMap(tuple2 -> {
@@ -82,12 +83,11 @@ public class CheckoutController
     @PostMapping("/complete")
     public Mono<Financial> complete(
             @PathVariable("cartId") @NotNull ObjectId cartId,
-            @RequestParam @Valid CheckoutDto checkoutDto)
+            @RequestBody @Valid CheckoutDto checkoutDto)
     {
         Mono<Cart> cartMono = cartService.findById(cartId);
-
-        Mono<Charge> chargeMono = getChargeMono(checkoutDto, cartMono);
-
+        String token = checkoutDto.getToken();
+        Mono<Charge> chargeMono = getChargeMono(cartMono, token);
         Mono<Tuple2<Cart, Charge>> completeMono = Mono.zip(cartMono, chargeMono);
 
         return completeOrder(checkoutDto, completeMono);
@@ -98,8 +98,8 @@ public class CheckoutController
     {
         Mono<Cart> cartMono = cartService.findAndUnlock(cartId);
         return cartMono.doOnSuccess(cart -> {
-                checkoutService.unlock(cart, cart.getProductInfos()).subscribe();
-            });
+            checkoutService.unlock(cart, cart.getProductInfos()).subscribe();
+        });
     }
 
     private Mono<? extends CheckoutResponse> updateAfterUncompletedCheckout(
@@ -116,12 +116,10 @@ public class CheckoutController
     }
 
     private Mono<Charge> getChargeMono(
-            @RequestParam @Valid CheckoutDto checkoutDto,
-            Mono<Cart> cartMono)
+            Mono<Cart> cartMono, String token)
     {
         return cartMono.flatMap(cart -> {
-            double amount = calculateTotalAmount(cart, checkoutDto);
-            String token = checkoutDto.getToken();
+            double amount = calculateTotalAmount(cart);
             String currency = cart.getMoney()
                                   .getCurrency()
                                   .getCurrencyCode();
@@ -130,7 +128,7 @@ public class CheckoutController
     }
 
     private Mono<Financial> completeOrder(
-            @RequestParam @Valid CheckoutDto checkoutDto,
+            CheckoutDto checkoutDto,
             Mono<Tuple2<Cart, Charge>> completeMono)
     {
         return completeMono.flatMap(tuple2 -> {
@@ -142,13 +140,13 @@ public class CheckoutController
             {
                 Mono.error(new PaymentFailedException(charge.getFailureMessage()));
             }
-            Order order = new Order(cart, checkoutDto.getAddress(), charge);
-            publisher.publishEvent(new OrderEvent(order));
-            return Mono.just(order.getFinancial());
+                Order order = new Order(cart, checkoutDto.getAddress(), charge);
+                publisher.publishEvent(new OrderEvent(order));
+                return Mono.just(order.getFinancial());
         });
     }
 
-    private double calculateTotalAmount(Cart cart, CheckoutDto checkoutDto)
+    private double calculateTotalAmount(Cart cart)
     {
         return cart.getMoney()
                    .getAmount()

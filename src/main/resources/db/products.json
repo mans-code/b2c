@@ -20,13 +20,13 @@
     "variationsDetails": {
       "mans-1": {
         "basicInfo": {
-          "title": "Nam nulla.",
+          "title": "The Lean startup: new constant Innovation",
           "by": "Auer LLC",
           "money": {
             "amount": 44,
             "currency": "USD"
           },
-          "imageUrl": "http://dummyimage.com/173x136.jpg/cc0000/ffffff"
+          "imageUrl": "https://m.media-amazon.com/images/I/81Pi4nhjlwL._AC_UY327_FMwebp_QL65_.jpg"
         },
         "details": {
           "shortDescription": "Mauris lacinia sapien quis libero.",
@@ -63,7 +63,7 @@
             "amount": 24,
             "currency": "USD"
           },
-          "imageUrl": "http://dummyimage.com/233x157.png/ff4444/ffffff"
+          "imageUrl": "https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
         },
         "details": {
           "shortDescription": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
@@ -111,7 +111,7 @@
             "amount": 38,
             "currency": "USD"
           },
-          "imageUrl": "http://dummyimage.com/104x129.jpg/dddddd/000000"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
         },
         "details": {
           "shortDescription": "Nullam varius. Nulla facilisi.",
@@ -159,7 +159,7 @@
             "amount": 5,
             "currency": "USD"
           },
-          "imageUrl": "http://dummyimage.com/199x179.png/5fa2dd/ffffff"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
         },
         "details": {
           "shortDescription": "Nulla mollis molestie lorem. Quisque ut erat.",
@@ -196,7 +196,7 @@
             "amount": 34,
             "currency": "USD"
           },
-          "imageUrl": "http://dummyimage.com/218x123.jpg/5fa2dd/ffffff"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
         },
         "details": {
           "shortDescription": "Nullam molestie nibh in lectus.",

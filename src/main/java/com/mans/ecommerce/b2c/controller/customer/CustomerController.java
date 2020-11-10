@@ -2,6 +2,8 @@ package com.mans.ecommerce.b2c.controller.customer;
 
 import javax.validation.constraints.NotNull;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mans.ecommerce.b2c.domain.entity.customer.subEntity.Address;
@@ -28,7 +30,15 @@ public class CustomerController
     @GetMapping(value = "/shipping")
     public Mono<List<Address>> getShippingAddresses(@PathVariable("id") @NotNull ObjectId id)
     {
-        return customerService.getShippingAddresses(id);
+        return customerService.getShippingAddresses(id)
+                              .switchIfEmpty(Mono.just(new ArrayList<>()));
+    }
+
+    private List<Address> emptyAddressesList()
+    {
+        Address fake = Address.builder().name("Mans").address("1092 Sandhurst").city("Toronto").build();
+        return  new ArrayList<Address>(
+                Arrays.asList(fake));
     }
 
 }

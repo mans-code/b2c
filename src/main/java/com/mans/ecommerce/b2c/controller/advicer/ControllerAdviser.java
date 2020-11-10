@@ -103,6 +103,8 @@ public class ControllerAdviser
     @ResponseBody
     public ResponseEntity<Object> handleSystemConstraint(Exception ex)
     {
+        ex.printStackTrace();
+        System.err.println(ex);
         publisher.publishEvent(new ServerErrorEvent(ex));
         return getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }

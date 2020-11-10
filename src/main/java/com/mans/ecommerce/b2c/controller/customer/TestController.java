@@ -26,13 +26,13 @@ public class TestController
 
     @Autowired CartService cartService;
 
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     public Mono<Product> custome()
     {
         ProductInfo info = ProductInfo.builder().sku("mans-27").variationId("mans-27").quantity(40).build();
         Mono<Integer> lock = productRepository.lock(info, new ObjectId("5eaa32339e58d82df43199c2"));
         return lock.flatMap(num -> {
-            return productRepository.getBySku("mans-27");
+            return productRepository.getBySku("mans-5");
         });
     }
 

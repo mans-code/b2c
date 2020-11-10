@@ -54,7 +54,7 @@ public class CartController
     }
 
     @PatchMapping
-    public Mono<Cart> add(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
+    public Mono<Cart> update(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
     {
         CartAction action = dto.getCartAction();
 
@@ -69,13 +69,13 @@ public class CartController
         switch (action)
         {
         case UPDATE:
-            return updateProductInCart(cart, dto);
+            return updateProductInCart(cart, dto).log("Update Cart");
         case DELETE:
-            return removerProductFromCart(cart, dto);
+            return removerProductFromCart(cart, dto).log("Delete Product in Cart");
         case RESET:
-            return reset(cart);
+            return reset(cart).log("Reset Cart");
         default:
-            return addProductToCart(cart, dto);
+            return addProductToCart(cart, dto).log("add TO Cart");
         }
     }
 

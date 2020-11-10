@@ -1,0 +1,11 @@
+.idea
+.mvn
+.settings
+.classpath
+.gitignore
+.project
+b2c.iml
+README.md
+mvnw.cmd
+.gitignore
+LICENSE

@@ -48,7 +48,6 @@ public class CustomerService
     public Mono<List<Address>> getShippingAddresses(ObjectId customerId)
     {
         return customerRepository.getShippingAddresses(customerId)
-                                 .switchIfEmpty(Mono.defer(this::raiseCustomerNotFound))
                                  .map(Customer::getShippingAddresses);
     }
 

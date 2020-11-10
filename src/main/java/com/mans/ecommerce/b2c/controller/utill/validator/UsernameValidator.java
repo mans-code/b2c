@@ -16,7 +16,7 @@ public class UsernameValidator
 
     private final int MAX_LENGTH = 32;
 
-    private static String REGEX = "^[a-zA-Z0-9_.-]+$";
+    private static String REGEX = "^[a-zA-Z0-9_.-@]+$";
 
     public UsernameValidator(String username)
     {
