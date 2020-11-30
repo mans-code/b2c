@@ -54,3 +54,8 @@ hs_err_pid*
 mvnw.cmd
 mvnw
 b2c.iml
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

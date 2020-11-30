@@ -6,7 +6,6 @@ import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @Configuration
-@Profile("!prod")
 public class CorsGlobalConfiguration implements WebFluxConfigurer
 {
     @Override

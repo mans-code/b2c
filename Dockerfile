@@ -21,7 +21,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 ##### Stage 2 - Let's build a minimal image with the "deployable package"
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
+
 ARG DEPENDENCY=/amazonclone/backend/target/dependency
 
 COPY --from=backend ${DEPENDENCY}/BOOT-INF/lib /app/lib

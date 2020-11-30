@@ -19,6 +19,12 @@ import com.mans.ecommerce.b2c.service.StripeService;
 import com.mans.ecommerce.b2c.utill.LockError;
 import com.mans.ecommerce.b2c.utill.response.CheckoutResponse;
 import com.stripe.model.Charge;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -28,6 +34,7 @@ import reactor.util.function.Tuple2;
 
 @RestController
 @RequestMapping("/checkout/{cartId}")
+@Tag(name = "checkout api", description = "completing purchasing cart")
 public class CheckoutController
 {
 
@@ -61,7 +68,14 @@ public class CheckoutController
         this.publisher = publisher;
     }
 
+
+
     @PostMapping("/")
+    @Operation(description = "start the checkout procedure by locking all the products in the customer cart, return CheckoutResponse")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = CheckoutResponse.class))),
+            @ApiResponse(responseCode = "206", description = "Some products have only @availableQuantity@ of these available", content = @Content(schema = @Schema(implementation = UncompletedCheckoutException.class))),
+    })
     public Mono<CheckoutResponse> lock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         System.err.println("checkout Start");
@@ -81,6 +95,11 @@ public class CheckoutController
     }
 
     @PostMapping("/complete")
+    @Operation(description = "complete the checkout by charging the customer and start shipping")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Financial.class))),
+            @ApiResponse(responseCode = "424", description = "unable to complete the payment", content = @Content(schema = @Schema(implementation = PaymentFailedException.class))),
+    })
     public Mono<Financial> complete(
             @PathVariable("cartId") @NotNull ObjectId cartId,
             @RequestBody @Valid CheckoutDto checkoutDto)
@@ -94,6 +113,8 @@ public class CheckoutController
     }
 
     @PostMapping("/leaving")
+    @Operation(description = "Cancel the checkout")
+    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Cart.class)))
     public Mono<Cart> unlock(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         Mono<Cart> cartMono = cartService.findAndUnlock(cartId);

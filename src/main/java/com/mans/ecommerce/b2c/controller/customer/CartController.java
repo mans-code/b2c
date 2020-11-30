@@ -12,9 +12,16 @@ import com.mans.ecommerce.b2c.domain.exception.MissingVariationIdException;
 import com.mans.ecommerce.b2c.domain.exception.OutOfStockException;
 import com.mans.ecommerce.b2c.domain.exception.PartialOutOfStockException;
 import com.mans.ecommerce.b2c.domain.logic.CartLogic;
+import com.mans.ecommerce.b2c.security.jwt.JWTToken;
 import com.mans.ecommerce.b2c.service.CartService;
 import com.mans.ecommerce.b2c.service.CheckoutService;
 import com.mans.ecommerce.b2c.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -22,6 +29,7 @@ import reactor.util.function.Tuple2;
 
 @RestController
 @RequestMapping("/carts/{cartId}")
+@Tag(name = "cart api", description = "manipulating customers cart")
 public class CartController
 {
 
@@ -48,12 +56,26 @@ public class CartController
     }
 
     @GetMapping
+    @Operation(description = "returns the customer cart or 404 not found if the cart does not exists")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Cart.class))),
+            @ApiResponse(responseCode = "404", description = "Cart with the given id not found")
+    })
     public Mono<Cart> getCart(@PathVariable("cartId") @NotNull ObjectId cartId)
     {
         return cartService.findById(cartId);
     }
 
     @PatchMapping
+    @Operation(description = "update the customer cart or 404 not found if the cart does not exists. "
+                                  + "To update cart please look at ProductDto for more info")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Cart.class))),
+            @ApiResponse(responseCode = "206", description = "This product has only @availableQuantity@ of these available", content = @Content(schema = @Schema(implementation = Cart.class))),
+            @ApiResponse(responseCode = "404", description = "Cart with the given id not found"),
+            @ApiResponse(responseCode = "404", description = "product is Out Of Stock, Note: only when adding a product to cart"),
+            @ApiResponse(responseCode = "400", description = "variation id must not be empty. Note: only if the customer update or delete")
+    })
     public Mono<Cart> update(@PathVariable("cartId") @NotNull ObjectId cartId, @RequestBody @Valid ProductDto dto)
     {
         CartAction action = dto.getCartAction();

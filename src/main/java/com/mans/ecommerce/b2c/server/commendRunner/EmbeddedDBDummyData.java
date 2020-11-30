@@ -81,7 +81,7 @@ public class EmbeddedDBDummyData implements CommandLineRunner
         List<Cart> carts = loadFile("carts", Cart.class);
         setExpiration(carts);
 
-        cartRepository.saveAll(loadFile("carts", Cart.class)).subscribe();
+        cartRepository.saveAll(carts).subscribe();
 
         paymentInfoRepository.deleteAll().block();
         paymentInfoRepository.saveAll(loadFile("paymentsInfo", PaymentInfo.class)).subscribe();

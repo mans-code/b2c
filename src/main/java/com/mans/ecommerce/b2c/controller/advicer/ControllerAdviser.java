@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.mans.ecommerce.b2c.domain.exception.*;
+import com.mans.ecommerce.b2c.server.config.Internationalization.LocaleService;
 import com.mans.ecommerce.b2c.server.eventListener.entity.ServerErrorEvent;
 import com.stripe.exception.StripeException;
 import org.springframework.context.ApplicationEventPublisher;
@@ -21,9 +22,12 @@ public class ControllerAdviser
 {
     private ApplicationEventPublisher publisher;
 
-    ControllerAdviser(ApplicationEventPublisher publisher)
+    private LocaleService localeService;
+
+    ControllerAdviser(ApplicationEventPublisher publisher, LocaleService localeService)
     {
         this.publisher = publisher;
+        this.localeService = localeService;
     }
 
     @ExceptionHandler({ UserAlreadyExistException.class, ConflictException.class })
@@ -40,7 +44,7 @@ public class ControllerAdviser
         return getResponseMessage(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
-    @ExceptionHandler({ ResourceNotFoundException.class })
+    @ExceptionHandler({ ResourceNotFoundException.class, MissingVariationIdException.class })
     @ResponseBody
     public ResponseEntity<Object> handleBadRequest(Exception ex)
     {
@@ -63,6 +67,7 @@ public class ControllerAdviser
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
+
 
     @ExceptionHandler({ PaymentFailedException.class, StripeException.class })
     @ResponseBody

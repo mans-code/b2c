@@ -11,6 +11,12 @@ import com.mans.ecommerce.b2c.security.jwt.JWTToken;
 import com.mans.ecommerce.b2c.security.jwt.TokenProvider;
 import com.mans.ecommerce.b2c.service.CustomerService;
 import com.mans.ecommerce.b2c.utill.Global;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -23,6 +29,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/auths")
+@Tag(name = "authentication api", description = "auth rest api to authenticate or register customers")
 public class AuthController
 {
 
@@ -47,6 +54,11 @@ public class AuthController
     }
 
     @PostMapping("/signin")
+    @Operation(description = "sigin operation")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200" , description = "successful operation",  content = @Content(schema = @Schema(implementation = JWTToken.class))),
+            @ApiResponse(responseCode = "401" , description = "Bad credentials")
+    })
     public Mono<JWTToken> login(@RequestBody LoginDto loginDto)
     {
         if (!isValid(loginDto))
@@ -69,6 +81,11 @@ public class AuthController
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(description = "sigup operation")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200" , description = "successful operation", content = @Content(schema = @Schema(implementation = Customer.class))),
+            @ApiResponse(responseCode = "200" , description = "Bad request infos", content = @Content(schema = @Schema(implementation = Customer.class))),
+    })
     public Mono<Customer> signup(
             @RequestBody @Valid SignupDto signupDto,
             ServerHttpRequest req,
